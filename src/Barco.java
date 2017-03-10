@@ -39,14 +39,15 @@ public abstract class Barco {
 		return this.estadoPosicion;
 	}
 
+	
+	public int getPrecio(String pNombre){
+        	return this.preciorReparacion;
+    	}
+  
 	/**
 	 *
 	 * @return boolean
 	 */
-	public int getPrecio(String pNombre){
-        return this.preciorReparacion;
-    }
-  
 	public boolean estaDañado() {
 		boolean flag = false;
 		for(boolean b : listaDaños){
