@@ -64,5 +64,17 @@ public class Battleship {
 		throw new UnsupportedOperationException();
 	}
 
+    /**
+     * @return Humano
+     */
+    public Humano getHumano() {
+        return humano;
+    }
 
+    /**
+     * @return IA
+     */
+    public IA getIa() {
+        return ia;
+    }
 }
