@@ -65,6 +65,9 @@ public class Keyboard {
         return scan.nextLine();
     }
 
+    /*
+    Recoge una opcion concreta entre un min y max. Ambos incluidos.
+     */
     public int getOptionFromRange(int min, int max) {
         int opt = Keyboard.getMyKeyboard().getInt();
         while (!(opt > min - 1) && !(opt < max + 1)) {
@@ -74,6 +77,9 @@ public class Keyboard {
         return opt;
     }
 
+    /*
+    Recoge un Yes (Y) o un No (N)
+     */
     public boolean catchYesNo() {
         String auxS;
         auxS = scan.nextLine();

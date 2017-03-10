@@ -12,7 +12,7 @@
 
 public abstract class Barco {
 
-    	protected String nombre;
+	protected String nombre;
 	protected int tamaño;
 	protected int[] posicion;
 	protected String estadoPosicion;

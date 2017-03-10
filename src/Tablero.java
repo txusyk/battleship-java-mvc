@@ -12,23 +12,17 @@
 
 public class Tablero {
 
-	private Casilla tablero;
+	private Casilla[][] tablero;
 	private Flota flota;
 	private int tamañoX;
 	private int tamañoY;
 
-	public Tablero() {
-		// TODO - implement Tablero.Tablero
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param pCasilla
-	 */
-	public void añadirCasilla(Casilla pCasilla) {
-		// TODO - implement Tablero.añadirCasilla
-		throw new UnsupportedOperationException();
+	public Tablero(Flota pFlota, int pMaxX, int pMaxY) {
+		this.tamañoX = pMaxX;
+		this.tamañoY = pMaxY;
+        this.tablero = new Casilla[tamañoX][tamañoY];
+        for (int i=0)
+		this.flota = pFlota;
 	}
 
 	/**
