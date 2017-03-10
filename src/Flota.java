@@ -30,7 +30,7 @@ public class Flota {
 	 * @param pFrag3
 	 * @param pFrag4
 	 */
-	public Flota(Barco pAviones, Barco pSub1, Barco pSub2, Barco pDestr1, Barco pDestr2, Barco pDestr3, Barco pFrag1, Barco pFrag2, Barco pFrag3, Barco pFrag4) {
+	public Flota(Portaaviones pAviones, Submarino pSub1, Submarino pSub2, Destructor pDestr1, Destructor pDestr2, Destructor pDestr3, Fragata pFrag1, Fragata pFrag2, Fragata pFrag3, Fragata pFrag4) {
 		Stack s = new Stack();
 		s.add(pAviones);
 		this.listaBarcos.put("portaaviones",s);

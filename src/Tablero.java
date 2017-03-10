@@ -23,7 +23,7 @@ public class Tablero {
         this.tablero = new Casilla[tamañoX][tamañoY];
         for (int i=0; i<10 ; i++){
             for (int j=0; j<10; j++){
-
+                tablero[i][j] = new Casilla();
             }
         }
 		this.flota = pFlota;
@@ -33,9 +33,20 @@ public class Tablero {
 	 * 
 	 * @param pBarco
 	 */
-	public boolean posicionarBarco(Barco pBarco) {
-		// TODO - implement Tablero.posicionarBarco
-		throw new UnsupportedOperationException();
+	public boolean posicionarBarco(Barco pBarco, int posX, int posY) {
+		if (tablero[posX][posY].getEstado() != null){
+            if (pBarco.getEstadoPosicion() == "H"){
+                int ultPos = posX+pBarco.getTamaño();
+                if (ultPos<10){
+                    if (posY <10){
+                        for (int i=0; i<pBarco.getTamaño(); i++){
+                            tablero[posX+i][posY].setState(null);
+                        }
+                    }
+                }
+            }
+        }
+        return false;
 	}
 
 

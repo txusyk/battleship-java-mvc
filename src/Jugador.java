@@ -28,8 +28,8 @@ public abstract class Jugador {
 	 * @param pArmas
 	 */
 	public Jugador(Flota pFlota, HashMap<String,Stack<Arma>> pArmas) {
-		this.tablero = new Tablero();
-		this.tableroAdv = new Tablero();
+		this.tablero = new Tablero(pFlota,10,10);
+		this.tableroAdv = new Tablero(pFlota,10,10);
 		this.flota = pFlota;
 		this.lArmas = pArmas;
 	}

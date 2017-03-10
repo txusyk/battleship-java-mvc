@@ -20,14 +20,14 @@ public class Casilla {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param estado
-	 */
 	public void setState(State estado) {
 		// TODO - implement Casilla.setState
 		throw new UnsupportedOperationException();
 	}
+
+	public State getEstado(){
+	    return this.estado;
+    }
 
 	public void accionarCasilla() {
 		// TODO - implement Casilla.accionarCasilla
