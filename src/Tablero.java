@@ -21,7 +21,11 @@ public class Tablero {
 		this.tamañoX = pMaxX;
 		this.tamañoY = pMaxY;
         this.tablero = new Casilla[tamañoX][tamañoY];
-        for (int i=0)
+        for (int i=0; i<10 ; i++){
+            for (int j=0; j<10; j++){
+
+            }
+        }
 		this.flota = pFlota;
 	}
 
