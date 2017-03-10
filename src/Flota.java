@@ -15,7 +15,7 @@ import java.util.Stack;
 
 public class Flota {
 
-	private HashMap<String, Stack<Barco>> listaBarcos;
+	private HashMap<String, Stack<Barco>> listaBarcos = new HashMap<>();
 
 	/**
 	 * 
@@ -31,8 +31,24 @@ public class Flota {
 	 * @param pFrag4
 	 */
 	public Flota(Barco pAviones, Barco pSub1, Barco pSub2, Barco pDestr1, Barco pDestr2, Barco pDestr3, Barco pFrag1, Barco pFrag2, Barco pFrag3, Barco pFrag4) {
-		// TODO - implement Flota.Flota
-		throw new UnsupportedOperationException();
+		Stack s = new Stack();
+		s.add(pAviones);
+		this.listaBarcos.put("portaaviones",s);
+        s = new Stack();
+		s.add(pSub1);
+		s.add(pSub2);
+		this.listaBarcos.put("submarino",s);
+        s = new Stack();
+		s.add(pDestr1);
+		s.add(pDestr2);
+		s.add(pDestr3);
+		this.listaBarcos.put("destructor",s);
+        s = new Stack();
+		s.add(pFrag1);
+		s.add(pFrag2);
+		s.add(pFrag3);
+		s.add(pFrag4);
+		this.listaBarcos.put("fragata",s);
 	}
 
 	/**
@@ -40,8 +56,13 @@ public class Flota {
 	 * @param pBarco
 	 */
 	public void añadirBarco(Barco pBarco) {
-		// TODO - implement Flota.añadirBarco
-		throw new UnsupportedOperationException();
+	    if (this.listaBarcos.get(pBarco.getNombre()) != null){
+	        this.listaBarcos.get(pBarco.getNombre()).add(pBarco);
+        }else{
+	        Stack s = new Stack();
+	        s.add(pBarco);
+	        this.listaBarcos.put(pBarco.getNombre(),s);
+        }
 	}
 
 	/**
@@ -49,8 +70,10 @@ public class Flota {
 	 * @param pBarco
 	 */
 	public Barco eliminarBarco(Barco pBarco) {
-		// TODO - implement Flota.eliminarBarco
-		throw new UnsupportedOperationException();
+        if (this.listaBarcos.get(pBarco.getNombre()) != null) {
+            return this.listaBarcos.get(pBarco.getNombre()).pop();
+        }
+        return null;
 	}
 
 	/**
@@ -58,9 +81,22 @@ public class Flota {
 	 * @param pBarco
 	 */
 	public Barco buscarBarco(Barco pBarco) {
-		// TODO - implement Flota.buscarBarco
-		throw new UnsupportedOperationException();
+		if (this.listaBarcos.get(pBarco.getNombre())!= null){
+		    return this.listaBarcos.get(pBarco.getNombre()).peek();
+        }
+        return null;
 	}
 
+    /**
+     *
+     * @param pBarco
+     */
+    public boolean repararBarco(Barco pBarco){
+        if (pBarco.estaDañado()) {
+            pBarco.reparar();
+            return true;
+        }
+        return false;
+    }
 
 }

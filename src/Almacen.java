@@ -15,26 +15,39 @@ import java.util.Stack;
 
 public class Almacen {
 
-	private HashMap<String, Stack<Arma>> AlmacenIA;
-	private HashMap<String, Stack<Arma>> AlmacenHumano;
-	private static Almacen miAlmacen;
+    private HashMap<String, Stack<Arma>> almacen;
+    private static Almacen miAlmacen;
 
-	private Almacen() {
-		// TODO - implement Almacen.Almacen
-		throw new UnsupportedOperationException();
-	}
+    private Almacen() {
+        almacen = new HashMap<>();
+    }
 
-	public static Almacen getMiAlmacen() {
-		return miAlmacen;
-	}
+    public static Almacen getMiAlmacen() {
+        if (miAlmacen == null) {
+            miAlmacen = new Almacen();
+        }
+        return miAlmacen;
+    }
 
-	/**
-	 * 
-	 * @param pNombre
-	 */
-	public void comprarArma(String pNombre) {
-		// TODO - implement Almacen.comprarArma
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param pNombre
+     * @return Arma
+     */
+    public Arma comprarArma(String pNombre) {
+        if (this.almacen.get(pNombre) != null) {
+            if (this.almacen.get(pNombre).size() > 0) {
+                return this.almacen.get(pNombre).pop();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param pNombre
+     * @return precio
+     */
+    public int getPrecioArma(String pNombre){
+        return this.almacen.get(pNombre).peek().getPrecio();
+    }
 
 }

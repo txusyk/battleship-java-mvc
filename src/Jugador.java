@@ -54,6 +54,7 @@ public abstract class Jugador {
 	protected void comprarArma(String pArma) {
 	    if (this.dinero>=Almacen.getMiAlmacen().getPrecioArma(pArma)){
 	        lArmas.get(pArma).add(Almacen.getMiAlmacen().comprarArma(pArma));
+	        this.decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
         }
 	}
 
@@ -62,7 +63,9 @@ public abstract class Jugador {
 	 * @param pBarco
 	 */
 	protected void repararBarco(Barco pBarco) {
-		flota.repararBarco(pBarco);
+		if (this.dinero>=flota.buscarBarco(pBarco).preciorReparacion) {
+            flota.repararBarco(pBarco);
+        }
 	}
 
 
