@@ -10,11 +10,39 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public class Submarino extends BarcoFactory {
+public class Submarino extends Barco {
 
 	public Submarino() {
 		// TODO - implement Submarino.Submarino
 		throw new UnsupportedOperationException();
+
+	}
+
+	/**
+	 *
+	 * @param pArma
+	 * @param posAtaq
+	 */
+	public void recibirDaños(Arma pArma, int posAtaq) {
+		if (pArma.getNombre() == "Misil") {
+			for (boolean b : this.getListaDaños()) {
+				b = false;
+			}
+		} else {
+			int cont = 0;
+			boolean dif = true;
+			int[] pos = this.getPosicion();
+
+			for (int i : pos) {
+				while (dif) {
+					if (i != posAtaq) {
+						cont++;
+					}
+				}
+			}
+
+			this.getListaDaños()[cont] = false;
+		}
 
 	}
 
