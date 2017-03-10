@@ -10,7 +10,10 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public class Humano extends Jugador {
+import java.util.HashMap;
+import java.util.Stack;
+
+public class Humano extends Jugador implements IJugador {
 
 	private String nombre;
 
@@ -18,10 +21,14 @@ public class Humano extends Jugador {
 	 * 
 	 * @param pNombre
 	 */
-	public Humano(String pNombre) {
-		// TODO - implement Humano.Humano
-		throw new UnsupportedOperationException();
+	public Humano(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pDif,String pNombre) {
+        super(pFlota,pArmas);
+        this.nombre = pNombre;
 	}
+
+    public String getNombre() {
+        return this.nombre;
+    }
 
 	public void jugarTurno() {
 		// TODO - implement Humano.jugarTurno
@@ -33,9 +40,7 @@ public class Humano extends Jugador {
 		throw new UnsupportedOperationException();
 	}
 
-	public String getNombre() {
-		return this.nombre;
-	}
+
 
 
 }

@@ -19,27 +19,32 @@ public abstract class Jugador {
 	private Tablero tablero;
 	private Tablero tableroAdv;
 	private Flota flota;
-	private int dinero;
+	private int dinero = 15000;
 	private HashMap<String,Stack<Arma>> lArmas;
 
 	/**
 	 * 
 	 * @param pFlota
-	 * @param pDinInicial
 	 * @param pArmas
 	 */
-	public Jugador(Flota pFlota, int pDinInicial, HashMap<String,Stack<Arma>> pArmas) {
-		// TODO - implement Jugador.Jugador
-		throw new UnsupportedOperationException();
+	public Jugador(Flota pFlota, HashMap<String,Stack<Arma>> pArmas) {
+		this.tablero = new Tablero();
+		this.tableroAdv = new Tablero();
+		this.flota = pFlota;
+		this.lArmas = pArmas;
 	}
 
 	/**
 	 * 
 	 * @param pCantidad
+     * @return boolean
 	 */
-	protected void decrementarDinero(int pCantidad) {
-		// TODO - implement Jugador.decrementarDinero
-		throw new UnsupportedOperationException();
+	protected boolean decrementarDinero(int pCantidad) {
+		if (dinero > pCantidad){
+		    dinero -= pCantidad;
+		    return true;
+        }
+        return false;
 	}
 
 	/**
@@ -47,8 +52,9 @@ public abstract class Jugador {
 	 * @param pArma
 	 */
 	protected void comprarArma(String pArma) {
-		// TODO - implement Jugador.comprarArma
-		throw new UnsupportedOperationException();
+	    if (this.dinero>=Almacen.getMiAlmacen().getPrecioArma(pArma)){
+	        lArmas.get(pArma).add(Almacen.getMiAlmacen().comprarArma(pArma));
+        }
 	}
 
 	/**
@@ -56,8 +62,7 @@ public abstract class Jugador {
 	 * @param pBarco
 	 */
 	protected void repararBarco(Barco pBarco) {
-		// TODO - implement Jugador.repararBarco
-		throw new UnsupportedOperationException();
+		flota.repararBarco(pBarco);
 	}
 
 

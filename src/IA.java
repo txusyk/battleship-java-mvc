@@ -10,6 +10,9 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import java.util.HashMap;
+import java.util.Stack;
+
 public class IA extends Jugador {
 
 	private String dificultad;
@@ -18,9 +21,9 @@ public class IA extends Jugador {
 	 * 
 	 * @param pDif
 	 */
-	public IA(String pDif) {
-		// TODO - implement IA.IA
-		throw new UnsupportedOperationException();
+	public IA(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pDif) {
+		super(pFlota,pArmas);
+		this.dificultad = pDif;
 	}
 
 	public void jugarTurnoIA() {
