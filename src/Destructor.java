@@ -17,5 +17,32 @@ public class Destructor extends Barco {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 *
+	 * @param pArma
+	 * @param posAtaq
+	 */
+	public void recibirDaños(Arma pArma, int posAtaq) {
+		if (pArma.getNombre() == "Misil") {
+			for (boolean b : this.getListaDaños()) {
+				b = false;
+			}
+		} else {
+			int cont = 0;
+			boolean dif = true;
+			int[] pos = this.getPosicion();
+
+			for (int i : pos) {
+				while (dif) {
+					if (i != posAtaq) {
+						cont++;
+					}
+				}
+			}
+
+			this.getListaDaños()[cont] = false;
+		}
+
+	}
 
 }

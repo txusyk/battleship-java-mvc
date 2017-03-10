@@ -36,19 +36,34 @@ public abstract class Barco {
 		return this.estadoPosicion;
 	}
 
+	/**
+	 *
+	 * @return boolean
+	 */
 	public boolean estaDañado() {
-		// TODO - implement Barco.estaDañado
-		throw new UnsupportedOperationException();
+		boolean flag = false;
+		for(boolean b : listaDaños){
+			if(!b){
+				flag = true;
+			}
+		}
+		return flag;
 	}
 
 	/**
-	 * 
-	 * @param pArma
-	 * @param posAtaq
+	 *
+	 * @return int[]
 	 */
-	public void recibirDaños(Arma pArma, int posAtaq) {
-		// TODO - implement Barco.recibirDaños
-		throw new UnsupportedOperationException();
+	public int[] getPosicion(){
+		return posicion;
+	}
+
+	/**
+	 *
+	 * @return boolean[]
+	 */
+	public boolean[] getListaDaños(){
+		return this.listaDaños;
 	}
 
 

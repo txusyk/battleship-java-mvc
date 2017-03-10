@@ -10,12 +10,21 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public class Fragata extends BarcoFactory {
+public class Fragata extends Barco {
 
 	public Fragata() {
 		// TODO - implement Fragata.Fragata
 		throw new UnsupportedOperationException();
 	}
 
-	
+	/**
+	 *
+	 * @param pArma
+	 * @param posAtaq
+	 */
+	public void recibirDaños(Arma pArma, int posAtaq){
+		boolean[] daños = this.getListaDaños();
+		daños[0] = false;
+	}
+
 }
