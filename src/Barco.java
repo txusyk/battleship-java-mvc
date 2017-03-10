@@ -12,9 +12,8 @@
 
 public abstract class Barco {
 
-    protected String nombre;
-	protected int longitudX;
-	protected int longitudY;
+    	protected String nombre;
+	protected int tamaño;
 	protected int[] posicion;
 	protected String estadoPosicion;
 	protected boolean[] listaDaños;
@@ -27,12 +26,8 @@ public abstract class Barco {
 
 	public String getNombre() { return this.nombre;}
 
-	public int getLongitudX() {
-		return this.longitudX;
-	}
-
-	public int getLongitudY() {
-		return this.longitudY;
+	public int getTamaño() {
+		return this.tamaño;
 	}
 
 	public String getEstadoPosicion() {
@@ -40,13 +35,8 @@ public abstract class Barco {
 	}
 
 	public int getPrecio(String pNombre){
-        return this.preciorReparacion;
-    }
-
-	public boolean estaDañado() {
-		// TODO - implement Barco.estaDañado
-		throw new UnsupportedOperationException();
-	}
+        	return this.preciorReparacion;
+    	}
 
 	/**
 	 * 
@@ -58,12 +48,37 @@ public abstract class Barco {
 		throw new UnsupportedOperationException();
 	}
 
-    /**
-     * @return int
-     */
-    public int reparar(){
-        return preciorReparacion;
-    }
+    	/**
+     	* @return int
+     	*/
+    	public int reparar(){
+        	return preciorReparacion;
+    	}
+	
+	public boolean estaDañado() {
+		boolean flag = false;
+		for(boolean b : listaDaños){
+			if(!b){
+				flag = true;
+			}
+		}
+		return flag;
+	}
 
+	/**
+	 *
+	 * @return int[]
+	 */
+	public int[] getPosicion(){
+		return posicion;
+	}
+
+	/**
+	 *
+	 * @return boolean[]
+	 */
+	public boolean[] getListaDaños(){
+		return this.listaDaños;
+	}
 
 }
