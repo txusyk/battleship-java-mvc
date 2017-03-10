@@ -30,23 +30,34 @@ public class Almacen {
     }
 
     /**
-     * @param pNombre
+     * @param pArma
      * @return Arma
      */
-    public Arma comprarArma(String pNombre) {
-        if (this.almacen.get(pNombre) != null) {
-            if (this.almacen.get(pNombre).size() > 0) {
-                return this.almacen.get(pNombre).pop();
+    public Arma comprarArma(String pArma) {
+        if (existeArma(pArma)) {
+            if (!this.estaVacio(pArma)) {
+                return this.almacen.get(pArma).pop();
             }
         }
         return null;
+    }
+
+    private boolean existeArma(String pArma) {
+        if (this.almacen.get(pArma.toLowerCase()) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean estaVacio(String pNombre) {
+        return this.almacen.get(pNombre).empty();
     }
 
     /**
      * @param pNombre
      * @return precio
      */
-    public int getPrecioArma(String pNombre){
+    public int getPrecioArma(String pNombre) {
         return this.almacen.get(pNombre).peek().getPrecio();
     }
 
