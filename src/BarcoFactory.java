@@ -20,32 +20,17 @@ public class BarcoFactory {
 	}
 
 	public static BarcoFactory getBarcoFactory() {
-		return miBarcoFactory;
+		// TODO - implement BarcoFactory.getBarcoFactory
+		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * 
-	 *
+	 * @param pNombre
 	 */
-	public Barco crearBarco() {
-
-		System.out.println("Que barco quieres crear? (Portaaviones, Submarino, Destructor o Fragata");
-		String pNombre = Keyboard.getMyKeyboard().getString();
-
-		Barco b = null;
-		if(pNombre == "Portaaviones"){
-			b = new Portaaviones();
-		}
-		else if(pNombre == "Submarino"){
-			b = new Submarino();
-		}
-		else if(pNombre == "Destructor"){
-			b = new Destructor();
-		}
-		else if(pNombre == "Fragata"){
-			b = new Fragata();
-		}
-		return b;
+	public Barco crearBarco(String pNombre) {
+		// TODO - implement BarcoFactory.crearBarco
+		throw new UnsupportedOperationException();
 	}
 
 

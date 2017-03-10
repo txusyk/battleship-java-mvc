@@ -39,39 +39,23 @@ public abstract class Barco {
 		return this.estadoPosicion;
 	}
 
-	
 	public int getPrecio(String pNombre){
-        	return this.preciorReparacion;
-    	}
-  
-	/**
-	 *
-	 * @return boolean
-	 */
+        return this.preciorReparacion;
+    }
+
 	public boolean estaDañado() {
-		boolean flag = false;
-		for(boolean b : listaDaños){
-			if(!b){
-				flag = true;
-			}
-		}
-		return flag;
+		// TODO - implement Barco.estaDañado
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 *
-	 * @return int[]
+	 * 
+	 * @param pArma
+	 * @param posAtaq
 	 */
-	public int[] getPosicion(){
-		return posicion;
-	}
-
-	/**
-	 *
-	 * @return boolean[]
-	 */
-	public boolean[] getListaDaños(){
-		return this.listaDaños;
+	public void recibirDaños(Arma pArma, int posAtaq) {
+		// TODO - implement Barco.recibirDaños
+		throw new UnsupportedOperationException();
 	}
 
     /**
