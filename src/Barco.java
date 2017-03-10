@@ -12,17 +12,20 @@
 
 public abstract class Barco {
 
-	private int longitudX;
-	private int longitudY;
-	private int[] posicion;
-	private String estadoPosicion;
-	private boolean[] listaDaños;
-	private int preciorReparacion;
+    protected String nombre;
+	protected int longitudX;
+	protected int longitudY;
+	protected int[] posicion;
+	protected String estadoPosicion;
+	protected boolean[] listaDaños;
+	protected int preciorReparacion;
 
-	public Barco() {
-		// TODO - implement Barco.Barco
-		throw new UnsupportedOperationException();
+	public Barco(String pNombre) {
+        this.nombre = pNombre;
+        this.posicion = new int[2];
 	}
+
+	public String getNombre() { return this.nombre;}
 
 	public int getLongitudX() {
 		return this.longitudX;
@@ -36,35 +39,31 @@ public abstract class Barco {
 		return this.estadoPosicion;
 	}
 
-	/**
-	 *
-	 * @return boolean
-	 */
+	public int getPrecio(String pNombre){
+        return this.preciorReparacion;
+    }
+
 	public boolean estaDañado() {
-		boolean flag = false;
-		for(boolean b : listaDaños){
-			if(!b){
-				flag = true;
-			}
-		}
-		return flag;
+		// TODO - implement Barco.estaDañado
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 *
-	 * @return int[]
+	 * 
+	 * @param pArma
+	 * @param posAtaq
 	 */
-	public int[] getPosicion(){
-		return posicion;
+	public void recibirDaños(Arma pArma, int posAtaq) {
+		// TODO - implement Barco.recibirDaños
+		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 *
-	 * @return boolean[]
-	 */
-	public boolean[] getListaDaños(){
-		return this.listaDaños;
-	}
+    /**
+     * @return int
+     */
+    public int reparar(){
+        return preciorReparacion;
+    }
 
 
 }
