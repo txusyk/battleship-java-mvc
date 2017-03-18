@@ -16,8 +16,7 @@ public class Radar extends Arma {
 	private int numUsos;
 
 	public Radar() {
-		// TODO - implement Radar.Radar
-		throw new UnsupportedOperationException();
+		super();
 	}
 
 	/**

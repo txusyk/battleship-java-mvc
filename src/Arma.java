@@ -16,8 +16,7 @@ public abstract class Arma {
 	private int cantidad;
 
 	public Arma() {
-		// TODO - implement Arma.Arma
-		throw new UnsupportedOperationException();
+		cantidad = 1;
 	}
 
 	public int getPrecio() {

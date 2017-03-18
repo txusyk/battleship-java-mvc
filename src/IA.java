@@ -26,7 +26,11 @@ public class IA extends Jugador {
 		this.dificultad = pDif;
 	}
 
-	public void jugarTurnoIA() {
+    public String getDificultad() {
+        return dificultad;
+    }
+
+    public void jugarTurnoIA() {
 		// TODO - implement IA.jugarTurnoIA
 		throw new UnsupportedOperationException();
 	}

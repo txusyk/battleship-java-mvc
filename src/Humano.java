@@ -13,7 +13,7 @@
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Humano extends Jugador implements IJugador {
+public class Humano extends Jugador{
 
 	private String nombre;
 
@@ -21,7 +21,7 @@ public class Humano extends Jugador implements IJugador {
 	 * 
 	 * @param pNombre
 	 */
-	public Humano(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pDif,String pNombre) {
+	public Humano(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pNombre) {
         super(pFlota,pArmas);
         this.nombre = pNombre;
 	}

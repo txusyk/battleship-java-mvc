@@ -1,9 +1,7 @@
-import static org.testng.Assert.*;
-
 /**
  * Created by Josu on 18/03/2017.
  */
-public class TableroTest {
+public class StateTest {
     @org.testng.annotations.BeforeMethod
     public void setUp() throws Exception {
 
@@ -15,7 +13,7 @@ public class TableroTest {
     }
 
     @org.testng.annotations.Test
-    public void testPosicionarBarco() throws Exception {
+    public void testPedir() throws Exception {
 
     }
 

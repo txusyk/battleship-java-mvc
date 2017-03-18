@@ -1,9 +1,7 @@
-import static org.testng.Assert.*;
-
 /**
  * Created by Josu on 18/03/2017.
  */
-public class JugadorTest {
+public class ArmaTest {
     @org.testng.annotations.BeforeMethod
     public void setUp() throws Exception {
 
@@ -15,17 +13,17 @@ public class JugadorTest {
     }
 
     @org.testng.annotations.Test
-    public void testDecrementarDinero() throws Exception {
+    public void testGetPrecio() throws Exception {
 
     }
 
     @org.testng.annotations.Test
-    public void testComprarArma() throws Exception {
+    public void testGetCantidadUsos() throws Exception {
 
     }
 
     @org.testng.annotations.Test
-    public void testRepararBarco() throws Exception {
+    public void testAccion() throws Exception {
 
     }
 

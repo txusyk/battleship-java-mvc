@@ -13,8 +13,7 @@
 public class MisilDir extends Arma {
 
 	public MisilDir() {
-		// TODO - implement MisilDir.MisilDir
-		throw new UnsupportedOperationException();
+		super();
 	}
 
 	public void accion() {

@@ -16,8 +16,6 @@ public class Casilla {
 	private int[] posicion;
 
 	public Casilla() {
-		// TODO - implement Casilla.Casilla
-		throw new UnsupportedOperationException();
 	}
 
 	public void setState(State estado) {

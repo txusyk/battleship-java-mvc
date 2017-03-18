@@ -16,5 +16,4 @@ public class Portaaviones extends Barco {
 		super(pNombre);
 	}
 
-
 }

@@ -1,5 +1,3 @@
-import static org.testng.Assert.*;
-
 /**
  * Created by Josu on 18/03/2017.
  */
