@@ -14,5 +14,7 @@ public class Destructor extends Barco {
 
 	public Destructor(String pNombre) {
 		super(pNombre);
+		this.posicion = new int[2];
+		this.tamaño = 2;
 	}
 }

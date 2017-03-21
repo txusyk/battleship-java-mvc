@@ -14,6 +14,8 @@ public class Portaaviones extends Barco {
 
 	public Portaaviones(String pNombre) {
 		super(pNombre);
+		this.posicion = new int[4];
+		this.tamaño = 4;
 	}
 
 }

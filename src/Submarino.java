@@ -14,6 +14,8 @@ public class Submarino extends Barco {
 
 	public Submarino(String pNombre) {
 		super(pNombre);
+		this.posicion = new int[3];
+		this.tamaño = 3;
 	}
 
 }

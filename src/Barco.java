@@ -20,8 +20,7 @@ public abstract class Barco {
 	protected int preciorReparacion;
 
 	public Barco(String pNombre) {
-        this.nombre = pNombre;
-        this.posicion = new int[2];
+		this.nombre = pNombre;
 	}
 
 	public String getNombre() { return this.nombre;}
@@ -35,11 +34,11 @@ public abstract class Barco {
 	}
 
 	public int getPrecio(String pNombre){
-        	return this.preciorReparacion;
-    	}
+		return this.preciorReparacion;
+	}
 
 	/**
-	 * 
+	 *
 	 * @param pArma
 	 * @param posAtaq
 	 */
@@ -48,13 +47,13 @@ public abstract class Barco {
 		throw new UnsupportedOperationException();
 	}
 
-    	/**
-     	* @return int
-     	*/
-    	public int reparar(){
-        	return preciorReparacion;
-    	}
-	
+	/**
+	 * @return int
+	 */
+	public int reparar(){
+		return preciorReparacion;
+	}
+
 	public boolean estaDañado() {
 		boolean flag = false;
 		for(boolean b : listaDaños){
