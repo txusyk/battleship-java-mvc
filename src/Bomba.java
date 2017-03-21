@@ -13,13 +13,14 @@
 public class Bomba extends Arma {
 
 	public Bomba() {
-		super();
+	    super();
+		this.precio = 100;
 	}
 
-	public void accion() {
-		// TODO - implement Bomba.accion
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void accion(Object data) {
+
+    }
 
 
 }

@@ -13,12 +13,14 @@
 public class Misil extends Arma {
 
 	public Misil() {
-		super();
+	    super();
+	    this.precio = 250;
 	}
 
-	public void accion() {
-		// TODO - implement Misil.accion
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void accion(Object data) {
+
+    }
+
 
 }

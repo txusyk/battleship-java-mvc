@@ -12,22 +12,29 @@
 
 public class Escudo extends Arma {
 
-	private int impactosRestantes;
+    private int impactosRestantes;
 
-	public Escudo() {
-		// TODO - implement Escudo.Escudo
-		throw new UnsupportedOperationException();
-	}
+    public Escudo() {
+        super();
+        this.precio = 150;
+        this.impactosRestantes = 2;
+    }
 
-	public void accion() {
-		// TODO - implement Escudo.accion
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void accion(Object data) {
 
-	public void sufrirDaños() {
-		// TODO - implement Escudo.sufrirDaños
-		throw new UnsupportedOperationException();
-	}
+    }
+
+    public int getImpactosRestantes() {
+        return this.impactosRestantes;
+    }
 
 
+    public void recibirImpacto(Arma pArma) {
+        if (pArma instanceof Bomba) {
+            this.impactosRestantes--;
+        } else {
+            this.impactosRestantes = 0;
+        }
+    }
 }

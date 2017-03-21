@@ -28,6 +28,10 @@ public class Keyboard {
         return miKeyboard;
     }
 
+    public static void main(){
+        Keyboard.getMyKeyboard().catchYesNo();
+    }
+
     /*
      * Recoge un int. En caso de que no sea valido, vuelve a solicitarlo hasta que
      * reciba un int valido.

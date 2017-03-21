@@ -27,10 +27,9 @@ public class Radar extends Arma {
 		this.posicion = pPos;
 	}
 
-	public void accion() {
-		// TODO - implement Radar.accion
-		throw new UnsupportedOperationException();
-	}
+	@Override
+	public void accion(Object data) {
 
+	}
 
 }

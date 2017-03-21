@@ -13,13 +13,19 @@
 public class MisilDir extends Arma {
 
 	public MisilDir() {
-		super();
+	    super();
+		this.precio = 500;
 	}
 
-	public void accion() {
-		// TODO - implement MisilDir.accion
-		throw new UnsupportedOperationException();
+	@Override
+	public void accion(Object data) {
+		DireccionesArma da = (DireccionesArma)data;
+		if (da.getDireccion() == "norte-sur"){
+
+        }else if (da.getDireccion() == "este-oeste"){
+
+        }else if (da.getDireccion() == "boom"){
+
+        }
 	}
-
-
 }

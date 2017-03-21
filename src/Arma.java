@@ -10,24 +10,18 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public abstract class Arma {
+public abstract class Arma<T> {
 
-	private int precio;
-	private int cantidad;
+	protected int precio;
 
 	public Arma() {
-		cantidad = 1;
+
 	}
 
 	public int getPrecio() {
 		return this.precio;
 	}
 
-	public int getCantidadUsos() {
-		// TODO - implement Arma.getCantidadUsos
-		throw new UnsupportedOperationException();
-	}
-
-	public abstract void accion();
+	public abstract void accion(T data);
 
 }
