@@ -15,8 +15,6 @@ import java.util.Stack;
 
 public class IA extends Jugador {
 
-	private String dificultad;
-
 	/**
 	 * 
 	 * @param pDif

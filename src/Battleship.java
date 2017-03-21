@@ -14,6 +14,8 @@ public class Battleship {
 
 	private Humano humano;
 	private IA ia;
+    private String dificultad;
+
 	private static Battleship myBattleship;
 
 	private Battleship() {
@@ -22,10 +24,17 @@ public class Battleship {
 	}
 
 	public static Battleship getMyBattleship() {
-		return myBattleship;
+		if (myBattleship == null){
+		    myBattleship = new Battleship();
+        }
+        return myBattleship;
 	}
 
-	/**
+    public String getDificultad() {
+        return dificultad;
+    }
+
+    /**
 	 * 
 	 * @param args
 	 */
