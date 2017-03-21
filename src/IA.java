@@ -15,13 +15,14 @@ import java.util.Stack;
 
 public class IA extends Jugador {
 
+	private String dificultad;
 	/**
 	 * 
-	 * @param pDif
+	 * @param pFlota,pArmas
 	 */
-	public IA(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pDif) {
+	public IA(Flota pFlota, HashMap<String,Stack<Arma>> pArmas) {
 		super(pFlota,pArmas);
-		this.dificultad = pDif;
+		this.dificultad = Battleship.getMyBattleship().getDificultad();
 	}
 
     public String getDificultad() {
