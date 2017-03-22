@@ -35,7 +35,7 @@ public class IATest {
         armas.push(r1);
         larmas.put("radar", armas);
 
-        ia1 = new IA(fl,larmas,"facil");
+        ia1 = new IA(fl,larmas);
 
         armas = new Stack<>();
         Misil m1 = new Misil();
@@ -44,7 +44,7 @@ public class IATest {
         armas.push(m2);
         larmas.put("misil", armas);
 
-        ia2 = new IA(fl,larmas, "dificil");
+        ia2 = new IA(fl,larmas);
     }
 
     @AfterMethod

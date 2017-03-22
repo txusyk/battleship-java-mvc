@@ -19,7 +19,7 @@ public class Almacen {
     private static Almacen miAlmacen;
 
     private Almacen() {
-        existencias = new ListaArmas(Battleship.getMyBattleship().getDificultad());
+        existencias = new ListaArmas();
     }
 
     public static Almacen getMiAlmacen() {
