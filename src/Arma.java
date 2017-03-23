@@ -14,8 +14,8 @@ public abstract class Arma<T> {
 
 	protected int precio;
 
-	public Arma() {
-
+	public Arma(int pPrecio) {
+		this.precio = pPrecio;
 	}
 
 	public int getPrecio() {

@@ -12,9 +12,8 @@
 
 public class Misil extends Arma {
 
-	public Misil() {
-	    super();
-	    this.precio = 250;
+	public Misil(int pPrecio) {
+	    super(pPrecio);
 	}
 
     @Override

@@ -12,9 +12,8 @@
 
 public class MisilDir extends Arma {
 
-	public MisilDir() {
-	    super();
-		this.precio = 500;
+	public MisilDir(int pPrecio) {
+	    super(pPrecio);
 	}
 
 	@Override

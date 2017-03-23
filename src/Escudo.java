@@ -14,9 +14,8 @@ public class Escudo extends Arma {
 
     private int impactosRestantes;
 
-    public Escudo() {
-        super();
-        this.precio = 150;
+    public Escudo(int pPrecio) {
+        super(pPrecio);
         this.impactosRestantes = 2;
     }
 

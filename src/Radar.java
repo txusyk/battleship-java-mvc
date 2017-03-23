@@ -12,11 +12,11 @@
 
 public class Radar extends Arma {
 
-	private int[] posicion;
-	private int numUsos;
+	private int[] posicion = null;
+	private int numUsos = 3;
 
-	public Radar() {
-		super();
+	public Radar(int pPrecio) {
+		super(pPrecio);
 	}
 
 	/**

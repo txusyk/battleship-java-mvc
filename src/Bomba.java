@@ -12,9 +12,8 @@
 
 public class Bomba extends Arma {
 
-	public Bomba() {
-	    super();
-		this.precio = 100;
+	public Bomba(int pPrecio) {
+	    super(pPrecio);
 	}
 
     @Override

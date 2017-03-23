@@ -1,3 +1,15 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2017 Josu
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,7 +42,7 @@ public class IATest {
         Flota fl = new Flota(p,s1,s2,d1,d2,d3,frag1,frag2,frag3,frag4);
 
         HashMap<String, Stack<Arma>> larmas = new HashMap<>();
-        Radar r1 = new Radar();
+        Radar r1 = new Radar(100);
         Stack<Arma> armas = new Stack<>();
         armas.push(r1);
         larmas.put("radar", armas);
@@ -38,8 +50,8 @@ public class IATest {
         ia1 = new IA(fl,larmas);
 
         armas = new Stack<>();
-        Misil m1 = new Misil();
-        Misil m2 = new Misil();
+        Misil m1 = new Misil(100);
+        Misil m2 = new Misil(100);
         armas.push(m1);
         armas.push(m2);
         larmas.put("misil", armas);

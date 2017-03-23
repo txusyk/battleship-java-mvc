@@ -10,16 +10,13 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import java.util.HashMap;
-import java.util.Stack;
-
 public class Almacen {
 
     private ListaArmas existencias;
     private static Almacen miAlmacen;
 
     private Almacen() {
-        existencias = new ListaArmas();
+        existencias = Configurador.getMyConfigurador().readXML("facil");
     }
 
     public static Almacen getMiAlmacen() {
@@ -42,6 +39,10 @@ public class Almacen {
         return null;
     }
 
+    /**
+     * @param pArma
+     * @return boolean
+     */
     private boolean existeArma(String pArma) {
         if (this.existencias.get(pArma.toLowerCase()) != null) {
             return true;
@@ -49,6 +50,10 @@ public class Almacen {
         return false;
     }
 
+    /**
+     * @param pNombre
+     * @return boolean
+     */
     private boolean estaVacio(String pNombre) {
         return this.existencias.get(pNombre).empty();
     }
@@ -60,5 +65,11 @@ public class Almacen {
     public int getPrecioArma(String pNombre) {
         return this.existencias.get(pNombre).peek().getPrecio();
     }
+
+    /**
+     * @param pNombreArma
+     * @return int
+     */
+    public int cantidadRestante(String pNombreArma){ return this.existencias.get(pNombreArma).size();}
 
 }

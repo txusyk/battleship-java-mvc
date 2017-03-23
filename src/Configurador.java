@@ -1,3 +1,15 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2017 Josu
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -13,6 +25,8 @@ import java.io.InputStream;
 public class Configurador {
 
     private static Configurador myConfigurador;
+
+    private ListaArmas ls = new ListaArmas();
 
     private static int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto,dineroInicial;
 
@@ -31,7 +45,7 @@ public class Configurador {
         Configurador.getMyConfigurador().readXML("facil");
     }
 
-    private void readXML(String pDif){
+    public ListaArmas readXML(String pDif){
         try (InputStream resource = Configurador.class.getResourceAsStream("config_IS_battleship.xml")){
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -41,8 +55,6 @@ public class Configurador {
 
 
             Node nNode = doc.getElementsByTagName(pDif).item(0);
-
-            //System.out.println(doc.getElementsByTagName(pDif).item(0).getAttributes().item(0));
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE){
                 Node nCantArmas= ((Element) nNode).getElementsByTagName("cantidadArmas").item(0);
@@ -75,7 +87,6 @@ public class Configurador {
                 if (nJugador.getNodeType() == Node.ELEMENT_NODE){
                     dineroInicial = Integer.parseInt(((Element) nBarcos).getElementsByTagName("precioBaseReparacion").item(0).getTextContent());
                 }
-                mostrarInicializacion();
             }
         }catch(IOException e1){
             System.err.println("Error en el sistema. Error en el archivo");
@@ -86,28 +97,18 @@ public class Configurador {
         }catch (SAXException e3){
             e3.printStackTrace();
         }
+        ls = inicializar();
+        return ls;
     }
 
-    private static void mostrarInicializacion(){
-        System.out.println("[*] Cantidades de armas");
-        System.out.println("\t\tBombas: "+numBombas);
-        System.out.println("\t\tMisil: "+numMisiles);
-        System.out.println("\t\tMisilDirig: "+numMisilesDirig);
-        System.out.println("\t\tRadar: "+numRadares);
-        System.out.println("\t\tEscudo: "+numEscudos);
+    private ListaArmas inicializar(){
+        ls.inicializarArma("bomba",numBombas,0);
+        ls.inicializarArma("misil",numMisiles,precioMisiles);
+        ls.inicializarArma("misildirig",numMisilesDirig,precioMisilesDirig);
+        ls.inicializarArma("radar",numRadares,precioRadares);
+        ls.inicializarArma("escudo",numEscudos,precioBaseImpacto);
 
-        System.out.println("[*] Precios de armas");
-        System.out.println("\t\tMisiles: "+precioMisiles);
-        System.out.println("\t\tMisilesDirig: "+numMisilesDirig);
-        System.out.println("\t\tRadar: "+precioRadares);
-        System.out.println("\t\tEscudo: "+precioEscudos);
-
-        System.out.println("[*] Precios de barcos");
-        System.out.println("\t\tprecioBaseReparacion: "+precioBaseReparacion);
-        System.out.println("\t\tprecioBaseImpacto: "+precioBaseImpacto);
-
-        System.out.println("[*] Jugador");
-        System.out.println("\t\tdineroInicial: "+dineroInicial);
+        return ls;
     }
 
 }
