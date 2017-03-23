@@ -44,5 +44,4 @@ public class ArmaFactory {
 		return a;
 	}
 
-
 }

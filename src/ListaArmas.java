@@ -74,6 +74,10 @@ public class ListaArmas {
         return ls.get(pArma).pop();
     }
 
+    public Arma consultarArma(String pArma){ return ls.get(pArma).peek();}
+
+    public int getSize(String pArma){ return ls.get(pArma).size();}
+
     /**
      * @param pArma
      */

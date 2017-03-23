@@ -33,7 +33,7 @@ public class Almacen {
     public Arma comprarArma(String pArma) {
         if (existeArma(pArma)) {
             if (!this.estaVacio(pArma)) {
-                return this.existencias.get(pArma).pop();
+                return this.existencias.getArma(pArma);
             }
         }
         return null;
@@ -44,32 +44,32 @@ public class Almacen {
      * @return boolean
      */
     private boolean existeArma(String pArma) {
-        if (this.existencias.get(pArma.toLowerCase()) != null) {
+        if (this.existencias.consultarArma(pArma.toLowerCase()) != null){
             return true;
         }
         return false;
     }
 
     /**
-     * @param pNombre
+     * @param pArma
      * @return boolean
      */
-    private boolean estaVacio(String pNombre) {
-        return this.existencias.get(pNombre).empty();
+    private boolean estaVacio(String pArma) {
+        return this.existencias.getSize(pArma) != 0;
     }
 
     /**
-     * @param pNombre
+     * @param pArma
      * @return precio
      */
-    public int getPrecioArma(String pNombre) {
-        return this.existencias.get(pNombre).peek().getPrecio();
+    public int getPrecioArma(String pArma) {
+        return this.existencias.consultarArma(pArma).precio;
     }
 
     /**
      * @param pNombreArma
      * @return int
      */
-    public int cantidadRestante(String pNombreArma){ return this.existencias.get(pNombreArma).size();}
+    public int cantidadRestante(String pNombreArma){ return this.existencias.getSize(pNombreArma);}
 
 }
