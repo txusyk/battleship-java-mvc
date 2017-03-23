@@ -45,7 +45,7 @@ public class Configurador {
         Configurador.getMyConfigurador().readXML("facil");
     }
 
-    public ListaArmas readXML(String pDif){
+    public void readXML(String pDif){
         try (InputStream resource = Configurador.class.getResourceAsStream("config_IS_battleship.xml")){
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -97,18 +97,19 @@ public class Configurador {
         }catch (SAXException e3){
             e3.printStackTrace();
         }
-        ls = inicializar();
-        return ls;
     }
 
-    private ListaArmas inicializar(){
+    public ListaArmas inicializarArmas(){
         ls.inicializarArma("bomba",numBombas,0);
         ls.inicializarArma("misil",numMisiles,precioMisiles);
         ls.inicializarArma("misildirig",numMisilesDirig,precioMisilesDirig);
         ls.inicializarArma("radar",numRadares,precioRadares);
         ls.inicializarArma("escudo",numEscudos,precioBaseImpacto);
-
         return ls;
+    }
+
+    public int obtenerPrecioReparacion(){
+        return precioBaseReparacion;
     }
 
 }

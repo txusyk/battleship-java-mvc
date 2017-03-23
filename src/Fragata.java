@@ -12,8 +12,8 @@
 
 public class Fragata extends Barco {
 
-	public Fragata(String pNombre) {
-		super(pNombre);
+	public Fragata() {
+		super();
 		this.posicion = new int[1];
 		this.tamaño = 1;
 	}

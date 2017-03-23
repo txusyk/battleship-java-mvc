@@ -12,18 +12,15 @@
 
 public abstract class Barco {
 
-	protected String nombre;
 	protected int tamaño;
 	protected int[] posicion;
 	protected String estadoPosicion;
 	protected boolean[] listaDaños;
 	protected int preciorReparacion;
 
-	public Barco(String pNombre) {
-		this.nombre = pNombre;
+	public Barco() {
+		this.preciorReparacion = Configurador.getMyConfigurador().obtenerPrecioReparacion();
 	}
-
-	public String getNombre() { return this.nombre;}
 
 	public int getTamaño() {
 		return this.tamaño;
@@ -33,7 +30,7 @@ public abstract class Barco {
 		return this.estadoPosicion;
 	}
 
-	public int getPrecio(String pNombre){
+	public int getPrecioReparacion(){
 		return this.preciorReparacion;
 	}
 
@@ -45,13 +42,6 @@ public abstract class Barco {
 	public void recibirDaños(Arma pArma, int posAtaq) {
 		// TODO - implement Barco.recibirDaños
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @return int
-	 */
-	public int reparar(){
-		return preciorReparacion;
 	}
 
 	public boolean estaDañado() {

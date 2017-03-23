@@ -27,44 +27,39 @@ public class BarcoFactory {
 	 *
 	 * return @Barco
 	 */
-	public Barco crearBarco() {
-
-		System.out.println("Que barco quieres crear? (Portaaviones, Submarino, Destructor o Fragata)");
-		String pNombre = Keyboard.getMyKeyboard().getString();
-		System.out.println("\t**Vas a crear: "+pNombre);
+	public Barco crearBarco(String pTipoBarco) {
 
 		Barco b = null;
-		if(pNombre.equals("Portaaviones")){
-			b = new Portaaviones(pNombre);
+		if(pTipoBarco.equalsIgnoreCase("portaaviones")){
+			b = new Portaaviones();
 		}
-		else if(pNombre.equals("Submarino")){
-			b = new Submarino(pNombre);
+		else if(pTipoBarco.equalsIgnoreCase("submarino")){
+			b = new Submarino();
 		}
-		else if(pNombre.equals("Destructor")){
-			b = new Destructor(pNombre);
+		else if(pTipoBarco.equalsIgnoreCase("destructor")){
+			b = new Destructor();
 		}
-		else if(pNombre.equals("Fragata")){
-			b = new Fragata(pNombre);
+		else if(pTipoBarco.equalsIgnoreCase("fragata")){
+			b = new Fragata();
 		}
-
 		return b;
 	}
 
 	public static void main(String[] args){
 		System.out.println("Comprobaremos que se crea una fragata: ");
-		Barco barco1 = BarcoFactory.getBarcoFactory().crearBarco();
+		Barco barco1 = BarcoFactory.getBarcoFactory().crearBarco("fragata");
 		System.out.println("Se ha creado un barco con: "+barco1.getTamaño()+" posiciones.\n");
 
 		System.out.println("Comprobaremos que se crea un destructor: ");
-		Barco barco2 = BarcoFactory.getBarcoFactory().crearBarco();
+		Barco barco2 = BarcoFactory.getBarcoFactory().crearBarco("destructor");
 		System.out.println("Se ha creado un barco con: "+barco2.getTamaño()+" posiciones.\n");
 
 		System.out.println("Comprobaremos que se crea un submarino: ");
-		Barco barco3 = BarcoFactory.getBarcoFactory().crearBarco();
+		Barco barco3 = BarcoFactory.getBarcoFactory().crearBarco("submarino");
 		System.out.println("Se ha creado un barco con: "+barco3.getTamaño()+" posiciones.\n");
 
 		System.out.println("Comprobaremos que se crea un portaaviones: ");
-		Barco barco4 = BarcoFactory.getBarcoFactory().crearBarco();
+		Barco barco4 = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
 		System.out.println("Se ha creado un barco con: "+barco4.getTamaño()+" posiciones.\n");	}
 
 }

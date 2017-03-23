@@ -23,6 +23,9 @@ public class Casilla {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return State
+	 */
 	public State getEstado(){
 	    return this.estado;
     }
@@ -32,6 +35,9 @@ public class Casilla {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * @return int[]
+	 */
 	public int[] getPosicion() {
 		return this.posicion;
 	}

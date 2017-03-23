@@ -16,7 +16,7 @@ public class Almacen {
     private static Almacen miAlmacen;
 
     private Almacen() {
-        existencias = Configurador.getMyConfigurador().readXML("facil");
+        existencias = Configurador.getMyConfigurador().inicializarArmas();
     }
 
     public static Almacen getMiAlmacen() {
