@@ -27,7 +27,7 @@ public class ListaArmas {
     /**
      * Inicializa los Stack<Arma>
      */
-    private void init(){
+    private void init() {
         ls = new HashMap<>(); //inicializamos la lista
         ls.put("bomba", new Stack<>());
         ls.put("misil", new Stack<>());
@@ -36,45 +36,41 @@ public class ListaArmas {
         ls.put("escudo", new Stack<>());
     }
 
-    /**
-     * @param pNombre
-     * @param pCantidad
-     * @param pPrecio
-     */
-    public void inicializarArma(String pNombre, int pCantidad, int pPrecio) {
+    public void inicializarArmas(){
         Stack<Arma> s = new Stack<>(); //inicializamos el Stack auxiliar
         int i = 0;
-        if (pNombre == "bomba") {
-            while (i<pCantidad) {
-                s.push(new Bomba(pPrecio));  //introducimos pCantidad bombas
-                i++;
-            }
-            ls.put("bomba", s);
-        }else if(pNombre == "misil") {
-            while (i<pCantidad) {
-                s.push(new Misil(pPrecio));  //introducimos pCantidad misiles
-                i++;
-            }
-            ls.put("misil", s);
-        }else if (pNombre == "misildirig") {
-            while (i<pCantidad) {
-                s.push(new MisilDir(pPrecio));  //introducimos pCantidad misilDirig
-                i++;
-            }
-            ls.put("misildirig", s);
-        }else if (pNombre == "radar") {
-            while (i<pCantidad) {
-                s.push(new Radar(pPrecio));  //introducimos pCantidad radar
-                i++;
-            }
-            ls.put("radar", s);
-        }else if(pNombre == "escudo") {
-            while (i<pCantidad) {
-                s.push(new Escudo(pPrecio));  //introducimos pCantidad escudo
-                i++;
-            }
-            ls.put("escudo", s);
+        while (i < GestorFicheros.getMyGestorFicheros().getNumBombas()) {
+            s.push(ArmaFactory.getArmaFactory().crearArma("bomba"));  //introducimos  bombas
+            i++;
         }
+        ls.put("bomba", s);
+        i = 0;
+
+        while (i < GestorFicheros.getMyGestorFicheros().getNumMisiles()) {
+            s.push(ArmaFactory.getArmaFactory().crearArma("misil"));  //introducimos  misiles
+            i++;
+        }
+        ls.put("misil", s);
+        i = 0;
+        while (i < GestorFicheros.getMyGestorFicheros().getNumMisilesDirig()) {
+            s.push(ArmaFactory.getArmaFactory().crearArma("misildirig"));  //introducimos  misilDirig
+            i++;
+        }
+        ls.put("misildirig", s);
+        i = 0;
+
+        while (i < GestorFicheros.getMyGestorFicheros().getNumRadares()) {
+            s.push(ArmaFactory.getArmaFactory().crearArma("radar"));  //introducimos  radar
+            i++;
+        }
+        ls.put("radar", s);
+        i=0;
+
+        while (i < GestorFicheros.getMyGestorFicheros().getNumEscudos()) {
+            s.push(ArmaFactory.getArmaFactory().crearArma("escudo"));  //introducimos  escudo
+            i++;
+        }
+        ls.put("escudo", s);
     }
 
     /**

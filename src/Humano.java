@@ -21,7 +21,7 @@ public class Humano extends Jugador{
 	 * 
 	 * @param pNombre
 	 */
-	public Humano(Flota pFlota, HashMap<String,Stack<Arma>> pArmas, String pNombre) {
+	public Humano(ListaBarcos pFlota, HashMap<String,Stack<Arma>> pArmas, String pNombre) {
         super(pFlota,pArmas);
         this.nombre = pNombre;
 	}

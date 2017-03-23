@@ -20,7 +20,7 @@ public class IA extends Jugador {
 	 * 
 	 * @param pFlota,pArmas
 	 */
-	public IA(Flota pFlota, HashMap<String,Stack<Arma>> pArmas) {
+	public IA(ListaBarcos pFlota, HashMap<String,Stack<Arma>> pArmas) {
 		super(pFlota,pArmas);
 		this.dificultad = Battleship.getMyBattleship().getDificultad();
 	}

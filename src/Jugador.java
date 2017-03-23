@@ -18,7 +18,7 @@ public abstract class Jugador {
 
 	private Tablero tablero;
 	private Tablero tableroAdv;
-	private Flota flota;
+	private ListaBarcos flota;
 	private int dinero = 15000;
 	private HashMap<String,Stack<Arma>> lArmas;
 
@@ -27,7 +27,7 @@ public abstract class Jugador {
 	 * @param pFlota
 	 * @param pArmas
 	 */
-	public Jugador(Flota pFlota, HashMap<String,Stack<Arma>> pArmas) {
+	public Jugador(ListaBarcos pFlota, HashMap<String,Stack<Arma>> pArmas) {
 		this.tablero = new Tablero(pFlota,10,10);
 		this.tableroAdv = new Tablero(pFlota,10,10);
 		this.flota = pFlota;
@@ -63,9 +63,16 @@ public abstract class Jugador {
 	 * @param pBarco
 	 */
 	protected void repararBarco(Barco pBarco) {
-		if (this.dinero>=flota.buscarBarco(pBarco).preciorReparacion) {
-            flota.repararBarco(pBarco);
+		if (this.dinero>=flota.obtenerBarco(getType(pBarco)).preciorReparacion) {
+            //flota.repararBarco(pBarco);
         }
+	}
+
+	private String getType(Barco pBarco) {
+		String type = String.valueOf(pBarco.getClass());
+		String[] arrAux = type.split(" ");
+		type = arrAux[1].toLowerCase();
+		return type;
 	}
 
 

@@ -22,31 +22,29 @@ import java.io.InputStream;
 /**
  * Created by Josu on 21/03/2017.
  */
-public class Configurador {
+public class GestorFicheros {
 
-    private static Configurador myConfigurador;
-
-    private ListaArmas ls = new ListaArmas();
+    private static GestorFicheros myGestorFicheros;
 
     private static int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto,dineroInicial;
 
-    private Configurador(){
+    private GestorFicheros(){
 
     }
 
-    public static Configurador getMyConfigurador(){
-        if (myConfigurador == null){
-            myConfigurador = new Configurador();
+    public static GestorFicheros getMyGestorFicheros(){
+        if (myGestorFicheros == null){
+            myGestorFicheros = new GestorFicheros();
         }
-        return myConfigurador;
+        return myGestorFicheros;
     }
 
     public static void main(String[] args){
-        Configurador.getMyConfigurador().readXML("facil");
+        GestorFicheros.getMyGestorFicheros().readXML("facil");
     }
 
     public void readXML(String pDif){
-        try (InputStream resource = Configurador.class.getResourceAsStream("config_IS_battleship.xml")){
+        try (InputStream resource = GestorFicheros.class.getResourceAsStream("config_IS_battleship.xml")){
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = documentBuilder.parse(resource);
@@ -99,17 +97,43 @@ public class Configurador {
         }
     }
 
-    public ListaArmas inicializarArmas(){
-        ls.inicializarArma("bomba",numBombas,0);
-        ls.inicializarArma("misil",numMisiles,precioMisiles);
-        ls.inicializarArma("misildirig",numMisilesDirig,precioMisilesDirig);
-        ls.inicializarArma("radar",numRadares,precioRadares);
-        ls.inicializarArma("escudo",numEscudos,precioBaseImpacto);
-        return ls;
+    public int obtenerPrecioMisiles(){
+        return precioMisiles;
+    }
+
+    public int getPrecioMisilesDirig() {
+        return precioMisilesDirig;
+    }
+
+    public int getPrecioRadares() {
+        return precioRadares;
+    }
+
+    public int getPrecioEscudos() {
+        return precioEscudos;
     }
 
     public int obtenerPrecioReparacion(){
         return precioBaseReparacion;
     }
 
+    public int getNumBombas() {
+        return numBombas;
+    }
+
+    public int getNumMisiles() {
+        return numMisiles;
+    }
+
+    public int getNumMisilesDirig() {
+        return numMisilesDirig;
+    }
+
+    public int getNumRadares() {
+        return numRadares;
+    }
+
+    public int getNumEscudos() {
+        return numEscudos;
+    }
 }

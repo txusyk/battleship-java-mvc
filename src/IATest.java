@@ -29,17 +29,7 @@ public class IATest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        Portaaviones p = new Portaaviones("portaaviones");
-        Submarino s1 = new Submarino("sub1");
-        Submarino s2 = new Submarino("sub2");
-        Destructor d1 = new Destructor("destruc1");
-        Destructor d2 = new Destructor("destruc2");
-        Destructor d3 = new Destructor("destruc3");
-        Fragata frag1 = new Fragata("frag1");
-        Fragata frag2 = new Fragata("frag2");
-        Fragata frag3 = new Fragata("frag3");
-        Fragata frag4 = new Fragata("frag4");
-        Flota fl = new Flota(p,s1,s2,d1,d2,d3,frag1,frag2,frag3,frag4);
+        ListaBarcos fl = new ListaBarcos();
 
         HashMap<String, Stack<Arma>> larmas = new HashMap<>();
         Radar r1 = new Radar(100);

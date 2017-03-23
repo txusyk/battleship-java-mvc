@@ -13,11 +13,11 @@
 public class Tablero {
 
 	private Casilla[][] tablero;
-	private Flota flota;
+	private ListaBarcos flota;
 	private int tamañoX;
 	private int tamañoY;
 
-	public Tablero(Flota pFlota, int pMaxX, int pMaxY) {
+	public Tablero(ListaBarcos pFlota, int pMaxX, int pMaxY) {
 		this.tamañoX = pMaxX;
 		this.tamañoY = pMaxY;
         this.tablero = new Casilla[tamañoX][tamañoY];

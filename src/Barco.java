@@ -17,9 +17,10 @@ public abstract class Barco {
 	protected String estadoPosicion;
 	protected boolean[] listaDaños;
 	protected int preciorReparacion;
+	protected boolean escudo = false;
 
 	public Barco() {
-		this.preciorReparacion = Configurador.getMyConfigurador().obtenerPrecioReparacion();
+		this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
 	}
 
 	public int getTamaño() {
@@ -45,13 +46,8 @@ public abstract class Barco {
 	}
 
 	public boolean estaDañado() {
-		boolean flag = false;
-		for(boolean b : listaDaños){
-			if(!b){
-				flag = true;
-			}
-		}
-		return flag;
+		//falta pr hacer
+        return false;
 	}
 
 	/**
@@ -62,12 +58,5 @@ public abstract class Barco {
 		return posicion;
 	}
 
-	/**
-	 *
-	 * @return boolean[]
-	 */
-	public boolean[] getListaDaños(){
-		return this.listaDaños;
-	}
 
 }

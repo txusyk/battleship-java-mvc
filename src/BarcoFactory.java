@@ -44,22 +44,4 @@ public class BarcoFactory {
 		}
 		return b;
 	}
-
-	public static void main(String[] args){
-		System.out.println("Comprobaremos que se crea una fragata: ");
-		Barco barco1 = BarcoFactory.getBarcoFactory().crearBarco("fragata");
-		System.out.println("Se ha creado un barco con: "+barco1.getTamaño()+" posiciones.\n");
-
-		System.out.println("Comprobaremos que se crea un destructor: ");
-		Barco barco2 = BarcoFactory.getBarcoFactory().crearBarco("destructor");
-		System.out.println("Se ha creado un barco con: "+barco2.getTamaño()+" posiciones.\n");
-
-		System.out.println("Comprobaremos que se crea un submarino: ");
-		Barco barco3 = BarcoFactory.getBarcoFactory().crearBarco("submarino");
-		System.out.println("Se ha creado un barco con: "+barco3.getTamaño()+" posiciones.\n");
-
-		System.out.println("Comprobaremos que se crea un portaaviones: ");
-		Barco barco4 = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
-		System.out.println("Se ha creado un barco con: "+barco4.getTamaño()+" posiciones.\n");	}
-
 }

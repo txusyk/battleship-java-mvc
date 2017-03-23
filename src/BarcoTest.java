@@ -3,8 +3,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 /**
  * Created by Josu on 23/03/2017.
  */
@@ -17,10 +15,11 @@ public class BarcoTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        pa = new Portaaviones("portaaviones");
-        s = new Submarino("submarino");
-        d = new Destructor("destructor");
-        f = new Fragata("fragata");
+        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        pa = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
+        s = BarcoFactory.getBarcoFactory().crearBarco("submarino");
+        d = BarcoFactory.getBarcoFactory().crearBarco("destructor");
+        f = BarcoFactory.getBarcoFactory().crearBarco("fragata");
     }
 
     @AfterMethod
@@ -29,14 +28,6 @@ public class BarcoTest {
         s = null;
         d = null;
         f = null;
-    }
-
-    @Test
-    public void testGetNombre(){
-        Assert.assertEquals("portaaviones",pa.getNombre());
-        Assert.assertEquals("submarino",s.getNombre());
-        Assert.assertEquals("destructor", d.getNombre());
-        Assert.assertEquals("fragata",f.getNombre());
     }
 
     @Test
@@ -54,9 +45,14 @@ public class BarcoTest {
 
     @Test
     public void getPrecioReparacion(){
-        Assert.assertEquals(4,pa.getPrecioReparacion());
-        Assert.assertEquals(3,s.getPrecioReparacion());
-        Assert.assertEquals(2, d.getPrecioReparacion());
-        Assert.assertEquals(1,f.getPrecioReparacion());
+        Assert.assertEquals(2500,pa.getPrecioReparacion());
+        Assert.assertEquals(2500,s.getPrecioReparacion());
+        Assert.assertEquals(2500, d.getPrecioReparacion());
+        Assert.assertEquals(2500,f.getPrecioReparacion());
+    }
+
+    @Test
+    public void estaDañado(){
+        Assert.assertEquals(false, pa.estaDañado());
     }
 }

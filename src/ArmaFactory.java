@@ -15,22 +15,33 @@ public class ArmaFactory {
 	private static ArmaFactory miArmaFactory;
 
 	private ArmaFactory() {
-		// TODO - implement ArmaFactory.ArmaFactory
-		throw new UnsupportedOperationException();
 	}
 
 	public static ArmaFactory getArmaFactory() {
-		// TODO - implement ArmaFactory.getArmaFactory
-		throw new UnsupportedOperationException();
+		if (miArmaFactory == null){
+			miArmaFactory = new ArmaFactory();
+		}
+		return miArmaFactory;
 	}
 
 	/**
 	 * 
-	 * @param pNombre
+	 * @param pTipoArma
 	 */
-	public Arma crearArma(String pNombre) {
-		// TODO - implement ArmaFactory.crearArma
-		throw new UnsupportedOperationException();
+	public Arma crearArma(String pTipoArma) {
+	    Arma a = null;
+	    if (pTipoArma.equalsIgnoreCase("bomba")){
+	        a = new Bomba(0);
+        }else if (pTipoArma.equalsIgnoreCase("misil")){
+	        a = new Misil(GestorFicheros.getMyGestorFicheros().obtenerPrecioMisiles());
+        }else if (pTipoArma.equalsIgnoreCase("misildirig")){
+            a = new MisilDir(GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig());
+        }else if (pTipoArma.equalsIgnoreCase("radar")){
+            a = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
+        }else if (pTipoArma.equalsIgnoreCase("escudo")){
+            a = new Escudo(GestorFicheros.getMyGestorFicheros().getPrecioEscudos());
+        }
+		return a;
 	}
 
 

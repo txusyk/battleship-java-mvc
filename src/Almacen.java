@@ -16,7 +16,7 @@ public class Almacen {
     private static Almacen miAlmacen;
 
     private Almacen() {
-        existencias = Configurador.getMyConfigurador().inicializarArmas();
+        existencias = GestorFicheros.getMyGestorFicheros().inicializarArmas();
     }
 
     public static Almacen getMiAlmacen() {
