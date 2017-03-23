@@ -14,7 +14,7 @@ public class Configurador {
 
     private static Configurador myConfigurador;
 
-    private static int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto;
+    private static int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto,dineroInicial;
 
     private Configurador(){
 
@@ -70,6 +70,11 @@ public class Configurador {
                     precioBaseReparacion = Integer.parseInt(((Element) nBarcos).getElementsByTagName("precioBaseReparacion").item(0).getTextContent());
                     precioBaseImpacto = Integer.parseInt(((Element) nBarcos).getElementsByTagName("precioBaseImpacto").item(0).getTextContent());
                 }
+
+                Node nJugador = ((Element) nNode).getElementsByTagName("jugador").item(0);
+                if (nJugador.getNodeType() == Node.ELEMENT_NODE){
+                    dineroInicial = Integer.parseInt(((Element) nBarcos).getElementsByTagName("precioBaseReparacion").item(0).getTextContent());
+                }
                 mostrarInicializacion();
             }
         }catch(IOException e1){
@@ -100,6 +105,9 @@ public class Configurador {
         System.out.println("[*] Precios de barcos");
         System.out.println("\t\tprecioBaseReparacion: "+precioBaseReparacion);
         System.out.println("\t\tprecioBaseImpacto: "+precioBaseImpacto);
+
+        System.out.println("[*] Jugador");
+        System.out.println("\t\tdineroInicial: "+dineroInicial);
     }
 
 }

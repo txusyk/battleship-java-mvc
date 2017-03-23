@@ -18,6 +18,9 @@
 			<precioBaseReparacion>2500</precioBaseReparacion>
 			<precioBaseImpacto>500</precioBaseImpacto>
 		</barcos>
+		<jugador>
+            <dineroInicial>15000</dineroInicial>
+        </jugador>
 	</facil>
 	<medio id="02">
 		<cantidadArmas>
@@ -38,6 +41,9 @@
 			<precioBaseReparacion>4000</precioBaseReparacion>
 			<precioBaseImpacto>400</precioBaseImpacto>
 		</barcos>
+        <jugador>
+            <dineroInicial>13000</dineroInicial>
+        </jugador>
 	</medio>
 	<dificil id="03">
 		<cantidadArmas>
@@ -58,5 +64,8 @@
 			<precioBaseReparacion>7000</precioBaseReparacion>
 			<precioBaseImpacto>250</precioBaseImpacto>
 		</barcos>
+        <jugador>
+            <dineroInicial>5000</dineroInicial>
+        </jugador>
 	</dificil>
 </dificultad>  
