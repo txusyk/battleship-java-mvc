@@ -41,8 +41,8 @@ public class HumanoTest {
         h1 = new Humano(fl,larmas,"Josu");
 
         armas = new Stack<>();
-        MisilDir md1 = new MisilDir(100);
-        MisilDir md2 = new MisilDir(100);
+        MisilDirig md1 = new MisilDirig(100);
+        MisilDirig md2 = new MisilDirig(100);
         armas.push(md1);
         armas.push(md2);
         larmas.put("misildirig", armas);

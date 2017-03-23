@@ -26,7 +26,7 @@ public class GestorFicheros {
 
     private static GestorFicheros myGestorFicheros;
 
-    private static int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto,dineroInicial;
+    private int numBombas,numMisiles,numMisilesDirig,numRadares,numEscudos, precioMisiles, precioMisilesDirig,precioRadares,precioEscudos,precioBaseReparacion,precioBaseImpacto,dineroInicial;
 
     private GestorFicheros(){
 
@@ -37,10 +37,6 @@ public class GestorFicheros {
             myGestorFicheros = new GestorFicheros();
         }
         return myGestorFicheros;
-    }
-
-    public static void main(String[] args){
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
     }
 
     public void readXML(String pDif){
@@ -97,7 +93,7 @@ public class GestorFicheros {
         }
     }
 
-    public int obtenerPrecioMisiles(){
+    public int getPrecioMisiles(){
         return precioMisiles;
     }
 

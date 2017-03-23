@@ -29,11 +29,8 @@ public class ListaArmas {
      */
     private void init() {
         ls = new HashMap<>(); //inicializamos la lista
-        ls.put("bomba", new Stack<>());
-        ls.put("misil", new Stack<>());
-        ls.put("misildirig", new Stack<>());
-        ls.put("radar", new Stack<>());
-        ls.put("escudo", new Stack<>());
+
+        inicializarArmas();
     }
 
     public void inicializarArmas(){
@@ -73,12 +70,8 @@ public class ListaArmas {
         ls.put("escudo", s);
     }
 
-    /**
-     * @param pArma
-     * @return Stack<arma>
-     */
-    public Stack<Arma> get(String pArma) {
-        return this.ls.get(pArma);
+    public Arma getArma(String pArma){
+        return ls.get(pArma).pop();
     }
 
     /**

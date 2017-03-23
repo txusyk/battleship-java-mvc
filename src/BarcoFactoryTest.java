@@ -10,7 +10,7 @@ import static org.testng.Assert.*;
  */
 public class BarcoFactoryTest {
 
-    Barco pa, s, d, f;
+    private Barco pa, s, d, f;
 
     @BeforeMethod
     public void setUp() throws Exception {

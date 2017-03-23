@@ -11,11 +11,7 @@
  */
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
 
 /**
  * Created by Josu on 23/03/2017.
@@ -31,7 +27,7 @@ public class AlmacenTest {
     public void testComprarArma() throws Exception {
         Assert.assertEquals(new Bomba(0).getClass(),Almacen.getMiAlmacen().comprarArma("bomba").getClass());
         Assert.assertEquals(new Misil(0).getClass(),Almacen.getMiAlmacen().comprarArma("misil").getClass());
-        Assert.assertEquals(new MisilDir(0).getClass(),Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
+        Assert.assertEquals(new MisilDirig(0).getClass(),Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
     }
 
     @Test

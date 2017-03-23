@@ -33,9 +33,9 @@ public class ArmaFactory {
 	    if (pTipoArma.equalsIgnoreCase("bomba")){
 	        a = new Bomba(0);
         }else if (pTipoArma.equalsIgnoreCase("misil")){
-	        a = new Misil(GestorFicheros.getMyGestorFicheros().obtenerPrecioMisiles());
+	        a = new Misil(GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
         }else if (pTipoArma.equalsIgnoreCase("misildirig")){
-            a = new MisilDir(GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig());
+            a = new MisilDirig(GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig());
         }else if (pTipoArma.equalsIgnoreCase("radar")){
             a = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
         }else if (pTipoArma.equalsIgnoreCase("escudo")){
