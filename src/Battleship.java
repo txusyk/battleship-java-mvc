@@ -14,7 +14,7 @@ public class Battleship {
 
 	private Humano humano;
 	private IA ia;
-    private String dificultad;
+    private String dificultad = "facil";
 
 	private static Battleship myBattleship;
 
@@ -39,23 +39,18 @@ public class Battleship {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GestorFicheros.getMyGestorFicheros().readXML("facil");
-		Battleship.getMyBattleship().inicializarFliotas();
+		GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
+		Battleship.getMyBattleship().inicializarAlmacen();
+		Battleship.getMyBattleship().inicializarJugadores(args[0]);
 	}
 
-	private void inicializarJugadores() {
-		// TODO - implement Battleship.inicializarJugadores
-		throw new UnsupportedOperationException();
-	}
-
-	private void inicializarFliotas() {
-		ListaArmas la = new ListaArmas();
-		la.inicializarArmas();
+	private void inicializarJugadores(String pNombre) {
+        humano = new Humano(pNombre);
+        ia= new IA();
 	}
 
 	private void inicializarAlmacen() {
-		// TODO - implement Battleship.inicializarAlmacen
-		throw new UnsupportedOperationException();
+		Almacen.getMiAlmacen().inicializarExistencias();
 	}
 
 	private void colocarFlotas() {

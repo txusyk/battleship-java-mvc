@@ -26,6 +26,10 @@ public class Almacen {
         return miAlmacen;
     }
 
+    public void inicializarExistencias(){
+        existencias.inicializarArmas();
+    }
+
     /**
      * @param pArma
      * @return Arma

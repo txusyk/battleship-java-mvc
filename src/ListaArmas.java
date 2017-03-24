@@ -21,14 +21,7 @@ public class ListaArmas {
     HashMap<String, Stack<Arma>> ls;
 
     public ListaArmas() {
-        init();
-    }
-
-    /**
-     * Inicializa los Stack<Arma>
-     */
-    private void init() {
-        ls = new HashMap<>(); //inicializamos la lista
+        ls = new HashMap<>();
     }
 
     /**

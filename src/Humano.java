@@ -11,6 +11,7 @@
  */
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 public class Humano extends Jugador{
@@ -21,8 +22,8 @@ public class Humano extends Jugador{
 	 * 
 	 * @param pNombre
 	 */
-	public Humano(ListaBarcos pFlota, HashMap<String,Stack<Arma>> pArmas, String pNombre) {
-        super(pFlota,pArmas);
+	public Humano(String pNombre) {
+        super();
         this.nombre = pNombre;
 	}
 

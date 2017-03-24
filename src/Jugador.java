@@ -20,18 +20,14 @@ public abstract class Jugador {
 	private Tablero tableroAdv;
 	private ListaBarcos flota;
 	private int dinero = 15000;
-	private HashMap<String,Stack<Arma>> lArmas;
+	private ListaArmas lArmas;
 
-	/**
-	 * 
-	 * @param pFlota
-	 * @param pArmas
-	 */
-	public Jugador(ListaBarcos pFlota, HashMap<String,Stack<Arma>> pArmas) {
-		this.tablero = new Tablero(pFlota,10,10);
-		this.tableroAdv = new Tablero(pFlota,10,10);
-		this.flota = pFlota;
-		this.lArmas = pArmas;
+
+	public Jugador() {
+		this.tablero = new Tablero(new ListaBarcos(),10,10);
+		this.tableroAdv = new Tablero(new ListaBarcos(),10,10);
+		this.flota = new ListaBarcos();
+		this.lArmas = new ListaArmas();
 	}
 
 	/**
@@ -53,7 +49,7 @@ public abstract class Jugador {
 	 */
 	protected void comprarArma(String pArma) {
 	    if (this.dinero>=Almacen.getMiAlmacen().getPrecioArma(pArma)){
-	        lArmas.get(pArma).add(Almacen.getMiAlmacen().comprarArma(pArma));
+	        lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
 	        this.decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
         }
 	}
