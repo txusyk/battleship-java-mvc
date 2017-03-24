@@ -29,10 +29,11 @@ public class ListaArmas {
      */
     private void init() {
         ls = new HashMap<>(); //inicializamos la lista
-
-        inicializarArmas();
     }
 
+    /**
+     * Inicializa las armas en base a los valores que recibe del configurador
+     */
     public void inicializarArmas(){
         Stack<Arma> s = new Stack<>(); //inicializamos el Stack auxiliar
         int i = 0;

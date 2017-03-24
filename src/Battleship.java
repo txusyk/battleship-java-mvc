@@ -39,8 +39,8 @@ public class Battleship {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO - implement Battleship.main
-		throw new UnsupportedOperationException();
+		GestorFicheros.getMyGestorFicheros().readXML("facil");
+		Battleship.getMyBattleship().inicializarFliotas();
 	}
 
 	private void inicializarJugadores() {
@@ -49,8 +49,8 @@ public class Battleship {
 	}
 
 	private void inicializarFliotas() {
-		// TODO - implement Battleship.inicializarFliotas
-		throw new UnsupportedOperationException();
+		ListaArmas la = new ListaArmas();
+		la.inicializarArmas();
 	}
 
 	private void inicializarAlmacen() {
