@@ -19,8 +19,6 @@ public class Battleship {
 	private static Battleship myBattleship;
 
 	private Battleship() {
-		// TODO - implement Battleship.Battleship
-		throw new UnsupportedOperationException();
 	}
 
 	public static Battleship getMyBattleship() {
@@ -36,12 +34,12 @@ public class Battleship {
 
     /**
 	 * 
-	 * @param args
+	 * @param pNombre
 	 */
-	public static void main(String[] args) {
+	public void inicializarJuego(String pNombre) {
 		GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
 		Battleship.getMyBattleship().inicializarAlmacen();
-		Battleship.getMyBattleship().inicializarJugadores(args[0]);
+		Battleship.getMyBattleship().inicializarJugadores(pNombre);
 	}
 
 	private void inicializarJugadores(String pNombre) {
