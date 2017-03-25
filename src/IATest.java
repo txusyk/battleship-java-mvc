@@ -12,6 +12,7 @@
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,38 +28,24 @@ public class IATest {
 
     IA ia1,ia2;
 
+    @BeforeClass
+    public void leerXML(){
+        GestorFicheros.getMyGestorFicheros().readXML("facil");
+    }
+
     @BeforeMethod
     public void setUp() throws Exception {
-        ListaBarcos fl = new ListaBarcos();
-
-        HashMap<String, Stack<Arma>> larmas = new HashMap<>();
-        Radar r1 = new Radar(100);
-        Stack<Arma> armas = new Stack<>();
-        armas.push(r1);
-        larmas.put("radar", armas);
-
-        ia1 = new IA(fl,larmas);
-
-        armas = new Stack<>();
-        Misil m1 = new Misil(100);
-        Misil m2 = new Misil(100);
-        armas.push(m1);
-        armas.push(m2);
-        larmas.put("misil", armas);
-
-        ia2 = new IA(fl,larmas);
+        ia1 = new IA();
     }
 
     @AfterMethod
     public void tearDown() throws Exception {
         ia1 = null;
-        ia2 = null;
     }
 
     @Test
     public void testGetDificultad() throws Exception {
         Assert.assertEquals("facil", ia1.getDificultad(), "La dificiltad deberia de ser 'facil'");
-        Assert.assertEquals("dificil",ia2.getDificultad(), "La dificultad deberia de ser 'dificil'");
     }
 
     @Test

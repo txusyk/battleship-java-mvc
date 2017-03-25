@@ -23,31 +23,9 @@ public class HumanoTest {
 
     @org.testng.annotations.BeforeMethod
     public void setUp() throws Exception {
-        ListaBarcos fl = new ListaBarcos();
+        h1 = new Humano("Josu");
 
-        HashMap<String, Stack<Arma>> larmas = new HashMap<>();
-        Radar r1 = new Radar(100);
-        Stack<Arma> armas = new Stack<>();
-        armas.push(r1);
-        larmas.put("radar", armas);
-
-        armas = new Stack<>();
-        Misil m1 = new Misil(100);
-        Misil m2 = new Misil(100);
-        armas.push(m1);
-        armas.push(m2);
-        larmas.put("misil", armas);
-
-        h1 = new Humano(fl,larmas,"Josu");
-
-        armas = new Stack<>();
-        MisilDirig md1 = new MisilDirig(100);
-        MisilDirig md2 = new MisilDirig(100);
-        armas.push(md1);
-        armas.push(md2);
-        larmas.put("misildirig", armas);
-
-        h2 = new Humano(fl,larmas,"David");
+        h2 = new Humano("David");
     }
 
     @org.testng.annotations.AfterMethod

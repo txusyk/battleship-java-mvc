@@ -48,7 +48,7 @@ public class Battleship {
 	}
 
 	private void inicializarAlmacen() {
-		Almacen.getMiAlmacen().inicializarExistencias();
+		Almacen.getMiAlmacen();
 	}
 
 	private void colocarFlotas() {

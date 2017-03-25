@@ -15,6 +15,7 @@ public class ListaArmasTest {
     @BeforeMethod
     public void setUp() throws Exception {
         la = new ListaArmas();
+        la.inicializarArmas();
     }
 
     @AfterMethod

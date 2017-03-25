@@ -11,12 +11,17 @@
  */
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Created by Josu on 23/03/2017.
  */
 public class AlmacenTest {
+
+    @BeforeClass
+    public void cargarXML(){
+        GestorFicheros.getMyGestorFicheros().readXML("facil");
+    }
 
     @Test
     public void testGetMiAlmacen() throws Exception {
@@ -25,6 +30,7 @@ public class AlmacenTest {
 
     @Test
     public void testComprarArma() throws Exception {
+        Assert.assertNotNull(Almacen.getMiAlmacen().comprarArma("bomba"));
         Assert.assertEquals(new Bomba(0).getClass(),Almacen.getMiAlmacen().comprarArma("bomba").getClass());
         Assert.assertEquals(new Misil(0).getClass(),Almacen.getMiAlmacen().comprarArma("misil").getClass());
         Assert.assertEquals(new MisilDirig(0).getClass(),Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
