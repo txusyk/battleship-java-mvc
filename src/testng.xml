@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite - Primer Sprint-">
+
+    <test name="AlmacenTest">
+        <classes>
+            <class name="AlmacenTest"/>
+        </classes>
+    </test>
+
+    <test name="ArmaFactoryTest">
+        <classes>
+            <class name="ArmaFactoryTest"/>
+        </classes>
+    </test>
+
+    <test name="BarcoFactoryTest">
+        <classes>
+            <class name="BarcoFactoryTest" />
+        </classes>
+    </test>
+
+    <test name="BarcoTest">
+        <classes>
+            <class name="BarcoTest" />
+        </classes>
+    </test>
+
+    <test name="DireccionesArmaTest">
+        <classes>
+            <class name="DireccionesArmaTest" />
+        </classes>
+    </test>
+
+    <test name="GestorFicherosTest">
+        <classes>
+            <class name="GestorFicherosTest" />
+        </classes>
+    </test>
+
+    <test name="HumanoTest">
+        <classes>
+            <class name="Humano" />
+        </classes>
+    </test>
+
+    <test name="IATest">
+        <classes>
+            <class name="IATest" />
+        </classes>
+    </test>
+
+    <test name="ListaArmasTest">
+        <classes>
+            <class name="ListaArmasTest" />
+        </classes>
+    </test>
+
+</suite>
