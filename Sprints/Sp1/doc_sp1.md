@@ -21,6 +21,7 @@
  Al establecer dichos ajustes de esta forma, nos es mas fácil gestionar el posicionamiento de un barco.
 
 - Los jugadores podrán acceder en todo momento a ambos tableros (con distintas propiedades en función de cual sea cada uno) y dispondrán de una flota posicionada sobre uno de los mismos
+- Cuando el jugador impacte sobre una casilla de la flota rival, obtendrá una bonificación economica que se verá incrementada de forma inversamente proporcional al tamaño del barco impactado una vez sea destruido.
 
 ##Ajustes iniciales del juego
 
