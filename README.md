@@ -46,7 +46,7 @@
 | Radar   | 5000  |  7500 |  12000  |
 | Escudo  | 5000  |  7500 |  12000  |
 
-###Tabla dinero
+### Tabla dinero
 
 |         | facil | medio | dificil |
 |---------|-------|-------|---------|
