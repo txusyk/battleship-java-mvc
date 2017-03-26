@@ -1,4 +1,4 @@
-#Primer Sprint - Battleship
+# Primer Sprint - Battleship
 
 ## Tecnologías empleadas
 
