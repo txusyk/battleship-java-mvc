@@ -10,12 +10,22 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public class Casilla {
+import javax.swing.*;
+import java.awt.*;
+
+public class Casilla extends JPanel {
 
 	private State estado;
-	private int[] posicion;
+	private int row,column;
+	private Color casillaColor;
+	private boolean rellena;
 
-	public Casilla() {
+	public Casilla(int pRow, int pColum, Color pColor, boolean pRelleno, State pEstado) {
+		this.row =pRow;
+		this.column = pColum;
+		this.casillaColor = pColor;
+		this.rellena = pRelleno;
+		this.estado = pEstado;
 	}
 
 	public void setState(State estado) {
@@ -42,6 +52,10 @@ public class Casilla {
 		return this.posicion;
 	}
 
+	public Dimension getPrefferedSize(){
+	    return new Dimension(25,25);
+    }
+
 	/**
 	 * 
 	 * @param posicion
@@ -51,4 +65,29 @@ public class Casilla {
 	}
 
 
+    public void pintar(Graphics g){
+	    super.paintComponent(g);
+
+	    if(this.estado instanceof Agua){
+	        g.setColor(Color.BLACK);
+	        g.drawRect(0,0,24,24);
+	        g.setColor(Color.GRAY);
+	        g.fillRect(1,1,23,23);
+        }else if (this.estado instanceof SBarco){
+            g.setColor(Color.BLACK);
+            g.drawRect(0, 0, 24, 24);
+            g.setColor(Color.WHITE);
+            g.fillRect(1, 1, 23, 23);
+            g.setColor(casillaColor);
+            g.fillRect(2, 2, 20, 20);
+        }
+    }
+
+    public void setCasillaColor(Color pColor) {
+        this.casillaColor = pColor;
+    }
+
+    public void setRellena(boolean fill) {
+        this.rellena = fill;
+    }
 }
