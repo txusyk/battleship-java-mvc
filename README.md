@@ -10,7 +10,7 @@
 - **Visual Paradigm**: Gracias a la licencia que provee la Escuela, hemos decidido que todos los diagramas serán realizados con esta herramienta, siguiendo unas normas y estándares.
 - **XML**: Tanto para generar el TestSuite de *TestNG* como para cargar los datos de la inicialización del juego, hemos decidio externalizar los datos para que sea mas fácil acceder a los mismos y modificarlos en caso de ser necesario. De esta forma tambien reducimos los cambios a realizar en caso de que el cliente modifique las especificaciones de la inicialización.
 
-##Precondiciones de funcionamiento del juego
+## Precondiciones de funcionamiento del juego
 
 - El número de armas de las que dispone el Almacen al inicializarse al comienzo de una partida, variará en función de la dificultad de la misma
 - El precio de las reparaciones de los barcos y el dinero inicial con el que comienza una partida también se verá afectado por dicho factor
@@ -23,10 +23,10 @@
 - Los jugadores podrán acceder en todo momento a ambos tableros (con distintas propiedades en función de cual sea cada uno) y dispondrán de una flota posicionada sobre uno de los mismos
 - Cuando el jugador impacte sobre una casilla de la flota rival, obtendrá una bonificación economica que se verá incrementada de forma inversamente proporcional al tamaño del barco impactado una vez sea destruido.
 
-##Ajustes iniciales del juego
+## Ajustes iniciales del juego
 
 
-###Tabla cantidades armas
+### Tabla cantidades armas
 
 |         | facil | medio | dificil |
 |---------|-------|-------|---------|
@@ -36,7 +36,7 @@
 | Radar   | 10    |  7    |   3     |
 | Escudo  | 10    |  7    |   3     |
 
-###Tabla precio armas
+### Tabla precio armas
 
 |         | facil | medio | dificil |
 |---------|-------|-------|---------|
