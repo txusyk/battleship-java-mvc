@@ -56,18 +56,9 @@ public class Casilla extends JPanel {
 	    return new Dimension(25,25);
     }
 
-	/**
-	 * 
-	 * @param posicion
-	 */
-	public void setPosicion(int[] posicion) {
-		this.posicion = posicion;
-	}
-
 
     public void pintar(Graphics g){
 	    super.paintComponent(g);
-
 	    if(this.estado instanceof Agua){
 	        g.setColor(Color.BLACK);
 	        g.drawRect(0,0,24,24);
