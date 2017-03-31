@@ -1,5 +1,12 @@
-language: java
+anguage: java
 
 jdk:
-
   - oraclejdk8
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - ¢HOME./gradle
