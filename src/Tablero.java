@@ -10,74 +10,60 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
-
 public class Tablero {
 
-	private Casilla[][] casillas;
-	private ListaBarcos ls;
+	private Casilla[][] tablero;
+	private Flota flota;
+	private int tamañoX;
+	private int tamañoY;
 
-	private boolean area[][] = new boolean[10][10];
-
-	public Tablero(ListaBarcos pFlota) {
-
+	public Tablero(Flota pFlota, int pMaxX, int pMaxY) {
+		this.tamañoX = pMaxX;
+		this.tamañoY = pMaxY;
+        this.tablero = new Casilla[tamañoX][tamañoY];
+        for (int i=0; i<10 ; i++){
+            for (int j=0; j<10; j++){
+                tablero[i][j] = new Casilla();
+            }
+        }
+		this.flota = pFlota;
 	}
 
-	public JPanel pintarTablero(){
-	    JPanel tablero = new JPanel();
-	    tablero.setBorder(new TitledBorder("Battleship"));
-        tablero.setLayout(new GridLayout(10,10,0,0));
+	public Casilla[] getAlrededor(int posX, int posY){       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
+        Casilla[] auxL = new Casilla[9];
 
-        reiniciarTablero();
+        auxL[0] = this.tablero[posX-1][posY+1];
+        auxL[1] = this.tablero[posX][posY+1];
+        auxL[2] = this.tablero[posX+1][posY+1];
+        auxL[3] = this.tablero[posX-1][posY];
+        auxL[4] = this.tablero[posX][posY];
+        auxL[5] = this.tablero[posX+1][posY];
+        auxL[6] = this.tablero[posX-1][posY-1];
+        auxL[7] = this.tablero[posX][posY-1];
+        auxL[8] = this.tablero[posX+1][posY-1];
 
-        casillas = new Casilla[10][10];
+        return auxL;
+    }
 
-        for (int row = 0; row < casillas.length; row++){
-            for(int colum = 0; colum < casillas[row].length; colum++){
-                casillas[row][colum] = new Casilla(row,colum,Color.BLACK,area[row][colum],new Agua());
-                tablero.add(casillas[row][colum]);
+	/**
+	 * 
+	 * @param pBarco
+	 */
+	public boolean posicionarBarco(Barco pBarco, int posX, int posY) {
+		if (tablero[posX][posY].getEstado() != null){
+            if (pBarco.getEstadoPosicion() == "H"){
+                int ultPos = posX+pBarco.getTamaño();
+                if (ultPos<10){
+                    if (posY <10){
+                        for (int i=0; i<pBarco.getTamaño(); i++){
+                            tablero[posX+i][posY].setState(null);
+                        }
+                    }
+                }
             }
         }
-
-        return tablero;
-    }
-
-    public void repintarTablero(){
-	    componentes.clear();
-	    reiniciarTablero();
-	    reiniciarCasillasTablero();
-	    repintarCasillasTablero();
-    }
-
-    public void reiniciarTablero(){
-        for (int row = 0; row < area.length; row++) {
-            for (int column = 0; column < area[row].length; column++) {
-                area[row][column] = false;
-            }
-        }
-    }
-
-    public void reiniciarCasillasTablero(){
-        for (int row = 0; row < casillas.length; row++) {
-            for (int column = 0; column < casillas[row].length; column++) {
-                casillas[row][column].setCasillaColor(Color.BLACK);
-                casillas[row][column].setRellena(false);
-                casillas[row][column].repaint();
-            }
-        }
-    }
-
-    public void repintarCasillasTablero(){
-        for (int row = 0; row < casillas.length; row++) {
-            for (int column = 0; column < casillas[row].length; column++) {
-                casillas[row][column].setRellena(area[row][column]);
-                casillas[row][column].repaint();
-            }
-        }
-    }
-
+        return false;
+	}
 
 
 }
