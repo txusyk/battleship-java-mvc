@@ -19,13 +19,28 @@ public abstract class BarcoEdgar {
 	private int preciorReparacion;
 	private Escudo escudo ;
 
-	public Barco(int pX,int pY,int pDir,int pTamaño) {
-		tamaño=pTamaño;
-		ejeX=pX;
-		ejeY=pY;
-		direccion=pDir;
-		preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
+	public Barco() {
+		direccion=pDir;		preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
 		escudo=null; //inicialmente no hay escudo
+	}
+
+	public void setTamaño(int pTamaño) {
+
+		tamaño=pTamaño;
+	}
+
+	public void setEjeX(int pX) {
+
+		ejeX=pX;
+	}
+
+	public void setEjeY(int pY) {
+
+		ejeY=pY;
+	}
+	public void setDireccion(int pDir) {
+
+		 direccion=pDir;
 	}
 
 	public int getTamaño() {
