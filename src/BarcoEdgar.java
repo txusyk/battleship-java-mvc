@@ -20,7 +20,7 @@ public abstract class BarcoEdgar {
 	private Escudo escudo ;
 
 	public Barco() {
-		direccion=pDir;		preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
+		preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
 		escudo=null; //inicialmente no hay escudo
 	}
 
