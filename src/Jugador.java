@@ -30,6 +30,15 @@ public abstract class Jugador {
 		this.lArmas = new ListaArmas();
 	}
 
+	public Tablero getTablero(){
+		return this.tablero;
+	}
+
+	public Tablero getTableroAdv(){
+		return this.tableroAdv;
+	}
+
+
 	/**
 	 * 
 	 * @param pCantidad
@@ -70,6 +79,5 @@ public abstract class Jugador {
 		type = arrAux[1].toLowerCase();
 		return type;
 	}
-
 
 }
