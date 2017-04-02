@@ -34,14 +34,6 @@ public class BarcoTest {
     }
 
     @Test
-    public void getTamaño(){
-        Assert.assertEquals(4,pa.getTamaño());
-        Assert.assertEquals(3,s.getTamaño());
-        Assert.assertEquals(2, d.getTamaño());
-        Assert.assertEquals(1,f.getTamaño());
-    }
-
-    @Test
     public void getEstadoPosicion(){
 
     }
@@ -54,8 +46,4 @@ public class BarcoTest {
         Assert.assertEquals(2500,f.getPrecioReparacion());
     }
 
-    @Test
-    public void estaDañado(){
-        Assert.assertEquals(false, pa.estaDañado());
-    }
 }
