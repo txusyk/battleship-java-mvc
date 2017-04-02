@@ -1,12 +1,12 @@
-#Diseño UI
+# Diseño UI
 
-##Idea inicial
+## Idea inicial
 ![logo_sketch](http://i.imgur.com/El7k7Wg.png)
 
-##UI actual
+## UI actual
 ![logo_preview](http://i.imgur.com/R0ipCfv.png)
 
-##UI final
+## UI final
 
 Aún no disponible
 
