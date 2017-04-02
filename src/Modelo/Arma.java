@@ -22,6 +22,6 @@ public abstract class Arma<T> {
 		return this.precio;
 	}
 
-	public abstract void accion(T data);
+	public abstract void accion();
 
 }
