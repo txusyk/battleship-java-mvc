@@ -1,4 +1,14 @@
-![UI_preview](http://imgur.com/R0ipCfv)
+#Diseño UI
+
+##Idea inicial
+![logo_sketch](http://i.imgur.com/El7k7Wg.png)
+
+##UI actual
+![logo_preview](http://i.imgur.com/R0ipCfv.png)
+
+##UI final
+
+Aún no disponible
 
 # Primer Sprint - Battleship
 
