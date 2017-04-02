@@ -10,7 +10,6 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package Modelo;
-
 import java.util.Random;
 
 public class Radar extends Arma {
@@ -28,24 +27,31 @@ public class Radar extends Arma {
 
 	/**
 	 * 
-	 * @param posX, posY
+	 *
 	 */
-	public void setPosicion(int posX, int posY) {
-		x = posX;
-		y = posY;
+	public void setPosicion() {
+        System.out.println("Donde quieres colocar el radar?");
+        System.out.println("\tIntroduce coordenada X: ");
+        int posXRadar = Keyboard.getMyKeyboard().getInt();
+        System.out.println("\tIntroduce coordenada Y:");
+        int posYRadar = Keyboard.getMyKeyboard().getInt();
+        x = posXRadar;
+		y = posYRadar;
 	}
 
 
 	@Override
 	public void accion() {
-		System.out.println("Donde quieres colocar el radar?");
-		System.out.println("\tIntroduce coordenada X: ");
-		int posXRadar = Keyboard.getMyKeyboard().getInt();
-		System.out.println("\tIntroduce coordenada Y:");
-		int posYRadar = Keyboard.getMyKeyboard().getInt();
+        Casilla[] posiciones = null;
 
-		Casilla[] posiciones = Battleship.getMyBattleship().colocarRadar(posXRadar, posYRadar);
-		for(Casilla c : posiciones){
+        setPosicion();
+        if (Battleship.getMyBattleship().turnoJugador()) {
+            posiciones = Battleship.getMyBattleship().getIa().getTablero().getAlrededor(x,y);
+        }
+        else{
+            posiciones = Battleship.getMyBattleship().getHumano().getTablero().getAlrededor(x, y);
+        }
+        for(Casilla c : posiciones){
 			c.desubrirCasilla();
 		}
 	}
