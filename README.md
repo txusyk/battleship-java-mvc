@@ -1,3 +1,5 @@
+![UI_preview](http://imgur.com/R0ipCfv)
+
 # Primer Sprint - Battleship
 
 ## Tecnologías empleadas
