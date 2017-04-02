@@ -1,4 +1,6 @@
-package Modelo;/*
+package Modelo;
+
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -14,11 +16,11 @@ package Modelo;/*
 public class Tablero {
 
 	private Casilla[][] tablero;
-	private ListaBarcos flota;
+	private Flota flota;
 	private int tamañoX;
 	private int tamañoY;
 
-	public Tablero(ListaBarcos pListaBarcos, int pMaxX, int pMaxY) {
+	public Tablero(Flota pListaBarcos, int pMaxX, int pMaxY) {
 		this.tamañoX = pMaxX;
 		this.tamañoY = pMaxY;
         this.tablero = new Casilla[tamañoX][tamañoY];

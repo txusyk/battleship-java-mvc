@@ -19,16 +19,16 @@ public abstract class Jugador {
 
 	private Tablero tablero;
 	private Tablero tableroAdv;
-	private ListaBarcos flota;
+	private Flota flota;
 	private int dinero = 15000;
 	private ListaArmas lArmas;
 	private Radar radar;
 
 
 	public Jugador() {
-		this.tablero = new Tablero(new ListaBarcos(),10,10);
-		this.tableroAdv = new Tablero(new ListaBarcos(),10,10);
-		this.flota = new ListaBarcos();
+		this.tablero = new Tablero(new Flota(),10,10);
+		this.tableroAdv = new Tablero(new Flota(),10,10);
+		this.flota = new Flota();
 		this.lArmas = new ListaArmas();
 		this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
 	}
