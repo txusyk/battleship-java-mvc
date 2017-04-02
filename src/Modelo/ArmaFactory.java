@@ -1,4 +1,4 @@
-/*
+package Modelo;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu

@@ -1,4 +1,4 @@
-/*
+package Modelo;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -68,7 +68,7 @@ public abstract class Barco {
 	 * @param posAtaq
 	 */
 	public void recibirDaños(Arma pArma, int posAtaq) {
-		// TODO - implement Barco.recibirDaños
+		// TODO - implement Modelo.Barco.recibirDaños
 		throw new UnsupportedOperationException();
 	}
 

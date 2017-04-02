@@ -1,4 +1,4 @@
-/*
+package Modelo;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -25,7 +25,7 @@ public class BarcoFactory {
 
 	/**
 	 *
-	 * return @Barco
+	 * return @Modelo.Barco
 	 */
 	public Barco crearBarco(String pTipoBarco) {
 

@@ -1,3 +1,4 @@
+package Modelo;
 /*
  * The MIT License (MIT)
  *
@@ -29,7 +30,7 @@ public class Almacen {
 
     /**
      * @param pArma
-     * @return Arma
+     * @return Modelo.Arma
      */
     public Arma comprarArma(String pArma) {
         if (!this.estaVacio(pArma)) {

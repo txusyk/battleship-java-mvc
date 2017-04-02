@@ -1,3 +1,4 @@
+import Modelo.GestorFicheros;
 import org.testng.Assert;
 
 import org.testng.annotations.BeforeClass;

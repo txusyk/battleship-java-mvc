@@ -1,3 +1,6 @@
+import Modelo.Barco;
+import Modelo.BarcoFactory;
+import Modelo.GestorFicheros;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

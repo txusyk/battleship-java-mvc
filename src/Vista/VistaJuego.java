@@ -297,12 +297,12 @@ public class VistaJuego extends javax.swing.JPanel {
 
         escudoAlmacenLabel = new javax.swing.JLabel();
         escudoAlmacenLabel.setFont(new java.awt.Font("Bradley Hand", 0, 18)); // NOI18N
-        escudoAlmacenLabel.setText("Escudo");
+        escudoAlmacenLabel.setText("Modelo.Escudo");
         escudoAlmacenCantidadLabel = new javax.swing.JLabel();
         escudoAlmacenCantidadLabel.setText("jLabel9");
 
         comboBoxAlmacen = new javax.swing.JComboBox<>();
-        comboBoxAlmacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Misil", "Misil Dirigido", "Radar", "Escudo"}));
+        comboBoxAlmacen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Misil", "Misil Dirigido", "Radar", "Modelo.Escudo"}));
         botonCompraAlmacen = new javax.swing.JButton();
         botonCompraAlmacen.setText("Comprar");
     }
@@ -332,7 +332,7 @@ public class VistaJuego extends javax.swing.JPanel {
 
         escudoArmActualLabel = new javax.swing.JLabel();
         escudoArmActualLabel.setFont(new java.awt.Font("Bradley Hand", 0, 18)); // NOI18N
-        escudoArmActualLabel.setText("Escudo");
+        escudoArmActualLabel.setText("Modelo.Escudo");
         escudoArmActCantidadLabel = new javax.swing.JLabel();
         escudoArmActCantidadLabel.setText("jLabel5");
 
@@ -340,7 +340,7 @@ public class VistaJuego extends javax.swing.JPanel {
         botonSeleccionArma = new javax.swing.JButton();
         botonSeleccionArma.setText("Selec. arma");
         comboBoxArmas = new javax.swing.JComboBox<>();
-        comboBoxArmas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Misil", "Misil Dirigido", "Radar", "Escudo"}));
+        comboBoxArmas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Misil", "Misil Dirigido", "Radar", "Modelo.Escudo"}));
     }
 
     private void crearEtiquetasOtros() {

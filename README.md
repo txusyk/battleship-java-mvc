@@ -24,7 +24,7 @@ Aún no disponible
 
 ## Precondiciones de funcionamiento del juego
 
-- El número de armas de las que dispone el Almacen al inicializarse al comienzo de una partida, variará en función de la dificultad de la misma
+- El número de armas de las que dispone el Modelo.Almacen al inicializarse al comienzo de una partida, variará en función de la dificultad de la misma
 - El precio de las reparaciones de los barcos y el dinero inicial con el que comienza una partida también se verá afectado por dicho factor
 - Los barcos se colocarán teniendo en cuenta su cabeza (0,0) y de la siguiente forma:
 	- *Horizontalmente* -> Hacia la derecha unicamente
@@ -42,21 +42,21 @@ Aún no disponible
 
 |         | facil | medio | dificil |
 |---------|-------|-------|---------|
-|  Bomba  |  ∞    |   ∞   |    ∞    |
+|  Modelo.Bomba  |  ∞    |   ∞   |    ∞    |
 | Misil	  | 15    |  10   |    4    |
 | Misil Dirig | 8 |  6    |   2     |
 | Radar   | 10    |  7    |   3     |
-| Escudo  | 10    |  7    |   3     |
+| Modelo.Escudo  | 10    |  7    |   3     |
 
 ### Tabla precio armas
 
 |         | facil | medio | dificil |
 |---------|-------|-------|---------|
-|  Bomba  |  free | free  |  free   |
+|  Modelo.Bomba  |  free | free  |  free   |
 | Misil	  | 2500  |  3500 |  5000   |
 | Misil Dirig | 8000 |  10000 | 15000|
 | Radar   | 5000  |  7500 |  12000  |
-| Escudo  | 5000  |  7500 |  12000  |
+| Modelo.Escudo  | 5000  |  7500 |  12000  |
 
 ### Tabla dinero
 
