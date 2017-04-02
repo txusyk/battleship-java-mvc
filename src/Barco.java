@@ -13,27 +13,54 @@
 public abstract class Barco {
 
 	protected int tamaño;
+
 	protected int[] posicion;
-	protected String estadoPosicion;
-	protected boolean[] listaDaños;
+	protected char direccion;
+
 	protected int preciorReparacion;
-	protected boolean escudo = false;
+	protected Escudo escudo;
 
 	public Barco() {
 		this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
+		this.posicion = new int[2];
+		this.escudo = null;
 	}
 
-	public int getTamaño() {
-		return this.tamaño;
-	}
+    /**
+     * @param x
+     * @param y
+     */
+	public void setPosicion(int x, int y){
+	    this.posicion[0] = x;
+	    this.posicion[1] = y;
+    }
 
-	public String getEstadoPosicion() {
-		return this.estadoPosicion;
+    /**
+     * @return direccion
+     */
+	public char getDireccion() {
+		return this.direccion;
 	}
 
 	public int getPrecioReparacion(){
 		return this.preciorReparacion;
 	}
+
+    /**
+     *
+     * @return int[]
+     */
+    public int[] getPosicion(){
+        return posicion;
+    }
+
+    /**
+     *
+     * @param esc
+     */
+    public void setEscudo(Escudo esc){
+	    this.escudo = esc;
+    }
 
 	/**
 	 *
@@ -44,19 +71,5 @@ public abstract class Barco {
 		// TODO - implement Barco.recibirDaños
 		throw new UnsupportedOperationException();
 	}
-
-	public boolean estaDañado() {
-		//falta pr hacer
-        return false;
-	}
-
-	/**
-	 *
-	 * @return int[]
-	 */
-	public int[] getPosicion(){
-		return posicion;
-	}
-
 
 }
