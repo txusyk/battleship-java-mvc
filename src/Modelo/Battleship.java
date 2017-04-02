@@ -1,4 +1,3 @@
-package Modelo;
 /*
  * The MIT License (MIT)
  *
@@ -13,67 +12,60 @@ package Modelo;
 
 public class Battleship {
 
-    private Humano humano;
-    private IA ia;
+	private Humano humano;
+	private IA ia;
     private String dificultad = "facil";
-    private Radar radarHum = null;
-    private Radar radarIA = null;
 
-    private static Battleship myBattleship;
+	private static Battleship myBattleship;
 
-    private Battleship() {
+	private Battleship() {
 
-    }
+	}
 
-    public static Battleship getMyBattleship() {
-        if (myBattleship == null) {
-            myBattleship = new Battleship();
+	public static Battleship getMyBattleship() {
+		if (myBattleship == null){
+		    myBattleship = new Battleship();
         }
         return myBattleship;
-    }
+	}
 
     public String getDificultad() {
         return dificultad;
     }
 
     /**
-     * @param pNombre
-     */
-    public void inicializarJuego(String pNombre) {
-        GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
-        Battleship.getMyBattleship().inicializarAlmacen();
-        Battleship.getMyBattleship().inicializarJugadores(pNombre);
-        Battleship.getMyBattleship().initRadares();
-    }
+	 * 
+	 * @param pNombre
+	 */
+	public void inicializarJuego(String pNombre) {
+		GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
+		Battleship.getMyBattleship().inicializarAlmacen();
+	}
 
-    private void inicializarJugadores(String pNombre) {
+	private void inicializarJugadores(String pNombre) {
         humano = new Humano(pNombre);
-        ia = new IA();
-    }
+        ia= new IA();
+	}
 
-    private void inicializarAlmacen() {
-        Almacen.getMiAlmacen();
-    }
+	private void inicializarAlmacen() {
+		Almacen.getMiAlmacen();
+	}
 
-    private void initRadares() {
-        radarHum = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
-        radarIA = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
-    }
 
-    private void colocarFlotas() {
-        // TODO - implement Battleship.colocarFlotas
-        throw new UnsupportedOperationException();
-    }
+	private void colocarFlotas() {
+		// TODO - implement Battleship.colocarFlotas
+		throw new UnsupportedOperationException();
+	}
 
-    private void inicializarTableros() {
-        // TODO - implement Battleship.inicializarTableros
-        throw new UnsupportedOperationException();
-    }
+	private void inicializarTableros() {
+		// TODO - implement Battleship.inicializarTableros
+		throw new UnsupportedOperationException();
+	}
 
-    private void jugar() {
-        // TODO - implement Battleship.jugar
-        throw new UnsupportedOperationException();
-    }
+	private void jugar() {
+		// TODO - implement Battleship.jugar
+		throw new UnsupportedOperationException();
+	}
 
     /**
      * @return Humano
@@ -89,4 +81,7 @@ public class Battleship {
         return ia;
     }
 
+    public boolean turnoJugador() {            //FALTA DE IMPLEMENTAR
+		return true;                        // sera necesario saber a quien pertenece el turno en cada momento.
+	}
 }
