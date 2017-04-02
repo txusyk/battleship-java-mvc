@@ -41,7 +41,4 @@ public class Humano extends Jugador{
 		throw new UnsupportedOperationException();
 	}
 
-
-
-
 }
