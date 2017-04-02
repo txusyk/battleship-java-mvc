@@ -32,20 +32,15 @@ public class Tablero {
 
 	public Casilla[] getAlrededor(int posX, int posY){       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
         Casilla[] auxL = new Casilla[9];
+        int index = 0;
 
-        auxL[0] = this.tablero[posX-1][posY+1];
-        auxL[1] = this.tablero[posX][posY+1];
-        auxL[2] = this.tablero[posX+1][posY+1];
-        auxL[3] = this.tablero[posX-1][posY];
-        auxL[4] = this.tablero[posX][posY];
-        auxL[5] = this.tablero[posX+1][posY];
-        auxL[6] = this.tablero[posX-1][posY-1];
-        auxL[7] = this.tablero[posX][posY-1];
-        auxL[8] = this.tablero[posX+1][posY-1];
-
-        for (int i=0; i<3;i++){
-            for
+        for (int i=posX-1; i<=posX+1;i++){
+            for(int k = posY-1; k <= posX-1; k++) {
+                auxL[index]=this.tablero[i][k];
+                index++;
+            }
         }
+
 
         return auxL;
     }
@@ -55,19 +50,7 @@ public class Tablero {
 	 * @param pBarco
 	 */
 	public boolean posicionarBarco(Barco pBarco, int posX, int posY) {
-		if (tablero[posX][posY].getEstado() != null){
-            if (pBarco.getEstadoPosicion() == "H"){
-                int ultPos = posX+pBarco.getTamaño();
-                if (ultPos<10){
-                    if (posY <10){
-                        for (int i=0; i<pBarco.getTamaño(); i++){
-                            tablero[posX+i][posY].setState(null);
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+
 	}
 
 
