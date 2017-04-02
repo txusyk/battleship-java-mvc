@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<dificultad>
+<ajustesJuego>
     <facil id="01">
         <cantidadArmas>
             <bomba>99</bomba>
@@ -74,4 +74,4 @@
         <submarino>2</submarino>
         <portaaviones>1</portaaviones>
     </numBarcos>
-</dificultad>  
+</ajustesJuego>
