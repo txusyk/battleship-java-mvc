@@ -12,36 +12,35 @@ package Modelo;/*
 
 public class ArmaFactory {
 
-	private static ArmaFactory miArmaFactory;
+    private static ArmaFactory miArmaFactory;
 
-	private ArmaFactory() {
-	}
+    private ArmaFactory() {
+    }
 
-	public static ArmaFactory getArmaFactory() {
-		if (miArmaFactory == null){
-			miArmaFactory = new ArmaFactory();
-		}
-		return miArmaFactory;
-	}
+    public static ArmaFactory getArmaFactory() {
+        if (miArmaFactory == null) {
+            miArmaFactory = new ArmaFactory();
+        }
+        return miArmaFactory;
+    }
 
-	/**
-	 * 
-	 * @param pTipoArma
-	 */
-	public Arma crearArma(String pTipoArma) {
-	    Arma a = null;
-	    if (pTipoArma.equalsIgnoreCase("bomba")){
-	        a = new Bomba(0);
-        }else if (pTipoArma.equalsIgnoreCase("misil")){
-	        a = new Misil(GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
-        }else if (pTipoArma.equalsIgnoreCase("misildirig")){
+    /**
+     * @param pTipoArma
+     */
+    public Arma crearArma(String pTipoArma) {
+        Arma a = null;
+        if (pTipoArma.equalsIgnoreCase("bomba")) {
+            a = new Bomba(0);
+        } else if (pTipoArma.equalsIgnoreCase("misil")) {
+            a = new Misil(GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
+        } else if (pTipoArma.equalsIgnoreCase("misildirig")) {
             a = new MisilDirig(GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig());
-        }else if (pTipoArma.equalsIgnoreCase("radar")){
+        } else if (pTipoArma.equalsIgnoreCase("radar")) {
             a = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
-        }else if (pTipoArma.equalsIgnoreCase("escudo")){
+        } else if (pTipoArma.equalsIgnoreCase("escudo")) {
             a = new Escudo(GestorFicheros.getMyGestorFicheros().getPrecioEscudos());
         }
-		return a;
-	}
+        return a;
+    }
 
 }

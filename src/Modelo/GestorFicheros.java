@@ -39,7 +39,6 @@ public class GestorFicheros {
     }
 
 
-
     public static GestorFicheros getMyGestorFicheros() {
         if (myGestorFicheros == null) {
             myGestorFicheros = new GestorFicheros();

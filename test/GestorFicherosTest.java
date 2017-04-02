@@ -1,6 +1,5 @@
 import Modelo.GestorFicheros;
 import org.testng.Assert;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -10,7 +9,7 @@ import org.testng.annotations.Test;
 public class GestorFicherosTest {
 
     @BeforeClass
-    public void lanzarleerXml(){
+    public void lanzarleerXml() {
         GestorFicheros.getMyGestorFicheros().readXML("facil");
     }
 
@@ -46,7 +45,7 @@ public class GestorFicherosTest {
 
     @Test
     public void testGetPrecioMisiles() throws Exception {
-        Assert.assertEquals(2500,GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
+        Assert.assertEquals(2500, GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
     }
 
     @Test

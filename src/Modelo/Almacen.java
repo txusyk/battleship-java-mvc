@@ -13,8 +13,8 @@ package Modelo;
 
 public class Almacen {
 
-    private ListaArmas existencias;
     private static Almacen miAlmacen;
+    private ListaArmas existencias;
 
     private Almacen() {
         existencias = new ListaArmas();

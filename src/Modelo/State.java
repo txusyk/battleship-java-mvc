@@ -12,5 +12,5 @@ package Modelo;
  */
 
 public interface State {
-	void pedir();
+    void pedir();
 }

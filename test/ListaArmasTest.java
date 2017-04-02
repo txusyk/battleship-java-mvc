@@ -30,11 +30,11 @@ public class ListaArmasTest {
 
     @Test
     public void getArma() throws Exception {
-        Assert.assertEquals("bomba",getType(la.getArma("bomba")));
-        Assert.assertEquals("misil",getType(la.getArma("misil")));
-        Assert.assertEquals("misildirig",getType(la.getArma("misildirig")));
-        Assert.assertEquals("radar",getType(la.getArma("radar")));
-        Assert.assertEquals("escudo",getType(la.getArma("escudo")));
+        Assert.assertEquals("bomba", getType(la.getArma("bomba")));
+        Assert.assertEquals("misil", getType(la.getArma("misil")));
+        Assert.assertEquals("misildirig", getType(la.getArma("misildirig")));
+        Assert.assertEquals("radar", getType(la.getArma("radar")));
+        Assert.assertEquals("escudo", getType(la.getArma("escudo")));
     }
 
     @Test

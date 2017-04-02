@@ -15,30 +15,30 @@ package Modelo;
 
 public class Tablero {
 
-	private Casilla[][] tablero;
-	private Flota flota;
-	private int tamañoX;
-	private int tamañoY;
+    private Casilla[][] tablero;
+    private Flota flota;
+    private int tamañoX;
+    private int tamañoY;
 
-	public Tablero(Flota pListaBarcos, int pMaxX, int pMaxY) {
-		this.tamañoX = pMaxX;
-		this.tamañoY = pMaxY;
+    public Tablero(Flota pListaBarcos, int pMaxX, int pMaxY) {
+        this.tamañoX = pMaxX;
+        this.tamañoY = pMaxY;
         this.tablero = new Casilla[tamañoX][tamañoY];
-        for (int i=0; i<10 ; i++){
-            for (int j=0; j<10; j++){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 tablero[i][j] = new Casilla(i, j);
             }
         }
-		this.flota = pListaBarcos;
-	}
+        this.flota = pListaBarcos;
+    }
 
-	public Casilla[] getAlrededor(int posX, int posY){       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
+    public Casilla[] getAlrededor(int posX, int posY) {       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
         Casilla[] auxL = new Casilla[9];
         int index = 0;
 
-        for (int i=posX-1; i<=posX+1;i++){
-            for(int k = posY-1; k <= posX-1; k++) {
-                auxL[index]=this.tablero[i][k];
+        for (int i = posX - 1; i <= posX + 1; i++) {
+            for (int k = posY - 1; k <= posX - 1; k++) {
+                auxL[index] = this.tablero[i][k];
                 index++;
             }
         }

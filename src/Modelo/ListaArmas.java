@@ -23,17 +23,17 @@ public class ListaArmas {
 
     public ListaArmas() {
         ls = new HashMap<>();
-        ls.put("bomba",new Stack<>());
-        ls.put("misil",new Stack<>());
-        ls.put("misildirig",new Stack<>());
-        ls.put("radar",new Stack<>());
-        ls.put("escudo",new Stack<>());
+        ls.put("bomba", new Stack<>());
+        ls.put("misil", new Stack<>());
+        ls.put("misildirig", new Stack<>());
+        ls.put("radar", new Stack<>());
+        ls.put("escudo", new Stack<>());
     }
 
     /**
      * Inicializa las armas en base a los valores que recibe del configurador
      */
-    public void inicializarArmas(){
+    public void inicializarArmas() {
         while (ls.get("bomba").size() < GestorFicheros.getMyGestorFicheros().getNumBombas()) {
             añadirArma(ArmaFactory.getArmaFactory().crearArma("bomba"));
         }
@@ -55,22 +55,26 @@ public class ListaArmas {
         }
     }
 
-    public Arma getArma(String pArma){
+    public Arma getArma(String pArma) {
         return ls.get(pArma).pop();
     }
 
-    public Arma consultarArma(String pArma){ return ls.get(pArma).peek();}
+    public Arma consultarArma(String pArma) {
+        return ls.get(pArma).peek();
+    }
 
-    public int getSize(String pArma){ return ls.get(pArma).size();}
+    public int getSize(String pArma) {
+        return ls.get(pArma).size();
+    }
 
     /**
      * @param pArma
      */
     public void añadirArma(Arma pArma) {
-        if (ls.get(getType(pArma)) != null){
+        if (ls.get(getType(pArma)) != null) {
             ls.get(getType(pArma)).push(pArma);
-        }else{
-            ls.put(getType(pArma),new Stack<>());
+        } else {
+            ls.put(getType(pArma), new Stack<>());
             ls.get(getType(pArma)).push(pArma);
         }
     }

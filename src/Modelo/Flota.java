@@ -11,7 +11,7 @@ public class Flota {
 
     private HashMap<String, ListaBarcos> flota;
 
-    public Flota(){
+    public Flota() {
         flota = new HashMap<>();
         flota.put("fragata", new ListaBarcos("fragata"));
         flota.put("fragata", new ListaBarcos("destructor"));
@@ -23,51 +23,51 @@ public class Flota {
 
         private ArrayList<Barco> lb;
 
-        public ListaBarcos(String pTipo){
+        public ListaBarcos(String pTipo) {
             lb = new ArrayList<>();
             inicializarPorTipo(pTipo);
         }
 
-        private Iterator<Barco> getIterator(){
+        private Iterator<Barco> getIterator() {
             return lb.iterator();
         }
 
-        private void añadir(Barco pBarco){
+        private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
-        private void eliminar(Barco pBarco){
+        private void eliminar(Barco pBarco) {
             lb.remove(pBarco);
         }
 
-        public Barco buscarPorPos(int[] pos){
+        public Barco buscarPorPos(int[] pos) {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
             Barco b = null;
-            while (itr.hasNext() && !enc){
+            while (itr.hasNext() && !enc) {
                 b = itr.next();
-                if (b.getPosicion()[0] == pos[0] && b.getPosicion()[1] == pos[1]){
+                if (b.getPosicion()[0] == pos[0] && b.getPosicion()[1] == pos[1]) {
                     enc = true;
                 }
             }
             return b;
         }
 
-        private void inicializarPorTipo(String pTipo){
-            if (pTipo.equalsIgnoreCase("portaaviones")){
-                for (int i =0; i<GestorFicheros.getMyGestorFicheros().getNumFrag();i++){
+        private void inicializarPorTipo(String pTipo) {
+            if (pTipo.equalsIgnoreCase("portaaviones")) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumFrag(); i++) {
                     añadir(new Fragata());
                 }
-            }else if (pTipo.equalsIgnoreCase("submarino")){
-                for (int i =0; i<GestorFicheros.getMyGestorFicheros().getNumSub();i++){
+            } else if (pTipo.equalsIgnoreCase("submarino")) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumSub(); i++) {
                     añadir(new Submarino());
                 }
-            }else if (pTipo.equalsIgnoreCase("destructor")){
-                for (int i =0; i<GestorFicheros.getMyGestorFicheros().getNumDestr();i++){
+            } else if (pTipo.equalsIgnoreCase("destructor")) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumDestr(); i++) {
                     añadir(new Destructor());
                 }
-            }else if(pTipo.equalsIgnoreCase("fragata")){
-                for (int i =0; i<GestorFicheros.getMyGestorFicheros().getNumPortaav();i++){
+            } else if (pTipo.equalsIgnoreCase("fragata")) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumPortaav(); i++) {
                     añadir(new Portaaviones());
                 }
             }

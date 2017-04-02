@@ -12,7 +12,8 @@
 
 import Modelo.*;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * Created by Josu on 23/03/2017.
@@ -20,7 +21,7 @@ import org.testng.annotations.*;
 public class AlmacenTest {
 
     @BeforeClass
-    public void cargarXML(){
+    public void cargarXML() {
         GestorFicheros.getMyGestorFicheros().readXML("facil");
     }
 
@@ -32,9 +33,9 @@ public class AlmacenTest {
     @Test
     public void testComprarArma() throws Exception {
         Assert.assertNotNull(Almacen.getMiAlmacen().comprarArma("bomba"));
-        Assert.assertEquals(new Bomba(0).getClass(),Almacen.getMiAlmacen().comprarArma("bomba").getClass());
-        Assert.assertEquals(new Misil(0).getClass(),Almacen.getMiAlmacen().comprarArma("misil").getClass());
-        Assert.assertEquals(new MisilDirig(0).getClass(),Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
+        Assert.assertEquals(new Bomba(0).getClass(), Almacen.getMiAlmacen().comprarArma("bomba").getClass());
+        Assert.assertEquals(new Misil(0).getClass(), Almacen.getMiAlmacen().comprarArma("misil").getClass());
+        Assert.assertEquals(new MisilDirig(0).getClass(), Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
     }
 
     @Test
@@ -45,9 +46,9 @@ public class AlmacenTest {
 
     @Test
     public void cantidadRestante() throws Exception {
-        int cantidadInicial =  Almacen.getMiAlmacen().cantidadRestante("bomba");
+        int cantidadInicial = Almacen.getMiAlmacen().cantidadRestante("bomba");
         Almacen.getMiAlmacen().comprarArma("bomba");
-        Assert.assertNotEquals(cantidadInicial,Almacen.getMiAlmacen().cantidadRestante("bomba"));
-        Assert.assertEquals(cantidadInicial-1,Almacen.getMiAlmacen().cantidadRestante("bomba"));
+        Assert.assertNotEquals(cantidadInicial, Almacen.getMiAlmacen().cantidadRestante("bomba"));
+        Assert.assertEquals(cantidadInicial - 1, Almacen.getMiAlmacen().cantidadRestante("bomba"));
     }
 }

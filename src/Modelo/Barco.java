@@ -12,64 +12,61 @@ package Modelo;/*
 
 public abstract class Barco {
 
-	protected int tamaño;
+    protected int tamaño;
 
-	protected int[] posicion;
-	protected char direccion;
+    protected int[] posicion;
+    protected char direccion;
 
-	protected int preciorReparacion;
-	protected Escudo escudo;
+    protected int preciorReparacion;
+    protected Escudo escudo;
 
-	public Barco() {
-		this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
-		this.posicion = new int[2];
-		this.escudo = null;
-	}
+    public Barco() {
+        this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
+        this.posicion = new int[2];
+        this.escudo = null;
+    }
 
     /**
      * @param x
      * @param y
      */
-	public void setPosicion(int x, int y){
-	    this.posicion[0] = x;
-	    this.posicion[1] = y;
+    public void setPosicion(int x, int y) {
+        this.posicion[0] = x;
+        this.posicion[1] = y;
     }
 
     /**
      * @return direccion
      */
-	public char getDireccion() {
-		return this.direccion;
-	}
+    public char getDireccion() {
+        return this.direccion;
+    }
 
-	public int getPrecioReparacion(){
-		return this.preciorReparacion;
-	}
+    public int getPrecioReparacion() {
+        return this.preciorReparacion;
+    }
 
     /**
-     *
      * @return int[]
      */
-    public int[] getPosicion(){
+    public int[] getPosicion() {
         return posicion;
     }
 
     /**
-     *
      * @param esc
      */
-    public void setEscudo(Escudo esc){
-	    this.escudo = esc;
+    public void setEscudo(Escudo esc) {
+        this.escudo = esc;
     }
 
-	/**
-	 *
-	 * @param pArma
-	 * @param posAtaq
-	 */
-	public void recibirDaños(Arma pArma, int posAtaq) {
-		// TODO - implement Modelo.Barco.recibirDaños
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param pArma
+     * @param posAtaq
+     */
+    public void recibirDaños(Arma pArma, int posAtaq) {
+        // TODO - implement Modelo.Barco.recibirDaños
+        throw new UnsupportedOperationException();
+    }
 
 }

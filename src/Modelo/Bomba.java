@@ -14,9 +14,9 @@ package Modelo;
 
 public class Bomba extends Arma {
 
-	public Bomba(int pPrecio) {
-	    super(pPrecio);
-	}
+    public Bomba(int pPrecio) {
+        super(pPrecio);
+    }
 
     @Override
     public void accion() {

@@ -11,80 +11,72 @@
  */
 package Modelo;
 
-import java.util.HashMap;
-import java.util.Stack;
-
-
 public abstract class Jugador {
 
-	private Tablero tablero;
-	private Tablero tableroAdv;
-	private Flota flota;
-	private int dinero = 15000;
-	private ListaArmas lArmas;
-	private Radar radar;
+    private Tablero tablero;
+    private Tablero tableroAdv;
+    private Flota flota;
+    private int dinero = 15000;
+    private ListaArmas lArmas;
+    private Radar radar;
 
 
-	public Jugador() {
-		this.tablero = new Tablero(new Flota(),10,10);
-		this.tableroAdv = new Tablero(new Flota(),10,10);
-		this.flota = new Flota();
-		this.lArmas = new ListaArmas();
-		this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
-	}
+    public Jugador() {
+        this.tablero = new Tablero(new Flota(), 10, 10);
+        this.tableroAdv = new Tablero(new Flota(), 10, 10);
+        this.flota = new Flota();
+        this.lArmas = new ListaArmas();
+        this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
+    }
 
-	public Tablero getTablero(){
-		return this.tablero;
-	}
+    public Tablero getTablero() {
+        return this.tablero;
+    }
 
-	public Tablero getTableroAdv(){
-		return this.tableroAdv;
-	}
+    public Tablero getTableroAdv() {
+        return this.tableroAdv;
+    }
 
 
-	/**
-	 * 
-	 * @param pCantidad
+    /**
+     * @param pCantidad
      * @return boolean
-	 */
-	protected boolean decrementarDinero(int pCantidad) {
-		if (dinero > pCantidad){
-		    dinero -= pCantidad;
-		    return true;
+     */
+    protected boolean decrementarDinero(int pCantidad) {
+        if (dinero > pCantidad) {
+            dinero -= pCantidad;
+            return true;
         }
         return false;
-	}
+    }
 
-	/**
-	 * 
-	 * @param pArma
-	 */
-	protected void comprarArma(String pArma) {
-	    if (this.dinero>=Almacen.getMiAlmacen().getPrecioArma(pArma)){
-	        lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
-	        this.decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
+    /**
+     * @param pArma
+     */
+    protected void comprarArma(String pArma) {
+        if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
+            lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
+            this.decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
         }
-	}
+    }
 
-	/**
-	 * 
-	 * @param pBarco
-	 */
-	/*protected void repararBarco(Barco pBarco) {
+    /**
+     * @param pBarco
+     */
+    /*protected void repararBarco(Barco pBarco) {
 		if (this.dinero>=flota.obtenerBarco(getType(pBarco)).preciorReparacion) {
             //flota.repararBarco(pBarco);
         }
 	}*/
+    private String getType(Barco pBarco) {
+        String type = String.valueOf(pBarco.getClass());
+        String[] arrAux = type.split(" ");
+        type = arrAux[1].toLowerCase();
+        return type;
+    }
 
-	private String getType(Barco pBarco) {
-		String type = String.valueOf(pBarco.getClass());
-		String[] arrAux = type.split(" ");
-		type = arrAux[1].toLowerCase();
-		return type;
-	}
-
-	public void setPosicionRadar(){
-		radar.setPosicion();
-	}
+    public void setPosicionRadar() {
+        radar.setPosicion();
+    }
 
 }

@@ -9,6 +9,7 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
 import Modelo.GestorFicheros;
 import Modelo.IA;
 import org.testng.Assert;
@@ -17,20 +18,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Stack;
-
-import static org.testng.Assert.*;
-
 /**
  * Created by Josu on 19/03/2017.
  */
 public class IATest {
 
-    IA ia1,ia2;
+    IA ia1, ia2;
 
     @BeforeClass
-    public void leerXML(){
+    public void leerXML() {
         GestorFicheros.getMyGestorFicheros().readXML("facil");
     }
 

@@ -12,11 +12,11 @@ package Modelo;/*
 
 public class Fragata extends Barco {
 
-	public Fragata() {
-		super();
-		this.posicion = new int[1];
-		this.tamaño = 1;
-	}
+    public Fragata() {
+        super();
+        this.posicion = new int[1];
+        this.tamaño = 1;
+    }
 
-	
+
 }

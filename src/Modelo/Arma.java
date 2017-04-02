@@ -12,16 +12,16 @@ package Modelo;/*
 
 public abstract class Arma {
 
-	protected int precio;
+    protected int precio;
 
-	public Arma(int pPrecio) {
-		this.precio = pPrecio;
-	}
+    public Arma(int pPrecio) {
+        this.precio = pPrecio;
+    }
 
-	public int getPrecio() {
-		return this.precio;
-	}
+    public int getPrecio() {
+        return this.precio;
+    }
 
-	public abstract void accion();
+    public abstract void accion();
 
 }

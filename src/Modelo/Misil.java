@@ -13,9 +13,9 @@ package Modelo;
 
 public class Misil extends Arma {
 
-	public Misil(int pPrecio) {
-	    super(pPrecio);
-	}
+    public Misil(int pPrecio) {
+        super(pPrecio);
+    }
 
     @Override
     public void accion() {

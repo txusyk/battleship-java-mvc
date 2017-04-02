@@ -13,12 +13,12 @@ package Modelo;
 
 public class MisilDirig extends Arma {
 
-	public MisilDirig(int pPrecio) {
-	    super(pPrecio);
-	}
+    public MisilDirig(int pPrecio) {
+        super(pPrecio);
+    }
 
-	@Override
-	public void accion() {
+    @Override
+    public void accion() {
 
-	}
+    }
 }

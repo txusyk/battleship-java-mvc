@@ -11,6 +11,7 @@
  */
 
 package Vista;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,16 +20,16 @@ import java.awt.*;
  */
 public class VistaJuego extends javax.swing.JPanel {
 
-    private JLabel almacenLabel,armamentoActualLabel,dineroRestanteCantLabel,dineroRestanteLabel,escudoAlmacenCantidadLabel,escudoAlmacenLabel,escudoArmActCantidadLabel, escudoArmActualLabel,misilArmActCantidadLabel;
-    private JLabel misilDirigAlmacenCantidad,misilDirigAlmacenLabel,misilDirigArmActCantidadLabel,misilDirigArmActualLabel,misilesAlmacenCantidadLabel,misilesAlmacenLabel,misilesArmActualLabel;
-    private JLabel radarAlmacenCantidadLabel,radarAlmacenLabel, radarArmActCantidadLabel,radarArmActualLabel,turnoActJugadorLabel, turnoActLabel;
+    private JLabel almacenLabel, armamentoActualLabel, dineroRestanteCantLabel, dineroRestanteLabel, escudoAlmacenCantidadLabel, escudoAlmacenLabel, escudoArmActCantidadLabel, escudoArmActualLabel, misilArmActCantidadLabel;
+    private JLabel misilDirigAlmacenCantidad, misilDirigAlmacenLabel, misilDirigArmActCantidadLabel, misilDirigArmActualLabel, misilesAlmacenCantidadLabel, misilesAlmacenLabel, misilesArmActualLabel;
+    private JLabel radarAlmacenCantidadLabel, radarAlmacenLabel, radarArmActCantidadLabel, radarArmActualLabel, turnoActJugadorLabel, turnoActLabel;
 
-    private javax.swing.JButton botonCompraAlmacen,botonSeleccionArma;
-    private javax.swing.JComboBox<String> comboBoxAlmacen,comboBoxArmas;
+    private javax.swing.JButton botonCompraAlmacen, botonSeleccionArma;
+    private javax.swing.JComboBox<String> comboBoxAlmacen, comboBoxArmas;
 
-    private javax.swing.JPanel info_juego, otros,vistaJuegoPanel;
+    private javax.swing.JPanel info_juego, otros, vistaJuegoPanel;
 
-    private javax.swing.JPanel tablero1Panel,tablero2Panel;
+    private javax.swing.JPanel tablero1Panel, tablero2Panel;
 
 
     /**
@@ -37,7 +38,7 @@ public class VistaJuego extends javax.swing.JPanel {
     public VistaJuego() {
         initComponents();
         generarTablerosJuego();
-        
+
     }
 
     /**
@@ -356,7 +357,7 @@ public class VistaJuego extends javax.swing.JPanel {
         turnoActJugadorLabel.setText("jLabel5");
     }
 
-    private void generarTablerosJuego(){
+    private void generarTablerosJuego() {
         tablero1Panel.setLayout(new GridLayout(10, 10));
         tablero2Panel.setLayout(new GridLayout(10, 10));
         for (int i = 0; i < 10; i++) {

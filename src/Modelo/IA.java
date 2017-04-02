@@ -11,32 +11,29 @@
  */
 package Modelo;
 
-import java.util.HashMap;
-import java.util.Stack;
-
 public class IA extends Jugador {
 
-	private String dificultad;
+    private String dificultad;
 
 
-	public IA() {
-		super();
-		this.dificultad = Battleship.getMyBattleship().getDificultad();
-	}
+    public IA() {
+        super();
+        this.dificultad = Battleship.getMyBattleship().getDificultad();
+    }
 
     public String getDificultad() {
         return dificultad;
     }
 
     public void jugarTurnoIA() {
-		// TODO - implement IA.jugarTurnoIA
-		throw new UnsupportedOperationException();
-	}
+        // TODO - implement IA.jugarTurnoIA
+        throw new UnsupportedOperationException();
+    }
 
-	public void colocarBarcosIA() {
-		// TODO - implement IA.colocarBarcosIA
-		throw new UnsupportedOperationException();
-	}
+    public void colocarBarcosIA() {
+        // TODO - implement IA.colocarBarcosIA
+        throw new UnsupportedOperationException();
+    }
 
 
 }

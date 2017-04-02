@@ -25,7 +25,7 @@ public class ArmaFactoryTest {
     @AfterMethod
     public void tearDown() throws Exception {
         bomba = null;
-        misil =  null;
+        misil = null;
         misildirig = null;
         radar = null;
         escudo = null;
@@ -44,11 +44,11 @@ public class ArmaFactoryTest {
         Assert.assertNotNull(radar);
         Assert.assertNotNull(escudo);
 
-        Assert.assertEquals("bomba",getType(bomba));
-        Assert.assertEquals("misil",getType(misil));
-        Assert.assertEquals("misildirig",getType(misildirig));
-        Assert.assertEquals("radar",getType(radar));
-        Assert.assertEquals("escudo",getType(escudo));
+        Assert.assertEquals("bomba", getType(bomba));
+        Assert.assertEquals("misil", getType(misil));
+        Assert.assertEquals("misildirig", getType(misildirig));
+        Assert.assertEquals("radar", getType(radar));
+        Assert.assertEquals("escudo", getType(escudo));
     }
 
     private String getType(Arma pArma) {

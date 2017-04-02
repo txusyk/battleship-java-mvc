@@ -15,60 +15,58 @@ package Modelo;
 
 public class Battleship {
 
-	private Humano humano;
-	private IA ia;
+    private static Battleship myBattleship;
+    private Humano humano;
+    private IA ia;
     private String dificultad = "facil";
 
-	private static Battleship myBattleship;
+    private Battleship() {
 
-	private Battleship() {
+    }
 
-	}
-
-	public static Battleship getMyBattleship() {
-		if (myBattleship == null){
-		    myBattleship = new Battleship();
+    public static Battleship getMyBattleship() {
+        if (myBattleship == null) {
+            myBattleship = new Battleship();
         }
         return myBattleship;
-	}
+    }
 
     public String getDificultad() {
         return dificultad;
     }
 
     /**
-	 * 
-	 * @param pNombre
-	 */
-	public void inicializarJuego(String pNombre) {
-		GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
-		Battleship.getMyBattleship().inicializarAlmacen();
-	}
+     * @param pNombre
+     */
+    public void inicializarJuego(String pNombre) {
+        GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
+        Battleship.getMyBattleship().inicializarAlmacen();
+    }
 
-	private void inicializarJugadores(String pNombre) {
+    private void inicializarJugadores(String pNombre) {
         humano = new Humano(pNombre);
-        ia= new IA();
-	}
+        ia = new IA();
+    }
 
-	private void inicializarAlmacen() {
-		Almacen.getMiAlmacen();
-	}
+    private void inicializarAlmacen() {
+        Almacen.getMiAlmacen();
+    }
 
 
-	private void colocarFlotas() {
-		// TODO - implement Battleship.colocarFlotas
-		throw new UnsupportedOperationException();
-	}
+    private void colocarFlotas() {
+        // TODO - implement Battleship.colocarFlotas
+        throw new UnsupportedOperationException();
+    }
 
-	private void inicializarTableros() {
-		// TODO - implement Battleship.inicializarTableros
-		throw new UnsupportedOperationException();
-	}
+    private void inicializarTableros() {
+        // TODO - implement Battleship.inicializarTableros
+        throw new UnsupportedOperationException();
+    }
 
-	private void jugar() {
-		// TODO - implement Battleship.jugar
-		throw new UnsupportedOperationException();
-	}
+    private void jugar() {
+        // TODO - implement Battleship.jugar
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * @return Humano
@@ -85,6 +83,6 @@ public class Battleship {
     }
 
     public boolean turnoJugador() {            //FALTA DE IMPLEMENTAR
-		return true;                        // sera necesario saber a quien pertenece el turno en cada momento.
-	}
+        return true;                        // sera necesario saber a quien pertenece el turno en cada momento.
+    }
 }

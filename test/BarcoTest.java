@@ -34,16 +34,16 @@ public class BarcoTest {
     }
 
     @Test
-    public void getEstadoPosicion(){
+    public void getEstadoPosicion() {
 
     }
 
     @Test
-    public void getPrecioReparacion(){
-        Assert.assertEquals(2500,pa.getPrecioReparacion());
-        Assert.assertEquals(2500,s.getPrecioReparacion());
+    public void getPrecioReparacion() {
+        Assert.assertEquals(2500, pa.getPrecioReparacion());
+        Assert.assertEquals(2500, s.getPrecioReparacion());
         Assert.assertEquals(2500, d.getPrecioReparacion());
-        Assert.assertEquals(2500,f.getPrecioReparacion());
+        Assert.assertEquals(2500, f.getPrecioReparacion());
     }
 
 }

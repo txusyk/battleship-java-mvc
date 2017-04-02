@@ -11,65 +11,60 @@
  */
 package Modelo;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Casilla {
 
-	private State estado;
-	private int[] posicion;
-	private boolean descubierta = false;
+    private State estado;
+    private int[] posicion;
+    private boolean descubierta = false;
 
-	public Casilla(int x, int y) {
-		posicion = new int[2];
-		posicion[0] = x;
-		posicion[1] = y;
-	}
+    public Casilla(int x, int y) {
+        posicion = new int[2];
+        posicion[0] = x;
+        posicion[1] = y;
+    }
 
-	public void setState(State estado) {
-		// TODO - implement Casilla.setState
-		throw new UnsupportedOperationException();
-	}
+    public void setState(State estado) {
+        // TODO - implement Casilla.setState
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * @return State
-	 */
-	public State getEstado(){
-		return this.estado;
-	}
+    /**
+     * @return State
+     */
+    public State getEstado() {
+        return this.estado;
+    }
 
-	public void accionarCasilla() {
-		// TODO - implement Casilla.accionarCasilla
-		throw new UnsupportedOperationException();
-	}
+    public void accionarCasilla() {
+        // TODO - implement Casilla.accionarCasilla
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * @return int
-	 */
-	public int getX(){
-		return posicion[0];
-	}
+    /**
+     * @return int
+     */
+    public int getX() {
+        return posicion[0];
+    }
 
-	public int getY(){
-		return posicion[1];
-	}
+    public int getY() {
+        return posicion[1];
+    }
 
 
-	/**
-	 *
-	 * @param posicion
-	 */
-	public void setPosicion(int[] posicion) {
-		this.posicion = posicion;
-	}
+    /**
+     * @param posicion
+     */
+    public void setPosicion(int[] posicion) {
+        this.posicion = posicion;
+    }
 
 
     public void desubrirCasilla() {
-		if (!descubierta){
-			descubierta = true;
-		}
-		else {
-			System.out.println("Ya estaba descubierta.");
-		}
+        if (!descubierta) {
+            descubierta = true;
+        } else {
+            System.out.println("Ya estaba descubierta.");
+        }
     }
 }

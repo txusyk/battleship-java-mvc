@@ -11,6 +11,7 @@
  */
 
 package Vista;
+
 import javax.swing.*;
 
 public class VistaLogin extends JPanel {

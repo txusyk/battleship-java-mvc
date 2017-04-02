@@ -12,35 +12,30 @@
 package Modelo;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+public class Humano extends Jugador {
 
-public class Humano extends Jugador{
+    private String nombre;
 
-	private String nombre;
-
-	/**
-	 * 
-	 * @param pNombre
-	 */
-	public Humano(String pNombre) {
+    /**
+     * @param pNombre
+     */
+    public Humano(String pNombre) {
         super();
         this.nombre = pNombre;
-	}
+    }
 
     public String getNombre() {
         return this.nombre;
     }
 
-	public void jugarTurno() {
-		// TODO - implement Humano.jugarTurno
-		throw new UnsupportedOperationException();
-	}
+    public void jugarTurno() {
+        // TODO - implement Humano.jugarTurno
+        throw new UnsupportedOperationException();
+    }
 
-	public void colocarBarcos() {
-		// TODO - implement Humano.colocarBarcos
-		throw new UnsupportedOperationException();
-	}
+    public void colocarBarcos() {
+        // TODO - implement Humano.colocarBarcos
+        throw new UnsupportedOperationException();
+    }
 
 }

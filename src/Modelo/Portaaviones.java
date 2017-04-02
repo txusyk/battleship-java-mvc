@@ -13,10 +13,10 @@ package Modelo;
 
 public class Portaaviones extends Barco {
 
-	public Portaaviones() {
-		super();
-		this.posicion = new int[4];
-		this.tamaño = 4;
-	}
+    public Portaaviones() {
+        super();
+        this.posicion = new int[4];
+        this.tamaño = 4;
+    }
 
 }

@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <dificultad>
-	<facil id="01">
-		<cantidadArmas>
-			<bomba>99</bomba>
-			<misil>15</misil>
-			<misilDirig>8</misilDirig>
-			<radar>10</radar>
-			<escudo>10</escudo>
-		</cantidadArmas>
-		<preciosArmas>
-			<misil>2500</misil>
-			<misilDirig>8000</misilDirig>
-			<radar>5000</radar>
-			<escudo>5000</escudo>
-		</preciosArmas>
-		<barcos>
-			<precioBaseReparacion>2500</precioBaseReparacion>
-			<precioBaseImpacto>500</precioBaseImpacto>
-		</barcos>
-		<jugador>
+    <facil id="01">
+        <cantidadArmas>
+            <bomba>99</bomba>
+            <misil>15</misil>
+            <misilDirig>8</misilDirig>
+            <radar>10</radar>
+            <escudo>10</escudo>
+        </cantidadArmas>
+        <preciosArmas>
+            <misil>2500</misil>
+            <misilDirig>8000</misilDirig>
+            <radar>5000</radar>
+            <escudo>5000</escudo>
+        </preciosArmas>
+        <barcos>
+            <precioBaseReparacion>2500</precioBaseReparacion>
+            <precioBaseImpacto>500</precioBaseImpacto>
+        </barcos>
+        <jugador>
             <dineroInicial>15000</dineroInicial>
         </jugador>
-	</facil>
-	<medio id="02">
-		<cantidadArmas>
-			<bomba>99</bomba>
-			<misil>10</misil>
-			<misilDirig>6</misilDirig>
-			<radar>7</radar>
-			<escudo>7</escudo>
-			<precioBaseReparacion>5000</precioBaseReparacion>
-		</cantidadArmas>
-		<preciosArmas>
-			<misil>3500</misil>
-			<misilDirig>10000</misilDirig>
-			<radar>7500</radar>
-			<escudo>7500</escudo>
-		</preciosArmas>
-		<barcos>
-			<precioBaseReparacion>4000</precioBaseReparacion>
-			<precioBaseImpacto>400</precioBaseImpacto>
-		</barcos>
-		<jugador>
+    </facil>
+    <medio id="02">
+        <cantidadArmas>
+            <bomba>99</bomba>
+            <misil>10</misil>
+            <misilDirig>6</misilDirig>
+            <radar>7</radar>
+            <escudo>7</escudo>
+            <precioBaseReparacion>5000</precioBaseReparacion>
+        </cantidadArmas>
+        <preciosArmas>
+            <misil>3500</misil>
+            <misilDirig>10000</misilDirig>
+            <radar>7500</radar>
+            <escudo>7500</escudo>
+        </preciosArmas>
+        <barcos>
+            <precioBaseReparacion>4000</precioBaseReparacion>
+            <precioBaseImpacto>400</precioBaseImpacto>
+        </barcos>
+        <jugador>
             <dineroInicial>13000</dineroInicial>
         </jugador>
-	</medio>
-	<dificil id="03">
-		<cantidadArmas>
-			<bomba>99</bomba>
-			<misil>4</misil>
-			<misilDirig>2</misilDirig>
-			<radar>3</radar>
-			<escudo>3</escudo>
-			<precioBaseReparacion>10000</precioBaseReparacion>
-		</cantidadArmas>
-		<preciosArmas>
-			<misil>5000</misil>
-			<misilDirig>15000</misilDirig>
-			<radar>12000</radar>
-			<escudo>12000</escudo>
-		</preciosArmas>
-		<barcos>
-			<precioBaseReparacion>7000</precioBaseReparacion>
-			<precioBaseImpacto>250</precioBaseImpacto>
-		</barcos>
-		<jugador>
+    </medio>
+    <dificil id="03">
+        <cantidadArmas>
+            <bomba>99</bomba>
+            <misil>4</misil>
+            <misilDirig>2</misilDirig>
+            <radar>3</radar>
+            <escudo>3</escudo>
+            <precioBaseReparacion>10000</precioBaseReparacion>
+        </cantidadArmas>
+        <preciosArmas>
+            <misil>5000</misil>
+            <misilDirig>15000</misilDirig>
+            <radar>12000</radar>
+            <escudo>12000</escudo>
+        </preciosArmas>
+        <barcos>
+            <precioBaseReparacion>7000</precioBaseReparacion>
+            <precioBaseImpacto>250</precioBaseImpacto>
+        </barcos>
+        <jugador>
             <dineroInicial>7000</dineroInicial>
         </jugador>
-	</dificil>
-	<numBarcos>
-		<fragata>4</fragata>
-		<destructor>3</destructor>
-		<submarino>2</submarino>
-		<portaaviones>1</portaaviones>
-	</numBarcos>
+    </dificil>
+    <numBarcos>
+        <fragata>4</fragata>
+        <destructor>3</destructor>
+        <submarino>2</submarino>
+        <portaaviones>1</portaaviones>
+    </numBarcos>
 </dificultad>  

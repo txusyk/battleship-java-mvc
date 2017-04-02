@@ -12,11 +12,11 @@ package Modelo;/*
 
 public class Destructor extends Barco {
 
-	public Destructor() {
-		super();
-		this.posicion = new int[2];
-		this.tamaño = 2;
-	}
+    public Destructor() {
+        super();
+        this.posicion = new int[2];
+        this.tamaño = 2;
+    }
 
 
 }

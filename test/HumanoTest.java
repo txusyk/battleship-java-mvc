@@ -12,15 +12,13 @@
 
 import Modelo.Humano;
 import org.testng.Assert;
-import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * Created by Josu on 19/03/2017.
  */
 public class HumanoTest {
 
-    Humano h1,h2;
+    Humano h1, h2;
 
     @org.testng.annotations.BeforeMethod
     public void setUp() throws Exception {
@@ -37,8 +35,8 @@ public class HumanoTest {
 
     @org.testng.annotations.Test
     public void testGetNombre() throws Exception {
-        Assert.assertEquals("Josu",h1.getNombre(), "El nombre debería de ser 'Josu' ");
-        Assert.assertEquals("David", h2.getNombre(),"EL nombre deberia de ser 'David'");
+        Assert.assertEquals("Josu", h1.getNombre(), "El nombre debería de ser 'Josu' ");
+        Assert.assertEquals("David", h2.getNombre(), "EL nombre deberia de ser 'David'");
     }
 
     @org.testng.annotations.Test

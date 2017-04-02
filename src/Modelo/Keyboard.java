@@ -29,7 +29,7 @@ public class Keyboard {
         return miKeyboard;
     }
 
-    public static void main(){
+    public static void main() {
         Keyboard.getMyKeyboard().catchYesNo();
     }
 

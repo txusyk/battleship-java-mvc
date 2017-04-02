@@ -11,6 +11,7 @@
  */
 
 package Vista;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -54,9 +55,9 @@ public class VistaBattleship extends JFrame {
         frame.setVisible(true);
     }
 
-    private static void lanzarVistaTablero(){
+    private static void lanzarVistaTablero() {
         JFrame frame = new JFrame("Battleship");
-        frame.setSize(1000,400);
+        frame.setSize(1000, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new VistaJuego();

@@ -13,10 +13,10 @@ package Modelo;
 
 public class Submarino extends Barco {
 
-	public Submarino() {
-		super();
-		this.posicion = new int[3];
-		this.tamaño = 3;
-	}
+    public Submarino() {
+        super();
+        this.posicion = new int[3];
+        this.tamaño = 3;
+    }
 
 }

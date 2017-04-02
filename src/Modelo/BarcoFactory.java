@@ -12,36 +12,33 @@ package Modelo;/*
 
 public class BarcoFactory {
 
-	private static BarcoFactory miBarcoFactory;
+    private static BarcoFactory miBarcoFactory;
 
-	private BarcoFactory() {}
+    private BarcoFactory() {
+    }
 
-	public static BarcoFactory getBarcoFactory() {
-		if(miBarcoFactory == null){
-			miBarcoFactory = new BarcoFactory();
-		}
-		return miBarcoFactory;
-	}
+    public static BarcoFactory getBarcoFactory() {
+        if (miBarcoFactory == null) {
+            miBarcoFactory = new BarcoFactory();
+        }
+        return miBarcoFactory;
+    }
 
-	/**
-	 *
-	 * return @Modelo.Barco
-	 */
-	public Barco crearBarco(String pTipoBarco) {
+    /**
+     * return @Modelo.Barco
+     */
+    public Barco crearBarco(String pTipoBarco) {
 
-		Barco b = null;
-		if(pTipoBarco.equalsIgnoreCase("portaaviones")){
-			b = new Portaaviones();
-		}
-		else if(pTipoBarco.equalsIgnoreCase("submarino")){
-			b = new Submarino();
-		}
-		else if(pTipoBarco.equalsIgnoreCase("destructor")){
-			b = new Destructor();
-		}
-		else if(pTipoBarco.equalsIgnoreCase("fragata")){
-			b = new Fragata();
-		}
-		return b;
-	}
+        Barco b = null;
+        if (pTipoBarco.equalsIgnoreCase("portaaviones")) {
+            b = new Portaaviones();
+        } else if (pTipoBarco.equalsIgnoreCase("submarino")) {
+            b = new Submarino();
+        } else if (pTipoBarco.equalsIgnoreCase("destructor")) {
+            b = new Destructor();
+        } else if (pTipoBarco.equalsIgnoreCase("fragata")) {
+            b = new Fragata();
+        }
+        return b;
+    }
 }

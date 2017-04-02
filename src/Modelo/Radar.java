@@ -10,50 +10,50 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package Modelo;
+
 import java.util.Random;
 
 public class Radar extends Arma {
 
-	private int x;
-	private int y;
-	private int numUsos = 3;
+    private int x;
+    private int y;
+    private int numUsos = 3;
 
-	public Radar(int pPrecio) {
-		super(pPrecio);
-		Random randomGenerator = new Random();
-		this.x = randomGenerator.nextInt(10);
-		this.y = randomGenerator.nextInt(10);
-	}
+    public Radar(int pPrecio) {
+        super(pPrecio);
+        Random randomGenerator = new Random();
+        this.x = randomGenerator.nextInt(10);
+        this.y = randomGenerator.nextInt(10);
+    }
 
-	/**
-	 * 
-	 *
-	 */
-	public void setPosicion() {
+    /**
+     *
+     *
+     */
+    public void setPosicion() {
         System.out.println("Donde quieres colocar el radar?");
         System.out.println("\tIntroduce coordenada X: ");
         int posXRadar = Keyboard.getMyKeyboard().getInt();
         System.out.println("\tIntroduce coordenada Y:");
         int posYRadar = Keyboard.getMyKeyboard().getInt();
         x = posXRadar;
-		y = posYRadar;
-	}
+        y = posYRadar;
+    }
 
 
-	@Override
-	public void accion() {
+    @Override
+    public void accion() {
         Casilla[] posiciones = null;
 
         setPosicion();
         if (Battleship.getMyBattleship().turnoJugador()) {
-            posiciones = Battleship.getMyBattleship().getIa().getTablero().getAlrededor(x,y);
-        }
-        else{
+            posiciones = Battleship.getMyBattleship().getIa().getTablero().getAlrededor(x, y);
+        } else {
             posiciones = Battleship.getMyBattleship().getHumano().getTablero().getAlrededor(x, y);
         }
-        for(Casilla c : posiciones){
-			c.desubrirCasilla();
-		}
-	}
+        for (Casilla c : posiciones) {
+            c.desubrirCasilla();
+        }
+    }
 
 }

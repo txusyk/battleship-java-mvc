@@ -11,28 +11,29 @@
  */
 
 package Vista;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Created by Josu on 31/03/2017.
  */
-public class VistaCasilla extends JButton{
+public class VistaCasilla extends JButton {
 
     JButton casilla;
 
-    public VistaCasilla(){
+    public VistaCasilla() {
         this.casilla = new JButton();
-        this.casilla.setPreferredSize(new Dimension(25,25));
+        this.casilla.setPreferredSize(new Dimension(25, 25));
         this.casilla.setText("");
         this.casilla.setBackground(Color.DARK_GRAY);
     }
 
-    public void pintar(Graphics g){
+    public void pintar(Graphics g) {
         super.paintComponent(g);
-            g.setColor(Color.BLACK);
-            g.drawRect(0,0,24,24);
-            g.setColor(Color.GRAY);
-            g.fillRect(1,1,23,23);
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, 24, 24);
+        g.setColor(Color.GRAY);
+        g.fillRect(1, 1, 23, 23);
     }
 }
