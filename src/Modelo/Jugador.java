@@ -70,11 +70,11 @@ public abstract class Jugador {
 	 * 
 	 * @param pBarco
 	 */
-	protected void repararBarco(Barco pBarco) {
+	/*protected void repararBarco(Barco pBarco) {
 		if (this.dinero>=flota.obtenerBarco(getType(pBarco)).preciorReparacion) {
             //flota.repararBarco(pBarco);
         }
-	}
+	}*/
 
 	private String getType(Barco pBarco) {
 		String type = String.valueOf(pBarco.getClass());

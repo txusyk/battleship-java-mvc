@@ -18,14 +18,7 @@ public class MisilDirig extends Arma {
 	}
 
 	@Override
-	public void accion(Object data) {
-		DireccionesArma da = (DireccionesArma)data;
-		if (da.getDireccion() == "norte-sur"){
+	public void accion() {
 
-        }else if (da.getDireccion() == "este-oeste"){
-
-        }else if (da.getDireccion() == "boom"){
-
-        }
 	}
 }

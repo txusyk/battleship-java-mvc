@@ -45,13 +45,4 @@ public class Tablero {
         return auxL;
     }
 
-	/**
-	 * 
-	 * @param pBarco
-	 */
-	public boolean posicionarBarco(Barco pBarco, int posX, int posY) {
-
-	}
-
-
 }

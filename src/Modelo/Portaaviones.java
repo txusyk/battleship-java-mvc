@@ -19,4 +19,9 @@ public class Portaaviones extends Barco {
 		this.tamaño = 4;
 	}
 
+    /**
+     * Created by Josu on 02/04/2017.
+     */
+    public static class ListaBarcos {
+    }
 }

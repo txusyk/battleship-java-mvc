@@ -68,4 +68,10 @@
             <dineroInicial>7000</dineroInicial>
         </jugador>
 	</dificil>
+	<numBarcos>
+		<fragata>4</fragata>
+		<destructor>3</destructor>
+		<submarino>2</submarino>
+		<portaaviones>1</portaaviones>
+	</numBarcos>
 </dificultad>  

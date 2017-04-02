@@ -1,4 +1,6 @@
-package Modelo;/*
+package Modelo;
+
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -17,7 +19,7 @@ public class Bomba extends Arma {
 	}
 
     @Override
-    public void accion(Object data) {
+    public void accion() {
 
     }
 

@@ -20,7 +20,7 @@ public class Escudo extends Arma {
     }
 
     @Override
-    public void accion(Object data) {
+    public void accion() {
 
     }
 
