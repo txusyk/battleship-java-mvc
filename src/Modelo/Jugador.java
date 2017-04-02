@@ -22,6 +22,7 @@ public abstract class Jugador {
 	private ListaBarcos flota;
 	private int dinero = 15000;
 	private ListaArmas lArmas;
+	private Radar radar;
 
 
 	public Jugador() {
@@ -29,6 +30,7 @@ public abstract class Jugador {
 		this.tableroAdv = new Tablero(new ListaBarcos(),10,10);
 		this.flota = new ListaBarcos();
 		this.lArmas = new ListaArmas();
+		this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
 	}
 
 	public Tablero getTablero(){
@@ -79,6 +81,10 @@ public abstract class Jugador {
 		String[] arrAux = type.split(" ");
 		type = arrAux[1].toLowerCase();
 		return type;
+	}
+
+	public void setPosicionRadar(){
+		radar.setPosicion();
 	}
 
 }
