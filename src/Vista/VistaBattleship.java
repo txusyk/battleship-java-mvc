@@ -57,10 +57,9 @@ public class VistaBattleship extends JFrame {
 
     private static void lanzarVistaTablero() {
         JFrame frame = new JFrame("Battleship");
-        frame.setSize(1000, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new VistaJuego();
+        JPanel panel = new VJ();
         frame.add(panel);
         frame.setResizable(true);
 
@@ -74,7 +73,7 @@ public class VistaBattleship extends JFrame {
         }
         frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
-        frame.pack();
+        //frame.pack();
 
         frame.setVisible(true);
     }

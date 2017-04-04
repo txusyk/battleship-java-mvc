@@ -19,6 +19,24 @@ public class Flota {
         flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
+    public void reparar(Posicion pos){
+        Iterator<String> it=flota.keySet().iterator();
+        boolean enc=false;
+        Barco aReparar=null;
+        while(it.hasNext()&& !enc){
+            aReparar=flota.get(it.next()).buscarPorPos(pos);
+            if(aReparar!=null){
+                enc=true;
+            }
+        }
+        if(enc) {
+            aReparar.reparar(pos);
+        }
+    }
+
+
+
+
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;
@@ -28,47 +46,36 @@ public class Flota {
             inicializarPorTipo(pTipo);
         }
 
-        /**
-         * @return Iterator<Barco>
-         */
         private Iterator<Barco> getIterator() {
             return lb.iterator();
         }
 
-        /**
-         * @param pBarco
-         */
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
-        /**
-         * @param pBarco
-         */
         private void eliminar(Barco pBarco) {
             lb.remove(pBarco);
         }
 
         /**
+         *
          * @param pos
-         * @return b o null en funcion de si es encontrado
+         * @return
          */
-        public Barco buscarPorPos(int[] pos) {
+        public Barco buscarPorPos(Posicion pos) {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
             Barco b = null;
             while (itr.hasNext() && !enc) {
                 b = itr.next();
-                if (b.getPosicion()[0] == pos[0] && b.getPosicion()[1] == pos[1]) {
+                if (b.contiene(pos)) {
                     enc = true;
                 }
             }
             return b;
         }
 
-        /**
-         * @param pTipo
-         */
         private void inicializarPorTipo(String pTipo) {
             if (pTipo.equalsIgnoreCase("portaaviones")) {
                 for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumFrag(); i++) {

@@ -18,6 +18,7 @@ public abstract class Barco {
     protected Posicion[] posicion;
     protected int preciorReparacion;
     protected Escudo escudo;
+    protected boolean hundido;
 
     /**
      *
@@ -26,6 +27,7 @@ public abstract class Barco {
         cntTocados=0;
         this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
         this.escudo = null;
+        this.hundido = false;
     }
 
     /**
@@ -38,7 +40,7 @@ public abstract class Barco {
         while(i<posicion.length && !enc){
             enc= posicion[i].equals(pos);
         }
-         posicion[i].reparar();
+        posicion[i].reparar();
     }
     /**
      *
@@ -49,7 +51,7 @@ public abstract class Barco {
         boolean enc=false;
         int i=0;
         while(i<posicion.length && !enc){
-           enc= posicion[i].equals(pos);
+            enc= posicion[i].equals(pos);
         }
         return enc;
     }
@@ -96,13 +98,51 @@ public abstract class Barco {
         this.escudo = esc;
     }
 
-    /**
-     * @param pHerramientasJuego
-     * @param posAtaq
-     */
-    public void recibirDaños(HerramientasJuego pHerramientasJuego, int posAtaq) {
+
+    public void hundir(Posicion pos){
+        if(escudo!=null){
+            escudo.destruir();
+            escudo=null;
+        }else{
+            for(int i =0;i<posicion.length;i++){
+                posicion[i].recibirDisparo();
+                hundido=true;
+            }
+        }
+    }
+
+    private boolean estaHundido(){
+        boolean shink=true;
+        int i =0;
+        while(i<posicion.length){
+            if (posicion[i].getEstado() instanceof sNormal){
+                shink=false;
+            }
+            i++;
+        }
+        return false;
+    }
+
+
+
+    public void recibirDaños(Posicion pos) {
         // TODO - implement Modelo.Barco.recibirDaños
-        throw new UnsupportedOperationException();
+        if(escudo!=null){
+            if(escudo.recibirImpacto()){
+                escudo=null;
+            }
+        }else{
+            boolean enc=false;
+            int i=0;
+            while(i<posicion.length && !enc){
+                enc= posicion[i].equals(pos);
+                i++;
+            }
+            posicion[i].recibirDisparo();
+            if(estaHundido()){
+                hundido=true;
+            }
+        }
     }
 
 }

@@ -10,7 +10,7 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public class Escudo extends HerramientasJuego {
+public class Escudo extends Arma {
 
     private int impactosRestantes;
 
@@ -19,16 +19,23 @@ public class Escudo extends HerramientasJuego {
         this.impactosRestantes = 2;
     }
 
+    @Override
+    public void accion() {
+
+    }
+
     public int getImpactosRestantes() {
         return this.impactosRestantes;
     }
 
+    public void destruir() {
+        this.impactosRestantes=0;
 
-    public void recibirImpacto(HerramientasJuego pHerramientasJuego) {
-        if (pHerramientasJuego instanceof Bomba) {
-            this.impactosRestantes--;
-        } else {
-            this.impactosRestantes = 0;
-        }
+    }
+
+    public boolean recibirImpacto() {
+        this.impactosRestantes--;
+        return impactosRestantes==0;
+
     }
 }

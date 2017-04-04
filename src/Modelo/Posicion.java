@@ -22,7 +22,29 @@ public class Posicion {
         posicion[0] = x;
         posicion[1] = y;
     }
+    public boolean equals(Posicion other){
+        return posicion[0]==other.getX()&&posicion[1]==other.getY();
 
+    }
+
+
+    public void  recibirDisparo(){
+        if(estado instanceof sNormal){
+            setState(new Tocado());
+        }
+    }
+
+
+    public void  reparar(){
+        if(estado instanceof Tocado){
+            setState(new SNormal());
+        }
+    }
+
+    /**
+     *
+     * @param estado
+     */
     public void setState(State estado) {
         // TODO - implement Posicion.setState
         throw new UnsupportedOperationException();

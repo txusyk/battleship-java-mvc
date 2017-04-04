@@ -39,21 +39,4 @@ public class Radar extends HerramientasJuego {
         x = posXRadar;
         y = posYRadar;
     }
-
-
-    @Override
-    public void accion() {
-        Casilla[] posiciones = null;
-
-        setPosicion();
-        if (Battleship.getMyBattleship().turnoJugador()) {
-            posiciones = Battleship.getMyBattleship().getIa().getTablero().getAlrededor(x, y);
-        } else {
-            posiciones = Battleship.getMyBattleship().getHumano().getTablero().getAlrededor(x, y);
-        }
-        for (Casilla c : posiciones) {
-            c.desubrirCasilla();
-        }
-    }
-
 }
