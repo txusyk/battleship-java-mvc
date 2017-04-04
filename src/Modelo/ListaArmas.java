@@ -19,7 +19,7 @@ import java.util.Stack;
  */
 public class ListaArmas {
 
-    HashMap<String, Stack<Arma>> ls;
+    HashMap<String, Stack<HerramientasJuego>> ls;
 
     public ListaArmas() {
         ls = new HashMap<>();
@@ -55,11 +55,11 @@ public class ListaArmas {
         }
     }
 
-    public Arma getArma(String pArma) {
+    public HerramientasJuego getArma(String pArma) {
         return ls.get(pArma).pop();
     }
 
-    public Arma consultarArma(String pArma) {
+    public HerramientasJuego consultarArma(String pArma) {
         return ls.get(pArma).peek();
     }
 
@@ -68,30 +68,30 @@ public class ListaArmas {
     }
 
     /**
-     * @param pArma
+     * @param pHerramientasJuego
      */
-    public void añadirArma(Arma pArma) {
-        if (ls.get(getType(pArma)) != null) {
-            ls.get(getType(pArma)).push(pArma);
+    public void añadirArma(HerramientasJuego pHerramientasJuego) {
+        if (ls.get(getType(pHerramientasJuego)) != null) {
+            ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
         } else {
-            ls.put(getType(pArma), new Stack<>());
-            ls.get(getType(pArma)).push(pArma);
+            ls.put(getType(pHerramientasJuego), new Stack<>());
+            ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
         }
     }
 
     /**
-     * @param pArma
+     * @param pHerramientasJuego
      */
-    public void eliminarArma(Arma pArma) {
-        ls.get(getType(pArma)).pop();
+    public void eliminarArma(HerramientasJuego pHerramientasJuego) {
+        ls.get(getType(pHerramientasJuego)).pop();
     }
 
     /**
-     * @param pArma
+     * @param pHerramientasJuego
      * @return String
      */
-    private String getType(Arma pArma) {
-        String type = String.valueOf(pArma.getClass());
+    private String getType(HerramientasJuego pHerramientasJuego) {
+        String type = String.valueOf(pHerramientasJuego.getClass());
         String[] arrAux = type.split(" ");
         type = arrAux[1].toLowerCase();
         return type;

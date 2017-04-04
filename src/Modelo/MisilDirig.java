@@ -15,10 +15,12 @@ public class MisilDirig extends Arma {
 
     public MisilDirig(int pPrecio) {
         super(pPrecio);
+        this.daño = 2;
     }
 
-    @Override
-    public void accion() {
 
+    @Override
+    public int disparar(Posicion pPos, Flota pFlota) {
+        return daño;
     }
 }

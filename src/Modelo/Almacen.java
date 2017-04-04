@@ -30,9 +30,9 @@ public class Almacen {
 
     /**
      * @param pArma
-     * @return Modelo.Arma
+     * @return Modelo.HerramientasJuego
      */
-    public Arma comprarArma(String pArma) {
+    public HerramientasJuego comprarArma(String pArma) {
         if (!this.estaVacio(pArma)) {
             if (existeArma(pArma)) {
                 return this.existencias.getArma(pArma);

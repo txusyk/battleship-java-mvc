@@ -13,7 +13,7 @@ package Modelo;
 
 import java.util.Random;
 
-public class Radar extends Arma {
+public class Radar extends HerramientasJuego {
 
     private int x;
     private int y;

@@ -20,5 +20,4 @@ public class Portaaviones extends Barco {
             posicion[i]=new sNormal(-1,-1);
         }
     }
-
 }

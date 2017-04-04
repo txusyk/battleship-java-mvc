@@ -27,8 +27,8 @@ public class ArmaFactory {
     /**
      * @param pTipoArma
      */
-    public Arma crearArma(String pTipoArma) {
-        Arma a = null;
+    public HerramientasJuego crearArma(String pTipoArma) {
+        HerramientasJuego a = null;
         if (pTipoArma.equalsIgnoreCase("bomba")) {
             a = new Bomba(0);
         } else if (pTipoArma.equalsIgnoreCase("misil")) {

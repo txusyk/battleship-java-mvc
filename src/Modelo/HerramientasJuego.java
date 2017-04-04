@@ -1,3 +1,5 @@
+package Modelo;
+
 /*
  * The MIT License (MIT)
  *
@@ -9,62 +11,24 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package Modelo;
 
-public class Casilla {
+public abstract class HerramientasJuego {
 
-    private State estado;
-    private int[] posicion;
-    private boolean descubierta = false;
+    protected int precio;
 
-    public Casilla(int x, int y) {
-        posicion = new int[2];
-        posicion[0] = x;
-        posicion[1] = y;
-    }
-
-    public void setState(State estado) {
-        // TODO - implement Casilla.setState
-        throw new UnsupportedOperationException();
+    /**
+     *
+     * @param pPrecio
+     */
+    public HerramientasJuego(int pPrecio) {
+        this.precio = pPrecio;
     }
 
     /**
-     * @return State
+     * @return precio
      */
-    public State getEstado() {
-        return this.estado;
+    public int getPrecio() {
+        return this.precio;
     }
 
-    public void accionarCasilla() {
-        // TODO - implement Casilla.accionarCasilla
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * @return int
-     */
-    public int getX() {
-        return posicion[0];
-    }
-
-    public int getY() {
-        return posicion[1];
-    }
-
-
-    /**
-     * @param posicion
-     */
-    public void setPosicion(int[] posicion) {
-        this.posicion = posicion;
-    }
-
-
-    public void desubrirCasilla() {
-        if (!descubierta) {
-            descubierta = true;
-        } else {
-            System.out.println("Ya estaba descubierta.");
-        }
-    }
 }

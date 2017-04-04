@@ -9,9 +9,9 @@
         </classes>
     </test>
 
-    <test name="ArmaFactoryTest">
+    <test name="HerramientasJuegoFactoryTest">
         <classes>
-            <class name="ArmaFactoryTest"/>
+            <class name="HerramientasJuegoFactoryTest"/>
         </classes>
     </test>
 

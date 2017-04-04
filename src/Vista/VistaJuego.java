@@ -38,7 +38,6 @@ public class VistaJuego extends javax.swing.JPanel {
     public VistaJuego() {
         initComponents();
         generarTablerosJuego();
-
     }
 
     /**
@@ -49,7 +48,6 @@ public class VistaJuego extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         crearPaneles();
-        añadirPanelesTablerosAJuego();
 
         crearEtiquetasAlmacen();
         crearEtiquetasArmamento();
@@ -360,12 +358,17 @@ public class VistaJuego extends javax.swing.JPanel {
     private void generarTablerosJuego() {
         tablero1Panel.setLayout(new GridLayout(10, 10));
         tablero2Panel.setLayout(new GridLayout(10, 10));
+        VistaCasilla[][] vs1 = new VistaCasilla[10][10];
+        VistaCasilla[][] vs2 = new VistaCasilla[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                tablero1Panel.add(new VistaCasilla());
-                tablero2Panel.add(new VistaCasilla());
+                vs1[i][j] = new VistaCasilla();
+                vs2[i][j] = new VistaCasilla();
+                tablero1Panel.add(vs1[i][j]);
+                tablero2Panel.add(vs1[i][j]);
             }
         }
+
     }
 
 }

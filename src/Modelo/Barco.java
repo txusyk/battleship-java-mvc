@@ -97,10 +97,10 @@ public abstract class Barco {
     }
 
     /**
-     * @param pArma
+     * @param pHerramientasJuego
      * @param posAtaq
      */
-    public void recibirDaños(Arma pArma, int posAtaq) {
+    public void recibirDaños(HerramientasJuego pHerramientasJuego, int posAtaq) {
         // TODO - implement Modelo.Barco.recibirDaños
         throw new UnsupportedOperationException();
     }

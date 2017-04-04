@@ -14,9 +14,9 @@ public class Flota {
     public Flota() {
         flota = new HashMap<>();
         flota.put("fragata", new ListaBarcos("fragata"));
-        flota.put("fragata", new ListaBarcos("destructor"));
-        flota.put("fragata", new ListaBarcos("submarino"));
-        flota.put("fragata", new ListaBarcos("portaaviones"));
+        flota.put("destructor", new ListaBarcos("destructor"));
+        flota.put("submarino", new ListaBarcos("submarino"));
+        flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
     private class ListaBarcos {
@@ -28,18 +28,31 @@ public class Flota {
             inicializarPorTipo(pTipo);
         }
 
+        /**
+         * @return Iterator<Barco>
+         */
         private Iterator<Barco> getIterator() {
             return lb.iterator();
         }
 
+        /**
+         * @param pBarco
+         */
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
+        /**
+         * @param pBarco
+         */
         private void eliminar(Barco pBarco) {
             lb.remove(pBarco);
         }
 
+        /**
+         * @param pos
+         * @return b o null en funcion de si es encontrado
+         */
         public Barco buscarPorPos(int[] pos) {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
@@ -53,6 +66,9 @@ public class Flota {
             return b;
         }
 
+        /**
+         * @param pTipo
+         */
         private void inicializarPorTipo(String pTipo) {
             if (pTipo.equalsIgnoreCase("portaaviones")) {
                 for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumFrag(); i++) {

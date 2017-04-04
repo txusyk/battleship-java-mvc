@@ -18,9 +18,8 @@ public class Misil extends Arma {
     }
 
     @Override
-    public void accion() {
-
+    public int disparar(Posicion pPos, Flota pFlota) {
+        return 0;
     }
-
 
 }

@@ -1,4 +1,4 @@
-import Modelo.Arma;
+import Modelo.HerramientasJuego;
 import Modelo.ListaArmas;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -51,8 +51,8 @@ public class ListaArmasTest {
 
     }
 
-    private String getType(Arma pArma) {
-        String type = String.valueOf(pArma.getClass());
+    private String getType(HerramientasJuego pHerramientasJuego) {
+        String type = String.valueOf(pHerramientasJuego.getClass());
         String[] arrAux = type.split(" ");
         type = arrAux[1].toLowerCase();
         return type;

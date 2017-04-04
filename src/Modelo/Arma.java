@@ -1,27 +1,15 @@
-package Modelo;/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2017 Josu
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+package Modelo;
+
+/**
+ * Created by Josu on 03/04/2017.
  */
+public abstract class Arma extends HerramientasJuego {
 
-public abstract class Arma {
+    protected int daño;
 
-    protected int precio;
-
-    public Arma(int pPrecio) {
-        this.precio = pPrecio;
+    public Arma(int pPrecio){
+        super(pPrecio);
     }
 
-    public int getPrecio() {
-        return this.precio;
-    }
-
-    public abstract void accion();
-
+    public abstract int disparar(Posicion pPos, Flota pFlota);
 }
