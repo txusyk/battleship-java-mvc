@@ -1,4 +1,5 @@
-package Modelo;/*
+package Modelo;
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -14,9 +15,9 @@ public class Fragata extends Barco {
 
     public Fragata() {
         super();
-        this.posicion = new Posicion[1];
-        for (int i=0;i<1;i++){
-            posicion[i]=new SNormal(-1,-1);
+        this.partesBarco = new Posicion[GestorFicheros.getMyGestorFicheros().getNumFrag()];
+        for (int i=0;i<this.partesBarco.length;i++){
+            partesBarco[i].setState(new SNormal());
         }
     }
 

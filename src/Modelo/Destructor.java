@@ -1,4 +1,5 @@
-package Modelo;/*
+package Modelo;
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -14,9 +15,9 @@ public class Destructor extends Barco {
 
     public Destructor() {
         super();
-        this.posicion = new Posicion[2];
-        for (int i=0;i<2;i++){
-            posicion[i]=new SNormal(-1,-1);
+        this.partesBarco = new Posicion[GestorFicheros.getMyGestorFicheros().getNumDestr()];
+        for (int i=0;i<GestorFicheros.getMyGestorFicheros().getNumDestr();i++){
+            partesBarco[i].setState(new SNormal());
         }
     }
 

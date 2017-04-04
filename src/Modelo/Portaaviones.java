@@ -15,9 +15,9 @@ public class Portaaviones extends Barco {
 
     public Portaaviones() {
         super();
-        this.posicion = new Posicion[4];
-        for (int i=0;i<4;i++){
-            posicion[i]=new SNormal(-1,-1);
+        this.partesBarco = new Posicion[GestorFicheros.getMyGestorFicheros().getNumPortaav()];
+        for (int i=0;i<this.partesBarco.length;i++){
+            partesBarco[i].setState(new SNormal());
         }
     }
 }

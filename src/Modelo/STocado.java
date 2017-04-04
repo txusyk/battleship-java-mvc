@@ -11,6 +11,6 @@
  */
 package Modelo;
 
-public class Hundido {
+public class STocado  implements State{
 
 }

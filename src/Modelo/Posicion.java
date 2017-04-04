@@ -23,6 +23,7 @@ public class Posicion {
         posicion[1] = y;
     }
 
+
     public void setState(State pEstado) {
         this.estado = pEstado;
     }
@@ -53,4 +54,8 @@ public class Posicion {
         this.posicion = posicion;
     }
 
+    public boolean comprobarPosicion(Posicion other){
+        return posicion[0]==other.getX()&&posicion[1]==other.getY();
+
+    }
 }

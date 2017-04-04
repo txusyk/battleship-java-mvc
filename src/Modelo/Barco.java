@@ -12,14 +12,14 @@ package Modelo;/*
 
 public abstract class Barco {
 
-    protected int  cntTocados;
-    protected Posicion[] posicion;
-    protected int preciorReparacion;
+    private int  cntTocados;
+    protected Posicion[] partesBarco;
+    private int preciorReparacion;
     protected Escudo escudo;
-    protected boolean hundido;
+    private boolean hundido;
 
     /**
-     *
+     * Constructora
      */
     public Barco() {
         cntTocados=0;
@@ -35,10 +35,10 @@ public abstract class Barco {
     public void reparar(Posicion pos){
         boolean enc=false;
         int i=0;
-        while(i<posicion.length && !enc){
-            enc= posicion[i].equals(pos);
+        while(i<partesBarco.length && !enc){
+            enc= partesBarco[i].equals(pos);
         }
-        posicion[i].reparar();
+        partesBarco[i].setState(new SNormal());
     }
     /**
      *
@@ -48,8 +48,8 @@ public abstract class Barco {
     public boolean contiene(Posicion pos){
         boolean enc=false;
         int i=0;
-        while(i<posicion.length && !enc){
-            enc= posicion[i].equals(pos);
+        while(i<partesBarco.length && !enc){
+            enc= partesBarco[i].equals(pos);
         }
         return enc;
     }
@@ -63,8 +63,8 @@ public abstract class Barco {
     public void inicializar (int[] pivote ,char direccion ) {
         if('H' == direccion){
             int x=pivote[0],i=0;
-            while(i<posicion.length){
-                posicion[i].setPosicion(pivote);
+            while(i<partesBarco.length){
+                partesBarco[i].setPosicion(pivote);
                 x++;
                 pivote[0]=x;
                 i++;
@@ -73,8 +73,8 @@ public abstract class Barco {
 
         }else{
             int y=pivote[1],i=0;
-            while(i<posicion.length){
-                posicion[i].setPosicion(pivote);
+            while(i<partesBarco.length){
+                partesBarco[i].setPosicion(pivote);
                 y++;
                 pivote[1]=y;
                 i++;
@@ -84,6 +84,9 @@ public abstract class Barco {
     }
 
 
+    /**
+     * @return precioReparacion
+     */
     public int getPrecioReparacion() {
         return this.preciorReparacion;
     }
@@ -96,49 +99,62 @@ public abstract class Barco {
         this.escudo = esc;
     }
 
+    /**
+     * @return devuelve si esta hundido el barco
+     */
+    private boolean estaHundido(){
+        boolean sink=false;
+        int i =0;
+        while(i<partesBarco.length){
+            if (partesBarco[i].getEstado() instanceof STocado){
+                sink=true;
+            }
+            i++;
+        }
+        return sink;
+    }
 
+
+    /**
+     * @param pos
+     */
     public void hundir(Posicion pos){
         if(escudo!=null){
             escudo.destruir();
             escudo=null;
-        }else{
-            for(int i =0;i<posicion.length;i++){
-                posicion[i].recibirDisparo();
-                hundido=true;
+        }else if (!estaHundido()){
+            for(int i =0;i<partesBarco.length;i++){
+                partesBarco[i].setState(new STocado());
             }
+            hundido=true;
         }
     }
 
-    private boolean estaHundido(){
-        boolean shink=true;
-        int i =0;
-        while(i<posicion.length){
-            if (posicion[i].getEstado() instanceof SNormal){
-                shink=false;
-            }
-            i++;
-        }
-        return false;
-    }
-
-
-
+    /**
+     * @param pos
+     */
     public void recibirDaños(Posicion pos) {
-        // TODO - implement Modelo.Barco.recibirDaños
         if(escudo!=null){
             if(escudo.recibirImpacto()){
                 escudo=null;
             }
-        }else{
+        }else if (!estaHundido()){
             boolean enc=false;
             int i=0;
-            while(i<posicion.length && !enc){
-                enc= posicion[i].equals(pos);
-                i++;
+            while(i<partesBarco.length && !enc){
+                if (partesBarco[i].comprobarPosicion(pos)) {
+                    enc = true;
+                }else{
+                    i++;
+                }
             }
-            posicion[i].recibirDisparo();
-            if(estaHundido()){
-                hundido=true;
+            if (partesBarco[i].getEstado() instanceof SNormal) {
+                partesBarco[i].setState(new STocado());
+                if (estaHundido()){
+                    hundido = true;
+                }
+            }else{
+                //gestionar cuando se intenta disparar a una posicion ya tocada
             }
         }
     }
