@@ -22,32 +22,9 @@ public class Posicion {
         posicion[0] = x;
         posicion[1] = y;
     }
-    public boolean equals(Posicion other){
-        return posicion[0]==other.getX()&&posicion[1]==other.getY();
 
-    }
-
-
-    public void  recibirDisparo(){
-        if(estado instanceof sNormal){
-            setState(new Tocado());
-        }
-    }
-
-
-    public void  reparar(){
-        if(estado instanceof Tocado){
-            setState(new SNormal());
-        }
-    }
-
-    /**
-     *
-     * @param estado
-     */
-    public void setState(State estado) {
-        // TODO - implement Posicion.setState
-        throw new UnsupportedOperationException();
+    public void setState(State pEstado) {
+        this.estado = pEstado;
     }
 
     /**
@@ -55,11 +32,6 @@ public class Posicion {
      */
     public State getEstado() {
         return this.estado;
-    }
-
-    public void accionarCasilla() {
-        // TODO - implement Posicion.accionarCasilla
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -81,12 +53,4 @@ public class Posicion {
         this.posicion = posicion;
     }
 
-
-    public void desubrirCasilla() {
-        if (!descubierta) {
-            descubierta = true;
-        } else {
-            System.out.println("Ya estaba descubierta.");
-        }
-    }
 }
