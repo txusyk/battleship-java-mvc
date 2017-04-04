@@ -16,7 +16,7 @@ public class Fragata extends Barco {
         super();
         this.posicion = new Posicion[1];
         for (int i=0;i<1;i++){
-            posicion[i]=new sNormal(-1,-1);
+            posicion[i]=new SNormal(-1,-1);
         }
     }
 

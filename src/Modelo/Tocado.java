@@ -11,6 +11,11 @@
  */
 package Modelo;
 
-public class Tocado {
+public class Tocado  implements State{
 
+
+    @Override
+    public void pedir() {
+
+    }
 }
