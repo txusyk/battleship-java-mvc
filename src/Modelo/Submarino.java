@@ -15,8 +15,10 @@ public class Submarino extends Barco {
 
     public Submarino() {
         super();
-        this.posicion = new int[3];
-        this.tamaño = 3;
+        this.posicion = new Posicion[3];
+        for (int i=0;i<3;i++){
+            posicion[i]=new sNormal(-1,-1);
+        }
     }
 
 }

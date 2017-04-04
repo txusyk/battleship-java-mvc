@@ -14,8 +14,10 @@ public class Destructor extends Barco {
 
     public Destructor() {
         super();
-        this.posicion = new int[2];
-        this.tamaño = 2;
+        this.posicion = new Posicion[2];
+        for (int i=0;i<2;i++){
+            posicion[i]=new sNormal(-1,-1);
+        }
     }
 
 
