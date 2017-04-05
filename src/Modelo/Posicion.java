@@ -28,9 +28,6 @@ public class Posicion {
         this.estado = pEstado;
     }
 
-    public boolean equals(Posicion pOther) {
-        return posicion[0]==pOther.getX() && posicion[1]==pOther.getY();
-    }
     /**
      * @return State
      */
