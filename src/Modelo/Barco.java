@@ -36,7 +36,7 @@ public abstract class Barco {
         boolean enc=false;
         int i=0;
         while(i<partesBarco.length && !enc){
-            enc= partesBarco[i].equals(pos);
+            enc= partesBarco[i].comprobarPosicion(pos);
         }
         partesBarco[i].setState(new SNormal());
     }
@@ -49,7 +49,7 @@ public abstract class Barco {
         boolean enc=false;
         int i=0;
         while(i<partesBarco.length && !enc){
-            enc= partesBarco[i].equals(pos);
+            enc= partesBarco[i].comprobarPosicion(pos);
         }
         return enc;
     }

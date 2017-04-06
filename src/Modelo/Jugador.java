@@ -14,17 +14,13 @@ package Modelo;
 public abstract class Jugador {
 
     private Tablero tablero;
-    private Tablero tableroAdv;
-    private Flota flota;
     private int dinero = 15000;
     private ListaArmas lArmas;
     private Radar radar;
 
 
     public Jugador() {
-        this.tablero = new Tablero(new Flota(), 10, 10);
-        this.tableroAdv = new Tablero(new Flota(), 10, 10);
-        this.flota = new Flota();
+        this.tablero = Tablero.getMiTablero();
         this.lArmas = new ListaArmas();
         this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
     }
@@ -32,10 +28,7 @@ public abstract class Jugador {
     public Tablero getTablero() {
         return this.tablero;
     }
-
-    public Tablero getTableroAdv() {
-        return this.tableroAdv;
-    }
+    
 
 
     /**

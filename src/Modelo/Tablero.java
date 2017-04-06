@@ -14,4 +14,60 @@ package Modelo;
 
 
 public class Tablero {
+    private Flota flotaHumano;
+    private Flota flotaOrdenador;
+    private static Tablero miTablero;
+
+    /**
+     *
+     * @param pListaBarcosH
+     * @param pListaBarcosO
+     */
+    public Tablero(Flota pListaBarcosH, Flota pListaBarcosO) {
+        flotaHumano=pListaBarcosH;
+        flotaOrdenador=pListaBarcosO;
+    }
+
+    public static Tablero getMiTablero(){
+        if(miTablero==null){
+            miTablero = new Tablero(new Flota(),new Flota());
+        }
+        return miTablero;
+    }
+
+    /**
+     *
+     * @param pPosicion
+     */
+
+    public void reparar( Posicion pPosicion){
+        //una reparacion hara que :
+        //      posicion normal --> posicion normal
+        //      posicion tocado --> posicion normal
+        //      posicion escudo --> posicion escudo
+
+        if(Battleship.getMyBattleship().turnoAct()){
+            flotaHumano.reparar( pPosicion);
+        }else{
+            flotaOrdenador.reparar( pPosicion);
+        }
+    }
+
+
+
+   /* public Posicion[] getAlrededor(int posX, int posY) {       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
+        Posicion[] auxL = new Posicion[9];
+        int index = 0;
+
+        for (int i = posX - 1; i <= posX + 1; i++) {
+            for (int k = posY - 1; k <= posX - 1; k++) {
+                auxL[index] = this.tablero[i][k];
+                index++;
+            }
+        }
+
+
+        return auxL;
+    }
+*/
 }

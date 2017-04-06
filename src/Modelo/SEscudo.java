@@ -11,6 +11,6 @@
  */
 package Modelo;
 
-public class SEscudo {
+public class SEscudo implements State{
 
 }

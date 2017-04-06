@@ -19,9 +19,10 @@ public class Battleship {
     private Humano humano;
     private IA ia;
     private String dificultad = "facil";
+    private boolean turno;
 
     private Battleship() {
-
+        turno=true;//true es turno humano
     }
 
     public static Battleship getMyBattleship() {
@@ -30,6 +31,8 @@ public class Battleship {
         }
         return myBattleship;
     }
+
+    public boolean turnoAct(){return turno;}
 
     public String getDificultad() {
         return dificultad;
