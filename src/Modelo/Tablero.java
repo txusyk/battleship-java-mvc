@@ -14,51 +14,102 @@ package Modelo;
 
 
 public class Tablero {
+
     private ObjTablero[][] tablero;
 
     /**
-     *
      * @param x
      * @param y
      */
-    public Tablero(int x,int y) {
+    public Tablero(int x, int y) {
         this.tablero = new ObjTablero[x][y];
-        for (int i=0; i<tablero.length; i++){
-            for (int j=0; j<tablero.length; j++){
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
                 this.tablero[i][j] = new Agua();
             }
         }
     }
 
-    public void colocarBarco(Barco pBarco, int x, int y){
-        if (entraBarco(pBarco, x,y)){
+    public boolean colocarBarco(Barco pBarco, int x, int y) {
+        if (entraBarco(pBarco, x, y)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     this.tablero[x + i][y] = pBarco.getParteBarco(i);
                 }
-            }else{
+            } else {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
-                    this.tablero[x][y+i] = pBarco.getParteBarco(i);
+                    this.tablero[x][y + i] = pBarco.getParteBarco(i);
                 }
             }
+        } else {
+            return false;
         }
+        return true;
     }
 
-    private boolean entraBarco(Barco pBarco, int x, int y){
-        boolean entra = false;
+    private boolean entraBarco(Barco pBarco, int x, int y) {
+        boolean entra = true;
         if (pBarco.getHorientacion() == 'h') {
-            for (int i = 0; i < pBarco.getTamaño(); i++) {
-                entra = this.tablero[x + i][y] instanceof Agua;
+            entra = comprobarPosHor(x, y, pBarco);
+        } else if (pBarco.getHorientacion() == 'v') {
+            entra = comprobarPosVer(x, y, pBarco);
+        }
+        return entra;
+    }
+
+    private boolean comprobarPosHor(int x, int y, Barco pBarco) {
+        int index = 0;
+        boolean entra = true;
+        while (index < pBarco.getTamaño() && entra) {
+            if (index == 0) {
+                if ((x > 0) && (y > 0 && y < 9)) {
+                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x - 1][y + 1] instanceof Agua);
+                }
+            } else if (index == pBarco.getTamaño() - 1) {
+                if (x < 9 && (y > 0 && y < 9)) {
+                    entra = (tablero[x + 1][y] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
+                }
+
             }
-        }else{
-            for (int i = 0; i < pBarco.getTamaño(); i++) {
-                entra = this.tablero[x][y+i] instanceof Agua;
+            if (entra) {
+                if (y > 0 && y < 9) {
+                    entra = ((tablero[x][y - 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua));
+                }
             }
         }
         return entra;
     }
 
+    private boolean comprobarPosVer(int x, int y, Barco pBarco) {
+        int index = 0;
+        boolean entra = true;
+        while (index < pBarco.getTamaño() && entra) {
+            if (index == 0) {
+                if ((y > 0) && (x > 0 && x < 9)) {
+                    entra = ((tablero[x - 1][y - 1] instanceof Agua) && ((tablero[x][y - 1] instanceof Agua) && ((tablero[x + 1][y - 1] instanceof Agua);
+                }
+            } else if (index == pBarco.getTamaño() - 1) {
+                if ((y < 9) && (x > 0 && x < 9)) {
+                    entra = ((tablero[x - 1][y + 1] instanceof Agua) && ((tablero[x][y + 1] instanceof Agua) && ((tablero[x + 1][y + 1] instanceof Agua);
+                }
+            }
+            if (entra) {
+                if (x > 0 && x < 9) {
+                    entra = ((tablero[x - 1][y] instanceof Agua) && ((tablero[x + 1][y] instanceof Agua);
+                }
+            }
+        }
+        return entra;
+    }
 
-
+    public void comprobarAlrededor(int x, int y) {      //Metodo usado por el radar para comprobar las posiciones.
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (!tablero[i][j].getVisible()) {
+                    tablero[i][j].setVisible(true);
+                }
+            }
+        }
+    }
 
 }
