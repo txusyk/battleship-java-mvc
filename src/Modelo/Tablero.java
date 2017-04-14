@@ -59,6 +59,15 @@ public class Tablero {
     }
 
 
+    public void comprobarAlrededor(int x, int y) {      //Metodo usado por el radar para comprobar las posiciones.
+        for(int i=x-1; i<=x+1; i++){
+            for(int j=y-1; j<=y+1; j++){
+                if(!tablero[i][j].getVisible()){
+                    tablero[i][j].setVisible(true);
+                }
+            }
+        }
+    }
 
 
 }
