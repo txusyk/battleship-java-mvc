@@ -30,6 +30,12 @@ public class Tablero {
         }
     }
 
+    /**
+     * @param pBarco
+     * @param x
+     * @param y
+     * @return devuelve si el barco ha sido posicionado
+     */
     public boolean colocarBarco(Barco pBarco, int x, int y) {
         if (entraBarco(pBarco, x, y)) {
             if (pBarco.getHorientacion() == 'h') {
@@ -47,6 +53,12 @@ public class Tablero {
         return true;
     }
 
+    /**
+     * @param pBarco
+     * @param x
+     * @param y
+     * @return si el barco puede ser posicionado
+     */
     private boolean entraBarco(Barco pBarco, int x, int y) {
         boolean entra = true;
         if (pBarco.getHorientacion() == 'h') {
@@ -57,6 +69,12 @@ public class Tablero {
         return entra;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @param pBarco
+     * @return true en caso de que haya espacio de 1 casilla al menos alrededor de un barco horizontal
+     */
     private boolean comprobarPosHor(int x, int y, Barco pBarco) {
         int index = 0;
         boolean entra = true;
@@ -80,6 +98,12 @@ public class Tablero {
         return entra;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @param pBarco
+     * @return true en caso de que haya espacio de 1 casilla al menos alrededor de un barco vertical
+     */
     private boolean comprobarPosVer(int x, int y, Barco pBarco) {
         int index = 0;
         boolean entra = true;
@@ -110,6 +134,22 @@ public class Tablero {
                 }
             }
         }
+    }
+
+    /**
+     * @param x
+     * @param y
+     * @return true en caso de que la posicion sea barco
+     */
+    public boolean esBarco(int x, int y){
+        if (this.tablero[x][y] instanceof ParteBarco){
+            return true;
+        }
+        return false;
+    }
+
+    public ObjTablero getPosicion(int x, int y){
+        return this.tablero[x][y];
     }
 
 }

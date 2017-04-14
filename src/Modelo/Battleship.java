@@ -16,13 +16,10 @@ package Modelo;
 public class Battleship {
 
     private static Battleship myBattleship;
-    private Humano humano;
-    private IA ia;
     private String dificultad = "facil";
-    private boolean turno;
 
     private Battleship() {
-        turno=true;//true es turno humano
+
     }
 
     public static Battleship getMyBattleship() {
@@ -32,11 +29,11 @@ public class Battleship {
         return myBattleship;
     }
 
-    public boolean turnoAct(){return turno;}
 
     public String getDificultad() {
         return dificultad;
     }
+
 
     /**
      * @param pNombre
@@ -47,8 +44,7 @@ public class Battleship {
     }
 
     private void inicializarJugadores(String pNombre) {
-        humano = new Humano(pNombre);
-        ia = new IA();
+        ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
     }
 
     private void inicializarAlmacen() {
@@ -69,23 +65,5 @@ public class Battleship {
     private void jugar() {
         // TODO - implement Battleship.jugar
         throw new UnsupportedOperationException();
-    }
-
-    /**
-     * @return Humano
-     */
-    public Humano getHumano() {
-        return humano;
-    }
-
-    /**
-     * @return IA
-     */
-    public IA getIa() {
-        return ia;
-    }
-
-    public boolean turnoJugador() {            //FALTA DE IMPLEMENTAR
-        return true;                        // sera necesario saber a quien pertenece el turno en cada momento.
     }
 }

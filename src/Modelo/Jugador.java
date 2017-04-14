@@ -13,23 +13,32 @@ package Modelo;
 
 public abstract class Jugador {
 
-    private Tablero tablero;
     private int dinero = 15000;
     private ListaArmas lArmas;
     private Radar radar;
+    private Flota flota;
+    private Tablero tablero;
+    private boolean turno;
 
 
     public Jugador() {
-        this.tablero = Tablero.getMiTablero();
+        this.flota = new Flota();
         this.lArmas = new ListaArmas();
-        this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
+        this.radar = new Radar();
+        this.tablero = new Tablero(10,10);
+    }
+
+    public boolean isTurno() {
+        return turno;
     }
 
     public Tablero getTablero() {
-        return this.tablero;
+        return tablero;
     }
-    
 
+    public Flota getFlota(){
+        return flota;
+    }
 
     /**
      * @param pCantidad
@@ -61,15 +70,12 @@ public abstract class Jugador {
             //flota.repararBarco(pBarco);
         }
 	}*/
+
     private String getType(Barco pBarco) {
         String type = String.valueOf(pBarco.getClass());
         String[] arrAux = type.split(" ");
         type = arrAux[1].toLowerCase();
         return type;
-    }
-
-    public void setPosicionRadar() {
-        radar.setPosicion();
     }
 
 }
