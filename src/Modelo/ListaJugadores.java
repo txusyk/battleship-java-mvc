@@ -34,11 +34,11 @@ public class ListaJugadores {
      *
      * @return jugActivo
      */
-    public Jugador getJugActivo() {
+    public Jugador getJugNoActivo() {
         if (listaJug[0].isTurno()) {
-            return listaJug[0];
+            return listaJug[1];
         }
-        return listaJug[1];
+        return listaJug[0];
     }
 
 

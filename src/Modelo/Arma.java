@@ -5,8 +5,6 @@ package Modelo;
  */
 public abstract class Arma extends HerramientasJuego {
 
-    protected int daño;
-
     public Arma(){
 
     }

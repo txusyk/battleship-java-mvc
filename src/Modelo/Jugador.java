@@ -13,7 +13,7 @@ package Modelo;
 
 public abstract class Jugador {
 
-    private int dinero = 15000;
+    private int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     private ListaArmas lArmas;
     private Radar radar;
     private Flota flota;

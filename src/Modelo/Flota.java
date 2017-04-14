@@ -35,6 +35,18 @@ public class Flota {
         return null;
     }
 
+    public ParteBarco getParteBarcoPorPos(int x, int y) {
+        Barco b = this.getBarcoPorPos(x, y);
+        int i = 0;
+        boolean enc = false;
+        while (i < b.getTamaño() && !enc) {
+            if (b.getParteBarco(i).comprobarPosicion(x, y)) {
+                return b.getParteBarco(i);
+            }
+        }
+        return null;
+    }
+
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;

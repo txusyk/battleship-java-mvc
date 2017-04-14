@@ -61,7 +61,6 @@ public class GestorFicheros {
 
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Node nCantArmas = ((Element) nNode).getElementsByTagName("cantidadArmas").item(0);
-
                 if (nCantArmas.getNodeType() == Node.ELEMENT_NODE) {
                     numBombas = Integer.parseInt(((Element) nCantArmas).getElementsByTagName("bomba").item(0).getTextContent());
                     numMisiles = Integer.parseInt(((Element) nCantArmas).getElementsByTagName("misil").item(0).getTextContent());
@@ -178,3 +177,4 @@ public class GestorFicheros {
         return numPortaav;
     }
 }
+
