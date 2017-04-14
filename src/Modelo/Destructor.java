@@ -15,7 +15,8 @@ public class Destructor extends Barco {
 
     public Destructor() {
         super();
-        this.partesBarco = new Posicion[GestorFicheros.getMyGestorFicheros().getNumDestr()];
+        this.tamaño = GestorFicheros.getMyGestorFicheros().getNumDestr();
+        this.partesBarco = new Posicion[tamaño];
         for (int i=0;i<GestorFicheros.getMyGestorFicheros().getNumDestr();i++){
             partesBarco[i].setState(new SNormal());
         }

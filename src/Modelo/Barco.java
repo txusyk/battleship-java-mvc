@@ -15,6 +15,7 @@ public abstract class Barco extends ObjTablero{
     protected Posicion[] partesBarco;
     private int preciorReparacion;
     protected Escudo escudo;
+    protected int tamaño;
     private boolean hundido;
 
     /**
@@ -24,6 +25,10 @@ public abstract class Barco extends ObjTablero{
         this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
         this.escudo = null;
         this.hundido = false;
+    }
+
+    public int getTamaño(){
+        return this.tamaño;
     }
 
     /**

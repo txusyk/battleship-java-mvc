@@ -30,6 +30,10 @@ public class Tablero {
         }
     }
 
+    public void añadirBarco(Barco pBarco){
+        if /
+    }
+
 
 
 }
