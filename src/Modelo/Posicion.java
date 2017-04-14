@@ -14,18 +14,12 @@ package Modelo;
 public class Posicion {
 
     private State estado;
-    private int[] posicion;
+    private int[] posicion = new int[2];
     private boolean descubierta = false;
 
     public Posicion(int x, int y) {
-        posicion = new int[2];
         posicion[0] = x;
         posicion[1] = y;
-    }
-
-
-    public void setState(State pEstado) {
-        this.estado = pEstado;
     }
 
     /**
@@ -36,16 +30,12 @@ public class Posicion {
     }
 
     /**
-     * @return int
+     *
+     * @param pEstado
      */
-    public int getX() {
-        return posicion[0];
+    public void setState(State pEstado) {
+        this.estado = pEstado;
     }
-
-    public int getY() {
-        return posicion[1];
-    }
-
 
     /**
      * @param posicion
@@ -54,8 +44,13 @@ public class Posicion {
         this.posicion = posicion;
     }
 
-    public boolean comprobarPosicion(Posicion other){
-        return posicion[0]==other.getX()&&posicion[1]==other.getY();
+    /**
+     * @param x
+     * @param y
+     * @return true en caso de que la posicion sea la que se recibe
+     */
+    public boolean comprobarPosicion(int x, int y){
+        return posicion[0]==x&&posicion[1]==y;
 
     }
 }

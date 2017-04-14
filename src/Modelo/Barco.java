@@ -28,26 +28,30 @@ public abstract class Barco extends ObjTablero{
 
     /**
      *
-     * @param pos
+     * @param x
+     * @param y
      */
-    public void reparar(Posicion pos){
-        boolean enc=false;
+    public void reparar(int x,int y){
+        boolean tocado=false;
         int i=0;
-        while(i<partesBarco.length && !enc){
-            enc= partesBarco[i].comprobarPosicion(pos);
+        while(i<partesBarco.length && !tocado){
+            tocado= partesBarco[i].comprobarPosicion(x,y);
         }
-        partesBarco[i].setState(new SNormal());
+        if (tocado) {
+            partesBarco[i].setState(new SNormal());
+        }
     }
     /**
      *
-     * @param pos
-     * @return
+     * @param x
+     * @param y
+     * @return si la parte del barco coincide con el tablero
      */
-    public boolean contiene(Posicion pos){
+    public boolean contiene(int x, int y){
         boolean enc=false;
         int i=0;
         while(i<partesBarco.length && !enc){
-            enc= partesBarco[i].comprobarPosicion(pos);
+            enc= partesBarco[i].comprobarPosicion(x,y);
         }
         return enc;
     }
@@ -129,9 +133,10 @@ public abstract class Barco extends ObjTablero{
     }
 
     /**
-     * @param pos
+     * @param x
+     * @param y
      */
-    public void recibirDaños(Posicion pos) {
+    public void recibirDaños(int x,int y) {
         if(escudo!=null){
             if(escudo.recibirImpacto()){
                 escudo=null;
@@ -140,7 +145,7 @@ public abstract class Barco extends ObjTablero{
             boolean enc=false;
             int i=0;
             while(i<partesBarco.length && !enc){
-                if (partesBarco[i].comprobarPosicion(pos)) {
+                if (partesBarco[i].comprobarPosicion(x,y)) {
                     enc = true;
                 }else{
                     i++;

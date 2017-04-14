@@ -23,19 +23,13 @@ public class Tablero {
      */
     public Tablero(int x,int y) {
         this.tablero = new ObjTablero[x][y];
-    }
-
-    /**
-     *
-     * @param x
-     * @param y
-     */
-
-    public void reparar(int x, int y){
-        ObjTablero pos = this.tablero[x][y];
-        if (pos instanceof Barco){
-
+        for (int i=0; i<tablero.length; i++){
+            for (int j=0; j<tablero.length; j++){
+                this.tablero[i][j] = new Agua();
+            }
         }
     }
+
+
 
 }
