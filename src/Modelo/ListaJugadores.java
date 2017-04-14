@@ -31,7 +31,6 @@ public class ListaJugadores {
     }
 
     /**
-     *
      * @return jugActivo
      */
     public Jugador getJugNoActivo() {
