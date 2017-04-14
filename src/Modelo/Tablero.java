@@ -14,25 +14,16 @@ package Modelo;
 
 
 public class Tablero {
-    private Flota flotaHumano;
-    private Flota flotaOrdenador;
-    private static Tablero miTablero;
+    private int x,y;
 
     /**
      *
-     * @param pListaBarcosH
-     * @param pListaBarcosO
+     * @param x
+     * @param y
      */
-    public Tablero(Flota pListaBarcosH, Flota pListaBarcosO) {
-        flotaHumano=pListaBarcosH;
-        flotaOrdenador=pListaBarcosO;
-    }
-
-    public static Tablero getMiTablero(){
-        if(miTablero==null){
-            miTablero = new Tablero(new Flota(),new Flota());
-        }
-        return miTablero;
+    public Tablero(int x,int y) {
+        this.x = x;
+        this.y = y;
     }
 
     /**

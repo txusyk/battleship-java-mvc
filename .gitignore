@@ -14,3 +14,10 @@ hs_err_pid*
 #Intellij Files
 .idea/
 battleship-java-mvc.iml
+.DS_Store
+out/
+sprints/.DS_Store
+sprints/sp1/.DS_Store
+src/.DS_Store
+src/Vista/.DS_Store
+test/.DS_Store

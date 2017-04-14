@@ -12,9 +12,6 @@
 package Modelo;
 
 
-public class Agua implements State {
-    @Override
-    public void pedir() {
+public class Agua extends ObjTablero {
 
-    }
 }
