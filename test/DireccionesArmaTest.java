@@ -10,8 +10,7 @@ public class DireccionesArmaTest {
     @Test
     public void testGetDireccion() throws Exception {
         Assert.assertEquals("boom", DireccionesArma.BOOM.getDireccion());
-        Assert.assertEquals("este-oeste", DireccionesArma.EO.getDireccion());
-        Assert.assertEquals("norte-sur", DireccionesArma.NS.getDireccion());
+        Assert.assertEquals("noreste-suroeste", DireccionesArma.NESO.getDireccion());
+        Assert.assertEquals("noroeste-sureste", DireccionesArma.NOSE.getDireccion());
     }
-
 }

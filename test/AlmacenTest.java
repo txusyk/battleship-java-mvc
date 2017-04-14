@@ -33,15 +33,15 @@ public class AlmacenTest {
     @Test
     public void testComprarArma() throws Exception {
         Assert.assertNotNull(Almacen.getMiAlmacen().comprarArma("bomba"));
-        Assert.assertEquals(new Bomba(0).getClass(), Almacen.getMiAlmacen().comprarArma("bomba").getClass());
-        Assert.assertEquals(new Misil(0).getClass(), Almacen.getMiAlmacen().comprarArma("misil").getClass());
-        Assert.assertEquals(new MisilDirig(0).getClass(), Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
+        Assert.assertEquals(new Bomba().getClass(), Almacen.getMiAlmacen().comprarArma("bomba").getClass());
+        Assert.assertEquals(new Misil().getClass(), Almacen.getMiAlmacen().comprarArma("misil").getClass());
+        Assert.assertEquals(new MisilDirig().getClass(), Almacen.getMiAlmacen().comprarArma("misildirig").getClass());
     }
 
     @Test
     public void testGetPrecioArma() throws Exception {
-        Assert.assertEquals(new Bomba(0).getPrecio(), Almacen.getMiAlmacen().getPrecioArma("bomba"));
-        Assert.assertEquals(new Misil(2500).getPrecio(), Almacen.getMiAlmacen().getPrecioArma("misil"));
+        Assert.assertEquals(new Bomba().getPrecio(), Almacen.getMiAlmacen().getPrecioArma("bomba"));
+        Assert.assertEquals(new Misil().getPrecio(), Almacen.getMiAlmacen().getPrecioArma("misil"));
     }
 
     @Test

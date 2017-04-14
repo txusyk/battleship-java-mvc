@@ -32,15 +32,15 @@ public class ArmaFactory {
     public HerramientasJuego crearArma(String pTipoArma) {
         HerramientasJuego a = null;
         if (pTipoArma.equalsIgnoreCase("bomba")) {
-            a = new Bomba(0);
+            a = new Bomba();
         } else if (pTipoArma.equalsIgnoreCase("misil")) {
-            a = new Misil(GestorFicheros.getMyGestorFicheros().getPrecioMisiles());
+            a = new Misil();
         } else if (pTipoArma.equalsIgnoreCase("misildirig")) {
-            a = new MisilDirig(GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig());
+            a = new MisilDirig();
         } else if (pTipoArma.equalsIgnoreCase("radar")) {
-            a = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
+            a = new Radar();
         } else if (pTipoArma.equalsIgnoreCase("escudo")) {
-            a = new Escudo(GestorFicheros.getMyGestorFicheros().getPrecioEscudos());
+            a = new Escudo();
         }
         return a;
     }

@@ -41,6 +41,6 @@ public class Radar extends HerramientasJuego {
     }
 
     public void consultarRadar(){
-        TableroJuego.getMiTableroJuego().getTableroActivo().comprobarAlrededor(x, y);
+
     }
 }
