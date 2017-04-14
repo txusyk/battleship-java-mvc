@@ -59,7 +59,7 @@ public abstract class Barco{
      *
      * @param x
      * @param y
-     * @return si la parte del barco coincide con el tablero
+     * @return comprueba si el barco contiene la posicion
      */
     public boolean contiene(int x, int y){
         boolean enc=false;
@@ -129,9 +129,9 @@ public abstract class Barco{
 
 
     /**
-     * @param pos
+     * @param x,y
      */
-    public void hundir(ParteBarco pos){
+    public void hundir(int x, int y){
         if(escudo!=null){
             escudo.destruir();
             escudo=null;

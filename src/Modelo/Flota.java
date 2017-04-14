@@ -24,13 +24,13 @@ public class Flota {
         boolean enc=false;
         Barco aReparar=null;
         while(it.hasNext()&& !enc){
-            aReparar=flota.get(it.next()).buscarPorPos(pos);
+            aReparar=flota.get(it.next()).buscarPorPos(x,y);
             if(aReparar!=null){
                 enc=true;
             }
         }
         if(enc) {
-            aReparar.reparar(pos);
+            aReparar.reparar(x,y);
         }
     }
 
@@ -70,7 +70,7 @@ public class Flota {
             Barco b = null;
             while (itr.hasNext() && !enc) {
                 b = itr.next();
-                if (b.contiene(pos)) {
+                if (b.contiene(x,y)) {
                     enc = true;
                 }
             }
