@@ -32,6 +32,14 @@ public abstract class Jugador {
         return turno;
     }
 
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public Flota getFlota(){
+        return flota;
+    }
+
     /**
      * @param pCantidad
      * @return boolean

@@ -19,6 +19,22 @@ public class Flota {
         flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
+    private Iterator<String> getIterator(){
+        return this.flota.keySet().iterator();
+    }
+
+    public Barco getBarcoPorPos(int x, int y){
+        boolean enc = false;
+        Iterator<String> itr = this.getIterator();
+        while (itr.hasNext() && !enc){
+            String nombreBarco = itr.next();
+            if (flota.get(nombreBarco).buscarPorPos(x,y) != null){
+                return flota.get(nombreBarco).buscarPorPos(x,y);
+            }
+        }
+        return null;
+    }
+
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;

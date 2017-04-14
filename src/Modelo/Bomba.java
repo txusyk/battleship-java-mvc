@@ -21,8 +21,8 @@ public class Bomba extends Arma {
 
     @Override
     public void disparar(int x, int y) {
-        if (TableroJuego.getMiTableroJuego().getNombreTableroActivo() == "jug"){
-
+        if (ListaJugadores.getMyListaJug().getJugActivo().getTablero().esBarco(x,y)){
+            ListaJugadores.getMyListaJug().getJugActivo().getFlota()
         }
     }
 
