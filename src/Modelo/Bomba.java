@@ -19,7 +19,7 @@ public class Bomba extends Arma {
         this.daño = 1;
     }
 
-    @Override
+
     public int disparar(ParteBarco pPos, Flota pFlota) {
         return 0;
     }
