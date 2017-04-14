@@ -19,7 +19,7 @@ public class Flota {
         flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
-    public void reparar(Posicion pos){
+    public void reparar(ParteBarco pos){
         Iterator<String> it=flota.keySet().iterator();
         boolean enc=false;
         Barco aReparar=null;
@@ -63,7 +63,7 @@ public class Flota {
          * @param pos
          * @return
          */
-        public Barco buscarPorPos(Posicion pos) {
+        public Barco buscarPorPos(ParteBarco pos) {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
             Barco b = null;

@@ -30,9 +30,26 @@ public class Tablero {
         }
     }
 
-    public void añadirBarco(Barco pBarco){
-        if /
+    public void colocarBarco(Barco pBarco, int x, int y){
+        if (entraBarco(pBarco, x,y)){
+
+        }
     }
+
+    private boolean entraBarco(Barco pBarco, int x, int y){
+        boolean entra = false;
+        if (pBarco.getHorientacion() == 'h') {
+            for (int i = 0; i < pBarco.getTamaño(); i++) {
+                entra = this.tablero[x + i][y] instanceof Agua;
+            }
+        }else{
+            for (int i = 0; i < pBarco.getTamaño(); i++) {
+                entra = this.tablero[x][y+i] instanceof Agua;
+            }
+        }
+        return entra;
+    }
+
 
 
 

@@ -16,7 +16,7 @@ public class Submarino extends Barco {
     public Submarino() {
         super();
         this.tamaño = GestorFicheros.getMyGestorFicheros().getNumSub();
-        this.partesBarco = new Posicion[tamaño];
+        this.partesBarco = new ParteBarco[tamaño];
         for (int i=0;i<this.partesBarco.length;i++){
             partesBarco[i].setState(new SNormal());
         }

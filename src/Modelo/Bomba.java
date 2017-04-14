@@ -20,7 +20,7 @@ public class Bomba extends Arma {
     }
 
     @Override
-    public int disparar(Posicion pPos, Flota pFlota) {
+    public int disparar(ParteBarco pPos, Flota pFlota) {
         return 0;
     }
 

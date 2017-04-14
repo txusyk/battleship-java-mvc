@@ -10,12 +10,13 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public abstract class Barco extends ObjTablero{
+public abstract class Barco{
 
-    protected Posicion[] partesBarco;
+    protected ParteBarco[] partesBarco;
     private int preciorReparacion;
     protected Escudo escudo;
     protected int tamaño;
+    protected char horientacion;
     private boolean hundido;
 
     /**
@@ -29,6 +30,14 @@ public abstract class Barco extends ObjTablero{
 
     public int getTamaño(){
         return this.tamaño;
+    }
+
+    public ParteBarco getParteBarco(int i){
+        return this.partesBarco[i];
+    }
+
+    public char getHorientacion(){
+        return this.horientacion;
     }
 
     /**
@@ -75,7 +84,6 @@ public abstract class Barco extends ObjTablero{
                 x++;
                 pivote[0]=x;
                 i++;
-
             }
 
         }else{
@@ -83,9 +91,7 @@ public abstract class Barco extends ObjTablero{
             while(i<partesBarco.length){
                 partesBarco[i].setPosicion(pivote);
                 y++;
-                pivote[1]=y;
                 i++;
-
             }
         }
     }
@@ -125,7 +131,7 @@ public abstract class Barco extends ObjTablero{
     /**
      * @param pos
      */
-    public void hundir(Posicion pos){
+    public void hundir(ParteBarco pos){
         if(escudo!=null){
             escudo.destruir();
             escudo=null;

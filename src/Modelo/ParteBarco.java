@@ -1,4 +1,3 @@
-package Modelo;
 /*
  * The MIT License (MIT)
  *
@@ -10,17 +9,48 @@ package Modelo;
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+package Modelo;
 
-public class Destructor extends Barco {
+public class ParteBarco extends ObjTablero{
 
-    public Destructor() {
-        super();
-        this.tamaño = GestorFicheros.getMyGestorFicheros().getNumDestr();
-        this.partesBarco = new ParteBarco[tamaño];
-        for (int i=0;i<GestorFicheros.getMyGestorFicheros().getNumDestr();i++){
-            partesBarco[i].setState(new SNormal());
-        }
+    private State estado;
+    private int[] posicion = new int[2];
+
+
+    public ParteBarco(int x, int y) {
+        posicion[0] = x;
+        posicion[1] = y;
     }
 
+    /**
+     * @return State
+     */
+    public State getEstado() {
+        return this.estado;
+    }
 
+    /**
+     *
+     * @param pEstado
+     */
+    public void setState(State pEstado) {
+        this.estado = pEstado;
+    }
+
+    /**
+     * @param posicion
+     */
+    public void setPosicion(int[] posicion) {
+        this.posicion = posicion;
+    }
+
+    /**
+     * @param x
+     * @param y
+     * @return true en caso de que la posicion sea la que se recibe
+     */
+    public boolean comprobarPosicion(int x, int y){
+        return posicion[0]==x&&posicion[1]==y;
+
+    }
 }

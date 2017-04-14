@@ -16,7 +16,7 @@ public class Fragata extends Barco {
     public Fragata() {
         super();
         this.tamaño = GestorFicheros.getMyGestorFicheros().getNumFrag();
-        this.partesBarco = new Posicion[tamaño];
+        this.partesBarco = new ParteBarco[tamaño];
         for (int i=0;i<this.partesBarco.length;i++){
             partesBarco[i].setState(new SNormal());
         }

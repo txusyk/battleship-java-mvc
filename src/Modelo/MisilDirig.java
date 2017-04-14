@@ -20,7 +20,7 @@ public class MisilDirig extends Arma {
 
 
     @Override
-    public int disparar(Posicion pPos, Flota pFlota) {
+    public int disparar(ParteBarco pPos, Flota pFlota) {
         return daño;
     }
 }
