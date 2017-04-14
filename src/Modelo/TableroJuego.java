@@ -8,8 +8,10 @@ public class TableroJuego {
     private static TableroJuego miTableroJuego;
     private Tablero tableroJug;
     private Tablero tableroIA;
+    private String tableroActivo;
 
     private TableroJuego(){
+        tableroActivo = "jug";
         tableroJug = new Tablero(10,10);
         tableroIA = new Tablero(10,10);
     }
@@ -23,6 +25,10 @@ public class TableroJuego {
 
     public Tablero getTableroActivo(){
         return this.tableroIA;
+    }
+
+    public String getNombreTableroActivo(){
+        return this.tableroActivo;
     }
 
 }

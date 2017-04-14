@@ -20,16 +20,15 @@ public abstract class Jugador {
 
 
     public Jugador() {
-        this.tablero = Tablero.getMiTablero();
+        this.tablero = new Tablero(10,10);
         this.lArmas = new ListaArmas();
-        this.radar = new Radar(GestorFicheros.getMyGestorFicheros().getPrecioRadares());
+        this.radar = new Radar();
     }
 
     public Tablero getTablero() {
         return this.tablero;
     }
     
-
 
     /**
      * @param pCantidad
