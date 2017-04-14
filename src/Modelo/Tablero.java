@@ -86,16 +86,16 @@ public class Tablero {
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
                 if ((y > 0) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y - 1] instanceof Agua) && ((tablero[x][y - 1] instanceof Agua) && ((tablero[x + 1][y - 1] instanceof Agua);
+                    entra = ((tablero[x - 1][y - 1] instanceof Agua) && ((tablero[x][y - 1] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua)));
                 }
             } else if (index == pBarco.getTamaño() - 1) {
                 if ((y < 9) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y + 1] instanceof Agua) && ((tablero[x][y + 1] instanceof Agua) && ((tablero[x + 1][y + 1] instanceof Agua);
+                    entra = ((tablero[x - 1][y + 1] instanceof Agua) && ((tablero[x][y + 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua)));
                 }
             }
             if (entra) {
                 if (x > 0 && x < 9) {
-                    entra = ((tablero[x - 1][y] instanceof Agua) && ((tablero[x + 1][y] instanceof Agua);
+                    entra = ((tablero[x - 1][y] instanceof Agua) && (tablero[x + 1][y] instanceof Agua));
                 }
             }
         }
