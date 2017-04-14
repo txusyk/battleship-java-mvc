@@ -32,7 +32,15 @@ public class Tablero {
 
     public void colocarBarco(Barco pBarco, int x, int y){
         if (entraBarco(pBarco, x,y)){
-
+            if (pBarco.getHorientacion() == 'h') {
+                for (int i = 0; i < pBarco.getTamaño(); i++) {
+                    this.tablero[x + i][y] = pBarco.getParteBarco(i);
+                }
+            }else{
+                for (int i = 0; i < pBarco.getTamaño(); i++) {
+                    this.tablero[x][y+i] = pBarco.getParteBarco(i);
+                }
+            }
         }
     }
 

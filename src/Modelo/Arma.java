@@ -10,6 +10,4 @@ public abstract class Arma extends HerramientasJuego {
     public Arma(int pPrecio){
         super(pPrecio);
     }
-
-    public abstract int disparar(ParteBarco pPos, Flota pFlota);
 }
