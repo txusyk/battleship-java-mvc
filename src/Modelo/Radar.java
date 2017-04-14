@@ -19,8 +19,8 @@ public class Radar extends HerramientasJuego {
     private int y;
     private int numUsos = 3;
 
-    public Radar(int pPrecio) {
-        super(pPrecio);
+    public Radar() {
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioRadares();
         Random randomGenerator = new Random();
         this.x = randomGenerator.nextInt(10);
         this.y = randomGenerator.nextInt(10);

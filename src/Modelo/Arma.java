@@ -7,7 +7,9 @@ public abstract class Arma extends HerramientasJuego {
 
     protected int daño;
 
-    public Arma(int pPrecio){
-        super(pPrecio);
+    public Arma(){
+
     }
+
+    public abstract void disparar(int x, int y);
 }

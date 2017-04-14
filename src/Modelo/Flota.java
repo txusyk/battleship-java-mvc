@@ -19,24 +19,6 @@ public class Flota {
         flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
-    public void reparar(int x, int y){
-        Iterator<String> it=flota.keySet().iterator();
-        boolean enc=false;
-        Barco aReparar=null;
-        while(it.hasNext()&& !enc){
-            aReparar=flota.get(it.next()).buscarPorPos(x,y);
-            if(aReparar!=null){
-                enc=true;
-            }
-        }
-        if(enc) {
-            aReparar.reparar(x,y);
-        }
-    }
-
-
-
-
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;
@@ -59,7 +41,6 @@ public class Flota {
         }
 
         /**
-         *
          * @param x
          * @param y
          * @return
@@ -70,13 +51,31 @@ public class Flota {
             Barco b = null;
             while (itr.hasNext() && !enc) {
                 b = itr.next();
-                if (b.contiene(x,y)) {
+                if (b.contiene(x, y)) {
                     enc = true;
                 }
             }
             return b;
         }
 
+        public void reparar(int x, int y) {
+            Iterator<String> it = flota.keySet().iterator();
+            boolean enc = false;
+            Barco aReparar = null;
+            while (it.hasNext() && !enc) {
+                aReparar = flota.get(it.next()).buscarPorPos(x, y);
+                if (aReparar != null) {
+                    enc = true;
+                }
+            }
+            if (enc) {
+                aReparar.reparar(x, y);
+            }
+        }
+
+        /**
+         * @param pTipo
+         */
         private void inicializarPorTipo(String pTipo) {
             if (pTipo.equalsIgnoreCase("portaaviones")) {
                 for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumFrag(); i++) {

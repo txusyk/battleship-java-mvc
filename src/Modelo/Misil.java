@@ -13,14 +13,14 @@ package Modelo;
 
 public class Misil extends Arma {
 
-    public Misil(int pPrecio) {
-        super(pPrecio);
+    public Misil() {
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioMisiles();
         this.daño = 2;
     }
 
-    @Override
-    public int disparar(ParteBarco pPos, Flota pFlota) {
-        return 0;
-    }
 
+    @Override
+    public void disparar(int x, int y) {
+
+    }
 }

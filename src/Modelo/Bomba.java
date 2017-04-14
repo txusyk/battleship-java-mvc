@@ -14,14 +14,15 @@ package Modelo;
 
 public class Bomba extends Arma {
 
-    public Bomba(int pPrecio) {
-        super(pPrecio);
+    public Bomba() {
+        this.precio = 0;
         this.daño = 1;
     }
 
+    @Override
+    public void disparar(int x, int y) {
 
-    public int disparar(ParteBarco pPos, Flota pFlota) {
-        return 0;
     }
+
 
 }

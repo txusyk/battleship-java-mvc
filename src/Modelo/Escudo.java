@@ -14,8 +14,8 @@ public class Escudo extends HerramientasJuego {
 
     private int impactosRestantes;
 
-    public Escudo(int pPrecio) {
-        super(pPrecio);
+    public Escudo() {
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioEscudos();
         this.impactosRestantes = 2;
     }
 

@@ -16,12 +16,8 @@ public abstract class HerramientasJuego {
 
     protected int precio;
 
-    /**
-     *
-     * @param pPrecio
-     */
-    public HerramientasJuego(int pPrecio) {
-        this.precio = pPrecio;
+    public HerramientasJuego() {
+
     }
 
     /**
@@ -30,8 +26,4 @@ public abstract class HerramientasJuego {
     public int getPrecio() {
         return this.precio;
     }
-
-    public abstract void accion(int x, int y);
-
-
 }
