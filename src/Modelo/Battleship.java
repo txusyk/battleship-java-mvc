@@ -22,7 +22,7 @@ public class Battleship {
     private boolean turno;
 
     private Battleship() {
-        turno=true;//true es turno humano
+        turno=true;
     }
 
     public static Battleship getMyBattleship() {
@@ -37,6 +37,8 @@ public class Battleship {
     public String getDificultad() {
         return dificultad;
     }
+
+    public boolean getTurno(){ return this.turno;}
 
     /**
      * @param pNombre
