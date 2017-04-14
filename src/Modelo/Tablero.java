@@ -14,7 +14,7 @@ package Modelo;
 
 
 public class Tablero {
-    private int x,y;
+    private ObjTablero[][] tablero;
 
     /**
      *
@@ -22,43 +22,20 @@ public class Tablero {
      * @param y
      */
     public Tablero(int x,int y) {
-        this.x = x;
-        this.y = y;
+        this.tablero = new ObjTablero[x][y];
     }
 
     /**
      *
-     * @param pPosicion
+     * @param x
+     * @param y
      */
 
-    public void reparar( Posicion pPosicion){
-        //una reparacion hara que :
-        //      posicion normal --> posicion normal
-        //      posicion tocado --> posicion normal
-        //      posicion escudo --> posicion escudo
+    public void reparar(int x, int y){
+        ObjTablero pos = this.tablero[x][y];
+        if (pos instanceof Barco){
 
-        if(Battleship.getMyBattleship().turnoAct()){
-            flotaHumano.reparar( pPosicion);
-        }else{
-            flotaOrdenador.reparar( pPosicion);
         }
     }
 
-
-
-   /* public Posicion[] getAlrededor(int posX, int posY) {       //Nos devuelve las 9 casillas al rededor de una posicion en un Array
-        Posicion[] auxL = new Posicion[9];
-        int index = 0;
-
-        for (int i = posX - 1; i <= posX + 1; i++) {
-            for (int k = posY - 1; k <= posX - 1; k++) {
-                auxL[index] = this.tablero[i][k];
-                index++;
-            }
-        }
-
-
-        return auxL;
-    }
-*/
 }
