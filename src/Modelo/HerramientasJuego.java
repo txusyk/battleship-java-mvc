@@ -31,5 +31,7 @@ public abstract class HerramientasJuego {
         return this.precio;
     }
 
+    public abstract void accion(int x, int y);
+
 
 }

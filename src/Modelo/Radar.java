@@ -30,13 +30,17 @@ public class Radar extends HerramientasJuego {
      *
      *
      */
-    public void setPosicion() {
-        System.out.println("Donde quieres colocar el radar?");
-        System.out.println("\tIntroduce coordenada X: ");
-        int posXRadar = Keyboard.getMyKeyboard().getInt();
-        System.out.println("\tIntroduce coordenada Y:");
-        int posYRadar = Keyboard.getMyKeyboard().getInt();
-        x = posXRadar;
-        y = posYRadar;
+    public void accion(int x, int y) {
+        colocarRadar(x, y);
+        consultarRadar();
+    }
+
+    public void colocarRadar(int posX, int posY){
+        x = posX;
+        y = posY;
+    }
+
+    public void consultarRadar(){
+        TableroJuego.getMiTableroJuego().getTableroActivo().comprobarAlrededor(x, y);
     }
 }
