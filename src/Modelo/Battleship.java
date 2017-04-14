@@ -16,13 +16,10 @@ package Modelo;
 public class Battleship {
 
     private static Battleship myBattleship;
-    private Humano humano;
-    private IA ia;
     private String dificultad = "facil";
-    private boolean turno;
 
     private Battleship() {
-        turno=true;
+
     }
 
     public static Battleship getMyBattleship() {
@@ -32,13 +29,11 @@ public class Battleship {
         return myBattleship;
     }
 
-    public boolean turnoAct(){return turno;}
 
     public String getDificultad() {
         return dificultad;
     }
 
-    public boolean getTurno(){ return this.turno;}
 
     /**
      * @param pNombre
@@ -49,8 +44,7 @@ public class Battleship {
     }
 
     private void inicializarJugadores(String pNombre) {
-        humano = new Humano(pNombre);
-        ia = new IA();
+        ListaJugadores.getMyListaJugadores().inicializarJugadores;
     }
 
     private void inicializarAlmacen() {

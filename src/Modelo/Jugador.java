@@ -13,21 +13,18 @@ package Modelo;
 
 public abstract class Jugador {
 
-    private Tablero tablero;
     private int dinero = 15000;
     private ListaArmas lArmas;
     private Radar radar;
+    private Flota flota;
 
 
     public Jugador() {
-        this.tablero = new Tablero(10,10);
+        this.flota = new Flota();
         this.lArmas = new ListaArmas();
         this.radar = new Radar();
     }
 
-    public Tablero getTablero() {
-        return this.tablero;
-    }
     
 
     /**
