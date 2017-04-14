@@ -26,4 +26,5 @@ public abstract class HerramientasJuego {
     public int getPrecio() {
         return this.precio;
     }
+
 }

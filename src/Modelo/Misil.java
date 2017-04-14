@@ -15,12 +15,15 @@ public class Misil extends Arma {
 
     public Misil() {
         this.precio = GestorFicheros.getMyGestorFicheros().getPrecioMisiles();
-        this.daño = 2;
     }
 
 
     @Override
     public void disparar(int x, int y) {
-
+        if (ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().esBarco(x, y)) {
+            ListaJugadores.getMyListaJug().getJugNoActivo().getFlota().getBarcoPorPos(x, y).hundir(x, y);
+        } else {
+            ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().getPosicion(x, y).setVisible(true);
+        }
     }
 }

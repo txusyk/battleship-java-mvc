@@ -10,13 +10,13 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public abstract class Barco{
+public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
-    private int preciorReparacion;
     protected Escudo escudo;
     protected int tamaño;
     protected char horientacion;
+    private int preciorReparacion;
     private boolean hundido;
 
     /**
@@ -28,67 +28,65 @@ public abstract class Barco{
         this.hundido = false;
     }
 
-    public int getTamaño(){
+    public int getTamaño() {
         return this.tamaño;
     }
 
-    public ParteBarco getParteBarco(int i){
+    public ParteBarco getParteBarco(int i) {
         return this.partesBarco[i];
     }
 
-    public char getHorientacion(){
+    public char getHorientacion() {
         return this.horientacion;
     }
 
     /**
-     *
      * @param x
      * @param y
      */
-    public void reparar(int x,int y){
-        boolean tocado=false;
-        int i=0;
-        while(i<partesBarco.length && !tocado){
-            tocado= partesBarco[i].comprobarPosicion(x,y);
+    public void reparar(int x, int y) {
+        boolean tocado = false;
+        int i = 0;
+        while (i < partesBarco.length && !tocado) {
+            tocado = partesBarco[i].comprobarPosicion(x, y);
         }
         if (tocado) {
             partesBarco[i].setState(new SNormal());
         }
     }
+
     /**
-     *
      * @param x
      * @param y
      * @return comprueba si el barco contiene la posicion
      */
-    public boolean contiene(int x, int y){
-        boolean enc=false;
-        int i=0;
-        while(i<partesBarco.length && !enc){
-            enc= partesBarco[i].comprobarPosicion(x,y);
+    public boolean contiene(int x, int y) {
+        boolean enc = false;
+        int i = 0;
+        while (i < partesBarco.length && !enc) {
+            enc = partesBarco[i].comprobarPosicion(x, y);
         }
         return enc;
     }
 
 
     /**
-     *
      * @param pivote
      * @param direccion
      */
-    public void inicializar (int[] pivote ,char direccion ) {
-        if('H' == direccion){
-            int x=pivote[0],i=0;
-            while(i<partesBarco.length){
+    public void inicializar(int[] pivote, char direccion) {
+        if ('H' == direccion) {
+            int x = pivote[0], i = 0;
+            while (i < partesBarco.length) {
                 partesBarco[i].setPosicion(pivote);
                 x++;
-                pivote[0]=x;
+                pivote[0] = x;
                 i++;
             }
 
-        }else{
-            int y=pivote[1],i=0;
-            while(i<partesBarco.length){
+        } else {
+            int y = pivote[1], i = 0;
+            while (i < partesBarco.length) {
                 partesBarco[i].setPosicion(pivote);
                 y++;
                 i++;
@@ -115,12 +113,12 @@ public abstract class Barco{
     /**
      * @return devuelve si esta hundido el barco
      */
-    private boolean estaHundido(){
-        boolean sink=false;
-        int i =0;
-        while(i<partesBarco.length){
-            if (partesBarco[i].getEstado() instanceof STocado){
-                sink=true;
+    private boolean estaHundido() {
+        boolean sink = false;
+        int i = 0;
+        while (i < partesBarco.length) {
+            if (partesBarco[i].getEstado() instanceof STocado) {
+                sink = true;
             }
             i++;
         }
@@ -131,15 +129,15 @@ public abstract class Barco{
     /**
      * @param x,y
      */
-    public void hundir(int x, int y){
-        if(escudo!=null){
+    public void hundir(int x, int y) {
+        if (escudo != null) {
             escudo.destruir();
-            escudo=null;
-        }else if (!estaHundido()){
-            for(int i =0;i<partesBarco.length;i++){
+            escudo = null;
+        } else if (!estaHundido() && escudo == null) {
+            for (int i = 0; i < partesBarco.length; i++) {
                 partesBarco[i].setState(new STocado());
             }
-            hundido=true;
+            hundido = true;
         }
     }
 
@@ -147,30 +145,33 @@ public abstract class Barco{
      * @param x
      * @param y
      */
-    public void recibirDaños(int x,int y) {
-        if(escudo!=null){
-            if(escudo.recibirImpacto()){
-                escudo=null;
+    public void recibirDaños(int x, int y) {
+        if (escudo != null) {
+            if (escudo.recibirImpacto()) {
+                escudo = null;
             }
-        }else if (!estaHundido()){
-            boolean enc=false;
-            int i=0;
-            while(i<partesBarco.length && !enc){
-                if (partesBarco[i].comprobarPosicion(x,y)) {
+        } else if (!estaHundido() && escudo == null) {
+            boolean enc = false;
+            int i = 0;
+            while (i < partesBarco.length && !enc) {
+                if (partesBarco[i].comprobarPosicion(x, y)) {
                     enc = true;
-                }else{
+                } else {
                     i++;
                 }
             }
-            if (partesBarco[i].getEstado() instanceof SNormal) {
-                partesBarco[i].setState(new STocado());
-                if (estaHundido()){
-                    hundido = true;
+            if (enc) {
+                if (partesBarco[i].getEstado() instanceof SNormal) {
+                    partesBarco[i].setState(new STocado());
+                    if (estaHundido()) {
+                        hundido = true;
+                    }
+                } else {
+                    //gestionar cuando se intenta disparar a una posicion ya tocada
                 }
-            }else{
-                //gestionar cuando se intenta disparar a una posicion ya tocada
+            } else {
+                //gestionar si no existe
             }
         }
     }
-
 }

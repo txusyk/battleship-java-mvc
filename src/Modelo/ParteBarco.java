@@ -22,6 +22,14 @@ public class ParteBarco extends ObjTablero{
         posicion[1] = y;
     }
 
+    public int getPosX() {
+        return posicion[0];
+    }
+
+    public int getPosY() {
+        return posicion[1];
+    }
+
     /**
      * @return State
      */
@@ -51,6 +59,6 @@ public class ParteBarco extends ObjTablero{
      */
     public boolean comprobarPosicion(int x, int y){
         return posicion[0]==x&&posicion[1]==y;
-
     }
+
 }

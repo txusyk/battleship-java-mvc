@@ -16,13 +16,87 @@ public class MisilDirig extends Arma {
     public MisilDirig() {
         super();
         this.precio = GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig();
-        this.daño = 2;
     }
 
     @Override
     public void disparar(int x, int y) {
+        //solicitar direccion de arma
+        DireccionesArma da = DireccionesArma.BOOM;
 
+        if (da.getDireccion().equalsIgnoreCase("noreste-suroeste")) {
+            dispararNESO(x, y);
+        } else if (da.getDireccion().equalsIgnoreCase("noroeste-sudeste")) {
+            dispararNOSE(x, y);
+        } else {
+            dispararBOOM(x, y);
+        }
     }
 
+    private void dispararNESO(int x, int y) {
+        HerramientasJuego m = ArmaFactory.getArmaFactory().crearArma("misil");
+        if ((x > 0 && x <= 9) && (y > 0 && y < 9)) {
+            int i = x;
+            int j = y;
+            while (i >= 0 && j >= 0) {
+                ((Misil) m).disparar(i, j);
+                i--;
+                j--;
+            }
+            i = x;
+            j = y;
+            while (i <= 10 && j <= 10) {
+                ((Misil) m).disparar(i, j);
+                i++;
+                j++;
+            }
+        }
+    }
+
+    private void dispararNOSE(int x, int y) {
+        HerramientasJuego m = ArmaFactory.getArmaFactory().crearArma("misil");
+        if ((x > 0 && x <= 9) && (y > 0 && y < 9)) {
+            int i = x;
+            int j = y;
+            while (i >= 10 && j >= 0) {
+                ((Misil) m).disparar(i, j);
+                i++;
+                j--;
+            }
+            i = x;
+            j = y;
+            while (i >= 0 && j <= 10) {
+                ((Misil) m).disparar(i, j);
+                i--;
+                j++;
+            }
+        }
+    }
+
+    private void dispararBOOM(int x, int y) {
+        HerramientasJuego m = ArmaFactory.getArmaFactory().crearArma("misil");
+        if ((x > 0 && x <= 9) && (y > 0 && y < 9)) {
+            int i = x;
+            int j = y;
+            while (i >= 0) {
+                ((Misil) m).disparar(i, j);
+                i--;
+            }
+            i = x;
+            while (i <= 10) {
+                ((Misil) m).disparar(i, j);
+                i++;
+            }
+            i = x;
+            while (j >= 0) {
+                ((Misil) m).disparar(i, j);
+                j--;
+            }
+            j = y;
+            while (j <= 10) {
+                ((Misil) m).disparar(i, j);
+                j++;
+            }
+        }
+    }
 
 }
