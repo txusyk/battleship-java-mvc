@@ -44,7 +44,7 @@ public class Battleship {
     }
 
     private void inicializarJugadores(String pNombre) {
-        ListaJugadores.getMyListaJugadores().inicializarJugadores;
+        ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
     }
 
     private void inicializarAlmacen() {
@@ -65,23 +65,5 @@ public class Battleship {
     private void jugar() {
         // TODO - implement Battleship.jugar
         throw new UnsupportedOperationException();
-    }
-
-    /**
-     * @return Humano
-     */
-    public Humano getHumano() {
-        return humano;
-    }
-
-    /**
-     * @return IA
-     */
-    public IA getIa() {
-        return ia;
-    }
-
-    public boolean turnoJugador() {            //FALTA DE IMPLEMENTAR
-        return true;                        // sera necesario saber a quien pertenece el turno en cada momento.
     }
 }

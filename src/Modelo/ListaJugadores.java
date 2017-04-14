@@ -8,13 +8,27 @@ public class ListaJugadores {
     private static ListaJugadores myListaJug;
     Jugador[] listaJug;
 
-    private ListaJugadores(){
+    private ListaJugadores() {
         listaJug = new Jugador[2];
     }
 
-    public void inicializarJugadores(String pNombreHumano){
+    public static ListaJugadores getMyListaJug() {
+        if (myListaJug == null) {
+            return myListaJug;
+        }
+        return myListaJug;
+    }
+
+    public void inicializarJugadores(String pNombreHumano) {
         listaJug[0] = new Humano(pNombreHumano);
         listaJug[1] = new IA();
+    }
+
+    public Jugador getJugActivo() {
+        if (listaJug[0].isTurno()) {
+            return listaJug[0];
+        }
+        return listaJug[1];
     }
 
 
