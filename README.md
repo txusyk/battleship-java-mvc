@@ -3,9 +3,16 @@
 ## Idea inicial
 ![logo_sketch](http://i.imgur.com/El7k7Wg.png)
 
-## UI actual
+## Evolucion de UIs
+
+### UI 1.0
 ![logo_preview](http://i.imgur.com/R0ipCfv.png)
 
+### UI actual 1.0
+![logo_preview](https://i.imgur.com/P9xwH3h.png)
+
+## UI actual 2.0
+![logo_preview](http://i.imgur.com/RUmELvl.png)
 ## UI final
 
 Aún no disponible

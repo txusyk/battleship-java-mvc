@@ -17,7 +17,6 @@ public class Radar extends HerramientasJuego {
 
     private int x;
     private int y;
-    private int numUsos = 3;
 
     public Radar() {
         this.precio = GestorFicheros.getMyGestorFicheros().getPrecioRadares();
@@ -36,11 +35,15 @@ public class Radar extends HerramientasJuego {
     }
 
     public void colocarRadar(int posX, int posY){
-        x = posX;
-        y = posY;
+        if (posX<10 && posX>0) {
+            x = posX;
+        }
+        if(posY<10 && posY>0) {
+            y = posY;
+        }
     }
 
     public void consultarRadar(){
-
+        ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().comprobarAlrededor(x, y);
     }
 }
