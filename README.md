@@ -8,8 +8,11 @@
 ### UI 1.0
 ![logo_preview](http://i.imgur.com/R0ipCfv.png)
 
-### UI actual
+### UI actual 1.0
 ![logo_preview](https://i.imgur.com/P9xwH3h.png)
+
+## UI actual 2.0
+![logo_preview](https://i.imgur.com/undefined.png)
 
 ## UI final
 
