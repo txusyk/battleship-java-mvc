@@ -59,12 +59,28 @@ public class Tablero {
      * @param y
      * @return si el barco puede ser posicionado
      */
+
+    //comprobar las pos en si
     private boolean entraBarco(Barco pBarco, int x, int y) {
         boolean entra = true;
         if (pBarco.getHorientacion() == 'h') {
-            entra = comprobarPosHor(x, y, pBarco);
+            int i = 0;
+            boolean enc = false;
+            while (i < pBarco.getTamaño() && !enc) {
+                enc = (tablero[x + i][y] instanceof Agua);
+            }
+            if (enc) {
+                entra = comprobarPosHor(x, y, pBarco);
+            }
         } else if (pBarco.getHorientacion() == 'v') {
-            entra = comprobarPosVer(x, y, pBarco);
+            int i = 0;
+            boolean enc = false;
+            while (i < pBarco.getTamaño() && !enc) {
+                enc = (tablero[x + i][y] instanceof Agua);
+            }
+            if (enc) {
+                entra = comprobarPosVer(x, y, pBarco);
+            }
         }
         return entra;
     }
@@ -142,10 +158,7 @@ public class Tablero {
      * @return true en caso de que la posicion sea barco
      */
     public boolean esBarco(int x, int y){
-        if (this.tablero[x][y] instanceof ParteBarco){
-            return true;
-        }
-        return false;
+        return this.tablero[x][y] instanceof ParteBarco;
     }
 
     public ObjTablero getPosicion(int x, int y){

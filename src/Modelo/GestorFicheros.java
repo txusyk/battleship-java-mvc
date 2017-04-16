@@ -18,7 +18,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -49,10 +48,10 @@ public class GestorFicheros {
     public void readXML(String pDif) {
         try (InputStream resource = GestorFicheros.class.getResourceAsStream("config_IS_battleship.xml")) {
 
-            File fDif = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/config_IS_battleship.xml");
+            //File fDif = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/config_IS_battleship.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document doc = documentBuilder.parse(fDif);
+            Document doc = documentBuilder.parse(resource);
 
             doc.getDocumentElement().normalize();
 

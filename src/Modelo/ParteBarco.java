@@ -11,7 +11,7 @@
  */
 package Modelo;
 
-public class ParteBarco extends ObjTablero{
+public class ParteBarco extends Barco {
 
     private State estado;
     private int[] posicion = new int[2];

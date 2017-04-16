@@ -3,8 +3,9 @@ package Vista;/*
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.awt.GridLayout;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -14,8 +15,8 @@ public class VistaJuego extends JPanel {
     
     private JPanel tableroJug, tableroIA;
     private JTabbedPane tableroInfo;
-    
-    private JPanel pnInfoJuego,pnInfoAdicional;
+
+    private JPanel pnInfoJugador, pnInfoJuego;
 
     /**
      * Creates new form VJ
@@ -27,9 +28,11 @@ public class VistaJuego extends JPanel {
         tableroJug = new VistaTablero();
         tableroIA = new VistaTablero();
         tableroInfo = new JTabbedPane();
+        pnInfoJugador = (new InfoJugador());
+        pnInfoJuego = (new InfoPartida());
 
-        this.tableroInfo.addTab("Info. juego", this.pnInfoJuego);
-        this.tableroInfo.addTab("Info. adic", this.pnInfoAdicional);
+        this.tableroInfo.addTab("Info. juego", this.pnInfoJugador);
+        this.tableroInfo.addTab("Info. adic", this.pnInfoJuego);
 
 
         this.add(this.tableroJug);

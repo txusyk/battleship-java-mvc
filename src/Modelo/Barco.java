@@ -10,7 +10,7 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public abstract class Barco {
+public abstract class Barco extends ObjTablero {
 
     protected ParteBarco[] partesBarco;
     protected Escudo escudo;
@@ -127,6 +127,7 @@ public abstract class Barco {
 
 
     /**
+     * 
      * @param x,y
      */
     public void hundir(int x, int y) {
@@ -135,7 +136,9 @@ public abstract class Barco {
             escudo = null;
         } else if (!estaHundido() && escudo == null) {
             for (int i = 0; i < partesBarco.length; i++) {
-                partesBarco[i].setState(new STocado());
+                if (partesBarco[i].contiene(x, y)) {
+                    partesBarco[i].setState(new STocado());
+                }
             }
             hundido = true;
         }
