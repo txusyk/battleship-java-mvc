@@ -12,8 +12,7 @@
 ![logo_preview](https://i.imgur.com/P9xwH3h.png)
 
 ## UI actual 2.0
-![logo_preview](https://i.imgur.com/undefined.png)
-
+![logo_preview](http://i.imgur.com/RUmELvl.png)
 ## UI final
 
 Aún no disponible
