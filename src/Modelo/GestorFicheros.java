@@ -58,10 +58,10 @@ public class GestorFicheros {
     public void readXML(String pDif) {
         try (InputStream resource = GestorFicheros.class.getResourceAsStream("config_IS_battleship.xml")) {
 
-            //File fDif = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/config_IS_battleship.xml");
+            File fDif = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/config_IS_battleship.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document doc = documentBuilder.parse(resource);
+            Document doc = documentBuilder.parse(fDif);
 
             doc.getDocumentElement().normalize();
 
