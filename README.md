@@ -33,6 +33,7 @@
 - **Markdown**: Toda la documentación, tanto en las entregas a vosotros los profesores como lo que hay en Github está escrito integramente en este lenguaje que es 100% compatible con Github y aporta muchísima sencillez a la edición de documentos.
 - **Visual Paradigm**: Gracias a la licencia que provee la Escuela, hemos decidido que todos los diagramas serán realizados con esta herramienta, siguiendo unas normas y estándares.
 - **XML**: Tanto para generar el TestSuite de *TestNG* como para cargar los datos de la inicialización del juego, hemos decidio externalizar los datos para que sea mas fácil acceder a los mismos y modificarlos en caso de ser necesario. De esta forma tambien reducimos los cambios a realizar en caso de que el cliente modifique las especificaciones de la inicialización.
+- **TravisCI**: Utilizamos travis para asegurar el correcto funcionamiento del repositorio y del código que este almacena con cada commit. Para ello, hemos implementado el proyecto con gradle y lo ejecutamos sincronizado con el servidor de TravisCI.
 
 ## Precondiciones de funcionamiento del juego
 
