@@ -11,12 +11,16 @@
 ### UI actual 1.0
 ![logo_preview](https://i.imgur.com/P9xwH3h.png)
 
-## UI actual 2.0
+### UI actual 2.0
 ![logo_preview](http://i.imgur.com/RUmELvl.png)
 ![logo_preview](http://i.imgur.com/6Mwnoup.png)
-## UI final
 
-Aún no disponible
+## UI final
+### Ventana de login
+![Imgur](http://i.imgur.com/GYHycz3.png)
+### Ventana de juego
+![Imgur](http://i.imgur.com/m8XKqAl.png)
+![Imgur](http://i.imgur.com/DFAa4DJ.png)
 
 # Primer Sprint - Battleship
 
