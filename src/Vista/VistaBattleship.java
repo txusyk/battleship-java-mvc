@@ -16,8 +16,8 @@ public class VistaBattleship extends JFrame {
 
 
     public static void main(String args[]) {
-        //lanzarVentanaLogin();
-        lanzarVistaJuego();
+        lanzarVentanaLogin();
+        //lanzarVistaJuego();
     }
 
     private static void lanzarVentanaLogin() {
@@ -44,6 +44,7 @@ public class VistaBattleship extends JFrame {
     }
 
     private static void lanzarVistaJuego(){
+        lanzarPopUpInstruccionesJuego();
         JFrame frame = new JFrame("Battleship");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -64,5 +65,12 @@ public class VistaBattleship extends JFrame {
         frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
         frame.setVisible(true);
+    }
+
+    private static void lanzarPopUpInstruccionesJuego() {
+        JOptionPane.showMessageDialog(null,
+                "Bienvenido al Battleship IS\n. " +
+                        "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
+                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
     }
 }

@@ -1,4 +1,5 @@
-import Modelo.DireccionesArma;
+package Modelo;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

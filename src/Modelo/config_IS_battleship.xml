@@ -14,6 +14,7 @@
             <radar>5000</radar>
             <escudo>5000</escudo>
         </preciosArmas>
+        º
         <barcos>
             <precioBaseReparacion>2500</precioBaseReparacion>
             <precioBaseImpacto>500</precioBaseImpacto>
@@ -29,7 +30,6 @@
             <misilDirig>6</misilDirig>
             <radar>7</radar>
             <escudo>7</escudo>
-            <precioBaseReparacion>5000</precioBaseReparacion>
         </cantidadArmas>
         <preciosArmas>
             <misil>3500</misil>
@@ -52,7 +52,6 @@
             <misilDirig>2</misilDirig>
             <radar>3</radar>
             <escudo>3</escudo>
-            <precioBaseReparacion>10000</precioBaseReparacion>
         </cantidadArmas>
         <preciosArmas>
             <misil>5000</misil>

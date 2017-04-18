@@ -1,5 +1,5 @@
-import Modelo.HerramientasJuego;
-import Modelo.ListaArmas;
+package Modelo;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

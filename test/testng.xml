@@ -3,57 +3,57 @@
 
 <suite name="Suite - Primer Sprint-">
 
-    <test name="AlmacenTest">
+    <test name="Modelo.AlmacenTest">
         <classes>
-            <class name="AlmacenTest"/>
+            <class name="Modelo.AlmacenTest"/>
         </classes>
     </test>
 
-    <test name="HerramientasJuegoFactoryTest">
+    <test name="Modelo.HerramientasJuegoFactoryTest">
         <classes>
-            <class name="HerramientasJuegoFactoryTest"/>
+            <class name="Modelo.HerramientasJuegoFactoryTest"/>
         </classes>
     </test>
 
-    <test name="BarcoFactoryTest">
+    <test name="Modelo.BarcoFactoryTest">
         <classes>
-            <class name="BarcoFactoryTest"/>
+            <class name="Modelo.BarcoFactoryTest"/>
         </classes>
     </test>
 
-    <test name="BarcoTest">
+    <test name="Modelo.BarcoTest">
         <classes>
-            <class name="BarcoTest"/>
+            <class name="Modelo.BarcoTest"/>
         </classes>
     </test>
 
-    <test name="DireccionesArmaTest">
+    <test name="Modelo.DireccionesArmaTest">
         <classes>
-            <class name="DireccionesArmaTest"/>
+            <class name="Modelo.DireccionesArmaTest"/>
         </classes>
     </test>
 
     <test name="GestorFicherosTest">
         <classes>
-            <class name="GestorFicherosTest"/>
+            <class name="Modelo.GestorFicherosTest"/>
         </classes>
     </test>
 
-    <test name="HumanoTest">
+    <test name="Modelo.HumanoTest">
         <classes>
-            <class name="Humano"/>
+            <class name="Modelo.HumanoTest"/>
         </classes>
     </test>
 
-    <test name="IATest">
+    <test name="Modelo.IATest">
         <classes>
-            <class name="IATest"/>
+            <class name="Modelo.IATest"/>
         </classes>
     </test>
 
-    <test name="ListaArmasTest">
+    <test name="Modelo.ListaArmasTest">
         <classes>
-            <class name="ListaArmasTest"/>
+            <class name="Modelo.ListaArmasTest"/>
         </classes>
     </test>
 
