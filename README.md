@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/txusyk/gradle-is-battleship.svg?token=dryu6zQsjtcB9hDhpSk7&branch=master)](https://travis-ci.com/txusyk/gradle-is-battleship)
+
 # Diseño UI
 
 ## Idea inicial
