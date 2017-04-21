@@ -32,7 +32,7 @@ public class InfoJugador extends JPanel {
         this.setBackground(Color.WHITE);
 
         this.dinero = new JLabel("Dinero");
-        this.disp = new JLabel(" disponible");
+        this.disp = new JLabel(" disponible ");
         this.dinero.setHorizontalAlignment(JLabel.RIGHT);
         this.disp.setHorizontalAlignment(JLabel.LEFT);
         Font font = new Font("Times New Roman", 2, 24);
@@ -80,7 +80,7 @@ public class InfoJugador extends JPanel {
         this.misil.setHorizontalAlignment(JLabel.CENTER);
         this.misil.setFont(fArmas);
         this.add(misil);
-        this.cantMisil = new JLabel("");
+        this.cantMisil = new JLabel("-");
         this.cantMisil.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisil.setFont(fArmas);
         this.add(cantMisil);
@@ -92,7 +92,7 @@ public class InfoJugador extends JPanel {
         this.misildirig.setHorizontalAlignment(JLabel.CENTER);
         this.misildirig.setFont(fArmas);
         this.add(misildirig);
-        this.cantMisildirig = new JLabel("");
+        this.cantMisildirig = new JLabel("-");
         this.cantMisildirig.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisildirig.setFont(fArmas);
         this.add(cantMisildirig);
@@ -104,7 +104,7 @@ public class InfoJugador extends JPanel {
         this.radar.setHorizontalAlignment(JLabel.CENTER);
         this.radar.setFont(fArmas);
         this.add(radar);
-        this.cantRadar = new JLabel("");
+        this.cantRadar = new JLabel("-");
         this.cantRadar.setHorizontalAlignment(JLabel.CENTER);
         this.cantRadar.setFont(fArmas);
         this.add(cantRadar);
@@ -116,7 +116,7 @@ public class InfoJugador extends JPanel {
         this.escudo.setHorizontalAlignment(JLabel.CENTER);
         this.escudo.setFont(fArmas);
         this.add(escudo);
-        this.cantEscudo = new JLabel("");
+        this.cantEscudo = new JLabel("-");
         this.cantEscudo.setHorizontalAlignment(JLabel.CENTER);
         this.cantEscudo.setFont(fArmas);
         this.add(cantEscudo);

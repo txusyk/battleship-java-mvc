@@ -48,7 +48,7 @@ public class InfoPartida extends JPanel {
         this.misil.setHorizontalAlignment(JLabel.CENTER);
         this.misil.setFont(fArmas);
         this.add(misil);
-        this.cantMisil = new JLabel("");
+        this.cantMisil = new JLabel("-");
         this.cantMisil.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisil.setFont(fArmas);
         this.add(cantMisil);
@@ -57,7 +57,7 @@ public class InfoPartida extends JPanel {
         this.misildirig.setHorizontalAlignment(JLabel.CENTER);
         this.misildirig.setFont(fArmas);
         this.add(misildirig);
-        this.cantMisildirig = new JLabel("");
+        this.cantMisildirig = new JLabel("-");
         this.cantMisildirig.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisildirig.setFont(fArmas);
         this.add(cantMisildirig);
@@ -67,7 +67,7 @@ public class InfoPartida extends JPanel {
         this.radar.setHorizontalAlignment(JLabel.CENTER);
         this.radar.setFont(fArmas);
         this.add(radar);
-        this.cantRadar = new JLabel("");
+        this.cantRadar = new JLabel("-");
         this.cantRadar.setHorizontalAlignment(JLabel.CENTER);
         this.cantRadar.setFont(fArmas);
         this.add(cantRadar);
@@ -77,7 +77,7 @@ public class InfoPartida extends JPanel {
         this.escudo.setHorizontalAlignment(JLabel.CENTER);
         this.escudo.setFont(fArmas);
         this.add(escudo);
-        this.cantEscudo = new JLabel("");
+        this.cantEscudo = new JLabel("-");
         this.cantEscudo.setHorizontalAlignment(JLabel.CENTER);
         this.cantEscudo.setFont(fArmas);
         this.add(cantEscudo);
@@ -97,7 +97,7 @@ public class InfoPartida extends JPanel {
         this.fragata = new JLabel("Fragatas");
         this.fragata.setHorizontalAlignment(JLabel.CENTER);
         this.fragata.setFont(fArmas);
-        this.cantFragata = new JLabel("");
+        this.cantFragata = new JLabel("-");
         this.cantFragata.setHorizontalAlignment(JLabel.CENTER);
         this.cantFragata.setFont(fArmas);
         this.add(fragata);
@@ -106,7 +106,7 @@ public class InfoPartida extends JPanel {
         this.destructor = new JLabel("Destructores");
         this.destructor.setHorizontalAlignment(JLabel.CENTER);
         this.destructor.setFont(fArmas);
-        this.cantDestr = new JLabel("");
+        this.cantDestr = new JLabel("-");
         this.cantDestr.setHorizontalAlignment(JLabel.CENTER);
         this.cantDestr.setFont(fArmas);
         this.add(destructor);
@@ -115,7 +115,7 @@ public class InfoPartida extends JPanel {
         this.submarino = new JLabel("Submarinos");
         this.submarino.setHorizontalAlignment(JLabel.CENTER);
         this.submarino.setFont(fArmas);
-        this.cantSub = new JLabel("");
+        this.cantSub = new JLabel("-");
         this.cantSub.setHorizontalAlignment(JLabel.CENTER);
         this.cantSub.setFont(fArmas);
         this.add(submarino);
@@ -124,7 +124,7 @@ public class InfoPartida extends JPanel {
         this.portaaviones = new JLabel("Portaaviones");
         this.portaaviones.setHorizontalAlignment(JLabel.CENTER);
         this.portaaviones.setFont(fArmas);
-        this.cantPortaav = new JLabel("");
+        this.cantPortaav = new JLabel("-");
         this.cantPortaav.setHorizontalAlignment(JLabel.CENTER);
         this.cantPortaav.setFont(fArmas);
         this.add(portaaviones);

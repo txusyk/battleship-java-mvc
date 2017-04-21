@@ -19,32 +19,28 @@ public class Flota {
         flota.put("portaaviones", new ListaBarcos("portaaviones"));
     }
 
-    private Iterator<String> getIterator(){
+    private Iterator<String> getIterator() {
         return this.flota.keySet().iterator();
     }
 
-    public Barco getBarcoPorPos(int x, int y){
+    public Barco getBarcoPorPos(int x, int y) {
         boolean enc = false;
         Iterator<String> itr = this.getIterator();
-        while (itr.hasNext() && !enc){
+        while (itr.hasNext() && !enc) {
             String nombreBarco = itr.next();
-            if (flota.get(nombreBarco).buscarPorPos(x,y) != null){
-                return flota.get(nombreBarco).buscarPorPos(x,y);
+            if (flota.get(nombreBarco).buscarPorPos(x, y) != null) {
+                return flota.get(nombreBarco).buscarPorPos(x, y);
             }
         }
         return null;
     }
 
-    public ParteBarco getParteBarcoPorPos(int x, int y) {
-        Barco b = this.getBarcoPorPos(x, y);
-        int i = 0;
-        boolean enc = false;
-        while (i < b.getTamaño() && !enc) {
-            if (b.getParteBarco(i).comprobarPosicion(x, y)) {
-                return b.getParteBarco(i);
-            }
+    public Barco getBarcoPorTipo(String pBarco) {
+        Barco b = null;
+        if (this.flota.get(pBarco) != null) {
+            b = this.flota.get(pBarco).getBarco();
         }
-        return null;
+        return b;
     }
 
     private class ListaBarcos {
@@ -66,6 +62,13 @@ public class Flota {
 
         private void eliminar(Barco pBarco) {
             lb.remove(pBarco);
+        }
+
+        private Barco getBarco() {
+            if (!lb.isEmpty()) {
+                return lb.get(0);
+            }
+            return null;
         }
 
         /**

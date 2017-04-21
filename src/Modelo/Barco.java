@@ -26,6 +26,7 @@ public abstract class Barco extends ObjTablero {
         this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
         this.escudo = null;
         this.hundido = false;
+        this.horientacion = 'h';
     }
 
     public int getTamaño() {

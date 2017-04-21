@@ -37,7 +37,7 @@ public class Tablero {
      * @return devuelve si el barco ha sido posicionado
      */
     public boolean colocarBarco(Barco pBarco, int x, int y) {
-        if (entraBarco(pBarco, x, y)) {
+        if (entraBarco(pBarco, x, y) && (x > 0 && x < 9) && (y > 0 && y < 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     this.tablero[x + i][y] = pBarco.getParteBarco(i);
@@ -68,6 +68,7 @@ public class Tablero {
             boolean enc = false;
             while (i < pBarco.getTamaño() && !enc) {
                 enc = (tablero[x + i][y] instanceof Agua);
+                i++;
             }
             if (enc) {
                 entra = comprobarPosHor(x, y, pBarco);
@@ -77,6 +78,7 @@ public class Tablero {
             boolean enc = false;
             while (i < pBarco.getTamaño() && !enc) {
                 enc = (tablero[x + i][y] instanceof Agua);
+                i++;
             }
             if (enc) {
                 entra = comprobarPosVer(x, y, pBarco);
@@ -110,6 +112,7 @@ public class Tablero {
                     entra = ((tablero[x][y - 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua));
                 }
             }
+            index++;
         }
         return entra;
     }
