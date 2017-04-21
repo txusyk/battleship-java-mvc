@@ -12,51 +12,41 @@
 package Modelo;
 
 import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * Created by Josu on 19/03/2017.
  */
 public class ListaArmas {
 
-    HashMap<String, Stack<HerramientasJuego>> ls;
+    HashMap<String, StackArmas> ls;
 
     public ListaArmas() {
         ls = new HashMap<>();
-        ls.put("bomba", new Stack<>());
-        ls.put("misil", new Stack<>());
-        ls.put("misildirig", new Stack<>());
-        ls.put("radar", new Stack<>());
-        ls.put("escudo", new Stack<>());
+        ls.put("bomba", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumBombas()));
+        ls.put("misil", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumMisiles()));
+        ls.put("misildirig", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumMisilesDirig()));
+        ls.put("radar", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumRadares()));
+        ls.put("escudo", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumEscudos()));
     }
 
     /**
      * Inicializa las armas en base a los valores que recibe del configurador
      */
     public void inicializarArmas() {
-        while (ls.get("bomba").size() < GestorFicheros.getMyGestorFicheros().getNumBombas()) {
-            añadirArma(ArmaFactory.getArmaFactory().crearArma("bomba"));
+        for (String s : ls.keySet()) {
+            int cantArma = GestorFicheros.getMyGestorFicheros().getNumeroArmas(s);
+            while (ls.get(s).getActSize() < cantArma) {
+                ls.get(s).add(ArmaFactory.getArmaFactory().crearArma(s));
+            }
         }
 
-        while (ls.get("misil").size() < GestorFicheros.getMyGestorFicheros().getNumMisiles()) {
-            añadirArma(ArmaFactory.getArmaFactory().crearArma("misil"));
-        }
-
-        while (ls.get("misildirig").size() < GestorFicheros.getMyGestorFicheros().getNumMisilesDirig()) {
-            añadirArma(ArmaFactory.getArmaFactory().crearArma("misildirig"));
-        }
-
-        while (ls.get("radar").size() < GestorFicheros.getMyGestorFicheros().getNumRadares()) {
-            añadirArma(ArmaFactory.getArmaFactory().crearArma("radar"));
-        }
-
-        while (ls.get("escudo").size() < GestorFicheros.getMyGestorFicheros().getNumEscudos()) {
-            añadirArma(ArmaFactory.getArmaFactory().crearArma("escudo"));
-        }
     }
 
     public HerramientasJuego getArma(String pArma) {
-        return ls.get(pArma).pop();
+        if (!ls.get(pArma).isEmpty()) {
+            return ls.get(pArma).pop();
+        }
+        return null;
     }
 
     public HerramientasJuego consultarArma(String pArma) {
@@ -64,7 +54,7 @@ public class ListaArmas {
     }
 
     public int getSize(String pArma) {
-        return ls.get(pArma).size();
+        return ls.get(pArma).);
     }
 
     /**
@@ -74,7 +64,7 @@ public class ListaArmas {
         if (ls.get(getType(pHerramientasJuego)) != null) {
             ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
         } else {
-            ls.put(getType(pHerramientasJuego), new Stack<>());
+            ls.put(getType(pHerramientasJuego), new ListaArmas);
             ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
         }
     }
@@ -82,8 +72,8 @@ public class ListaArmas {
     /**
      * @param pHerramientasJuego
      */
-    public void eliminarArma(HerramientasJuego pHerramientasJuego) {
-        ls.get(getType(pHerramientasJuego)).pop();
+    public void eliminarArma(String pHerramientasJuego) {
+        ls.get(pHerramientasJuego).pop();
     }
 
     /**
@@ -92,7 +82,7 @@ public class ListaArmas {
      */
     private String getType(HerramientasJuego pHerramientasJuego) {
         String type = String.valueOf(pHerramientasJuego.getClass());
-        String[] arrAux = type.split(" ");
+        String[] arrAux = type.split("\\.");
         type = arrAux[1].toLowerCase();
         return type;
     }

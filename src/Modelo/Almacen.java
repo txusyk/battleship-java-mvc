@@ -46,10 +46,7 @@ public class Almacen {
      * @return boolean
      */
     private boolean existeArma(String pArma) {
-        if (this.existencias.consultarArma(pArma.toLowerCase()) != null) {
-            return true;
-        }
-        return false;
+        return this.existencias.consultarArma(pArma.toLowerCase()) != null;
     }
 
     /**

@@ -40,7 +40,6 @@ public class TableroTest {
     public void testGetPosicion() throws Exception {
         Assert.assertTrue(tab1.getPosicion(2, 2) instanceof ParteBarco);
         Assert.assertFalse(tab1.getPosicion(2, 3) instanceof Agua);
-
     }
 
 }

@@ -309,44 +309,63 @@ public class GestorFicheros {
 
     }
 
-    public int getPrecioMisiles() {
-        return precioMisiles;
+    public int getPrecioArma(String pArma) {
+        if (pArma.equalsIgnoreCase("misil")) {
+            return this.precioMisiles;
+        }
+        if (pArma.equalsIgnoreCase("misildirig")) {
+            return this.precioMisilesDirig;
+        }
+        if (pArma.equalsIgnoreCase("radar")) {
+            return this.precioRadares;
+        }
+        if (pArma.equalsIgnoreCase("escudo")) {
+            return this.precioEscudos;
+        } else {
+            return -1;
+        }
     }
 
-    public int getPrecioMisilesDirig() {
-        return precioMisilesDirig;
+    public int getNumeroArmas(String pArma) {
+        if (pArma.equalsIgnoreCase("bomba")) {
+            return this.numBombas;
+        }
+        if (pArma.equalsIgnoreCase("misil")) {
+            return this.numMisiles;
+        }
+        if (pArma.equalsIgnoreCase("misildirig")) {
+            return this.numMisilesDirig;
+        }
+        if (pArma.equalsIgnoreCase("radar")) {
+            return this.numRadares;
+        }
+        if (pArma.equalsIgnoreCase("escudo")) {
+            return this.numEscudos;
+        } else {
+            return -1;
+        }
     }
 
-    public int getPrecioRadares() {
-        return precioRadares;
-    }
+    public int getNumBarco(String pBarco) {
+        if (pBarco.equalsIgnoreCase("fragata")) {
+            return this.numFrag;
+        }
+        if (pBarco.equalsIgnoreCase("destructor")) {
+            return this.numDestr;
+        }
+        if (pBarco.equalsIgnoreCase("submarino")) {
+            return this.numSub;
+        }
+        if (pBarco.equalsIgnoreCase("portaaviones")) {
+            return this.numPortaav;
+        } else {
+            return -1;
+        }
 
-    public int getPrecioEscudos() {
-        return precioEscudos;
     }
 
     public int obtenerPrecioReparacion() {
         return precioBaseReparacion;
-    }
-
-    public int getNumBombas() {
-        return numBombas;
-    }
-
-    public int getNumMisiles() {
-        return numMisiles;
-    }
-
-    public int getNumMisilesDirig() {
-        return numMisilesDirig;
-    }
-
-    public int getNumRadares() {
-        return numRadares;
-    }
-
-    public int getNumEscudos() {
-        return numEscudos;
     }
 
     public int getPrecioBaseReparacion() {
@@ -361,20 +380,5 @@ public class GestorFicheros {
         return dineroInicial;
     }
 
-    public int getNumFrag() {
-        return numFrag;
-    }
-
-    public int getNumDestr() {
-        return numDestr;
-    }
-
-    public int getNumSub() {
-        return numSub;
-    }
-
-    public int getNumPortaav() {
-        return numPortaav;
-    }
 }
 

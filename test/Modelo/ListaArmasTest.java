@@ -2,6 +2,7 @@ package Modelo;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,11 @@ import org.testng.annotations.Test;
 public class ListaArmasTest {
 
     ListaArmas la;
+
+    @BeforeClass
+    public void inicializarGestorFicheros() {
+        GestorFicheros.getMyGestorFicheros().readXML("facil");
+    }
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -48,12 +54,15 @@ public class ListaArmasTest {
 
     @Test
     public void testEliminarArma() throws Exception {
+        int valorPrev = la.getSize("bomba ");
+        la.eliminarArma("bomba");
+        Assert.assertTrue(valorPrev > la.getSize("bomba"));
 
     }
 
     private String getType(HerramientasJuego pHerramientasJuego) {
         String type = String.valueOf(pHerramientasJuego.getClass());
-        String[] arrAux = type.split(" ");
+        String[] arrAux = type.split("\\.");
         type = arrAux[1].toLowerCase();
         return type;
     }

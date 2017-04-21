@@ -115,15 +115,7 @@ public abstract class Barco extends ObjTablero {
      * @return devuelve si esta hundido el barco
      */
     private boolean estaHundido() {
-        boolean sink = false;
-        int i = 0;
-        while (i < partesBarco.length) {
-            if (partesBarco[i].getEstado() instanceof STocado) {
-                sink = true;
-            }
-            i++;
-        }
-        return sink;
+        return hundido;
     }
 
 
