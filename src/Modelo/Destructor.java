@@ -15,9 +15,10 @@ public class Destructor extends Barco {
 
     public Destructor() {
         super();
-        this.tamaño = GestorFicheros.getMyGestorFicheros().getNumDestr();
+        this.tamaño = 2;
         this.partesBarco = new ParteBarco[tamaño];
-        for (int i=0;i<GestorFicheros.getMyGestorFicheros().getNumDestr();i++){
+        for (int i = 0; i < tamaño; i++) {
+            partesBarco[i] = new ParteBarco(0, 0);
             partesBarco[i].setState(new SNormal());
         }
     }

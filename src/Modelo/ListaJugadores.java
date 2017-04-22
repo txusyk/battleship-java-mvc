@@ -17,7 +17,7 @@ public class ListaJugadores {
      */
     public static ListaJugadores getMyListaJug() {
         if (myListaJug == null) {
-            return myListaJug;
+            myListaJug = new ListaJugadores();
         }
         return myListaJug;
     }
@@ -30,6 +30,14 @@ public class ListaJugadores {
         listaJug[1] = new IA();
     }
 
+    public Jugador getHumano() {
+        return listaJug[0];
+    }
+
+    public Jugador getIA() {
+        return listaJug[1];
+    }
+
     /**
      * @return jugActivo
      */
@@ -38,6 +46,16 @@ public class ListaJugadores {
             return listaJug[1];
         }
         return listaJug[0];
+    }
+
+    public void cambiarJugActivo() {
+        if (listaJug[0].isTurno()) {
+            listaJug[0].setTurno(false);
+            listaJug[1].setTurno(true);
+        } else {
+            listaJug[1].setTurno(false);
+            listaJug[0].setTurno(true);
+        }
     }
 
 

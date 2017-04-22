@@ -27,4 +27,5 @@ public class StackArmas extends Stack {
     public void add(HerramientasJuego pArma) {
         this.stack.add(pArma);
     }
+
 }

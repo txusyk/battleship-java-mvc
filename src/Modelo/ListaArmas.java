@@ -22,11 +22,11 @@ public class ListaArmas {
 
     public ListaArmas() {
         ls = new HashMap<>();
-        ls.put("bomba", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumBombas()));
-        ls.put("misil", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumMisiles()));
-        ls.put("misildirig", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumMisilesDirig()));
-        ls.put("radar", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumRadares()));
-        ls.put("escudo", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumEscudos()));
+        ls.put("bomba", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("bomba")));
+        ls.put("misil", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("misil")));
+        ls.put("misildirig", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("misildirig")));
+        ls.put("radar", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("radar")));
+        ls.put("escudo", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("escudo")));
     }
 
     /**
@@ -35,7 +35,7 @@ public class ListaArmas {
     public void inicializarArmas() {
         for (String s : ls.keySet()) {
             int cantArma = GestorFicheros.getMyGestorFicheros().getNumeroArmas(s);
-            while (ls.get(s).getActSize() < cantArma) {
+            while (getSize(s) < cantArma) {
                 ls.get(s).add(ArmaFactory.getArmaFactory().crearArma(s));
             }
         }
@@ -44,17 +44,17 @@ public class ListaArmas {
 
     public HerramientasJuego getArma(String pArma) {
         if (!ls.get(pArma).isEmpty()) {
-            return ls.get(pArma).pop();
+            return (HerramientasJuego) ls.get(pArma).pop();
         }
         return null;
     }
 
     public HerramientasJuego consultarArma(String pArma) {
-        return ls.get(pArma).peek();
+        return (HerramientasJuego) ls.get(pArma).peek();
     }
 
     public int getSize(String pArma) {
-        return ls.get(pArma).);
+        return ls.get(pArma).getActSize();
     }
 
     /**
@@ -62,9 +62,6 @@ public class ListaArmas {
      */
     public void añadirArma(HerramientasJuego pHerramientasJuego) {
         if (ls.get(getType(pHerramientasJuego)) != null) {
-            ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
-        } else {
-            ls.put(getType(pHerramientasJuego), new ListaArmas);
             ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
         }
     }

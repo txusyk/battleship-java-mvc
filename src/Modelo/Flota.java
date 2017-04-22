@@ -108,21 +108,9 @@ public class Flota {
          * @param pTipo
          */
         private void inicializarPorTipo(String pTipo) {
-            if (pTipo.equalsIgnoreCase("portaaviones")) {
-                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumFrag(); i++) {
-                    añadir(new Fragata());
-                }
-            } else if (pTipo.equalsIgnoreCase("submarino")) {
-                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumSub(); i++) {
-                    añadir(new Submarino());
-                }
-            } else if (pTipo.equalsIgnoreCase("destructor")) {
-                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumDestr(); i++) {
-                    añadir(new Destructor());
-                }
-            } else if (pTipo.equalsIgnoreCase("fragata")) {
-                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumPortaav(); i++) {
-                    añadir(new Portaaviones());
+            if (pTipo.equalsIgnoreCase("fragata") || pTipo.equalsIgnoreCase("submarino") || pTipo.equalsIgnoreCase("destructor") || pTipo.equalsIgnoreCase("portaaviones")) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumeroArmas(pTipo); i++) {
+                    añadir(BarcoFactory.getBarcoFactory().crearBarco(pTipo));
                 }
             }
         }

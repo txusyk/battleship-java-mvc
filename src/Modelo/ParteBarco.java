@@ -20,6 +20,7 @@ public class ParteBarco extends Barco {
     public ParteBarco(int x, int y) {
         posicion[0] = x;
         posicion[1] = y;
+        estado = new SNormal();
     }
 
     /**
@@ -38,10 +39,14 @@ public class ParteBarco extends Barco {
     }
 
     /**
-     * @param posicion
+     * @param x
+     * @param y
      */
-    public void setPosicion(int[] posicion) {
-        this.posicion = posicion;
+    public void setPosicion(int x, int y) {
+        int[] pos = new int[2];
+        pos[0] = x;
+        pos[1] = y;
+        this.posicion = pos;
     }
 
     /**

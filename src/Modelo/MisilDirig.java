@@ -15,7 +15,7 @@ public class MisilDirig extends Arma {
 
     public MisilDirig() {
         super();
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioMisilesDirig();
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma("misildirig");
     }
 
     @Override

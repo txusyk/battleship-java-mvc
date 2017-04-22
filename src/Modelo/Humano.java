@@ -22,6 +22,7 @@ public class Humano extends Jugador {
     public Humano(String pNombre) {
         super();
         this.nombre = pNombre;
+        this.turno = true;
     }
 
     public String getNombre() {

@@ -13,23 +13,25 @@ package Modelo;
 
 public abstract class Jugador {
 
+    protected boolean turno;
     private int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     private ListaArmas lArmas;
-    private Radar radar;
     private Flota flota;
     private Tablero tablero;
-    private boolean turno;
 
 
     public Jugador() {
         this.flota = new Flota();
         this.lArmas = new ListaArmas();
-        this.radar = new Radar();
         this.tablero = new Tablero(10,10);
     }
 
     public boolean isTurno() {
         return turno;
+    }
+
+    public void setTurno(boolean turno) {
+        this.turno = turno;
     }
 
     public Tablero getTablero() {

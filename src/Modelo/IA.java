@@ -19,6 +19,7 @@ public class IA extends Jugador {
     public IA() {
         super();
         this.dificultad = Battleship.getMyBattleship().getDificultad();
+        this.turno = false;
     }
 
     public String getDificultad() {

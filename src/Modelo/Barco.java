@@ -79,7 +79,7 @@ public abstract class Barco extends ObjTablero {
         if ('H' == direccion) {
             int x = pivote[0], i = 0;
             while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote);
+                partesBarco[i].setPosicion(pivote[0], pivote[1]);
                 x++;
                 pivote[0] = x;
                 i++;
@@ -88,7 +88,7 @@ public abstract class Barco extends ObjTablero {
         } else {
             int y = pivote[1], i = 0;
             while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote);
+                partesBarco[i].setPosicion(pivote[0], pivote[1]);
                 y++;
                 i++;
             }

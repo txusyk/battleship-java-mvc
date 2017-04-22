@@ -59,8 +59,6 @@ public class Tablero {
      * @param y
      * @return si el barco puede ser posicionado
      */
-
-    //comprobar las pos en si
     private boolean entraBarco(Barco pBarco, int x, int y) {
         boolean entra = true;
         if (pBarco.getHorientacion() == 'h') {
@@ -145,6 +143,10 @@ public class Tablero {
         return entra;
     }
 
+    /**
+     * @param x
+     * @param y
+     */
     public void comprobarAlrededor(int x, int y) {      //Metodo usado por el radar para comprobar las posiciones.
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
@@ -164,6 +166,11 @@ public class Tablero {
         return this.tablero[x][y] instanceof ParteBarco;
     }
 
+    /**
+     * @param x
+     * @param y
+     * @return
+     */
     public ObjTablero getPosicion(int x, int y){
         return this.tablero[x][y];
     }
