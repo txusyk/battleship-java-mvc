@@ -9,9 +9,9 @@
         </classes>
     </test>
 
-    <test name="Modelo.HerramientasJuegoFactoryTest">
+    <test name="Modelo.ArmaFactoryTest">
         <classes>
-            <class name="Modelo.HerramientasJuegoFactoryTest"/>
+            <class name="Modelo.ArmaFactoryTest"/>
         </classes>
     </test>
 
@@ -27,6 +27,12 @@
         </classes>
     </test>
 
+    <test name="Modelo.BombaTest">
+        <classes>
+            <class name="Modelo.BombaTest"/>
+        </classes>
+    </test>
+
     <test name="Modelo.DireccionesArmaTest">
         <classes>
             <class name="Modelo.DireccionesArmaTest"/>
@@ -36,6 +42,12 @@
     <test name="GestorFicherosTest">
         <classes>
             <class name="Modelo.GestorFicherosTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.HerramientasJuegoFactoryTest">
+        <classes>
+            <class name="Modelo.HerramientasJuegoFactoryTest"/>
         </classes>
     </test>
 
@@ -54,6 +66,48 @@
     <test name="Modelo.ListaArmasTest">
         <classes>
             <class name="Modelo.ListaArmasTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.ListaBarcosTest">
+        <classes>
+            <class name="Modelo.ListaBarcosTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.ListaJugadoresTest">
+        <classes>
+            <class name="Modelo.ListaJugadoresTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.MisilDirigTest">
+        <classes>
+            <class name="Modelo.MisilDirigTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.ObjTableroTest">
+        <classes>
+            <class name="Modelo.ObjTableroTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.ParteBarcoTest">
+        <classes>
+            <class name="Modelo.ParteBarcoTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.RadarTest">
+        <classes>
+            <class name="Modelo.RadarTest"/>
+        </classes>
+    </test>
+
+    <test name="Modelo.TableroTest">
+        <classes>
+            <class name="Modelo.TableroTest"/>
         </classes>
     </test>
 

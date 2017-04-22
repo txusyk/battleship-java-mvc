@@ -27,4 +27,11 @@ public abstract class HerramientasJuego {
         return this.precio;
     }
 
+    protected String getType(HerramientasJuego hj) {
+        String type = String.valueOf(hj.getClass());
+        String[] arrAux = type.split("\\.");
+        type = arrAux[1].toLowerCase();
+        return type;
+    }
+
 }

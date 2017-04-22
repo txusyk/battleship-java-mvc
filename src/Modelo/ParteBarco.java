@@ -38,6 +38,11 @@ public class ParteBarco extends Barco {
         this.estado = pEstado;
     }
 
+
+    public int[] getPosicion() {
+        return posicion;
+    }
+
     /**
      * @param x
      * @param y

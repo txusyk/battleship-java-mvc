@@ -53,7 +53,7 @@ public class HerramientasJuegoFactoryTest {
 
     private String getType(HerramientasJuego pHerramientasJuego) {
         String type = String.valueOf(pHerramientasJuego.getClass());
-        String[] arrAux = type.split(" ");
+        String[] arrAux = type.split("\\.");
         type = arrAux[1].toLowerCase();
         return type;
     }

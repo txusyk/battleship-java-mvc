@@ -42,12 +42,16 @@ public abstract class Jugador {
         return flota;
     }
 
+    public ListaArmas getListaArmas() {
+        return lArmas;
+    }
+
     /**
      * @param pCantidad
      * @return boolean
      */
     protected boolean decrementarDinero(int pCantidad) {
-        if (dinero > pCantidad) {
+        if (dinero >= pCantidad) {
             dinero -= pCantidad;
             return true;
         }
@@ -55,12 +59,13 @@ public abstract class Jugador {
     }
 
     /**
+     * añade el arma deseada a la lista de armas del jugador
      * @param pArma
      */
-    protected void comprarArma(String pArma) {
+    public void comprarArma(String pArma) {
         if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
             lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
-            this.decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
+            decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
         }
     }
 
@@ -75,7 +80,7 @@ public abstract class Jugador {
 
     private String getType(Barco pBarco) {
         String type = String.valueOf(pBarco.getClass());
-        String[] arrAux = type.split(" ");
+        String[] arrAux = type.split("\\.");
         type = arrAux[1].toLowerCase();
         return type;
     }

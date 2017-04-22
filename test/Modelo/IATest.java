@@ -1,4 +1,5 @@
-package Modelo;/*
+package Modelo;
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2017 Josu
@@ -21,7 +22,7 @@ import org.testng.annotations.Test;
  */
 public class IATest {
 
-    IA ia1, ia2;
+    IA h1;
 
     @BeforeClass
     public void leerXML() {
@@ -30,17 +31,17 @@ public class IATest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        ia1 = new IA();
+        h1 = new IA();
     }
 
     @AfterMethod
     public void tearDown() throws Exception {
-        ia1 = null;
+        h1 = null;
     }
 
     @Test
     public void testGetDificultad() throws Exception {
-        Assert.assertEquals("facil", ia1.getDificultad(), "La dificiltad deberia de ser 'facil'");
+        Assert.assertEquals("facil", h1.getDificultad(), "La dificiltad deberia de ser 'facil'");
     }
 
     @Test
@@ -52,6 +53,39 @@ public class IATest {
     @Test
     public void testColocarBarcosIA() throws Exception {
 
+    }
+
+
+    @Test
+    public void testIsTurno() throws Exception {
+        Assert.assertEquals(false, h1.isTurno());
+    }
+
+    @Test
+    public void testGetTablero() throws Exception {
+        Assert.assertNotNull(h1.getTablero());
+    }
+
+    @Test
+    public void testGetFlota() throws Exception {
+        Assert.assertNotNull(h1.getFlota());
+    }
+
+    @Test
+    public void testGetListaArmas() throws Exception {
+        Assert.assertNotNull(h1.getListaArmas());
+    }
+
+
+    @Test
+    public void testDecrementarDinero() throws Exception {
+        Assert.assertTrue(h1.decrementarDinero(GestorFicheros.getMyGestorFicheros().getDineroInicial()));
+    }
+
+    @Test
+    public void testComprarArmas() throws Exception {
+        h1.comprarArma("bomba");
+        Assert.assertEquals(1, h1.getListaArmas().getSize("bomba"));
     }
 
 }

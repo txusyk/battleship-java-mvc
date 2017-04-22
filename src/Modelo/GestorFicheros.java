@@ -96,7 +96,7 @@ public class GestorFicheros {
 
                 Node nJugador = ((Element) nNode).getElementsByTagName("jugador").item(0);
                 if (nJugador.getNodeType() == Node.ELEMENT_NODE) {
-                    dineroInicial = Integer.parseInt(((Element) nBarcos).getElementsByTagName("precioBaseReparacion").item(0).getTextContent());
+                    dineroInicial = Integer.parseInt(((Element) nJugador).getElementsByTagName("dineroInicial").item(0).getTextContent());
                 }
 
                 Node nNodeBarcos = doc.getElementsByTagName("numBarcos").item(0);

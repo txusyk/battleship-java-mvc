@@ -28,7 +28,6 @@ public class BarcoFactory {
      * return @Modelo.Barco
      */
     public Barco crearBarco(String pTipoBarco) {
-
         Barco b = null;
         if (pTipoBarco.equalsIgnoreCase("portaaviones")) {
             b = new Portaaviones();

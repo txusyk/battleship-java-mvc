@@ -15,18 +15,41 @@ import java.util.Random;
 
 public class Radar extends HerramientasJuego {
 
+    /**
+     * posición actual del radar (x,y)
+     */
     private int x;
     private int y;
 
+    /**
+     * constructora del radar , lo colocará primeramente de forma aleatoria en el mapa
+     */
     public Radar() {
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma("radar");
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
         Random randomGenerator = new Random();
         this.x = randomGenerator.nextInt(10);
         this.y = randomGenerator.nextInt(10);
     }
 
     /**
+     * devuelve la posicion x
+     * @return
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * devuelve la posicion y
      *
+     * @return
+     */
+    public int getY() {
+        return y;
+    }
+
+    /**
+     *metodo que  colocará el radar y descubrira las posiciones colindantes
      *
      */
     public void accion(int x, int y) {
@@ -34,6 +57,11 @@ public class Radar extends HerramientasJuego {
         consultarRadar();
     }
 
+    /**
+     * colocar la posición del radar
+     * @param posX
+     * @param posY
+     */
     public void colocarRadar(int posX, int posY){
         if (posX<10 && posX>0) {
             x = posX;
@@ -43,6 +71,9 @@ public class Radar extends HerramientasJuego {
         }
     }
 
+    /**
+     * metodo para revelar las posiciones colindantes al radar
+     */
     public void consultarRadar(){
         ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().comprobarAlrededor(x, y);
     }

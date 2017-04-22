@@ -54,7 +54,7 @@ public class ListaArmasTest {
 
     @Test
     public void testEliminarArma() throws Exception {
-        int valorPrev = la.getSize("bomba ");
+        int valorPrev = la.getSize("bomba");
         la.eliminarArma("bomba");
         Assert.assertTrue(valorPrev > la.getSize("bomba"));
 

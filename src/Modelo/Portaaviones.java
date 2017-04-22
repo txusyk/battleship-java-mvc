@@ -18,6 +18,7 @@ public class Portaaviones extends Barco {
         this.tamaño = 4;
         this.partesBarco = new ParteBarco[tamaño];
         for (int i=0;i<this.partesBarco.length;i++){
+            partesBarco[i] = new ParteBarco(0, 0);
             partesBarco[i].setState(new SNormal());
         }
     }

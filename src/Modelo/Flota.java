@@ -109,7 +109,7 @@ public class Flota {
          */
         private void inicializarPorTipo(String pTipo) {
             if (pTipo.equalsIgnoreCase("fragata") || pTipo.equalsIgnoreCase("submarino") || pTipo.equalsIgnoreCase("destructor") || pTipo.equalsIgnoreCase("portaaviones")) {
-                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumeroArmas(pTipo); i++) {
+                for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumBarco(pTipo); i++) {
                     añadir(BarcoFactory.getBarcoFactory().crearBarco(pTipo));
                 }
             }

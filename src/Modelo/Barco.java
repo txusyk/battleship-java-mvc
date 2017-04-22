@@ -27,6 +27,11 @@ public abstract class Barco extends ObjTablero {
         this.escudo = null;
         this.hundido = false;
         this.horientacion = 'h';
+        this.partesBarco = new ParteBarco[this.tamaño];
+    }
+
+    public boolean getHundido() {
+        return hundido;
     }
 
     public int getTamaño() {
@@ -39,6 +44,10 @@ public abstract class Barco extends ObjTablero {
 
     public char getHorientacion() {
         return this.horientacion;
+    }
+
+    public void setHorientacion(char horientacion) {
+        this.horientacion = horientacion;
     }
 
     /**
@@ -66,6 +75,7 @@ public abstract class Barco extends ObjTablero {
         int i = 0;
         while (i < partesBarco.length && !enc) {
             enc = partesBarco[i].comprobarPosicion(x, y);
+            i++;
         }
         return enc;
     }
@@ -114,23 +124,36 @@ public abstract class Barco extends ObjTablero {
     /**
      * @return devuelve si esta hundido el barco
      */
-    private boolean estaHundido() {
-        return hundido;
+    private void comprobarSiHundido() {
+        int i = 0;
+        boolean estaHundido = true;
+        while (i < partesBarco.length && estaHundido) {
+            if (partesBarco[i].getEstado() instanceof SNormal) {
+                estaHundido = false;
+            }
+            i++;
+        }
+        hundido = estaHundido;
     }
-
 
     /**
      * 
      * @param x,y
      */
     public void hundir(int x, int y) {
+        boolean hundir = false;
         if (escudo != null) {
             escudo.destruir();
             escudo = null;
-        } else if (!estaHundido() && escudo == null) {
+        } else if (!getHundido() && escudo == null && !hundir) {
             for (int i = 0; i < partesBarco.length; i++) {
                 if (partesBarco[i].contiene(x, y)) {
-                    partesBarco[i].setState(new STocado());
+                    hundir = true;
+                }
+            }
+            if (hundir) {
+                for (ParteBarco pb : partesBarco) {
+                    pb.setState(new STocado());
                 }
             }
             hundido = true;
@@ -146,7 +169,7 @@ public abstract class Barco extends ObjTablero {
             if (escudo.recibirImpacto()) {
                 escudo = null;
             }
-        } else if (!estaHundido() && escudo == null) {
+        } else if (!getHundido() && escudo == null) {
             boolean enc = false;
             int i = 0;
             while (i < partesBarco.length && !enc) {
@@ -159,9 +182,7 @@ public abstract class Barco extends ObjTablero {
             if (enc) {
                 if (partesBarco[i].getEstado() instanceof SNormal) {
                     partesBarco[i].setState(new STocado());
-                    if (estaHundido()) {
-                        hundido = true;
-                    }
+                    comprobarSiHundido();
                 } else {
                     //gestionar cuando se intenta disparar a una posicion ya tocada
                 }

@@ -38,8 +38,9 @@ public class TableroTest {
 
     @Test
     public void testGetPosicion() throws Exception {
+        tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 2, 2);
         Assert.assertTrue(tab1.getPosicion(2, 2) instanceof ParteBarco);
-        Assert.assertFalse(tab1.getPosicion(2, 3) instanceof Agua);
+        Assert.assertTrue(tab1.getPosicion(2, 3) instanceof Agua);
     }
 
 }

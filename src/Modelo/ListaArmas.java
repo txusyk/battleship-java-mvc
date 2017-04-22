@@ -34,9 +34,9 @@ public class ListaArmas {
      */
     public void inicializarArmas() {
         for (String s : ls.keySet()) {
-            int cantArma = GestorFicheros.getMyGestorFicheros().getNumeroArmas(s);
+            int cantArma = ls.get(s).getMaxSize();
             while (getSize(s) < cantArma) {
-                ls.get(s).add(ArmaFactory.getArmaFactory().crearArma(s));
+                ls.get(s).push(ArmaFactory.getArmaFactory().crearArma(s));
             }
         }
 
@@ -54,7 +54,7 @@ public class ListaArmas {
     }
 
     public int getSize(String pArma) {
-        return ls.get(pArma).getActSize();
+        return ls.get(pArma).size();
     }
 
     /**
