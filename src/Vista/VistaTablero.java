@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 public class VistaTablero extends JPanel {
 
     private static final String COLS = "ABCDEFGHIJ";
-    private JButton[][] casillas = new JButton[10][10];
+    private JButton[][] casillas = new VistaCasilla[10][10];
 
     public VistaTablero() {
         initializeGui();
@@ -25,7 +25,7 @@ public class VistaTablero extends JPanel {
         Insets buttonMargin = new Insets(0, 0, 0, 0);
         for (int i = 0; i < casillas.length; i++) {
             for (int j = 0; j < casillas[i].length; j++) {
-                JButton b = new JButton();
+                VistaCasilla b = new VistaCasilla();
                 b.setMargin(buttonMargin);
                 // fijamos el tamaño a traves de una imagen transparente
                 ImageIcon icon = new ImageIcon(

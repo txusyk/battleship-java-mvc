@@ -6,12 +6,16 @@ import java.awt.*;
 /**
  * Created by Josu on 31/03/2017.
  */
-public class VistaBattleship extends JFrame {
+public class VistaBattleship {
 
     private static VistaBattleship myVb = new VistaBattleship();
     private JMenuBar barraLogin, barraJuego;
-    private JMenu archivo, informacion, infoJuego, partida, archivoLogin;
+    private JMenu archivo, informacion, infoJuego, partida;
     private JMenuItem salir, reiniciar, cambiarDif, acercaLogin, acercaDe, reglasJuego, cargarPartida, guardarPartida;
+
+    private JFrame frame;
+
+    private boolean tableroActivo;
 
 
     private VistaBattleship() {
@@ -21,7 +25,7 @@ public class VistaBattleship extends JFrame {
 
     public static void main(String args[]) {
         //VistaBattleship.myVb.lanzarVentanaLogin();
-        VistaBattleship.myVb.lanzarVistaJuego();
+        VistaBattleship.myVb.lanzarVistaImagenBienvenida();
     }
 
     private static void lanzarPopUpInstruccionesJuego() {
@@ -31,35 +35,30 @@ public class VistaBattleship extends JFrame {
                         "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
     }
 
+    private void inicializarVentana(String pNombreVentana) {
+        frame = new JFrame("User's login/registration");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
     public void lanzarVentanaLogin() {
-        JFrame frame = new JFrame("User's login/registration");
+        inicializarVentana("Ventana de login/registro");
         frame.setJMenuBar(barraLogin);
         frame.setSize(300, 270);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new VistaLogin().getVistaLogin();
         frame.add(panel);
 
         frame.setResizable(false);
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = frame.getSize(); //Tamaño del frame actual (ancho x alto)
-        if (frameSize.height > screenSize.height) {
-            frameSize.height = screenSize.height;
-        }
-        if (frameSize.width > screenSize.width) {
-            frameSize.width = screenSize.width;
-        }
-        frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+        centrarVentana();
 
         frame.setVisible(true);
     }
 
     public void lanzarVistaJuego() {
         lanzarPopUpInstruccionesJuego();
-        JFrame frame = new JFrame("Battleship");
+        inicializarVentana("Battleship");
         frame.setJMenuBar(barraJuego);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new VistaJuego();
         frame.setSize(panel.getMinimumSize().width,panel.getMinimumSize().height);
@@ -67,6 +66,38 @@ public class VistaBattleship extends JFrame {
         frame.pack();
         frame.setResizable(true);
 
+        centrarVentana();
+
+        frame.setVisible(true);
+    }
+
+    public void lanzarVistaImagenBienvenida() {
+        frame = new JFrame();
+
+        frame.getContentPane().setLayout(null);
+        frame.getContentPane().setBackground(Color.WHITE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(900, 615));
+        frame.setMinimumSize(new Dimension(900, 615));
+        frame.setResizable(false);
+        frame.pack();
+
+        centrarVentana();
+
+        MainMenu mainM = new MainMenu(frame);
+        mainM.loadTitleScreen();
+
+
+        frame.setLayout(null);
+        while (mainM.isImageVisible()) {
+        }
+        frame.setVisible(false);
+
+
+        lanzarVistaJuego();
+    }
+
+    private void centrarVentana() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = frame.getSize(); //Tamaño del frame actual (ancho x alto)
         if (frameSize.height > screenSize.height) {
@@ -76,8 +107,6 @@ public class VistaBattleship extends JFrame {
             frameSize.width = screenSize.width;
         }
         frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-
-        frame.setVisible(true);
     }
 
     private void crearBarraMenu() {
@@ -85,7 +114,6 @@ public class VistaBattleship extends JFrame {
         barraJuego = new JMenuBar();
 
         archivo = new JMenu("Archivo");
-        archivoLogin = new JMenu("Archivo");
         informacion = new JMenu("Informacion");
         infoJuego = new JMenu("Inf. de juego");
         partida = new JMenu("Partida");
@@ -100,15 +128,14 @@ public class VistaBattleship extends JFrame {
         guardarPartida = new JMenuItem("Guardar partida");
 
 
-        barraLogin.add(archivoLogin);
         barraLogin.add(informacion);
-        archivoLogin.add(salir);
         informacion.add(acercaLogin);
         informacion.add(acercaDe);
 
         barraJuego.add(archivo);
         barraJuego.add(infoJuego);
         barraJuego.add(partida);
+        archivo.add(salir);
         infoJuego.add(reglasJuego);
         infoJuego.add(acercaDe);
         partida.add(cambiarDif);
