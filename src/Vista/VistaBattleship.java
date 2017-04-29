@@ -1,7 +1,10 @@
 package Vista;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Josu on 31/03/2017.
@@ -72,6 +75,7 @@ public class VistaBattleship {
     }
 
     public void lanzarVistaImagenBienvenida() {
+        lanzarSonido();
         frame = new JFrame();
 
         frame.getContentPane().setLayout(null);
@@ -94,7 +98,21 @@ public class VistaBattleship {
         frame.setVisible(false);
 
 
-        lanzarVistaJuego();
+        lanzarVistaInicializacionBarcos();
+    }
+
+    private void lanzarVistaInicializacionBarcos() {
+        inicializarVentana("Inicializacion de barcos");
+
+        JPanel panel = new VistaInicializacionBarcos();
+        frame.setSize(panel.getMinimumSize().width, panel.getMinimumSize().height);
+        frame.add(panel);
+        frame.pack();
+        frame.setResizable(true);
+
+        centrarVentana();
+
+        frame.setVisible(true);
     }
 
     private void centrarVentana() {
@@ -144,5 +162,23 @@ public class VistaBattleship {
         partida.add(reiniciar);
     }
 
+    private void lanzarSonido() {
+        try {
+            // Open an audio input stream.
+            URL url = this.getClass().getClassLoader().getResource("drunken.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            Clip clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

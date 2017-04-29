@@ -1,44 +1,49 @@
 package Vista;
 
 import javax.swing.*;
+import java.net.URL;
 
+/**
+ * Created by Josu on 23/04/2017.
+ */
 public class VistaImagenBienvenida {
 
-    private JFrame window;
-    private ImageIcon backgroundImageIcon;
-    private JLabel bkgImageContainer;
-    private volatile boolean isImageVisible;
+    private JFrame frame;
+    private ImageIcon imagenFondo;
+    private JLabel contenedorImagen;
+    private volatile boolean isImagenFondoVisible;
 
     public VistaImagenBienvenida(JFrame theWindow) {
-        window = theWindow;
-        backgroundImageIcon = new ImageIcon("Title.png");
-        bkgImageContainer = new JLabel(backgroundImageIcon);
-        isImageVisible = true;
+        frame = theWindow;
+        URL url = this.getClass().getClassLoader().getResource("Title.png");
+        imagenFondo = new ImageIcon(url);
+        contenedorImagen = new JLabel(imagenFondo);
+        isImagenFondoVisible = true;
     }
 
     public void loadTitleScreen() {
-        bkgImageContainer.setSize(window.getContentPane().getWidth(),
-                window.getContentPane().getHeight());
-        bkgImageContainer.setLocation(0, 0);
-        window.getContentPane().add(bkgImageContainer);
-        bkgImageContainer.setVisible(true);
+        contenedorImagen.setSize(frame.getContentPane().getWidth(),
+                frame.getContentPane().getHeight());
+        contenedorImagen.setLocation(0, 0);
+        frame.getContentPane().add(contenedorImagen);
+        contenedorImagen.setVisible(true);
 
-        window.setVisible(true);
-        window.getContentPane().revalidate();
-        window.getContentPane().repaint();
+        frame.setVisible(true);
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
 
         double actTime = System.currentTimeMillis();
         boolean mostrarImagen = true;
         while (mostrarImagen) {
             mostrarImagen = System.currentTimeMillis() - actTime < 6000;
         }
-        window.getContentPane().remove(bkgImageContainer);
-        window.getContentPane().revalidate();
-        window.getContentPane().repaint();
-        isImageVisible = false;
+        frame.getContentPane().remove(contenedorImagen);
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+        isImagenFondoVisible = false;
     }
 
-    public boolean isImageVisible() {
-        return isImageVisible;
+    public boolean isImagenFondoVisible() {
+        return isImagenFondoVisible;
     }
 }

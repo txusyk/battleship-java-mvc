@@ -34,7 +34,6 @@ public class VistaJuego extends JPanel {
         this.tableroInfo.addTab("Info. juego", this.pnInfoJugador);
         this.tableroInfo.addTab("Info. adic", this.pnInfoJuego);
 
-
         this.add(this.tableroJug);
         this.add(this.tableroInfo);
         this.add(this.tableroIA);
