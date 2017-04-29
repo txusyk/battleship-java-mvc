@@ -84,7 +84,7 @@ public class VistaBattleship {
 
         centrarVentana();
 
-        MainMenu mainM = new MainMenu(frame);
+        VistaImagenBienvenida mainM = new VistaImagenBienvenida(frame);
         mainM.loadTitleScreen();
 
 

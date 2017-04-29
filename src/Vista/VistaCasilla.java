@@ -1,8 +1,6 @@
 package Vista;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -12,8 +10,8 @@ public class VistaCasilla extends JButton{
 
     public VistaCasilla(){
         this.setPreferredSize(new Dimension(25, 25));
-        Border border = new LineBorder(Color.BLACK, 1);
-        this.setBorder(border);
+        //Border border = new LineBorder(Color.BLACK, 1);
+        //this.setBorder(border);
         this.setBackground(Color.WHITE);
         this.setForeground(Color.DARK_GRAY);
     }
