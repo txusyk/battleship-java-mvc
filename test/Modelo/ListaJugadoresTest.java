@@ -28,14 +28,14 @@ public class ListaJugadoresTest {
 
     @Test
     public void testGetJugNoActivo() throws Exception {
-        ListaJugadores.getMyListaJug().cambiarJugActivo();
-        Assert.assertTrue(ListaJugadores.getMyListaJug().getJugNoActivo() instanceof IA);
+        Battleship.getMyBattleship().cambiarJugActivo();
+        Assert.assertTrue(Battleship.getMyBattleship().getJugNoActivo() instanceof IA);
     }
 
     @Test
     public void cambiarJugActivo() throws Exception {
-        ListaJugadores.getMyListaJug().cambiarJugActivo();
-        Assert.assertTrue(ListaJugadores.getMyListaJug().getJugNoActivo() instanceof Humano);
+        Battleship.getMyBattleship().cambiarJugActivo();
+        Assert.assertTrue(Battleship.getMyBattleship().getJugNoActivo() instanceof Humano);
     }
 
 }
