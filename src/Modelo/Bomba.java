@@ -18,12 +18,11 @@ public class Bomba extends Arma {
         this.precio = 0;
     }
 
-    @Override
-    public void disparar(int x, int y) {
-        if (ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().esBarco(x, y)) {
-            ListaJugadores.getMyListaJug().getJugNoActivo().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
+    public void accion(int x, int y) {
+        if (Battleship.getMyBattleship().getJugNoActivo().getTablero().esBarco(x, y)) {
+            Battleship.getMyBattleship().getJugNoActivo().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
         } else {
-            ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().getPosicion(x, y).setVisible(true);
+            Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y).setVisible(true);
         }
     }
 

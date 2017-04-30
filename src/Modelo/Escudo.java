@@ -25,12 +25,9 @@ public class Escudo extends HerramientasJuego {
 
     public void destruir() {
         this.impactosRestantes=0;
-
     }
 
-    public boolean recibirImpacto() {
+    public void accion(int x, int y) {
         this.impactosRestantes--;
-        return impactosRestantes==0;
-
     }
 }

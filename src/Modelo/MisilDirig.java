@@ -19,7 +19,7 @@ public class MisilDirig extends Arma {
     }
 
     @Override
-    public void disparar(int x, int y) {
+    public void accion(int x, int y) {
         //solicitar direccion de arma
         DireccionesArma da = DireccionesArma.BOOM;
 
@@ -38,14 +38,14 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 0 && j >= 0) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i--;
                 j--;
             }
             i = x;
             j = y;
             while (i <= 10 && j <= 10) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i++;
                 j++;
             }
@@ -58,14 +58,14 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 10 && j >= 0) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i++;
                 j--;
             }
             i = x;
             j = y;
             while (i >= 0 && j <= 10) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i--;
                 j++;
             }
@@ -78,22 +78,22 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 0) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i--;
             }
             i = x;
             while (i <= 10) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 i++;
             }
             i = x;
             while (j >= 0) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 j--;
             }
             j = y;
             while (j <= 10) {
-                ((Misil) m).disparar(i, j);
+                ((Misil) m).accion(i, j);
                 j++;
             }
         }

@@ -147,7 +147,7 @@ public class Tablero {
      * @param x
      * @param y
      */
-    public void comprobarAlrededor(int x, int y) {      //Metodo usado por el radar para comprobar las posiciones.
+    public void desvelarAlrededor(int x, int y) {      //Metodo usado por el radar para comprobar las posiciones.
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
                 if (!tablero[i][j].getVisible()) {

@@ -75,6 +75,6 @@ public class Radar extends HerramientasJuego {
      * metodo para revelar las posiciones colindantes al radar
      */
     public void consultarRadar(){
-        ListaJugadores.getMyListaJug().getJugNoActivo().getTablero().comprobarAlrededor(x, y);
+        Battleship.getMyBattleship().getJugNoActivo().getTablero().desvelarAlrededor(x, y);
     }
 }

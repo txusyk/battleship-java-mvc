@@ -166,7 +166,7 @@ public abstract class Barco extends ObjTablero {
      */
     public void recibirDaños(int x, int y) {
         if (escudo != null) {
-            if (escudo.recibirImpacto()) {
+            if (escudo.getImpactosRestantes() <= 0) {
                 escudo = null;
             }
         } else if (!getHundido() && escudo == null) {
