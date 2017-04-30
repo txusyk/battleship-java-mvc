@@ -93,7 +93,7 @@ public class VistaBattleship {
 
 
         frame.setLayout(null);
-        while (mainM.isImageVisible()) {
+        while (mainM.isImagenFondoVisible()) {
         }
         frame.setVisible(false);
 

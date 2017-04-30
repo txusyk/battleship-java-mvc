@@ -5,9 +5,10 @@ package Modelo;
  */
 public class ObjTablero {
 
-    protected boolean visible = false;
+    protected boolean visible;
 
     public ObjTablero() {
+        this.visible = false;
     }
 
     public boolean getVisible(){

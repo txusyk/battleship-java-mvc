@@ -40,17 +40,44 @@ public class Tablero {
         if (entraBarco(pBarco, x, y) && (x > 0 && x < 9) && (y > 0 && y < 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
+                    pBarco.getParteBarco(i).setPosicion(x + i, y);
                     this.tablero[x + i][y] = pBarco.getParteBarco(i);
+                    marcarAreaBarco(pBarco, x, y);
                 }
             } else {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
+                    pBarco.getParteBarco(i).setPosicion(x, y + i);
                     this.tablero[x][y + i] = pBarco.getParteBarco(i);
+                    marcarAreaBarco(pBarco, x, y);
                 }
             }
         } else {
             return false;
         }
         return true;
+    }
+
+    private void marcarAreaBarco(Barco pBarco, int x, int y) {
+        if (pBarco.getHorientacion() == 'h') {
+            if (x - 1 >= 0) {
+                this.tablero[x - 1][y] = new AreaBarco();
+            }
+            if (x + 1 <= 9) {
+                this.tablero[x + 1][y] = new AreaBarco();
+            }
+            for (int i = x - 1; i < x + pBarco.getTamaño(); i++) {
+                if (y - 1 >= 0) {
+                    if (i >= 0 && i <= 9) {
+                        this.tablero[i][y - 1] = new AreaBarco();
+                    }
+                }
+                if (y + 1 <= 9) {
+                    if (i >= 0 && i <= 9) {
+                        this.tablero[i][y + 1] = new AreaBarco();
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -97,17 +124,17 @@ public class Tablero {
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
                 if ((x > 0) && (y > 0 && y < 9)) {
-                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x - 1][y + 1] instanceof Agua);
+                    entra = (tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco) && (tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco) && (tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco);
                 }
             } else if (index == pBarco.getTamaño() - 1) {
                 if (x < 9 && (y > 0 && y < 9)) {
-                    entra = (tablero[x + 1][y] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
+                    entra = (tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco) && (tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco) && (tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco);
                 }
 
             }
             if (entra) {
                 if (y > 0 && y < 9) {
-                    entra = ((tablero[x][y - 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua));
+                    entra = ((tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco) && (tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco));
                 }
             }
             index++;
@@ -127,16 +154,16 @@ public class Tablero {
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
                 if ((y > 0) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y - 1] instanceof Agua) && ((tablero[x][y - 1] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua)));
+                    entra = ((tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco) && ((tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco) && (tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco)));
                 }
             } else if (index == pBarco.getTamaño() - 1) {
                 if ((y < 9) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y + 1] instanceof Agua) && ((tablero[x][y + 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua)));
+                    entra = ((tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco) && ((tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco) && (tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco)));
                 }
             }
             if (entra) {
                 if (x > 0 && x < 9) {
-                    entra = ((tablero[x - 1][y] instanceof Agua) && (tablero[x + 1][y] instanceof Agua));
+                    entra = ((tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco) && (tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco));
                 }
             }
         }
@@ -162,7 +189,7 @@ public class Tablero {
      * @param y
      * @return true en caso de que la posicion sea barco
      */
-    public boolean esBarco(int x, int y){
+    public boolean esBarco(int x, int y) {
         return this.tablero[x][y] instanceof ParteBarco;
     }
 
@@ -171,7 +198,7 @@ public class Tablero {
      * @param y
      * @return
      */
-    public ObjTablero getPosicion(int x, int y){
+    public ObjTablero getPosicion(int x, int y) {
         return this.tablero[x][y];
     }
 

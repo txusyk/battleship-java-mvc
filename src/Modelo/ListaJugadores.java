@@ -38,24 +38,8 @@ public class ListaJugadores {
         return listaJug[1];
     }
 
-    /**
-     * @return jugActivo
-     */
-    public Jugador getJugNoActivo() {
-        if (listaJug[0].isTurno()) {
-            return listaJug[1];
-        }
-        return listaJug[0];
-    }
-
-    public void cambiarJugActivo() {
-        if (listaJug[0].isTurno()) {
-            listaJug[0].setTurno(false);
-            listaJug[1].setTurno(true);
-        } else {
-            listaJug[1].setTurno(false);
-            listaJug[0].setTurno(true);
-        }
+    public Jugador[] getListaJug() {
+        return listaJug;
     }
 
 
