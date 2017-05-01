@@ -15,9 +15,9 @@ public abstract class Jugador {
 
     protected boolean turno;
     private int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
-    private ListaArmas lArmas;
-    private Flota flota;
-    private Tablero tablero;
+    protected ListaArmas lArmas;
+    protected Flota flota;
+    protected Tablero tablero;
 
 
     public Jugador() {
@@ -84,5 +84,11 @@ public abstract class Jugador {
         type = arrAux[1].toLowerCase();
         return type;
     }
+
+    public boolean quedanBarcos(){
+        return flota.quedanBarcos();
+    }
+
+    public abstract void jugarTurno();
 
 }

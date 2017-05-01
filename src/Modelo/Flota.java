@@ -23,6 +23,17 @@ public class Flota {
         return this.flota.keySet().iterator();
     }
 
+    public boolean quedanBarcos(){
+        boolean barcos = false;
+
+        barcos = flota.get("fragata").quedanBarcos();
+        barcos = flota.get("destructor").quedanBarcos();
+        barcos = flota.get("submarino").quedanBarcos();
+        barcos = flota.get("portaaviones").quedanBarcos();
+
+        return barcos;
+    }
+
     public Barco getBarcoPorPos(int x, int y) {
         boolean enc = false;
         Iterator<String> itr = this.getIterator();
@@ -104,6 +115,19 @@ public class Flota {
             }
         }
 
+        public boolean quedanBarcos(){
+            boolean flag = false;
+            Iterator<Barco> itr = getIterator();
+            Barco b = null;
+
+            while(!flag && itr.hasNext()){
+                b = itr.next();
+                flag = b.getHundido();
+            }
+
+            return flag;
+        }
+
         /**
          * @param pTipo
          */
@@ -114,5 +138,7 @@ public class Flota {
                 }
             }
         }
+
+
     }
 }

@@ -65,6 +65,7 @@ public class Humano extends Jugador {
                 int y = Keyboard.getMyKeyboard().getInt();
                 getListaArmas().getArma(nArma).accion(x, y);
                 if(Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y) instanceof Agua){ //FALTA METER AREABARCO
+                    Battleship.getMyBattleship().partidaAcabada();
                     Battleship.getMyBattleship().cambiarJugActivo();
                     turnoActivo = false;
                 }
