@@ -13,7 +13,9 @@ package Modelo;
  */
 
 
-public class Tablero {
+import java.util.Observable;
+
+public class Tablero extends Observable {
 
     private ObjTablero[][] tablero;
 

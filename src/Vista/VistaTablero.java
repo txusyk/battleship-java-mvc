@@ -6,11 +6,13 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 
-public class VistaTablero extends JPanel {
+public class VistaTablero extends JPanel implements Observer {
 
     private static final String COLS = "ABCDEFGHIJ";
-    private JButton[][] casillas = new VistaCasilla[10][10];
+    private VistaCasilla[][] casillas = new VistaCasilla[10][10];
 
     public VistaTablero() {
         initializeGui();
@@ -54,5 +56,14 @@ public class VistaTablero extends JPanel {
                 }
             }
         }
+    }
+
+    public VistaCasilla[][] getCasillas() {
+        return casillas;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
