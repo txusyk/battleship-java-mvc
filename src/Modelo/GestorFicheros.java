@@ -108,8 +108,7 @@ public class GestorFicheros {
                 }
             }
         } catch (IOException e1) {
-            System.err.println("Error en el sistema. Error en el archivo");
-            e1.printStackTrace();
+            e1.getMessage();
         } catch (ParserConfigurationException e2) {
             System.err.println("Error en el sistema. Error en el parseador XML");
             e2.printStackTrace();

@@ -14,7 +14,7 @@ package Modelo;
 public abstract class Jugador {
 
     protected boolean turno;
-    protected int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
+    protected int dinero;
     protected ListaArmas lArmas;
     protected Flota flota;
     protected Tablero tablero;

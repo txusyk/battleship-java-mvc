@@ -23,6 +23,7 @@ public class Humano extends Jugador {
         super();
         this.nombre = pNombre;
         this.turno = true;
+        this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     }
 
     public String getNombre() {

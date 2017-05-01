@@ -57,24 +57,96 @@ public class Tablero {
         return true;
     }
 
+    /**
+     * * Marcara el area de alrededor de un barco . Dicho area sera marcado con casillas AreaBarco
+     *
+     * @param pBarco
+     * @param x
+     * @param y
+     */
     private void marcarAreaBarco(Barco pBarco, int x, int y) {
         if (pBarco.getHorientacion() == 'h') {
+            marcarAreaBarcoHoriz(pBarco, x, y);
+        } else if (pBarco.getHorientacion() == 'v') {
+            marcarAreaBarcoVert(pBarco, x, y);
+        }
+    }
+
+    /**
+     * * Marcara el area de alrededor de un barco horizontal. Dicho area sera marcado con casillas AreaBarco
+     *
+     * @param pBarco
+     * @param x
+     * @param y
+     */
+    private void marcarAreaBarcoHoriz(Barco pBarco, int x, int y) {
+        if (x - 1 >= 0) {
+            this.tablero[x - 1][y] = new AreaBarco();
+            if (y - 1 >= 0) {
+                this.tablero[x - 1][y - 1] = new AreaBarco();
+            }
+            if (y + 1 <= 9) {
+                this.tablero[x - 1][y + 1] = new AreaBarco();
+            }
+        }
+        if (x + 1 <= 9) {
+            this.tablero[x + 1][y] = new AreaBarco();
+            if (y - 1 >= 0) {
+                this.tablero[x + 1][y - 1] = new AreaBarco();
+            }
+            if (y + 1 <= 9) {
+                this.tablero[x + 1][y + 1] = new AreaBarco();
+            }
+        }
+        for (int i = x - 1; i < x + pBarco.getTamaño(); i++) {
+            if (y - 1 >= 0) {
+                if (i >= 0 && i <= 9) {
+                    this.tablero[i][y - 1] = new AreaBarco();
+                }
+            }
+            if (y + 1 <= 9) {
+                if (i >= 0 && i <= 9) {
+                    this.tablero[i][y + 1] = new AreaBarco();
+                }
+            }
+        }
+    }
+
+    /**
+     * Marcara el area de alrededor de un barco vertical. Dicho area sera marcado con casillas AreaBarco
+     *
+     * @param pBarco
+     * @param x
+     * @param y
+     */
+    private void marcarAreaBarcoVert(Barco pBarco, int x, int y) {
+        if (y - 1 >= 0) {
+            this.tablero[x][y - 1] = new AreaBarco();
             if (x - 1 >= 0) {
-                this.tablero[x - 1][y] = new AreaBarco();
+                this.tablero[x - 1][y - 1] = new AreaBarco();
             }
             if (x + 1 <= 9) {
-                this.tablero[x + 1][y] = new AreaBarco();
+                this.tablero[x + 1][y - 1] = new AreaBarco();
             }
-            for (int i = x - 1; i < x + pBarco.getTamaño(); i++) {
-                if (y - 1 >= 0) {
-                    if (i >= 0 && i <= 9) {
-                        this.tablero[i][y - 1] = new AreaBarco();
-                    }
+        }
+        if (y + 1 <= 9) {
+            this.tablero[x][y + 1] = new AreaBarco();
+            if (x - 1 >= 0) {
+                this.tablero[x - 1][y + 1] = new AreaBarco();
+            }
+            if (x + 1 <= 9) {
+                this.tablero[x + 1][y + 1] = new AreaBarco();
+            }
+        }
+        for (int i = y - 1; i < y + pBarco.getTamaño(); i++) {
+            if (x - 1 >= 0) {
+                if (i >= 0 && i <= 9) {
+                    this.tablero[x - 1][i] = new AreaBarco();
                 }
-                if (y + 1 <= 9) {
-                    if (i >= 0 && i <= 9) {
-                        this.tablero[i][y + 1] = new AreaBarco();
-                    }
+            }
+            if (x + 1 <= 9) {
+                if (i >= 0 && i <= 9) {
+                    this.tablero[x + 1][i] = new AreaBarco();
                 }
             }
         }
@@ -87,12 +159,12 @@ public class Tablero {
      * @return si el barco puede ser posicionado
      */
     private boolean entraBarco(Barco pBarco, int x, int y) {
-        boolean entra = true;
+        boolean entra = false;
         if (pBarco.getHorientacion() == 'h') {
             int i = 0;
             boolean enc = false;
             while (i < pBarco.getTamaño() && !enc) {
-                enc = (tablero[x + i][y] instanceof Agua);
+                enc = tablero[x + i][y] instanceof Agua;
                 i++;
             }
             if (enc) {
@@ -102,7 +174,7 @@ public class Tablero {
             int i = 0;
             boolean enc = false;
             while (i < pBarco.getTamaño() && !enc) {
-                enc = (tablero[x + i][y] instanceof Agua);
+                enc = tablero[x][y+i] instanceof Agua;
                 i++;
             }
             if (enc) {
@@ -124,17 +196,17 @@ public class Tablero {
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
                 if ((x > 0) && (y > 0 && y < 9)) {
-                    entra = (tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco) && (tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco) && (tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco);
+                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x - 1][y + 1] instanceof Agua);
                 }
             } else if (index == pBarco.getTamaño() - 1) {
                 if (x < 9 && (y > 0 && y < 9)) {
-                    entra = (tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco) && (tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco) && (tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco);
+                    entra = (tablero[x + 1][y] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
                 }
 
             }
             if (entra) {
                 if (y > 0 && y < 9) {
-                    entra = ((tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco) && (tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco));
+                    entra = (tablero[x][y - 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua);
                 }
             }
             index++;
@@ -154,16 +226,16 @@ public class Tablero {
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
                 if ((y > 0) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco) && ((tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco) && (tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco)));
+                    entra = (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x][y - 1] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua);
                 }
             } else if (index == pBarco.getTamaño() - 1) {
                 if ((y < 9) && (x > 0 && x < 9)) {
-                    entra = ((tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco) && ((tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco) && (tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco)));
+                    entra = (tablero[x - 1][y + 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
                 }
             }
             if (entra) {
                 if (x > 0 && x < 9) {
-                    entra = ((tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco) && (tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco));
+                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x + 1][y] instanceof Agua);
                 }
             }
         }

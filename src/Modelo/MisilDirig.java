@@ -11,18 +11,30 @@
  */
 package Modelo;
 
+import java.util.Random;
+
 public class MisilDirig extends Arma {
+
+    DireccionesArma da;
 
     public MisilDirig() {
         super();
         this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+
+        Random r = new Random();
+        int i = 1 + r.nextInt(100);
+
+        if (i <= 33) {
+            da = DireccionesArma.NESO;
+        } else if (i > 33 && i <= 66) {
+            da = DireccionesArma.NOSE;
+        } else if (i > 66 && i <= 100) {
+            da = DireccionesArma.BOOM;
+        }
     }
 
     @Override
     public void disparar(int x, int y) {
-        //solicitar direccion de arma
-        DireccionesArma da = DireccionesArma.BOOM;
-
         if (da.getDireccion().equalsIgnoreCase("noreste-suroeste")) {
             dispararNESO(x, y);
         } else if (da.getDireccion().equalsIgnoreCase("noroeste-sudeste")) {

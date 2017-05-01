@@ -25,17 +25,4 @@ public class ListaJugadoresTest {
         Assert.assertTrue(ListaJugadores.getMyListaJug().getHumano() instanceof Humano);
         Assert.assertTrue(ListaJugadores.getMyListaJug().getIA() instanceof IA);
     }
-
-    @Test
-    public void testGetJugNoActivo() throws Exception {
-        ListaJugadores.getMyListaJug().cambiarJugActivo();
-        Assert.assertTrue(ListaJugadores.getMyListaJug().getJugNoActivo() instanceof IA);
-    }
-
-    @Test
-    public void cambiarJugActivo() throws Exception {
-        ListaJugadores.getMyListaJug().cambiarJugActivo();
-        Assert.assertTrue(ListaJugadores.getMyListaJug().getJugNoActivo() instanceof Humano);
-    }
-
 }

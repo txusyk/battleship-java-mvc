@@ -40,7 +40,22 @@ public class TableroTest {
     public void testGetPosicion() throws Exception {
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 2, 2);
         Assert.assertTrue(tab1.getPosicion(2, 2) instanceof ParteBarco);
-        Assert.assertTrue(tab1.getPosicion(2, 3) instanceof Agua);
+
+        Assert.assertTrue(tab1.getPosicion(2, 3) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(1, 3) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(1, 2) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(1, 1) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(2, 1) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(3, 1) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(3, 2) instanceof AreaBarco);
+        Assert.assertTrue(tab1.getPosicion(3, 3) instanceof AreaBarco);
+
+
+
+
+
+
+
     }
 
 }

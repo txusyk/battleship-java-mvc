@@ -40,11 +40,6 @@ public class IATest {
     }
 
     @Test
-    public void testGetDificultad() throws Exception {
-        Assert.assertEquals("facil", h1.getDificultad(), "La dificiltad deberia de ser 'facil'");
-    }
-
-    @Test
     public void testJugarTurnoIA() throws Exception {
 
 
