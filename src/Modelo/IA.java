@@ -34,22 +34,17 @@ public class IA extends Jugador {
     }
 
     public void colocarBarcosIA() {
-        int fragata = 4;
-        int destructor = 3;
-        int submarino = 2;
-        int portaaviones = 1;
-
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
-                colocarBarcoPorTipo("fragata", fragata);
+                colocarBarcoPorTipo("fragata", 4);
             } else if (i == 1) {
-                colocarBarcoPorTipo("destructor", destructor);
+                colocarBarcoPorTipo("destructor", 3);
             }
             if (i == 2) {
-                colocarBarcoPorTipo("submarino", submarino);
+                colocarBarcoPorTipo("submarino", 2);
             }
             if (i == 3) {
-                colocarBarcoPorTipo("portaaviones", portaaviones);
+                colocarBarcoPorTipo("portaaviones", 1);
             }
         }
     }
