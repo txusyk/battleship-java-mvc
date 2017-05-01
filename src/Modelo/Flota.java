@@ -43,6 +43,14 @@ public class Flota {
         return b;
     }
 
+    public Barco inicializarBarco(String pBarco) {
+        Barco b = null;
+        if (this.flota.get(pBarco) != null) {
+            b = this.flota.get(pBarco).buscarNoInicializado();
+        }
+        return b;
+    }
+
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;
@@ -83,6 +91,19 @@ public class Flota {
             while (itr.hasNext() && !enc) {
                 b = itr.next();
                 if (b.contiene(x, y)) {
+                    enc = true;
+                }
+            }
+            return b;
+        }
+
+        public Barco buscarNoInicializado() {
+            boolean enc = false;
+            Iterator<Barco> itr = this.getIterator();
+            Barco b = null;
+            while (itr.hasNext() && !enc) {
+                b = itr.next();
+                if (!b.enTablero()) {
                     enc = true;
                 }
             }

@@ -18,6 +18,7 @@ public abstract class Barco extends ObjTablero {
     protected char horientacion;
     private int preciorReparacion;
     private boolean hundido;
+    private boolean enTablero;
 
     /**
      * Constructora
@@ -28,6 +29,15 @@ public abstract class Barco extends ObjTablero {
         this.hundido = false;
         this.horientacion = 'h';
         this.partesBarco = new ParteBarco[this.tamaño];
+        this.enTablero = false;
+    }
+
+    public boolean enTablero() {
+        return enTablero;
+    }
+
+    public void setEnTablero(boolean enTablero) {
+        this.enTablero = enTablero;
     }
 
     public boolean getHundido() {

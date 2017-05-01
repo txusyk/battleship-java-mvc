@@ -14,10 +14,10 @@ package Modelo;
 public abstract class Jugador {
 
     protected boolean turno;
-    private int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
-    private ListaArmas lArmas;
-    private Flota flota;
-    private Tablero tablero;
+    protected int dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
+    protected ListaArmas lArmas;
+    protected Flota flota;
+    protected Tablero tablero;
 
 
     public Jugador() {
