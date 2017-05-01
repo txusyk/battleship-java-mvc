@@ -11,9 +11,6 @@
  */
 package Modelo;
 
-
-import java.security.Key;
-
 public class Humano extends Jugador {
 
     private String nombre;
