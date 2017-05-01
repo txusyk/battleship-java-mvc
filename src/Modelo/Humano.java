@@ -25,6 +25,7 @@ public class Humano extends Jugador {
         super();
         this.nombre = pNombre;
         this.turno = true;
+        this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     }
 
     public String getNombre() {
@@ -51,8 +52,20 @@ public class Humano extends Jugador {
                 int x = Keyboard.getMyKeyboard().getInt();
                 System.out.println("\tIntroduce coordenada y: ");
                 int y = Keyboard.getMyKeyboard().getInt();
-                if(getListaArmas().getArma("radar") != null){
+                if(getListaArmas().getSize("radar") != 0){
                     getListaArmas().getArma("radar").accion(x, y);
+                }
+            }
+
+            System.out.println("Quieres colocar un escudo? (s/n): ");
+            resp = Keyboard.getMyKeyboard().getString();
+            if(resp.equalsIgnoreCase("s")){
+                System.out.println("\tIntroduce coordenada x: ");
+                int x = Keyboard.getMyKeyboard().getInt();
+                System.out.println("\tIntroduce coordenada y: ");
+                int y = Keyboard.getMyKeyboard().getInt();
+                if(getListaArmas().getSize("escudo") != 0){
+                    Battleship.getMyBattleship().getJugActivo().getFlota().getBarcoPorPos(x,y).setEscudo((Escudo)getListaArmas().getArma("escudo"));
                 }
             }
 
