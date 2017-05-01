@@ -17,6 +17,7 @@ public class Battleship {
 
     private static Battleship myBattleship;
     private String dificultad = "facil";
+    private boolean partidaActiva = false;
 
     private Battleship() {
 
@@ -73,6 +74,13 @@ public class Battleship {
         return ListaJugadores.getMyListaJug().getListaJug()[0];
     }
 
+    public Jugador getJugActivo() {
+        if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
+            return ListaJugadores.getMyListaJug().getListaJug()[0];
+        }
+        return ListaJugadores.getMyListaJug().getListaJug()[1];
+    }
+
     public void cambiarJugActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(false);
@@ -80,6 +88,20 @@ public class Battleship {
         } else {
             ListaJugadores.getMyListaJug().getListaJug()[1].setTurno(false);
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
+        }
+    }
+
+    public void partidaAcabada(){
+        if(!getJugNoActivo().quedanBarcos()){
+            partidaActiva = false;
+        }
+    }
+
+    public void jugarPartida(){
+        partidaActiva = true;
+
+        while(partidaActiva){
+            getJugActivo().jugarTurno();
         }
     }
 }
