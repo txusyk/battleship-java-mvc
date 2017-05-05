@@ -53,7 +53,7 @@ public class IA extends Jugador {
             }
         } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("medio")) {
             if (this.dinero >= 7500) {
-                if (random.nextInt(100) >= 50) {
+                if (random.nextInt(100) >= 50) { //%50
                     if (random.nextInt(100) >= 40) {
                         Almacen.getMiAlmacen().comprarArma("misil"); //60%
                     } else {
@@ -64,7 +64,7 @@ public class IA extends Jugador {
 
         } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("dificil")) {
             if (this.dinero >= 5000) {
-                if (random.nextInt(100) >= 30) {
+                if (random.nextInt(100) >= 30) { //%70
                     if (random.nextInt(100) >= 80) {
                         Almacen.getMiAlmacen().comprarArma("misil"); //20%
                     } else {
@@ -212,19 +212,19 @@ public class IA extends Jugador {
         Almacen.getMiAlmacen().comprarArma("radar");
         int[] index = generarPosicionAleatoriaTableroHumano();
 
-        while (ListaJugadores.getMyListaJug().getHumano().tablero.getPosicion((int) index[0], (int) index[1]).getVisible()) {
+        while (ListaJugadores.getMyListaJug().getHumano().tablero.getPosicion(index[0], index[1]).getVisible()) {
             index = generarPosicionAleatoriaTableroHumano();
         }
-        ((Radar) this.lArmas.getArma("radar")).accion((int) index[0], (int) index[1]);
+        ((Radar) this.lArmas.getArma("radar")).accion(index[0], index[1]);
     }
 
     private void comprarYcolocarEscudo() {
         Almacen.getMiAlmacen().comprarArma("radar");
-        int[] index = generarPosicionAleatoriaTableroHumano();
+        int[] index = new int[2];
         while (!this.tablero.esBarco(index[0], index[1])) {
             index = generarPosicionAleatoriaTableroHumano();
         }
-        this.flota.getBarcoPorPos((int) index[0], (int) index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
+        this.flota.getBarcoPorPos((int) index[0], index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
     }
 
     public void colocarBarcosIA() {

@@ -15,9 +15,7 @@ public class Humano extends Jugador {
 
     private String nombre;
 
-    /**
-     * @param pNombre
-     */
+
     public Humano(String pNombre) {
         super();
         this.nombre = pNombre;
@@ -50,7 +48,7 @@ public class Humano extends Jugador {
                 System.out.println("\tIntroduce coordenada y: ");
                 int y = Keyboard.getMyKeyboard().getInt();
                 if(getListaArmas().getSize("radar") != 0){
-                    getListaArmas().getArma("radar").accion(x, y);
+                    //  getListaArmas().getArma("radar").accion(x, y);
                 }
             }
 
@@ -73,9 +71,9 @@ public class Humano extends Jugador {
                 int x = Keyboard.getMyKeyboard().getInt();
                 System.out.println("\tIntroduce coordenada y: ");
                 int y = Keyboard.getMyKeyboard().getInt();
-                getListaArmas().getArma(nArma).accion(x, y);
+                // getListaArmas().getArma(nArma).accion(x, y);
                 if(Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y) instanceof Agua){ //FALTA METER AREABARCO
-                    Battleship.getMyBattleship().partidaAcabada();
+                    //    Battleship.getMyBattleship().partidaAcabada();
                     Battleship.getMyBattleship().cambiarJugActivo();
                     turnoActivo = false;
                 }

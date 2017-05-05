@@ -36,9 +36,7 @@ public class Battleship {
     }
 
 
-    /**
-     * @param pNombre
-     */
+
     public void inicializarJuego(String pNombre) {
         GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
         Battleship.getMyBattleship().inicializarAlmacen();
@@ -90,7 +88,7 @@ public class Battleship {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
         }
     }
-
+/*
     public void partidaAcabada(){
         if(!getJugNoActivo().quedanBarcos()){
             partidaActiva = false;
@@ -104,4 +102,6 @@ public class Battleship {
             getJugActivo().jugarTurno();
         }
     }
+
+    */
 }
