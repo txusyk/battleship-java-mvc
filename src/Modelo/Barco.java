@@ -59,6 +59,7 @@ public abstract class Barco extends ObjTablero {
         int i = 0;
         while (i < partesBarco.length && !tocado) {
             tocado = partesBarco[i].comprobarPosicion(x, y);
+            i++;
         }
         if (tocado) {
             partesBarco[i].setState(new SNormal());
@@ -89,9 +90,8 @@ public abstract class Barco extends ObjTablero {
         if ('H' == direccion) {
             int x = pivote[0], i = 0;
             while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote[0], pivote[1]);
+                partesBarco[i].setPosicion(x, pivote[1]);
                 x++;
-                pivote[0] = x;
                 i++;
             }
 
@@ -113,12 +113,8 @@ public abstract class Barco extends ObjTablero {
         return this.preciorReparacion;
     }
 
-
-    /**
-     * @param esc
-     */
-    public void setEscudo(Escudo esc) {
-        this.escudo = esc;
+    public void setEscudo() {
+        this.escudo = new Escudo();
     }
 
     /**
