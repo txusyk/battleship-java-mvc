@@ -18,7 +18,7 @@ public class VistaTablero extends JPanel implements Observer {
         initializeGui();
     }
 
-    public final void initializeGui() {
+    public void initializeGui() {
         // fijamos la GUI principal
         this.setLayout(new GridLayout(0, 11));
         this.setBorder(new LineBorder(Color.BLACK));
@@ -29,6 +29,7 @@ public class VistaTablero extends JPanel implements Observer {
             for (int j = 0; j < casillas[i].length; j++) {
                 VistaCasilla b = new VistaCasilla();
                 b.setMargin(buttonMargin);
+                b.setActionCommand(String.valueOf(i) + "" + String.valueOf(j));
                 // fijamos el tamaño a traves de una imagen transparente
                 ImageIcon icon = new ImageIcon(
                         new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
@@ -38,6 +39,8 @@ public class VistaTablero extends JPanel implements Observer {
                 casillas[j][i] = b;
             }
         }
+
+        imprimirTablero();
 
         //rellenamos el tablero
         this.add(new JLabel(""));
@@ -58,6 +61,19 @@ public class VistaTablero extends JPanel implements Observer {
         }
     }
 
+    private void imprimirTablero() {
+        for (VistaCasilla[] vC : casillas) {
+            for (VistaCasilla b : vC) {
+                int i = Integer.parseInt(b.getActionCommand()) / 10;
+                if (i == 0) {
+                    System.out.print("\n" + b.getActionCommand());
+                } else {
+                    System.out.print("\t" + b.getActionCommand());
+                }
+            }
+        }
+
+    }
     public VistaCasilla[][] getCasillas() {
         return casillas;
     }

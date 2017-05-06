@@ -1,5 +1,5 @@
 import Controlador.ControladorBattleship;
-import Modelo.Login;
+import Modelo.Battleship;
 import Vista.VistaBattleship;
 
 /**
@@ -12,9 +12,8 @@ public class BattleshipMVC {
     }
 
     public static void main(String[] args) {
-        Login m = new Login();
         VistaBattleship v = new VistaBattleship();
-        new ControladorBattleship(m, v);
+        new ControladorBattleship(Battleship.getMyBattleship(), v);
 
 
     }

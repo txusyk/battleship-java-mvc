@@ -29,3 +29,4 @@ public class ControladorLogin {
         //configura y muestra el frame de inicializacion de barcos, añade los listeners necesarios
 
     }
+}
