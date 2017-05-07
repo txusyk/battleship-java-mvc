@@ -1,18 +1,8 @@
 package Vista;
-
-import Modelo.Battleship;
-import Modelo.GestorFicheros;
-import Modelo.ListaJugadores;
-
+import Controlador.ControladorBarraHerramientas;
 import javax.sound.sampled.*;
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
@@ -27,6 +17,10 @@ public class VistaBattleship extends JFrame {
     private JMenuItem salir, reiniciar, cambiarDif, acercaLogin, acercaDe, reglasJuego, cargarPartida, guardarPartida;
 
     private JFrame frame;
+    JTextField userText= new JPasswordField(20);
+    JTextField passwordText= new JPasswordField(20);
+    String loginDif;
+    JFrame popUpAct;
 
     private boolean tableroActivo;
 
@@ -36,7 +30,7 @@ public class VistaBattleship extends JFrame {
         crearBarraMenu();
     }
 
-
+    public void disposePopUp(){popUpAct.dispose();;}
     public static VistaBattleship getVista(){
         if(myVb==null){
             myVb=new VistaBattleship();
@@ -48,7 +42,11 @@ public class VistaBattleship extends JFrame {
          VistaBattleship.getVista().lanzarVistaJuego();
     }
 
-    private void lanzarPopUpInstruccionesJuego() {
+    public String getUserToVerify(){return  userText.getText();}
+    public String getPswToVerify(){return  userText.getText();}
+    public String getLoginDif(){return  loginDif;}
+
+    public void lanzarPopUpInstruccionesJuego() {
         JOptionPane.showMessageDialog(null,
                 "Bienvenido al Battleship IS\n. " +
                         "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
@@ -65,13 +63,14 @@ public class VistaBattleship extends JFrame {
         frame.setJMenuBar(barraLogin);
         frame.setSize(300, 270);
 
-        JPanel panel = new VistaLogin().getVistaLogin();
+        VistaLogin tmp=new VistaLogin();
+        JPanel panel = tmp.getVistaLogin();
+        loginDif=tmp.getLoginDif();
+        userText =tmp.getUserField();
+        passwordText=tmp.getPswField();
         frame.add(panel);
-
         frame.setResizable(false);
-
         centrarVentana();
-
         frame.setVisible(true);
     }
 
@@ -117,7 +116,7 @@ public class VistaBattleship extends JFrame {
         lanzarVistaInicializacionBarcos();
     }
 
-    private void lanzarVistaInicializacionBarcos() {
+    public void lanzarVistaInicializacionBarcos() {
         inicializarVentana("Inicializacion de barcos");
 
         JPanel panel = new VistaInicializacionBarcos();
@@ -181,179 +180,67 @@ public class VistaBattleship extends JFrame {
         programaEventos();
     }
 
-    private void popUpInfoLogin(){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("información");
-        popUp.setBounds(200,100,1000,100);
-        popUp.add(new JLabel("Este login fue desarrollado con el fin de mantener la seguridad del usuario , y asimismo proveer de un gestor de partidas al juego ¡disfuta!"), BorderLayout.CENTER);
-        JButton btn=new JButton("entendido");
-        btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-                //controlador botón entendido
-                popUp.dispose();
-
-            }
-        });
-        popUp.add(btn, BorderLayout.EAST);
-        popUp.setVisible(true);
-    }
-
-    private void popUpSalir(){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("información");
-        popUp.setBounds(200,100,1000,100);
-        popUp.add(new JLabel("¿deseas salir ,o fué un erro? , cierrame si no estas seguro"), BorderLayout.CENTER);
-        JButton btn=new JButton("salir");
-        btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-                //controlador botón entendido
-                System.exit(0);
-
-            }
-        });
-        popUp.add(btn, BorderLayout.EAST);
-        popUp.setVisible(true);
-    }
-
-    private void popUpVerificacionUsuario(String pSeleccion){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("verificación");
-        popUp.setBounds(200,100,500,200);
+    public void popUpVerificacionUsuario(String pSeleccion){
+        popUpAct =new JFrame();
+        popUpAct.setTitle("verificación");
+        popUpAct.setBounds(200,100,500,200);
         JPanel centro=new JPanel();
         centro.setLayout(new GridLayout(2,2));
-        popUp.add(centro,BorderLayout.CENTER);
-        popUp.add(new JLabel("se verificara tu usuario, cierrame si no estas seguro ,se aplicara la opcion sleccionada:" + pSeleccion), BorderLayout.NORTH);
+        popUpAct.add(centro,BorderLayout.CENTER);
+        popUpAct.add(new JLabel("se verificara tu usuario, cierrame si no estas seguro ,se aplicara la opcion sleccionada:" + pSeleccion), BorderLayout.NORTH);
         JLabel userLabel = new JLabel("User");
         userLabel.setSize( 80, 25);
         centro.add(userLabel);
-        JTextField userText = new JTextField(20);
+        userText = new JTextField(20);
         userText.setSize( 80, 25);
         centro.add(userText);
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setSize( 80, 25);
         centro.add(passwordLabel);
-        JTextField passwordText = new JPasswordField(20);
+        passwordText = new JPasswordField(20);
         passwordText.setSize( 80, 25);
         centro.add(passwordText);
-        JButton loginButton = new JButton("login");
-        loginButton.setBounds(10, 80, 80, 25);
-        popUp.add(loginButton, BorderLayout.SOUTH);
-        popUp.setVisible(true);
-
-        loginButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-                //controlador botón login
-                //(comprobar usuario)
-                String usr=userText.getText();
-                String psw=passwordText.getText();
-                try{
-                    //login correcto..(reiniciar con misma dificultad)
-                    GestorFicheros.getMyGestorFicheros().comprobarLogin(usr,psw.toCharArray());
-                    if(pSeleccion.equals("facil")||pSeleccion.equals("medio")||pSeleccion.equals("dificil")) {
-                        try {
-                            Battleship.getMyBattleship().setDificultad(pSeleccion);
-                            Battleship.getMyBattleship().inicializarJuego(usr);
-                        } catch (Exception e) {
-                            fallo("error en la lectura de datos lo sentimos, vuelva a intentarlo");
-                        }
-                    }else if(pSeleccion.equals("cargar")){
-                        GestorFicheros.getMyGestorFicheros().cargarJuego(usr);
-                    }else if(pSeleccion.equals("guardar")){
-                        try {
-                            GestorFicheros.getMyGestorFicheros().guardarPartida(usr);
-                        } catch (Exception e) {
-                            fallo("error en la escritura de datos lo sentimos");
-                        }
-                    }
-
-                }catch(Exception e){
-                    //fallo en el login usuario o contraseña mal insertadas
-                    fallo("usuario o contraseña incorrectos");
-                }
-            }
-        }
-        );
+        JButton verificar = new JButton("verificar");
+        verificar.setBounds(10, 80, 80, 25);
+        popUpAct.add(verificar, BorderLayout.SOUTH);
+        popUpAct.setVisible(true);
+        verificar.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
     }
 
-    private void fallo(String pTipoFallo){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("error");
-        popUp.setBounds(400,300,300,100);
-        popUp.add(new JLabel(pTipoFallo), BorderLayout.CENTER);
+    public void popUpInformacion(String pInfo,String pTextBtn){
+        popUpAct =new JFrame();
+        popUpAct.setTitle("información");
+        popUpAct.setBounds(200,100,1000,100);
+        popUpAct.add(new JLabel(pInfo), BorderLayout.CENTER);
+        JButton btn=new JButton(pTextBtn);
+        btn.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        popUpAct.add(btn, BorderLayout.EAST);
+        popUpAct.setVisible(true);
+    }
+
+    public void popUpError(String pTipoFallo){
+        popUpAct =new JFrame();
+        popUpAct.setTitle("error");
+        popUpAct.setBounds(400,300,300,100);
+        popUpAct.add(new JLabel(pTipoFallo), BorderLayout.CENTER);
         JButton btn=new JButton("entendido");
-        btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-                //controlador botón de dificultad dificil
-                popUp.dispose();
-
-            }
-        });
-        popUp.add(btn, BorderLayout.EAST);
-        popUp.setVisible(true);
+        btn.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        popUpAct.add(btn, BorderLayout.EAST);
+        popUpAct.setVisible(true);
     }
 
-    private void popUpReiniciar(){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("información");
-        popUp.setBounds(200,100,1000,100);
-        popUp.add(new JLabel("se reiniciara la partida con la misma configuración, cierrame si no estas seguro"), BorderLayout.CENTER);
-        JButton btn=new JButton("reiniciar");
-        btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent arg0) {
-                //controlador botón reiniciar
-               popUpVerificacionUsuario(Battleship.getMyBattleship().getDificultad());
-            }
-        });
-        popUp.add(btn, BorderLayout.EAST);
-        popUp.setVisible(true);
-    }
-
-
-    private void popUpAcercaDe(){
-        JFrame popUp =new JFrame();
-        popUp.setTitle("información");
-        popUp.setBounds(200,100,500,250);
-        popUp.add(new JTextArea("Hola,parece que quieres conocernos,nosotros somos:\n  "+
-                ".......Josu Álvarez , David Max y Edgar Andres ........Development Group,¡Disfrutad! "), BorderLayout.CENTER);
-        popUp.setVisible(true);
-    }
-
-
-    private void popUpCambiarDif(){
+    public void popUpCambiarDif(){
             JPanel panel=new JPanel();
             JLabel difLabel = new JLabel("selecciona una dificultad");
             difLabel.setBounds(110, 110, 300, 25);
             panel.add(difLabel);
             ButtonGroup bg = new ButtonGroup();
-            JRadioButton facil = new JRadioButton("facil");
-            facil.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                    //controlador botóncultad facil de difi
-                   popUpVerificacionUsuario("facil");
-                }
-            });
-            JRadioButton medio = new JRadioButton("medio");
-            medio.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                    //controlador botón de dificultad medio
-                    popUpVerificacionUsuario("medio");
-                }
-            });
-            JRadioButton dificil = new JRadioButton("dificil");
-            dificil.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent arg0) {
-                    //controlador botón de dificultad dificil
-                    popUpVerificacionUsuario("dificil");
-                }
-            });
+            JRadioButton facil = new JRadioButton("dificultad facil");
+            facil.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+            JRadioButton medio = new JRadioButton("dificultad medio");
+            medio.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+            JRadioButton dificil = new JRadioButton("dificultad dificil");
+            dificil.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
             facil.setBounds(110, 140, 300, 25);
             medio.setBounds(110, 165, 300, 25);
             dificil.setBounds(110, 190, 300, 25);
@@ -365,89 +252,23 @@ public class VistaBattleship extends JFrame {
             panel.add(medio);
             panel.add(dificil);
 
-        JFrame popUp =new JFrame();
-        popUp.add(panel, BorderLayout.CENTER);
-        popUp.setTitle("información");
-        popUp.setBounds(200,100,1000,100);
-        popUp.add(new JLabel("se reiniciara la partida con la configuracion que desees, cierrame si no estas seguro"), BorderLayout.NORTH);
-        popUp.setVisible(true);
+        popUpAct =new JFrame();
+        popUpAct.add(panel, BorderLayout.CENTER);
+        popUpAct.setTitle("información");
+        popUpAct.setBounds(200,100,1000,100);
+        popUpAct.add(new JLabel("se reiniciara la partida con la configuracion que desees, cierrame si no estas seguro"), BorderLayout.NORTH);
+        popUpAct.setVisible(true);
     }
 
-
     private void programaEventos(){
-        ActionListener acercaLoginAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popUpInfoLogin();
-            }
-        };
-        acercaLogin.addActionListener(acercaLoginAction);
-
-        ActionListener salirAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popUpSalir();
-            }
-        };
-        salir.addActionListener(salirAction);
-
-        ActionListener reiniciarAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popUpReiniciar();
-            }
-        };
-        reiniciar.addActionListener(reiniciarAction);
-
-
-        ActionListener cambiarDifAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popUpCambiarDif();
-            }
-        };
-        cambiarDif.addActionListener(cambiarDifAction);
-
-        ActionListener reglasAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lanzarPopUpInstruccionesJuego();
-            }
-        };
-        reglasJuego.addActionListener(reglasAction);
-
-
-        ActionListener acercaDeAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popUpAcercaDe();
-            }
-        };
-        acercaDe.addActionListener(acercaDeAction);
-
-        ActionListener guardarAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    popUpVerificacionUsuario("guardar");
-                } catch (Exception e1) {
-                    fallo("sucedió un fallo al guardar el archivo");
-                }
-            }
-        };
-        guardarPartida.addActionListener(guardarAction);
-
-        ActionListener cargarAction=new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    popUpVerificacionUsuario("cargar");
-                } catch (Exception e1) {
-                    fallo("sucedió un fallo al guardar el archivo");
-                }
-            }
-        };
-        cargarPartida.addActionListener(cargarAction);
+        acercaLogin.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        salir.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        reiniciar.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        cambiarDif.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        reglasJuego.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        acercaDe.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        guardarPartida.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
+        cargarPartida.addActionListener(ControladorBarraHerramientas.getControladorBarraHerramientas());
     }
 
     private void lanzarSonido() {
