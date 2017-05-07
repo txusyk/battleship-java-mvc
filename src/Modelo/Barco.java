@@ -113,8 +113,8 @@ public abstract class Barco extends ObjTablero {
         return this.preciorReparacion;
     }
 
-    public void setEscudo() {
-        this.escudo = new Escudo();
+    public void setEscudo(Escudo e) {
+        this.escudo = e;
     }
 
     /**

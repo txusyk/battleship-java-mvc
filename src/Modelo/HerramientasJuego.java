@@ -34,4 +34,6 @@ public abstract class HerramientasJuego {
         return type;
     }
 
+    protected abstract void accion(int x, int y);
+
 }

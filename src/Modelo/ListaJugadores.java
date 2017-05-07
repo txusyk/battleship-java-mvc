@@ -10,6 +10,8 @@ public class ListaJugadores {
 
     private ListaJugadores() {
         listaJug = new Jugador[2];
+        listaJug[0] = new Humano("pepe");
+        listaJug[1] = new IA();
     }
 
     /**
@@ -59,4 +61,7 @@ public class ListaJugadores {
     }
 
 
+    public Jugador[] getListaJug() {
+        return listaJug;
+    }
 }

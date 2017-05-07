@@ -13,7 +13,10 @@ package Modelo;
  */
 
 
-public class Tablero {
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+
+public class Tablero implements Observable{
 
     private ObjTablero[][] tablero;
 
@@ -48,6 +51,7 @@ public class Tablero {
                 }
             }
         } else {
+            System.out.println("NO ENTRAAA XDD");
             return false;
         }
         return true;
@@ -175,4 +179,13 @@ public class Tablero {
         return this.tablero[x][y];
     }
 
+    @Override
+    public void addListener(InvalidationListener listener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+
+    }
 }

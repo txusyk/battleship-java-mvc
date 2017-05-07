@@ -9,5 +9,5 @@ public abstract class Arma extends HerramientasJuego {
 
     }
 
-    public abstract void accion(int x, int y);
+    protected abstract void accion(int x, int y);
 }

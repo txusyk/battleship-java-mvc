@@ -26,6 +26,7 @@ public class Humano extends Jugador {
         this.nombre = pNombre;
         this.turno = true;
         this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
+        //ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
     }
 
     public String getNombre() {
