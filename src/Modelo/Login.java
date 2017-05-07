@@ -55,56 +55,61 @@ public class Login {
         }
     }
 
-    public void añadirUsuario(String nUsuario, char[] pUsuario) throws ParserConfigurationException, TransformerException {
+    public void añadirUsuario(String nUsuario, char[] pUsuario) {
         if (!estaUsuario(nUsuario)) {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            try {
+                DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+                //root elements
+                Document doc = documentBuilder.newDocument();
+                Element rootElement = doc.createElement("usuarios");
+                doc.appendChild(rootElement);
 
-            //root elements
-            Document doc = documentBuilder.newDocument();
-            Element rootElement = doc.createElement("usuarios");
-            doc.appendChild(rootElement);
+                NodeList nNode = listaUsuarios.getElementsByTagName("usuario");
+                int i = 0;
+                while (i < nNode.getLength()) {
+                    Element auxE = (Element) nNode.item(i);
 
-            NodeList nNode = listaUsuarios.getElementsByTagName("usuario");
-            int i = 0;
-            while (i < nNode.getLength()) {
-                Element auxE = (Element) nNode.item(i);
+                    Element usuario = doc.createElement("usuario");
+                    rootElement.appendChild(usuario);
 
+                    Element nombre = doc.createElement("nombre");
+                    nombre.appendChild(doc.createTextNode(auxE.getElementsByTagName("nombre").item(0).getTextContent()));
+                    usuario.appendChild(nombre);
+                    Element password = doc.createElement("password");
+                    password.appendChild(doc.createTextNode(auxE.getElementsByTagName("password").item(0).getTextContent()));
+                    usuario.appendChild(password);
+                    i++;
+                }
                 Element usuario = doc.createElement("usuario");
                 rootElement.appendChild(usuario);
-
                 Element nombre = doc.createElement("nombre");
-                nombre.appendChild(doc.createTextNode(auxE.getElementsByTagName("nombre").item(0).getTextContent()));
+                nombre.appendChild(doc.createTextNode(nUsuario));
                 usuario.appendChild(nombre);
                 Element password = doc.createElement("password");
-                password.appendChild(doc.createTextNode(auxE.getElementsByTagName("password").item(0).getTextContent()));
+                password.appendChild(doc.createTextNode(convertirPass(pUsuario)));
                 usuario.appendChild(password);
-                i++;
+
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                doc.normalize();
+                DOMSource source = new DOMSource(doc);
+
+                StreamResult result = new StreamResult(new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/usersDB.xml"));
+
+                //output to console
+                StreamResult r = new StreamResult(System.out);
+
+                listaUsuarios = doc;
+
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+                transformer.transform(source, result);
+            } catch (ParserConfigurationException | TransformerException e) {
+                e.getMessage();
             }
-            Element usuario = doc.createElement("usuario");
-            rootElement.appendChild(usuario);
-            Element nombre = doc.createElement("nombre");
-            nombre.appendChild(doc.createTextNode(nUsuario));
-            usuario.appendChild(nombre);
-            Element password = doc.createElement("password");
-            password.appendChild(doc.createTextNode(convertirPass(pUsuario)));
-            usuario.appendChild(password);
 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            doc.normalize();
-            DOMSource source = new DOMSource(doc);
 
-            StreamResult result = new StreamResult(new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/usersDB.xml"));
-
-            //output to console
-            StreamResult r = new StreamResult(System.out);
-
-            listaUsuarios = doc;
-
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-            transformer.transform(source, result);
         }
     }
 

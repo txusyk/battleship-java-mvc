@@ -9,15 +9,14 @@ import java.net.URL;
 public class VistaImagenBienvenida {
 
     private JFrame frame;
-    private ImageIcon imagenFondo;
     private JLabel contenedorImagen;
     private volatile boolean isImagenFondoVisible;
+    private URL urlImagen = this.getClass().getClassLoader().getResource("Title.png");
 
     public VistaImagenBienvenida(JFrame theWindow) {
         frame = theWindow;
-        URL url = this.getClass().getClassLoader().getResource("Title.png");
-        imagenFondo = new ImageIcon(url);
-        contenedorImagen = new JLabel(imagenFondo);
+
+        contenedorImagen = new JLabel(new ImageIcon(urlImagen));
         isImagenFondoVisible = true;
     }
 
