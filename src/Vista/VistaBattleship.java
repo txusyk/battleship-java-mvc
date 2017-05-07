@@ -18,17 +18,8 @@ public class VistaBattleship {
 
     private JFrame frame;
 
-    private boolean tableroActivo;
-
-
-    private VistaBattleship() {
+    public VistaBattleship() {
         crearBarraMenu();
-    }
-
-
-    public static void main(String args[]) {
-        //VistaBattleship.myVb.lanzarVentanaLogin();
-        VistaBattleship.myVb.lanzarVistaImagenBienvenida();
     }
 
     private static void lanzarPopUpInstruccionesJuego() {
@@ -39,7 +30,7 @@ public class VistaBattleship {
     }
 
     private void inicializarVentana(String pNombreVentana) {
-        frame = new JFrame("User's login/registration");
+        frame = new JFrame(pNombreVentana);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -93,9 +84,9 @@ public class VistaBattleship {
 
 
         frame.setLayout(null);
-        while (mainM.isImageVisible()) {
+        while (mainM.isImagenFondoVisible()) {
         }
-        frame.setVisible(false);
+        frame.dispose();
 
 
         lanzarVistaInicializacionBarcos();
@@ -104,7 +95,7 @@ public class VistaBattleship {
     private void lanzarVistaInicializacionBarcos() {
         inicializarVentana("Inicializacion de barcos");
 
-        JPanel panel = new VistaInicializacionBarcos();
+        JPanel panel = VistaInicializacionBarcos.getMiVistaInicBarcos();
         frame.setSize(panel.getMinimumSize().width, panel.getMinimumSize().height);
         frame.add(panel);
         frame.pack();
@@ -179,6 +170,12 @@ public class VistaBattleship {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+
+    public final void lanzarPopUp(java.lang.String texto) {
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame,
+                texto);
     }
 
 }

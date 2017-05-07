@@ -1,14 +1,22 @@
 package Vista;
 
-import javax.swing.*;
+import Controlador.ControladorBattleship;
+import Controlador.ControladorLogin;
+import Modelo.Login;
 
-public class VistaLogin extends JPanel {
+import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
+
+public class VistaLogin extends JPanel implements Observer {
 
     JPanel panel;
+    ControladorLogin contLog;
 
     public VistaLogin() {
         panel = new JPanel();
         placeComponents(panel);
+        contLog = new ControladorLogin();
     }
 
     private void placeComponents(JPanel panel) {
@@ -43,10 +51,14 @@ public class VistaLogin extends JPanel {
     private void generarCamposLoginYRegistro() {
         JButton loginButton = new JButton("login");
         loginButton.setBounds(10, 80, 80, 25);
+        loginButton.setActionCommand("login");
+        loginButton.addActionListener(contLog);
         panel.add(loginButton);
 
         JButton registerButton = new JButton("register");
         registerButton.setBounds(180, 80, 80, 25);
+        registerButton.setActionCommand("register");
+        registerButton.addActionListener(contLog);
         panel.add(registerButton);
     }
 
@@ -73,5 +85,11 @@ public class VistaLogin extends JPanel {
 
     public JPanel getVistaLogin() {
         return this.panel;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        VistaBattleship v = new VistaBattleship();
+        v.lanzarVistaJuego();
     }
 }

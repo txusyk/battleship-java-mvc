@@ -130,5 +130,8 @@ public class InfoJugador extends JPanel {
         this.add(new JLabel(""));
     }
 
+    public String getArmaSelec(){
+        return buttonGroup.getSelection().toString();
+    }
 
 }

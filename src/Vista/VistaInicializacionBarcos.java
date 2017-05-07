@@ -2,28 +2,39 @@ package Vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by Josu on 30/04/2017.
  */
-public class VistaInicializacionBarcos extends JPanel {
+public class VistaInicializacionBarcos extends JPanel implements Observer {
 
     private JPanel selOpcBarco, tableroSeleccion;
     private int numFrag = 4, numDestr = 3, numSub = 2, numPortaav = 1;
+    private JRadioButton frag, destr, sub, portaav;
+    private ButtonGroup buttonGroupBarcos;
+    private JRadioButton buttonVer, buttonHor;
+    private ButtonGroup buttonGroupDirecciones;
 
+    private static VistaInicializacionBarcos miVistaInicBarcos;
 
-    public VistaInicializacionBarcos() {
+    private VistaInicializacionBarcos() {
         this.setLayout(new GridLayout(1, 2));
 
 
         JLabel barcos = new JLabel("Selecc. un tipo de barco");
 
-        JRadioButton frag = new JRadioButton("Fragata");
-        JRadioButton destr = new JRadioButton("Destructor");
-        JRadioButton sub = new JRadioButton("Submarino");
-        JRadioButton portaav = new JRadioButton("Portaaviones");
+        frag = new JRadioButton("Fragata");
+        frag.setActionCommand("fragata");
+        destr = new JRadioButton("Destructor");
+        destr.setActionCommand("destructor");
+        sub = new JRadioButton("Submarino");
+        sub.setActionCommand("submarino");
+        portaav = new JRadioButton("Portaaviones");
+        portaav.setActionCommand("portaaviones");
 
-        ButtonGroup buttonGroupBarcos = new ButtonGroup();
+        buttonGroupBarcos = new ButtonGroup();
         buttonGroupBarcos.add(frag);
         buttonGroupBarcos.add(destr);
         buttonGroupBarcos.add(sub);
@@ -38,9 +49,11 @@ public class VistaInicializacionBarcos extends JPanel {
 
 
         JLabel direccion = new JLabel("Direccion");
-        JRadioButton buttonVer = new JRadioButton("Vertical");
-        JRadioButton buttonHor = new JRadioButton("Horizontal");
-        ButtonGroup buttonGroupDirecciones = new ButtonGroup();
+        buttonVer = new JRadioButton("Vertical");
+        buttonVer.setActionCommand("v");
+        buttonHor = new JRadioButton("Horizontal");
+        buttonHor.setActionCommand("h");
+        buttonGroupDirecciones = new ButtonGroup();
         buttonGroupDirecciones.add(buttonVer);
         buttonGroupDirecciones.add(buttonHor);
         buttonGroupDirecciones.setSelected(buttonHor.getModel(), true);
@@ -83,6 +96,13 @@ public class VistaInicializacionBarcos extends JPanel {
 
     }
 
+    public static VistaInicializacionBarcos getMiVistaInicBarcos(){
+        if(miVistaInicBarcos == null){
+            miVistaInicBarcos = new VistaInicializacionBarcos();
+        }
+        return miVistaInicBarcos;
+    }
+
     public void setNumFrag(int numFrag) {
         this.numFrag = numFrag;
     }
@@ -97,5 +117,18 @@ public class VistaInicializacionBarcos extends JPanel {
 
     public void setNumPortaav(int numPortaav) {
         this.numPortaav = numPortaav;
+    }
+
+    public String getBarcoSelec(){
+        return buttonGroupBarcos.getSelection().getActionCommand();
+    }
+
+    public String getDirSelec(){
+        return buttonGroupDirecciones.getSelection().getActionCommand();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

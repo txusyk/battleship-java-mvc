@@ -11,14 +11,14 @@ public class VistaImagenBienvenida {
     private JFrame frame;
     private ImageIcon imagenFondo;
     private JLabel contenedorImagen;
-    private volatile boolean isImagenFondoVisible;
+    private volatile boolean isImagenVisible;
 
     public VistaImagenBienvenida(JFrame theWindow) {
         frame = theWindow;
         URL url = this.getClass().getClassLoader().getResource("Title.png");
         imagenFondo = new ImageIcon(url);
         contenedorImagen = new JLabel(imagenFondo);
-        isImagenFondoVisible = true;
+        isImagenVisible = true;
     }
 
     public void loadTitleScreen() {
@@ -40,10 +40,14 @@ public class VistaImagenBienvenida {
         frame.getContentPane().remove(contenedorImagen);
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
-        isImagenFondoVisible = false;
+        isImagenVisible = false;
     }
 
     public boolean isImagenFondoVisible() {
-        return isImagenFondoVisible;
+        return isImagenVisible;
+    }
+
+    public boolean isImageVisible() {
+        return isImagenVisible;
     }
 }
