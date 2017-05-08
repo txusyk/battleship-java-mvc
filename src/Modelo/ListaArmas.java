@@ -61,8 +61,8 @@ public class ListaArmas {
      * @param pHerramientasJuego
      */
     public void añadirArma(HerramientasJuego pHerramientasJuego) {
-        if (ls.get(getType(pHerramientasJuego)) != null) {
-            ls.get(getType(pHerramientasJuego)).push(pHerramientasJuego);
+        if (ls.get(pHerramientasJuego.getType()) != null) {
+            ls.get(pHerramientasJuego.getType()).push(pHerramientasJuego);
         }
     }
 
@@ -72,16 +72,4 @@ public class ListaArmas {
     public void eliminarArma(String pHerramientasJuego) {
         ls.get(pHerramientasJuego).pop();
     }
-
-    /**
-     * @param pHerramientasJuego
-     * @return String
-     */
-    private String getType(HerramientasJuego pHerramientasJuego) {
-        String type = String.valueOf(pHerramientasJuego.getClass());
-        String[] arrAux = type.split("\\.");
-        type = arrAux[1].toLowerCase();
-        return type;
-    }
-
 }

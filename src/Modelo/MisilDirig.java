@@ -19,7 +19,7 @@ public class MisilDirig extends Arma {
 
     public MisilDirig() {
         super();
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(this.getType());
 
         Random r = new Random();
         int i = 1 + r.nextInt(100);

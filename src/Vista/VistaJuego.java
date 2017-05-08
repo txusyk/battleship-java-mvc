@@ -38,4 +38,11 @@ public class VistaJuego extends JPanel {
         this.add(this.tableroInfo);
         this.add(this.tableroIA);
     }
+
+    public void lanzarPopUpInstruccionesJuego() {
+        JOptionPane.showMessageDialog(null,
+                "Bienvenido al Battleship IS\n. " +
+                        "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
+                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
+    }
 }

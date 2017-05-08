@@ -1,9 +1,13 @@
 package Vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
-public class VistaLogin extends JPanel {
+public class VistaLogin extends JFrame {
+
+    VistaPopUpCargarPartida popUpCargarPartida;
 
     JPanel panel;
     JTextField userText;
@@ -12,9 +16,43 @@ public class VistaLogin extends JPanel {
     ButtonGroup bg;
     JRadioButton facil, medio, dificil;
 
+    private JMenuBar barraLogin;
+    private JMenu info, infoJuego, partida, archivo;
+    private JMenuItem salir, acercaLogin, acercaDe, reglasJuego, cargarPartida;
+
+
     public VistaLogin() {
+        popUpCargarPartida = new VistaPopUpCargarPartida();
+
         panel = new JPanel();
         placeComponents(panel);
+
+        this.setTitle("Login / Registro de usuarios");
+        URL url = this.getClass().getClassLoader().getResource("user-picture.png");
+        if (url != null) {
+            ImageIcon img = new ImageIcon(url);
+            this.setIconImage(img.getImage());
+        }
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(300, 270);
+
+        crearBarraMenu();
+        this.setJMenuBar(barraLogin);
+
+        this.getContentPane().add(this.panel);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = this.getSize(); //Tamaño del frame actual (ancho x alto)
+        if (frameSize.height > screenSize.height) {
+            frameSize.height = screenSize.height;
+        }
+        if (frameSize.width > screenSize.width) {
+            frameSize.width = screenSize.width;
+        }
+        this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+        this.setResizable(false);
+        this.setVisible(true);
     }
 
     private void placeComponents(JPanel panel) {
@@ -51,7 +89,7 @@ public class VistaLogin extends JPanel {
         loginButton.setBounds(10, 80, 80, 25);
         panel.add(loginButton);
 
-        registerButton = new JButton("register");
+        registerButton = new JButton("registro");
         registerButton.setBounds(180, 80, 80, 25);
         panel.add(registerButton);
     }
@@ -81,8 +119,50 @@ public class VistaLogin extends JPanel {
         panel.add(dificil);
     }
 
-    public JPanel getVistaLogin() {
-        return this.panel;
+    private void crearBarraMenu() {
+        archivo = new JMenu("Archivo");
+        salir = new JMenuItem("Salir");
+        salir.setActionCommand("salir");
+        archivo.add(salir);
+
+        infoJuego = new JMenu("Inf. de juego");
+        reglasJuego = new JMenuItem("Reglas del juego");
+        reglasJuego.setActionCommand("reglas");
+        infoJuego.add(reglasJuego);
+
+        info = new JMenu("Informacion");
+        acercaDe = new JMenuItem("Info. developers");
+        acercaDe.setActionCommand("devs");
+        acercaLogin = new JMenuItem("Informacion sobre el login");
+        acercaLogin.setActionCommand("infoLogin");
+        info.add(acercaLogin);
+        info.add(acercaDe);
+
+        partida = new JMenu("Partida");
+        cargarPartida = new JMenuItem("Cargar partida");
+        cargarPartida.setActionCommand("cargar");
+        partida.add(cargarPartida);
+
+
+        barraLogin = new JMenuBar();
+        barraLogin.add(archivo);
+        barraLogin.add(info);
+        barraLogin.add(infoJuego);
+        barraLogin.add(partida);
+    }
+
+    public final void añadirListenersLogin(ActionListener login) {
+        this.loginButton.setActionCommand("login");
+        this.loginButton.addActionListener(login);
+
+        this.registerButton.setActionCommand("registro");
+        this.registerButton.addActionListener(login);
+
+        this.salir.addActionListener(login);
+        this.reglasJuego.addActionListener(login);
+        this.acercaDe.addActionListener(login);
+        this.acercaLogin.addActionListener(login);
+        this.cargarPartida.addActionListener(login);
     }
 
     public JTextField getUserText() {
@@ -93,16 +173,23 @@ public class VistaLogin extends JPanel {
         return passwordText;
     }
 
-    public ButtonGroup getBg() {
-        return bg;
+    public String getBotonSeleccionado() {
+        if (bg.isSelected(dificil.getModel())) {
+            return "dificil";
+        } else if (bg.isSelected(medio.getModel())) {
+            return "medio";
+        } else {
+            return "facil";
+        }
     }
 
-    public final void añadirListenersLogin(ActionListener login) {
-        this.loginButton.setActionCommand("login");
-        this.loginButton.addActionListener(login);
+    public void lanzarPopUp(String texto, String nombreVentana, int tipoVentana) {
+        JFrame frame = new JFrame();
+        JOptionPane.showMessageDialog(frame, texto, nombreVentana, tipoVentana);
+    }
 
-        this.registerButton.setActionCommand("registro");
-        this.registerButton.addActionListener(login);
+    public void salir() {
+        System.exit(0);
     }
 
 }

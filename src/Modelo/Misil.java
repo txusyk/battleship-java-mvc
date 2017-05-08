@@ -14,7 +14,7 @@ package Modelo;
 public class Misil extends Arma {
 
     public Misil() {
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(this.getType());
     }
 
 

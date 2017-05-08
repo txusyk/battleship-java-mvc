@@ -2,13 +2,10 @@ package Controlador;
 
 import Modelo.Login;
 import Vista.VistaImagenBienvenida;
-import Vista.VistaInicializacionBarcos;
-import Vista.VistaJuego;
 import Vista.VistaLogin;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
@@ -18,14 +15,12 @@ import java.net.URL;
 public class ControladorBattleship {
 
     private static ControladorBattleship myControladorBattleship;
+    Clip clip;
     private JMenuBar barraLogin, barraJuego;
     private JMenu archivo, informacion, infoJuego, partida;
     private JMenuItem salir, reiniciar, cambiarDif, acercaLogin, acercaDe, reglasJuego, cargarPartida, guardarPartida;
-    private JFrame frame, frameInicio;
 
     private ControladorBattleship() {
-        frame = new JFrame("mainFrame");
-        frameInicio = new JFrame();
     }
 
     public static ControladorBattleship getMyControladorBattleship() {
@@ -35,42 +30,28 @@ public class ControladorBattleship {
         return myControladorBattleship;
     }
 
-    private static void lanzarPopUpInstruccionesJuego() {
-        JOptionPane.showMessageDialog(null,
-                "Bienvenido al Battleship IS\n. " +
-                        "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
-                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
-
     public void iniciar() {
-        lanzarSonido();
-        frameInicio.getContentPane().setLayout(null);
-        frameInicio.getContentPane().setBackground(Color.WHITE);
-        frameInicio.setPreferredSize(new Dimension(900, 615));
-        frameInicio.setMinimumSize(new Dimension(900, 615));
-        frameInicio.setResizable(false);
-        frameInicio.pack();
-        centrarVentana(frameInicio);
+        lanzarSonido("inicio");
 
-        VistaImagenBienvenida mainM = new VistaImagenBienvenida(frameInicio);
+        VistaImagenBienvenida mainM = new VistaImagenBienvenida();
         mainM.loadTitleScreen();
-
-        frameInicio.dispose();
+        mainM.dispose();
 
         new ControladorLogin(new Login(), new VistaLogin());
     }
 
-    private void lanzarSonido() {
+    public void lanzarSonido(String pSonido) {
+        URL url;
+        if (pSonido.equalsIgnoreCase("inicio")) {
+            url = this.getClass().getClassLoader().getResource("mgs.wav");
+        } else {
+            url = this.getClass().getClassLoader().getResource("drunken.wav");
+        }
         try {
             // Open an audio input stream.
-            URL url = this.getClass().getClassLoader().getResource("drunken.wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
             // Get a sound clip resource.
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             // Open audio clip and load samples from the audio input stream.
             clip.open(audioIn);
             clip.start();
@@ -79,20 +60,8 @@ public class ControladorBattleship {
         }
     }
 
-    public void centrarVentana(JFrame pFrame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = pFrame.getSize(); //Tamaño del frame actual (ancho x alto)
-        if (frameSize.height > screenSize.height) {
-            frameSize.height = screenSize.height;
-        }
-        if (frameSize.width > screenSize.width) {
-            frameSize.width = screenSize.width;
-        }
-        pFrame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-    }
-
     public void lanzarVistaJuego() {
-        lanzarPopUpInstruccionesJuego();
+        /*lanzarPopUpInstruccionesJuego();
         frame.setTitle("Battleship");
         frame.setJMenuBar(barraJuego);
 
@@ -103,22 +72,7 @@ public class ControladorBattleship {
         frame.setResizable(true);
 
 
-        frame.setVisible(true);
-    }
-
-
-
-    private void lanzarVistaInicializacionBarcos() {
-        frame.setTitle("Inicializacion de barcos");
-
-        JPanel panel = new VistaInicializacionBarcos();
-        frame.setSize(panel.getMinimumSize().width, panel.getMinimumSize().height);
-        frame.add(panel);
-        frame.pack();
-        frame.setResizable(true);
-
-
-        frame.setVisible(true);
+        frame.setVisible(true);*/
     }
 
     private void crearBarraMenu() {

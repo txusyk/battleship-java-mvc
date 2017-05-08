@@ -162,7 +162,6 @@ public class GestorFicheros {
         } else {
             return -1;
         }
-
     }
 
     public int obtenerPrecioReparacion() {

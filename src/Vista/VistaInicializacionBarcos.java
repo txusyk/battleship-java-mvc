@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by Josu on 30/04/2017.
  */
-public class VistaInicializacionBarcos extends JPanel {
+public class VistaInicializacionBarcos extends JFrame {
 
     private JPanel selOpcBarco, tableroSeleccion;
     private int numFrag = 4, numDestr = 3, numSub = 2, numPortaav = 1;
@@ -77,10 +77,14 @@ public class VistaInicializacionBarcos extends JPanel {
 
 
         tableroSeleccion = new VistaTablero();
-        this.add(selOpcBarco);
-        this.add(tableroSeleccion);
+        this.getContentPane().add(selOpcBarco);
+        this.getContentPane().add(tableroSeleccion);
 
-
+        this.setTitle("Inicializacion de barcos");
+        this.setSize(this.getMinimumSize().width, this.getMinimumSize().height);
+        this.pack();
+        this.setResizable(true);
+        this.setVisible(true);
     }
 
     public void setNumFrag(int numFrag) {
