@@ -205,7 +205,7 @@ public class Tablero extends Observable {
                     i++;
                 }
                 if (entra) {
-                    entra = comprobarPosHor(x, y, pBarco);
+                    entra = comprobarPosAlrededor(pBarco, x, y);
                 }
             } else if (pBarco.getHorientacion() == 'v') {
                 int i = 0;
@@ -214,7 +214,7 @@ public class Tablero extends Observable {
                     i++;
                 }
                 if (entra) {
-                    entra = comprobarPosVer(x, y, pBarco);
+                    entra = comprobarPosAlrededor(pBarco, x, y);
                 }
             }
             return entra;
@@ -236,85 +236,91 @@ public class Tablero extends Observable {
      * @param pBarco
      * @return true en caso de que haya espacio de 1 casilla al menos alrededor de un barco horizontal
      */
-    private boolean comprobarPosHor(int x, int y, Barco pBarco) {
+    private boolean comprobarPosAlrededor(Barco pBarco, int x, int y) {
         int index = 0;
         boolean entra = true;
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
-                if (x > 0) {
-                    entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
-                    if (y > 0) {
-                        entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
-                    }
-                    if (y < 9) {
-                        entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
-                    }
-                }
+                entra = comprobarPrimeraPos(pBarco.getHorientacion(), x, y);
             } else if (index == pBarco.getTamaño() - 1) {
-                if (x < 9) {
-                    entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
-                    if (y > 0) {
-                        entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
-                    }
-                    if (y < 9) {
-                        entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
-                    }
-                }
-
+                entra = comprobarUltimaPos(pBarco.getHorientacion(), x, y);
             }
             if (entra) {
-                if (y > 0) {
-                    entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
-                }
-                if (y < 9) {
-                    entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
-                }
+                entra = comprobarPosEstandar(pBarco.getHorientacion(), x, y);
             }
             index++;
         }
         return entra;
     }
 
-    /**
-     * @param x
-     * @param y
-     * @param pBarco
-     * @return true en caso de que haya espacio de 1 casilla al menos alrededor de un barco vertical
-     */
-    private boolean comprobarPosVer(int x, int y, Barco pBarco) {
-        int index = 0;
+    private boolean comprobarPrimeraPos(char direccion, int x, int y) {
         boolean entra = true;
-        while (index < pBarco.getTamaño() && entra) {
-            if (index == 0) {
+        if (direccion == 'h') {
+            if (x > 0) {
+                entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
                 if (y > 0) {
-                    entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
-                    if (x > 0) {
-                        entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
-                    }
-                    if (x < 9) {
-                        entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
-                    }
+                    entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
                 }
-            } else if (index == pBarco.getTamaño() - 1) {
                 if (y < 9) {
-                    entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
-                    if (x > 0) {
-                        entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
-                    }
-                    if (x < 9) {
-                        entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
-                    }
+                    entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
                 }
             }
-            if (entra) {
+        } else {
+            if (y > 0) {
+                entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
                 if (x > 0) {
-                    entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
+                    entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
                 }
                 if (x < 9) {
-                    entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
+                    entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
                 }
             }
-            index++;
+        }
+        return entra;
+    }
+
+    private boolean comprobarUltimaPos(char direc, int x, int y) {
+        boolean entra = true;
+        if (direc == 'h') {
+            if (x < 9) {
+                entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
+                if (y > 0) {
+                    entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
+                }
+                if (y < 9) {
+                    entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
+                }
+            }
+        } else {
+            if (y < 9) {
+                entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
+                if (x > 0) {
+                    entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
+                }
+                if (x < 9) {
+                    entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
+                }
+            }
+        }
+        return entra;
+    }
+
+    private boolean comprobarPosEstandar(char direc, int x, int y) {
+        boolean entra = true;
+        if (direc == 'h') {
+            if (y > 0) {
+                entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
+            }
+            if (y < 9) {
+                entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
+            }
+        } else {
+            if (x > 0) {
+                entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
+            }
+            if (x < 9) {
+                entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
+            }
         }
         return entra;
     }
