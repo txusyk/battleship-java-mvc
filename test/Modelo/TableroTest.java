@@ -95,6 +95,16 @@ public class TableroTest {
         Assert.assertTrue(tab1.getPosicion(2, 5) instanceof AreaBarco);
         Assert.assertTrue(tab1.getPosicion(3, 5) instanceof AreaBarco);
 
+        Assert.assertFalse(tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("portaaviones"), 6, 7));
+        Assert.assertFalse(tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("portaaviones"), 7, 7));
+        b = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
+        b.setHorientacion('v');
+        Assert.assertFalse(tab1.colocarBarco(b, 3, 8));
+
+
+
+
+
 
     }
 

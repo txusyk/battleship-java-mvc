@@ -15,6 +15,7 @@ package Modelo;
 
 import java.util.Observable;
 
+
 public class Tablero extends Observable {
 
     private ObjTablero[][] tablero;
@@ -224,9 +225,9 @@ public class Tablero extends Observable {
 
     private boolean comprobarPorTamaño(Barco pBarco, int x, int y) {
         if (pBarco.getHorientacion() == 'h') {
-            return pBarco.getTamaño() + x < 10;
+            return ((pBarco.getTamaño() - 1) + x) < 9;
         } else {
-            return pBarco.getTamaño() + y < 10;
+            return ((pBarco.getTamaño() - 1) + y) < 9;
         }
     }
 
@@ -253,6 +254,12 @@ public class Tablero extends Observable {
         return entra;
     }
 
+    /**
+     * @param direccion
+     * @param x
+     * @param y
+     * @return true en caso de que las posiciones de alrededor a la  primera posicion no sean barco
+     */
     private boolean comprobarPrimeraPos(char direccion, int x, int y) {
         boolean entra = true;
         if (direccion == 'h') {
@@ -279,6 +286,12 @@ public class Tablero extends Observable {
         return entra;
     }
 
+    /**
+     * @param direc
+     * @param x
+     * @param y
+     * @return true en caso de que las posiciones de alrededor a la  ultima posicion no sean barco
+     */
     private boolean comprobarUltimaPos(char direc, int x, int y) {
         boolean entra = true;
         if (direc == 'h') {
@@ -305,6 +318,12 @@ public class Tablero extends Observable {
         return entra;
     }
 
+    /**
+     * @param direc
+     * @param x
+     * @param y
+     * @return true en caso de que las posiciones de alrededor a cualquier posicion no sean barco
+     */
     private boolean comprobarPosEstandar(char direc, int x, int y) {
         boolean entra = true;
         if (direc == 'h') {
