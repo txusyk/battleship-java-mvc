@@ -39,7 +39,7 @@ public class Tablero extends Observable {
      * @return devuelve si el barco ha sido posicionado
      */
     public boolean colocarBarco(Barco pBarco, int x, int y) {
-        if (entraBarco(pBarco, x, y) && (x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
+        if (entraBarco(pBarco, x, y) && (x > 0 && x < 9) && (y > 0 && y < 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     pBarco.getParteBarco(i).setPosicion(x + i, y);
@@ -99,18 +99,18 @@ public class Tablero extends Observable {
                     }
                 }
             } else if (i == x + pBarco.getTamaño() - 1) {
-                if (x + 1 <= 9) {
-                    if (!(this.tablero[x + 1][y] instanceof ParteBarco)) {
-                        this.tablero[x + 1][y] = new AreaBarco();
+                if (i + 1 <= 9) {
+                    if (!(this.tablero[i + 1][y] instanceof ParteBarco)) {
+                        this.tablero[i + 1][y] = new AreaBarco();
                     }
                     if (y - 1 >= 0) {
-                        if (!(this.tablero[x + 1][y - 1] instanceof ParteBarco)) {
-                            this.tablero[x + 1][y - 1] = new AreaBarco();
+                        if (!(this.tablero[i + 1][y - 1] instanceof ParteBarco)) {
+                            this.tablero[i + 1][y - 1] = new AreaBarco();
                         }
                     }
                     if (y + 1 <= 9) {
-                        if (!(this.tablero[x + 1][y + 1] instanceof ParteBarco)) {
-                            this.tablero[x + 1][y + 1] = new AreaBarco();
+                        if (!(this.tablero[i + 1][y + 1] instanceof ParteBarco)) {
+                            this.tablero[i + 1][y + 1] = new AreaBarco();
                         }
                     }
                 }
@@ -157,19 +157,19 @@ public class Tablero extends Observable {
                         }
                     }
                 }
-            } else if (i == y + pBarco.getTamaño()) { //posicionFin
-                if (y + 1 <= 9) {
-                    if (!(this.tablero[x][y + 1] instanceof ParteBarco)) {
-                        this.tablero[x][y + 1] = new AreaBarco();
+            } else if (i == y + pBarco.getTamaño() - 1) { //posicionFin
+                if (i + 1 <= 9) {
+                    if (!(this.tablero[x][i + 1] instanceof ParteBarco)) {
+                        this.tablero[x][i + 1] = new AreaBarco();
                     }
                     if (x - 1 >= 0) {
-                        if (!(this.tablero[x - 1][y + 1] instanceof ParteBarco)) {
-                            this.tablero[x - 1][y + 1] = new AreaBarco();
+                        if (!(this.tablero[x - 1][i + 1] instanceof ParteBarco)) {
+                            this.tablero[x - 1][i + 1] = new AreaBarco();
                         }
                     }
                     if (x + 1 <= 9) {
-                        if (!(this.tablero[x + 1][y + 1] instanceof ParteBarco)) {
-                            this.tablero[x + 1][y + 1] = new AreaBarco();
+                        if (!(this.tablero[x + 1][i + 1] instanceof ParteBarco)) {
+                            this.tablero[x + 1][i + 1] = new AreaBarco();
                         }
                     }
                 }
@@ -196,29 +196,38 @@ public class Tablero extends Observable {
      * @return si el barco puede ser posicionado
      */
     private boolean entraBarco(Barco pBarco, int x, int y) {
-        boolean entra = false;
-        if (pBarco.getHorientacion() == 'h') {
-            int i = 0;
-            boolean enc = false;
-            while (i < pBarco.getTamaño() && !enc) {
-                enc = tablero[x + i][y] instanceof Agua;
-                i++;
+        boolean entra = true;
+        if (comprobarPorTamaño(pBarco, x, y)) {
+            if (pBarco.getHorientacion() == 'h') {
+                int i = 0;
+                while (i < pBarco.getTamaño() && entra) {
+                    entra = tablero[x + i][y] instanceof Agua;
+                    i++;
+                }
+                if (entra) {
+                    entra = comprobarPosHor(x, y, pBarco);
+                }
+            } else if (pBarco.getHorientacion() == 'v') {
+                int i = 0;
+                while (i < pBarco.getTamaño() && entra) {
+                    entra = tablero[x][y + i] instanceof Agua;
+                    i++;
+                }
+                if (entra) {
+                    entra = comprobarPosVer(x, y, pBarco);
+                }
             }
-            if (enc) {
-                entra = comprobarPosHor(x, y, pBarco);
-            }
-        } else if (pBarco.getHorientacion() == 'v') {
-            int i = 0;
-            boolean enc = false;
-            while (i < pBarco.getTamaño() && !enc) {
-                enc = tablero[x][y + i] instanceof Agua;
-                i++;
-            }
-            if (enc) {
-                entra = comprobarPosVer(x, y, pBarco);
-            }
+            return entra;
         }
-        return entra;
+        return false;
+    }
+
+    private boolean comprobarPorTamaño(Barco pBarco, int x, int y) {
+        if (pBarco.getHorientacion() == 'h') {
+            return pBarco.getTamaño() + x < 10;
+        } else {
+            return pBarco.getTamaño() + y < 10;
+        }
     }
 
     /**
