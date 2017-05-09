@@ -27,13 +27,26 @@ public class TableroTest {
     public void testColocarBarcoEsBarcoyComprobarAlrededor() throws Exception {
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 2, 2); //colocamos un barco
         Assert.assertTrue(tab1.esBarco(2, 2));
-        tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 2, 3); //intentamos colocar un barco cerca de otro ya colocado
+
+        tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("destructor"), 2, 3); //intentamos colocar un barco cerca de otro ya colocado
         Assert.assertFalse(tab1.esBarco(2, 3));
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 0, 0); //colocamos un barco en un borde
-        Assert.assertFalse(tab1.esBarco(0, 0));
+        Assert.assertTrue(tab1.esBarco(0, 0));
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 9, 9); //colocamos un barco en un borde
-        Assert.assertFalse(tab1.esBarco(9, 9));
+        Assert.assertTrue(tab1.esBarco(9, 9));
 
+
+        Barco b = BarcoFactory.getBarcoFactory().crearBarco("destructor");
+        b.setHorientacion('v');
+
+        Assert.assertTrue(tab1.colocarBarco(b, 4, 4));
+        Assert.assertFalse(tab1.esBarco(4, 3));
+        Assert.assertTrue(tab1.esBarco(4, 4));
+        Assert.assertFalse(tab1.esBarco(5, 4));
+        Assert.assertTrue(tab1.esBarco(4, 5));
+        Assert.assertFalse(tab1.esBarco(4, 6));
+
+        tab1.imprimir();
     }
 
     @Test
@@ -49,13 +62,6 @@ public class TableroTest {
         Assert.assertTrue(tab1.getPosicion(3, 1) instanceof AreaBarco);
         Assert.assertTrue(tab1.getPosicion(3, 2) instanceof AreaBarco);
         Assert.assertTrue(tab1.getPosicion(3, 3) instanceof AreaBarco);
-
-
-
-
-
-
-
     }
 
 }

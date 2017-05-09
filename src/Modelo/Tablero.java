@@ -39,20 +39,19 @@ public class Tablero extends Observable {
      * @return devuelve si el barco ha sido posicionado
      */
     public boolean colocarBarco(Barco pBarco, int x, int y) {
-        if (entraBarco(pBarco, x, y) && (x > 0 && x < 9) && (y > 0 && y < 9)) {
+        if (entraBarco(pBarco, x, y) && (x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     pBarco.getParteBarco(i).setPosicion(x + i, y);
                     this.tablero[x + i][y] = pBarco.getParteBarco(i);
-                    marcarAreaBarco(pBarco, x, y);
                 }
             } else {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     pBarco.getParteBarco(i).setPosicion(x, y + i);
                     this.tablero[x][y + i] = pBarco.getParteBarco(i);
-                    marcarAreaBarco(pBarco, x, y);
                 }
             }
+            marcarAreaBarco(pBarco, x, y);
         } else {
             return false;
         }
@@ -82,33 +81,52 @@ public class Tablero extends Observable {
      * @param y
      */
     private void marcarAreaBarcoHoriz(Barco pBarco, int x, int y) {
-        if (x - 1 >= 0) {
-            this.tablero[x - 1][y] = new AreaBarco();
-            if (y - 1 >= 0) {
-                this.tablero[x - 1][y - 1] = new AreaBarco();
-            }
-            if (y + 1 <= 9) {
-                this.tablero[x - 1][y + 1] = new AreaBarco();
-            }
-        }
-        if (x + 1 <= 9) {
-            this.tablero[x + 1][y] = new AreaBarco();
-            if (y - 1 >= 0) {
-                this.tablero[x + 1][y - 1] = new AreaBarco();
-            }
-            if (y + 1 <= 9) {
-                this.tablero[x + 1][y + 1] = new AreaBarco();
-            }
-        }
         for (int i = x - 1; i < x + pBarco.getTamaño(); i++) {
-            if (y - 1 >= 0) {
-                if (i >= 0 && i <= 9) {
-                    this.tablero[i][y - 1] = new AreaBarco();
+            if (i == x - 1) {
+                if (x - 1 >= 0) {
+                    if (!(this.tablero[x - 1][y] instanceof ParteBarco)) {
+                        this.tablero[x - 1][y] = new AreaBarco();
+                    }
+                    if (y - 1 >= 0) {
+                        if (!(this.tablero[x - 1][y - 1] instanceof ParteBarco)) {
+                            this.tablero[x - 1][y - 1] = new AreaBarco();
+                        }
+                    }
+                    if (y + 1 <= 9) {
+                        if (!(this.tablero[x - 1][y + 1] instanceof ParteBarco)) {
+                            this.tablero[x - 1][y + 1] = new AreaBarco();
+                        }
+                    }
+                }
+            } else if (i == x + pBarco.getTamaño() - 1) {
+                if (x + 1 <= 9) {
+                    if (!(this.tablero[x + 1][y] instanceof ParteBarco)) {
+                        this.tablero[x + 1][y] = new AreaBarco();
+                    }
+                    if (y - 1 >= 0) {
+                        if (!(this.tablero[x + 1][y - 1] instanceof ParteBarco)) {
+                            this.tablero[x + 1][y - 1] = new AreaBarco();
+                        }
+                    }
+                    if (y + 1 <= 9) {
+                        if (!(this.tablero[x + 1][y + 1] instanceof ParteBarco)) {
+                            this.tablero[x + 1][y + 1] = new AreaBarco();
+                        }
+                    }
                 }
             }
-            if (y + 1 <= 9) {
-                if (i >= 0 && i <= 9) {
-                    this.tablero[i][y + 1] = new AreaBarco();
+            if (i >= 0 && i <= 9) {
+                if (y - 1 >= 0) {
+
+                    if (!(this.tablero[i][y - 1] instanceof ParteBarco)) {
+                        this.tablero[i][y - 1] = new AreaBarco();
+                    }
+                }
+                if (y + 1 <= 9) {
+
+                    if (!(this.tablero[i][y + 1] instanceof ParteBarco)) {
+                        this.tablero[i][y + 1] = new AreaBarco();
+                    }
                 }
             }
         }
@@ -122,33 +140,50 @@ public class Tablero extends Observable {
      * @param y
      */
     private void marcarAreaBarcoVert(Barco pBarco, int x, int y) {
-        if (y - 1 >= 0) {
-            this.tablero[x][y - 1] = new AreaBarco();
-            if (x - 1 >= 0) {
-                this.tablero[x - 1][y - 1] = new AreaBarco();
-            }
-            if (x + 1 <= 9) {
-                this.tablero[x + 1][y - 1] = new AreaBarco();
-            }
-        }
-        if (y + 1 <= 9) {
-            this.tablero[x][y + 1] = new AreaBarco();
-            if (x - 1 >= 0) {
-                this.tablero[x - 1][y + 1] = new AreaBarco();
-            }
-            if (x + 1 <= 9) {
-                this.tablero[x + 1][y + 1] = new AreaBarco();
-            }
-        }
         for (int i = y - 1; i < y + pBarco.getTamaño(); i++) {
-            if (x - 1 >= 0) {
-                if (i >= 0 && i <= 9) {
-                    this.tablero[x - 1][i] = new AreaBarco();
+            if (i == y - 1) { //posicionCabeza
+                if (y - 1 >= 0) {
+                    if (!(this.tablero[x][y - 1] instanceof ParteBarco)) {
+                        this.tablero[x][y - 1] = new AreaBarco();
+                    }
+                    if (x - 1 >= 0) {
+                        if (!(this.tablero[x - 1][y - 1] instanceof ParteBarco)) {
+                            this.tablero[x - 1][y - 1] = new AreaBarco();
+                        }
+                    }
+                    if (x + 1 <= 9) {
+                        if (!(this.tablero[x + 1][y - 1] instanceof ParteBarco)) {
+                            this.tablero[x + 1][y - 1] = new AreaBarco();
+                        }
+                    }
+                }
+            } else if (i == y + pBarco.getTamaño()) { //posicionFin
+                if (y + 1 <= 9) {
+                    if (!(this.tablero[x][y + 1] instanceof ParteBarco)) {
+                        this.tablero[x][y + 1] = new AreaBarco();
+                    }
+                    if (x - 1 >= 0) {
+                        if (!(this.tablero[x - 1][y + 1] instanceof ParteBarco)) {
+                            this.tablero[x - 1][y + 1] = new AreaBarco();
+                        }
+                    }
+                    if (x + 1 <= 9) {
+                        if (!(this.tablero[x + 1][y + 1] instanceof ParteBarco)) {
+                            this.tablero[x + 1][y + 1] = new AreaBarco();
+                        }
+                    }
                 }
             }
-            if (x + 1 <= 9) {
-                if (i >= 0 && i <= 9) {
-                    this.tablero[x + 1][i] = new AreaBarco();
+            if (i >= 0 && i <= 9) {
+                if (x - 1 >= 0) {
+                    if (!(this.tablero[x - 1][i] instanceof ParteBarco)) {
+                        this.tablero[x - 1][i] = new AreaBarco();
+                    }
+                }
+                if (x + 1 <= 9) {
+                    if (!(this.tablero[x + 1][i] instanceof ParteBarco)) {
+                        this.tablero[x + 1][i] = new AreaBarco();
+                    }
                 }
             }
         }
@@ -176,7 +211,7 @@ public class Tablero extends Observable {
             int i = 0;
             boolean enc = false;
             while (i < pBarco.getTamaño() && !enc) {
-                enc = tablero[x][y+i] instanceof Agua;
+                enc = tablero[x][y + i] instanceof Agua;
                 i++;
             }
             if (enc) {
@@ -197,18 +232,33 @@ public class Tablero extends Observable {
         boolean entra = true;
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
-                if ((x > 0) && (y > 0 && y < 9)) {
-                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x - 1][y + 1] instanceof Agua);
+                if (x > 0) {
+                    entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
+                    if (y > 0) {
+                        entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
+                    }
+                    if (y < 9) {
+                        entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
+                    }
                 }
             } else if (index == pBarco.getTamaño() - 1) {
-                if (x < 9 && (y > 0 && y < 9)) {
-                    entra = (tablero[x + 1][y] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
+                if (x < 9) {
+                    entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
+                    if (y > 0) {
+                        entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
+                    }
+                    if (y < 9) {
+                        entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
+                    }
                 }
 
             }
             if (entra) {
-                if (y > 0 && y < 9) {
-                    entra = (tablero[x][y - 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua);
+                if (y > 0) {
+                    entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
+                }
+                if (y < 9) {
+                    entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
                 }
             }
             index++;
@@ -227,19 +277,35 @@ public class Tablero extends Observable {
         boolean entra = true;
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
-                if ((y > 0) && (x > 0 && x < 9)) {
-                    entra = (tablero[x - 1][y - 1] instanceof Agua) && (tablero[x][y - 1] instanceof Agua) && (tablero[x + 1][y - 1] instanceof Agua);
+                if (y > 0) {
+                    entra = tablero[x][y - 1] instanceof Agua || tablero[x][y - 1] instanceof AreaBarco;
+                    if (x > 0) {
+                        entra = tablero[x - 1][y - 1] instanceof Agua || tablero[x - 1][y - 1] instanceof AreaBarco;
+                    }
+                    if (x < 9) {
+                        entra = tablero[x + 1][y - 1] instanceof Agua || tablero[x + 1][y - 1] instanceof AreaBarco;
+                    }
                 }
             } else if (index == pBarco.getTamaño() - 1) {
-                if ((y < 9) && (x > 0 && x < 9)) {
-                    entra = (tablero[x - 1][y + 1] instanceof Agua) && (tablero[x][y + 1] instanceof Agua) && (tablero[x + 1][y + 1] instanceof Agua);
+                if (y < 9) {
+                    entra = tablero[x][y + 1] instanceof Agua || tablero[x][y + 1] instanceof AreaBarco;
+                    if (x > 0) {
+                        entra = tablero[x - 1][y + 1] instanceof Agua || tablero[x - 1][y + 1] instanceof AreaBarco;
+                    }
+                    if (x < 9) {
+                        entra = tablero[x + 1][y + 1] instanceof Agua || tablero[x + 1][y + 1] instanceof AreaBarco;
+                    }
                 }
             }
             if (entra) {
-                if (x > 0 && x < 9) {
-                    entra = (tablero[x - 1][y] instanceof Agua) && (tablero[x + 1][y] instanceof Agua);
+                if (x > 0) {
+                    entra = tablero[x - 1][y] instanceof Agua || tablero[x - 1][y] instanceof AreaBarco;
+                }
+                if (x < 9) {
+                    entra = tablero[x + 1][y] instanceof Agua || tablero[x + 1][y] instanceof AreaBarco;
                 }
             }
+            index++;
         }
         return entra;
     }
