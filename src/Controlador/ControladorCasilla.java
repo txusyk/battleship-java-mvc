@@ -2,8 +2,12 @@ package Controlador;
 
 import Modelo.*;
 import Vista.InfoJugador;
+import Vista.VistaCasilla;
 import Vista.VistaInicializacionBarcos;
+import Vista.VistaLogin;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,17 +17,11 @@ import java.awt.event.ActionListener;
 public class ControladorCasilla implements ActionListener {
 
     private InfoJugador infJug;
-    private Tablero tabJug;
-
     public ControladorCasilla(Tablero pTabJug){
-        tabJug = pTabJug;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
-        System.out.println(VistaInicializacionBarcos.getMiVistaInicBarcos().getBarcoSelec());
-        System.out.println(VistaInicializacionBarcos.getMiVistaInicBarcos().getDirSelec());
         if(infJug!=null) {
             System.out.println(e.getActionCommand());
             Bomba a = (Bomba) Battleship.getMyBattleship().getJugActivo().getListaArmas().getArma(infJug.getArmaSelec());
@@ -33,59 +31,97 @@ public class ControladorCasilla implements ActionListener {
             switch(VistaInicializacionBarcos.getMiVistaInicBarcos().getBarcoSelec()){
                 case ("fragata"):
                     if (VistaInicializacionBarcos.getMiVistaInicBarcos().getDirSelec().equalsIgnoreCase("v")) {
-                        Fragata frag = new Fragata();
+                        Fragata frag = (Fragata)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("fragata");
                         frag.setHorientacion('v');
-                        tabJug.colocarBarco(frag, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
-                        System.out.println("Creada fragata vertical");
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(frag, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10) && VistaInicializacionBarcos.getMiVistaInicBarcos().getNumFragatas()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("fragata");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(frag.getTamaño(), "v", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            frag.soutPrimeraPos();
+                            System.out.println("Creada fragata vertical");
+                        }
                     }
                     else {
-                        Fragata frag = new Fragata();
+                        Fragata frag = (Fragata)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("fragata");
                         frag.setHorientacion('h');
-                        tabJug.colocarBarco(frag, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
-                        System.out.println("Creada fragata horizontal");
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(frag, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10) && VistaInicializacionBarcos.getMiVistaInicBarcos().getNumFragatas()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("fragata");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(frag.getTamaño(), "h", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            frag.soutPrimeraPos();
+                            System.out.println("Creada fragata horizontal");
+                        }
                     }
                     break;
                 case ("destructor"):
                     if (VistaInicializacionBarcos.getMiVistaInicBarcos().getDirSelec().equalsIgnoreCase("v")) {
-                        Destructor destr = new Destructor();
-                        destr.setHorientacion('v');
-                        tabJug.colocarBarco(destr, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
-                        System.out.println("Creado destruc vertical");
+                        Destructor dest = (Destructor)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("destructor");
+                        dest.setHorientacion('v');
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(dest, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10)&& VistaInicializacionBarcos.getMiVistaInicBarcos().getNumDestr()>0){
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("destructor");
+                            System.out.println(Integer.parseInt(e.getActionCommand())/10 +" "+ Integer.parseInt(e.getActionCommand())%10);
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(dest.getTamaño(), "v", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            System.out.println("Creado destruc vertical");
+                            dest.soutPrimeraPos();
+                        }
                     }
                     else {
-                        Destructor destr = new Destructor();
-                        destr.setHorientacion('h');
-                        tabJug.colocarBarco(destr, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
-                        System.out.println("Creada destruc horizontal");
+                        Destructor dest = (Destructor)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("destructor");
+                        dest.setHorientacion('h');
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(dest, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10) && VistaInicializacionBarcos.getMiVistaInicBarcos().getNumDestr()>0){
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(dest.getTamaño(), "h", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("destructor");
+                            System.out.println("Creada destruc horizontal");
+                            dest.soutPrimeraPos();
+                        }
                     }
                     break;
                 case ("submarino"):
                     if (VistaInicializacionBarcos.getMiVistaInicBarcos().getDirSelec().equalsIgnoreCase("v")) {
-                        Submarino sub = new Submarino();
+                        Submarino sub = (Submarino)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("submarino");
                         sub.setHorientacion('v');
-                        tabJug.colocarBarco(sub, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(sub, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10)&& VistaInicializacionBarcos.getMiVistaInicBarcos().getNumSub()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("submarino");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(sub.getTamaño(), "v", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            System.out.println("Creada sub vertical");
+                            sub.soutPrimeraPos();
+                        }
                     }
                     else {
-                        Submarino sub = new Submarino();
+                        Submarino sub = (Submarino)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("submarino");
                         sub.setHorientacion('h');
-                        tabJug.colocarBarco(sub, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(sub, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10)&& VistaInicializacionBarcos.getMiVistaInicBarcos().getNumSub()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("submarino");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(sub.getTamaño(), "h", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            System.out.println("Creada sub horizontal");
+                            sub.soutPrimeraPos();
+                        }
                     }
                     break;
                 case ("portaaviones"):
                     if (VistaInicializacionBarcos.getMiVistaInicBarcos().getDirSelec().equalsIgnoreCase("v")) {
-                        Portaaviones portaav = new Portaaviones();
+                        Portaaviones portaav = (Portaaviones) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("portaaviones");
                         portaav.setHorientacion('v');
-                        tabJug.colocarBarco(portaav, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(portaav, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10) && VistaInicializacionBarcos.getMiVistaInicBarcos().getNumPortaav()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("portaaviones");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(portaav.getTamaño(), "v", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            System.out.println("Creada portaav vertical");
+                            portaav.soutPrimeraPos();
+                        }
                     }
                     else {
-                        Portaaviones portaav = new Portaaviones();
+                        Portaaviones portaav = (Portaaviones)ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("portaaviones");
                         portaav.setHorientacion('h');
-                        tabJug.colocarBarco(portaav, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                        if(ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(portaav, Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10)&& VistaInicializacionBarcos.getMiVistaInicBarcos().getNumPortaav()>0) {
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().reducirBarco("portaaviones");
+                            VistaInicializacionBarcos.getMiVistaInicBarcos().pintar(portaav.getTamaño(), "h", Integer.parseInt(e.getActionCommand())/10, Integer.parseInt(e.getActionCommand())%10);
+                            System.out.println("Creada portaav horizontal");
+                            portaav.soutPrimeraPos();
+                        }
                     }
                     break;
                 default:
                     break;
             }
         }
+
         }
     }
