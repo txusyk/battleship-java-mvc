@@ -187,4 +187,8 @@ public abstract class Barco extends ObjTablero {
             }
         }
     }
+
+    public void soutPrimeraPos(){
+        System.out.println(""+partesBarco[0].getPosicion()[0]+""+partesBarco[0].getPosicion()[1]);
+    }
 }
