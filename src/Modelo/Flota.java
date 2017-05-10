@@ -23,6 +23,25 @@ public class Flota {
         return this.flota.keySet().iterator();
     }
 
+    public Barco inicializarBarco(String pBarco) {
+        Barco b = null;
+        if (this.flota.get(pBarco) != null) {
+            b = this.flota.get(pBarco).buscarNoInicializado();
+        }
+        return b;
+    }
+
+    public boolean quedanBarcos() {
+        boolean barcos = false;
+
+        barcos = flota.get("fragata").quedanBarcos();
+        barcos = flota.get("destructor").quedanBarcos();
+        barcos = flota.get("submarino").quedanBarcos();
+        barcos = flota.get("portaaviones").quedanBarcos();
+
+        return barcos;
+    }
+
     public Barco getBarcoPorPos(int x, int y) {
         boolean enc = false;
         Iterator<String> itr = this.getIterator();
@@ -39,14 +58,7 @@ public class Flota {
         Barco b = null;
         if (this.flota.get(pBarco) != null) {
             b = this.flota.get(pBarco).getBarco();
-        }
-        return b;
-    }
-
-    public Barco inicializarBarco(String pBarco) {
-        Barco b = null;
-        if (this.flota.get(pBarco) != null) {
-            b = this.flota.get(pBarco).buscarNoInicializado();
+            this.flota.get(pBarco).desplazar();
         }
         return b;
     }
@@ -64,6 +76,25 @@ public class Flota {
             return lb.iterator();
         }
 
+        private void desplazar() {
+            int i;
+            System.out.println(lb.size());
+            Barco aux = lb.get(lb.size() - 1); //guardar el último elemento en una variable
+
+            if (lb.size() == 1) {
+
+            } else if (lb.size() == 2) {
+                lb.set(1, lb.get(0));
+                lb.set(0, aux);
+            } else {
+
+                for (i = lb.size() - 1; i > 0; i--) { //desplazar los elementos
+                    lb.set(i, lb.get(i - 1)); //a cada elemento se le asigna el anterior
+                }
+                lb.set(0, aux); //asignar al primero el último que se guardó al principio
+            }
+        }
+
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
@@ -79,6 +110,19 @@ public class Flota {
             return null;
         }
 
+        public Barco buscarNoInicializado() {
+            boolean enc = false;
+            Iterator<Barco> itr = this.getIterator();
+            Barco b = null;
+            while (itr.hasNext() && !enc) {
+                b = itr.next();
+                if (!b.enTablero()) {
+                    enc = true;
+                }
+            }
+            return b;
+        }
+
         /**
          * @param x
          * @param y
@@ -91,19 +135,6 @@ public class Flota {
             while (itr.hasNext() && !enc) {
                 b = itr.next();
                 if (b.contiene(x, y)) {
-                    enc = true;
-                }
-            }
-            return b;
-        }
-
-        public Barco buscarNoInicializado() {
-            boolean enc = false;
-            Iterator<Barco> itr = this.getIterator();
-            Barco b = null;
-            while (itr.hasNext() && !enc) {
-                b = itr.next();
-                if (!b.enTablero()) {
                     enc = true;
                 }
             }
@@ -125,15 +156,32 @@ public class Flota {
             }
         }
 
+        public boolean quedanBarcos() {
+            boolean flag = false;
+            Iterator<Barco> itr = getIterator();
+            Barco b = null;
+
+            while (!flag && itr.hasNext()) {
+                b = itr.next();
+                flag = b.getHundido();
+            }
+
+            return flag;
+        }
+
         /**
          * @param pTipo
          */
         private void inicializarPorTipo(String pTipo) {
+            GestorFicheros.getMyGestorFicheros().readXML("facil");
             if (pTipo.equalsIgnoreCase("fragata") || pTipo.equalsIgnoreCase("submarino") || pTipo.equalsIgnoreCase("destructor") || pTipo.equalsIgnoreCase("portaaviones")) {
+                System.out.println("SOY GF-> " + GestorFicheros.getMyGestorFicheros().getNumBarco(pTipo));
                 for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumBarco(pTipo); i++) {
                     añadir(BarcoFactory.getBarcoFactory().crearBarco(pTipo));
                 }
             }
         }
+
+
     }
 }

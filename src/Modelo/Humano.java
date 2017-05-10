@@ -16,9 +16,8 @@ public class Humano extends Jugador {
     private String nombre;
 
 
-    public Humano(String pNombre) {
+    public Humano() {
         super();
-        this.nombre = pNombre;
         this.turno = true;
         this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     }
@@ -27,58 +26,11 @@ public class Humano extends Jugador {
         return this.nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public void jugarTurno() {
-
-        boolean turnoActivo = true;
-
-        while(turnoActivo){
-            System.out.println("Quieres comprar un arma? (s/n): ");
-            String resp = Keyboard.getMyKeyboard().getString();
-            if (resp.equalsIgnoreCase("s")){
-                System.out.println("\tQue arma desea comprar?: ");
-                String nombreArma = Keyboard.getMyKeyboard().getString();
-                comprarArma(nombreArma);
-            }
-
-            System.out.println("Quieres usar radar? (s/n): ");
-            resp = Keyboard.getMyKeyboard().getString();
-            if(resp.equalsIgnoreCase("s")){
-                System.out.println("\tIntroduce coordenada x: ");
-                int x = Keyboard.getMyKeyboard().getInt();
-                System.out.println("\tIntroduce coordenada y: ");
-                int y = Keyboard.getMyKeyboard().getInt();
-                if(getListaArmas().getSize("radar") != 0){
-                    //  getListaArmas().getArma("radar").accion(x, y);
-                }
-            }
-
-            System.out.println("Quieres colocar un escudo? (s/n): ");
-            resp = Keyboard.getMyKeyboard().getString();
-            if(resp.equalsIgnoreCase("s")){
-                System.out.println("\tIntroduce coordenada x: ");
-                int x = Keyboard.getMyKeyboard().getInt();
-                System.out.println("\tIntroduce coordenada y: ");
-                int y = Keyboard.getMyKeyboard().getInt();
-                if(getListaArmas().getSize("escudo") != 0){
-                    Battleship.getMyBattleship().getJugActivo().getFlota().getBarcoPorPos(x,y).setEscudo((Escudo)getListaArmas().getArma("escudo"));
-                }
-            }
-
-            System.out.println("Con que arma vas a disparar?: ");
-            String nArma = Keyboard.getMyKeyboard().getString();
-            if(getListaArmas().getArma(nArma) != null){
-                System.out.println("\tIntroduce coordenada x: ");
-                int x = Keyboard.getMyKeyboard().getInt();
-                System.out.println("\tIntroduce coordenada y: ");
-                int y = Keyboard.getMyKeyboard().getInt();
-                // getListaArmas().getArma(nArma).accion(x, y);
-                if(Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y) instanceof Agua){ //FALTA METER AREABARCO
-                    //    Battleship.getMyBattleship().partidaAcabada();
-                    Battleship.getMyBattleship().cambiarJugActivo();
-                    turnoActivo = false;
-                }
-            }
-        }
 
     }
 

@@ -27,8 +27,8 @@ public class HumanoTest {
     @BeforeMethod
     public void setUp() throws Exception {
         GestorFicheros.getMyGestorFicheros().readXML("facil");
-        h1 = new Humano("Josu");
-        h2 = new Humano("David");
+        h1 = new Humano();
+        h2 = new Humano();
     }
 
     @AfterMethod

@@ -45,4 +45,5 @@ public class VistaJuego extends JPanel {
                         "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
                         "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
     }
+
 }

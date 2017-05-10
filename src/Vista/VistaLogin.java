@@ -33,7 +33,7 @@ public class VistaLogin extends JFrame {
             ImageIcon img = new ImageIcon(url);
             this.setIconImage(img.getImage());
         }
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setSize(300, 270);
 
         crearBarraMenu();
@@ -184,8 +184,7 @@ public class VistaLogin extends JFrame {
     }
 
     public void lanzarPopUp(String texto, String nombreVentana, int tipoVentana) {
-        JFrame frame = new JFrame();
-        JOptionPane.showMessageDialog(frame, texto, nombreVentana, tipoVentana);
+        JOptionPane.showMessageDialog(this, texto, nombreVentana, tipoVentana);
     }
 
     public void salir() {

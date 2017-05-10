@@ -10,6 +10,8 @@ public class ListaJugadores {
 
     private ListaJugadores() {
         listaJug = new Jugador[2];
+        listaJug[0] = new Humano();
+        listaJug[1] = new IA();
     }
 
     /**
@@ -20,14 +22,6 @@ public class ListaJugadores {
             myListaJug = new ListaJugadores();
         }
         return myListaJug;
-    }
-
-    /**
-     * @param pNombreHumano
-     */
-    public void inicializarJugadores(String pNombreHumano) {
-        listaJug[0] = new Humano(pNombreHumano);
-        listaJug[1] = new IA();
     }
 
     public Jugador getHumano() {

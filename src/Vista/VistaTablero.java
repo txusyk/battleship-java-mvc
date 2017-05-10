@@ -5,11 +5,10 @@ package Vista; /**
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
-import java.util.Observer;
 
-public class VistaTablero extends JPanel implements Observer {
+public class VistaTablero extends JPanel {
 
     private static final String COLS = "ABCDEFGHIJ";
     private VistaCasilla[][] casillas = new VistaCasilla[10][10];
@@ -61,6 +60,14 @@ public class VistaTablero extends JPanel implements Observer {
         }
     }
 
+    public void añadirListenerACasilla(ActionListener actionListener) {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                vC.addActionListener(actionListener);
+            }
+        }
+    }
+
     private void imprimirTablero() {
         for (VistaCasilla[] vC : casillas) {
             for (VistaCasilla b : vC) {
@@ -78,8 +85,4 @@ public class VistaTablero extends JPanel implements Observer {
         return casillas;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
 }

@@ -38,12 +38,12 @@ public class Battleship {
 
 
     public void inicializarJuego(String pNombre) {
-        GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
+        GestorFicheros.getMyGestorFicheros().readXML(dificultad);
         Battleship.getMyBattleship().inicializarAlmacen();
     }
 
     private void inicializarJugadores(String pNombre) {
-        ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
+        //ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
     }
 
     private void inicializarAlmacen() {

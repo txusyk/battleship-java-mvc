@@ -12,22 +12,22 @@ import java.net.URL;
 /**
  * Created by Josu on 31/03/2017.
  */
-public class ControladorBattleship {
+public class ControladorBienvenida {
 
-    private static ControladorBattleship myControladorBattleship;
+    private static ControladorBienvenida myControladorBienvenida;
     Clip clip;
     private JMenuBar barraLogin, barraJuego;
     private JMenu archivo, informacion, infoJuego, partida;
     private JMenuItem salir, reiniciar, cambiarDif, acercaLogin, acercaDe, reglasJuego, cargarPartida, guardarPartida;
 
-    private ControladorBattleship() {
+    private ControladorBienvenida() {
     }
 
-    public static ControladorBattleship getMyControladorBattleship() {
-        if (myControladorBattleship == null) {
-            myControladorBattleship = new ControladorBattleship();
+    public static ControladorBienvenida getMyControladorBienvenida() {
+        if (myControladorBienvenida == null) {
+            myControladorBienvenida = new ControladorBienvenida();
         }
-        return myControladorBattleship;
+        return myControladorBienvenida;
     }
 
     public void iniciar() {

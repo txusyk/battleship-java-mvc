@@ -100,12 +100,6 @@ public class TableroTest {
         b = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
         b.setHorientacion('v');
         Assert.assertFalse(tab1.colocarBarco(b, 3, 8));
-
-
-
-
-
-
     }
 
 }

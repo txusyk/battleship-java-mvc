@@ -1,6 +1,10 @@
 package Controlador;
 
+import Modelo.Humano;
+import Modelo.ListaJugadores;
 import Modelo.Login;
+import Modelo.Tablero;
+import Vista.VistaInicializacionBarcos;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
 
@@ -27,7 +31,8 @@ public class ControladorLogin {
     }
 
     public void lanzarControladorInicializacionBarcos() {
-        //new ControladorInicializacionBarcos();
+        ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(vista.getUserText().toString());
+        new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
     }
 
     private class ListenersLogin implements ActionListener {

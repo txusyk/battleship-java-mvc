@@ -1,4 +1,4 @@
-import Controlador.ControladorBattleship;
+import Controlador.ControladorBienvenida;
 
 /**
  * Created by Josu on 05/05/2017.
@@ -9,7 +9,7 @@ public class BattleshipMVC {
     }
 
     public static void main(String[] args) {
-        ControladorBattleship.getMyControladorBattleship().iniciar();
+        ControladorBienvenida.getMyControladorBienvenida().iniciar();
     }
 
 }
