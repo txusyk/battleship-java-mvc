@@ -28,7 +28,7 @@ public class VistaTablero extends JPanel {
             for (int j = 0; j < casillas[i].length; j++) {
                 VistaCasilla b = new VistaCasilla();
                 b.setMargin(buttonMargin);
-                b.setActionCommand(String.valueOf(i) + "" + String.valueOf(j));
+                b.setActionCommand(String.valueOf(j) + "" + String.valueOf(i));
                 // fijamos el tamaño a traves de una imagen transparente
                 ImageIcon icon = new ImageIcon(
                         new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
@@ -39,8 +39,6 @@ public class VistaTablero extends JPanel {
             }
         }
 
-        imprimirTablero();
-
         //rellenamos el tablero
         this.add(new JLabel(""));
         // fill the top row
@@ -49,12 +47,12 @@ public class VistaTablero extends JPanel {
         }
         // fill the black non-pawn piece row
         for (int i = 0; i < 10; i++) {
-            for (int jj = 0; jj < 10; jj++) {
-                switch (jj) {
+            for (int j = 0; j < 10; j++) {
+                switch (j) {
                     case 0:
                         this.add(new JLabel("" + (i + 1), SwingConstants.CENTER));
                     default:
-                        this.add(casillas[jj][i]);
+                        this.add(casillas[j][i]);
                 }
             }
         }
@@ -68,19 +66,20 @@ public class VistaTablero extends JPanel {
         }
     }
 
-    private void imprimirTablero() {
+    /*private void imprimirTablero() {
         for (VistaCasilla[] vC : casillas) {
             for (VistaCasilla b : vC) {
                 int i = Integer.parseInt(b.getActionCommand()) / 10;
-                if (i == 0) {
-                    System.out.print("\n" + b.getActionCommand());
+                int j = Integer.parseInt(b.getActionCommand()) % 10;
+                if (j == 0) {
+                    System.out.print("\n" + j+","+i+"   ");
                 } else {
-                    System.out.print("\t" + b.getActionCommand());
+                    System.out.print(j+","+i+"   ");
                 }
             }
         }
 
-    }
+    }*/
     public VistaCasilla[][] getCasillas() {
         return casillas;
     }

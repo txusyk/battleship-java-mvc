@@ -1,8 +1,7 @@
 package Controlador;
 
-import Modelo.Login;
-import Vista.VistaImagenBienvenida;
-import Vista.VistaLogin;
+import Modelo.Tablero;
+import Vista.VistaInicializacionBarcos;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -31,13 +30,14 @@ public class ControladorBienvenida {
     }
 
     public void iniciar() {
-        lanzarSonido("inicio");
+        /*lanzarSonido("inicio");
 
         VistaImagenBienvenida mainM = new VistaImagenBienvenida();
         mainM.loadTitleScreen();
         mainM.dispose();
 
-        new ControladorLogin(new Login(), new VistaLogin());
+        new ControladorLogin(new Login(), new VistaLogin());*/
+        new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
     }
 
     public void lanzarSonido(String pSonido) {

@@ -251,6 +251,7 @@ public class IA extends Jugador {
             b.setHorientacion((char) pos[2]);
             while (!this.tablero.colocarBarco(b, (int) pos[0], (int) pos[1])) {
                 pos = generarPosicionAleatoriaValidaPosBarco();
+                b.setHorientacion((char) pos[2]);
             }
             b.setEnTablero(true);
         }

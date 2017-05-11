@@ -36,5 +36,15 @@ public class ListaJugadores {
         return listaJug;
     }
 
+    public Barco getBarcoAInicializar(String pTipoBarco) {
+        return this.getHumano().getFlota().inicializarBarco(pTipoBarco);
+    }
+
+    public void setTableroJugador(String pJug, Tablero pTablero) {
+        if (pJug.equalsIgnoreCase("humano")) {
+            ((Humano) this.getHumano()).setTablero(pTablero);
+        }
+    }
+
 
 }

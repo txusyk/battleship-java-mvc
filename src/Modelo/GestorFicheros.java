@@ -34,12 +34,8 @@ public class GestorFicheros {
     private int precioBaseReparacion, precioBaseImpacto, dineroInicial;
     private int numFrag, numDestr, numSub, numPortaav;
 
-    private Document listaUsuarios;
-
     private GestorFicheros() {
-
     }
-
 
     public static GestorFicheros getMyGestorFicheros() {
         if (myGestorFicheros == null) {

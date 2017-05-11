@@ -34,9 +34,13 @@ public class Humano extends Jugador {
 
     }
 
-    public void colocarBarcos() {
-        // TODO - implement Humano.colocarBarcos
-        throw new UnsupportedOperationException();
+    public void setTablero(Tablero pTablero) {
+        this.tablero = pTablero;
+        tablero.imprimirTablero();
+    }
+
+    public void colocarBarcos(Tablero pTablero) {
+
     }
 
 }

@@ -109,95 +109,83 @@ public class VistaInicializacionBarcos extends JFrame {
         this.setVisible(true);
     }
 
-    //Reduce en uno la cantidad de barcos restantes por colocar.
-    public void reducirBarco(String tipoBarco) {
-        if (tipoBarco == "fragata") {
-            if (getNumFragatas() > 0) {
-                reducFrag();
-            } else {
-                System.out.println("Ya has colocado todas las fragatas");
-            }
-        } else if (tipoBarco == "submarino") {
-            if (getNumSub() > 0) {
-                reducSub();
-            } else {
-                System.out.println("Ya has colocado todos los submarinos");
-            }
-        }
-        if (tipoBarco == "destructor") {
-            if (getNumDestr() > 0) {
-                reducDestr();
-            } else {
-                System.out.println("Ya has colocado todos las destructores");
-            }
-        } else if (tipoBarco == "portaaviones") {
-            if (getNumPortaav() > 0) {
-                reducPortaav();
-            } else {
-                System.out.println("Ya has colocado todos los submarinos");
-            }
+
+    public int getNumBarco(String pBarco) {
+        switch (pBarco) {
+            case "fragata":
+                return Integer.parseInt(this.numFragLabel.getText());
+            case "destructor":
+                return Integer.parseInt(this.numDestrLabel.getText());
+            case "submarino":
+                return Integer.parseInt(this.numSubLabel.getText());
+            case "portaaviones":
+                return Integer.parseInt(this.numPortaavLabel.getText());
+            default:
+                return 0;
         }
     }
 
-    public void reducFrag() {
-        this.numFragLabel.setText(Integer.toString(getNumFragatas() - 1));
+    public void reducirBarco(String pBarco) {
+        switch (pBarco) {
+            case "fragata":
+                this.numFragLabel.setText(Integer.toString(Integer.parseInt(numFragLabel.getText()) - 1));
+                this.buttonGroupBarcos.setSelected(this.destr.getModel(), true);
+                break;
+            case "destructor":
+                this.numDestrLabel.setText(Integer.toString(Integer.parseInt(numDestrLabel.getText()) - 1));
+                break;
+            case "submarino":
+                this.numSubLabel.setText(Integer.toString(Integer.parseInt(numSubLabel.getText()) - 1));
+                break;
+            case "portaaviones":
+                this.numPortaavLabel.setText(Integer.toString(Integer.parseInt(numPortaavLabel.getText()) - 1));
+                break;
+        }
+        setBotonConBarcosRestantes();
     }
 
-    public int getNumFragatas() {
-        return Integer.parseInt(this.numFragLabel.getText());
-    }
-
-    public int getNumSub() {
-        return Integer.parseInt(numSubLabel.getText());
-    }
-
-    public void reducSub() {
-        this.numSubLabel.setText(Integer.toString(getNumSub() - 1));
-    }
-
-    public int getNumDestr() {
-        return Integer.parseInt(numDestrLabel.getText());
-    }
-
-    public void reducDestr() {
-        this.numDestrLabel.setText(Integer.toString(getNumDestr() - 1));
-    }
-
-    public int getNumPortaav() {
-        return Integer.parseInt(numPortaavLabel.getText());
-    }
-
-    public void reducPortaav() {
-        this.numPortaavLabel.setText(Integer.toString(getNumPortaav() - 1));
+    private void setBotonConBarcosRestantes() {
+        if (Integer.parseInt(this.numFragLabel.getText()) > 0) {
+            this.buttonGroupBarcos.setSelected(this.frag.getModel(), true);
+        } else if ((Integer.parseInt(this.numDestrLabel.getText()) > 0)) {
+            this.buttonGroupBarcos.setSelected(this.destr.getModel(), true);
+        } else if ((Integer.parseInt(this.numSubLabel.getText()) > 0)) {
+            this.buttonGroupBarcos.setSelected(this.sub.getModel(), true);
+        } else {
+            this.buttonGroupBarcos.setSelected(this.portaav.getModel(), true);
+        }
     }
 
     public String getBarcoSelec() {
         return buttonGroupBarcos.getSelection().getActionCommand();
     }
 
-    public String getDirSelec() {
-        return buttonGroupDirecciones.getSelection().getActionCommand();
+    public char getDirSelec() {
+        return buttonGroupDirecciones.getSelection().getActionCommand().toLowerCase().toCharArray()[0];
     }
 
     public void añadirListenersInicializacionBarcos(ActionListener actionListener) {
         this.tableroSeleccion.añadirListenerACasilla(actionListener);
     }
 
-    public void pintar(int tam, String dir, int x, int y) {
+    public void lanzarPopUp(String texto, String nombreVentana, int tipoVentana) {
+        JOptionPane.showMessageDialog(this, texto, nombreVentana, tipoVentana);
+    }
 
+    public void pintar(int tam, char dir, int x, int y) {
         while (tam != 0) {
-            if (dir.equalsIgnoreCase("h")) {
-                tableroSeleccion.getCasillas()[y][x].setBackground(Color.GREEN);
-                tableroSeleccion.getCasillas()[y][x].setEnabled(false);
-                y++;
-                tam--;
-            } else if (dir.equalsIgnoreCase("v")) {
-                System.out.println(y + " " + x);
-                tableroSeleccion.getCasillas()[y][x].setBackground(Color.GREEN);
-                tableroSeleccion.getCasillas()[y][x].setEnabled(false);
+            if (dir == 'h') {
+                tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
+                tableroSeleccion.getCasillas()[x][y].setEnabled(false);
                 x++;
+                tam--;
+            } else {
+                tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
+                tableroSeleccion.getCasillas()[x][y].setEnabled(false);
+                y++;
                 tam--;
             }
         }
     }
+
 }

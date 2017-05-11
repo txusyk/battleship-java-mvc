@@ -1,8 +1,12 @@
 package Controlador;
 
-import Modelo.*;
+import Modelo.Barco;
+import Modelo.GestorFicheros;
+import Modelo.ListaJugadores;
+import Modelo.Tablero;
 import Vista.VistaInicializacionBarcos;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,86 +30,25 @@ public class ControladorInicializacionBarcos {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            switch (vista.getBarcoSelec()) {
-                case ("fragata"):
-                    if (vista.getDirSelec().equalsIgnoreCase("v")) {
-                        Fragata frag = (Fragata) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("fragata");
-                        frag.setHorientacion('v');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(frag, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumFragatas() > 0) {
-                            vista.reducirBarco("fragata");
-                            vista.pintar(frag.getTamaño(), "v", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada fragata vertical");
-                        }
-                    } else {
-                        Fragata frag = (Fragata) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("fragata");
-                        frag.setHorientacion('h');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(frag, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumFragatas() > 0) {
-                            vista.reducirBarco("fragata");
-                            vista.pintar(frag.getTamaño(), "h", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada fragata horizontal");
-                        }
+            int x = Integer.parseInt(e.getActionCommand()) / 10;
+            int y = Integer.parseInt(e.getActionCommand()) % 10;
+            Barco b = ListaJugadores.getMyListaJug().getBarcoAInicializar(vista.getBarcoSelec());
+            b.setHorientacion(vista.getDirSelec());
+            if (vista.getNumBarco(vista.getBarcoSelec()) > 0) {
+                if (modelo.colocarBarco(b, x, y)) {
+                    vista.reducirBarco(vista.getBarcoSelec());
+                    vista.pintar(b.getTamaño(), vista.getDirSelec(), x, y);
+                    if ((vista.getNumBarco("fragata") == 0) && (vista.getNumBarco("destructor") == 0) && (vista.getNumBarco("submarino") == 0) && (vista.getNumBarco("portaaviones") == 0)) {
+                        ListaJugadores.getMyListaJug().setTableroJugador("humano", modelo);
+                        vista.lanzarPopUp("Has colocado todos los barcos con exito! Ahora comenzara la partida", " ", JOptionPane.OK_OPTION);
+                        vista.dispose();
+                        //new ControladorBattleship();
                     }
-                    break;
-                case ("destructor"):
-                    if (vista.getDirSelec().equalsIgnoreCase("v")) {
-                        Destructor dest = (Destructor) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("destructor");
-                        dest.setHorientacion('v');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(dest, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumDestr() > 0) {
-                            vista.reducirBarco("destructor");
-                            System.out.println(Integer.parseInt(e.getActionCommand()) / 10 + " " + Integer.parseInt(e.getActionCommand()) % 10);
-                            vista.pintar(dest.getTamaño(), "v", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creado destruc vertical");
-                        }
-                    } else {
-                        Destructor dest = (Destructor) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("destructor");
-                        dest.setHorientacion('h');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(dest, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumDestr() > 0) {
-                            vista.pintar(dest.getTamaño(), "h", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            vista.reducirBarco("destructor");
-                            System.out.println("Creada destruc horizontal");
-                        }
-                    }
-                    break;
-                case ("submarino"):
-                    if (vista.getDirSelec().equalsIgnoreCase("v")) {
-                        Submarino sub = (Submarino) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("submarino");
-                        sub.setHorientacion('v');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(sub, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumSub() > 0) {
-                            vista.reducirBarco("submarino");
-                            vista.pintar(sub.getTamaño(), "v", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada sub vertical");
-                        }
-                    } else {
-                        Submarino sub = (Submarino) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("submarino");
-                        sub.setHorientacion('h');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(sub, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumSub() > 0) {
-                            vista.reducirBarco("submarino");
-                            vista.pintar(sub.getTamaño(), "h", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada sub horizontal");
-                        }
-                    }
-                    break;
-                case ("portaaviones"):
-                    if (vista.getDirSelec().equalsIgnoreCase("v")) {
-                        Portaaviones portaav = (Portaaviones) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("portaaviones");
-                        portaav.setHorientacion('v');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(portaav, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumPortaav() > 0) {
-                            vista.reducirBarco("portaaviones");
-                            vista.pintar(portaav.getTamaño(), "v", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada portaav vertical");
-                        }
-                    } else {
-                        Portaaviones portaav = (Portaaviones) ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorTipo("portaaviones");
-                        portaav.setHorientacion('h');
-                        if (ListaJugadores.getMyListaJug().getHumano().getTablero().colocarBarco(portaav, Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10) && vista.getNumPortaav() > 0) {
-                            vista.reducirBarco("portaaviones");
-                            vista.pintar(portaav.getTamaño(), "h", Integer.parseInt(e.getActionCommand()) / 10, Integer.parseInt(e.getActionCommand()) % 10);
-                            System.out.println("Creada portaav horizontal");
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                } else {
+                    vista.lanzarPopUp("Error al colocar: " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                vista.lanzarPopUp("No te quedan barcos del tipo " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

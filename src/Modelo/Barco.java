@@ -96,7 +96,7 @@ public abstract class Barco {
      * @param direccion
      */
     public void inicializar(int[] pivote, char direccion) {
-        if ('H' == direccion) {
+        if ('h' == direccion) {
             int x = pivote[0], i = 0;
             while (i < partesBarco.length) {
                 partesBarco[i].setPosicion(pivote[0], pivote[1]);

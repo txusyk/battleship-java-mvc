@@ -40,7 +40,7 @@ public class Tablero extends Observable {
      * @return devuelve si el barco ha sido posicionado
      */
     public boolean colocarBarco(Barco pBarco, int x, int y) {
-        if (entraBarco(pBarco, x, y) && (x > 0 && x < 9) && (y > 0 && y < 9)) {
+        if (entraBarco(pBarco, x, y) && (x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
                     pBarco.getParteBarco(i).setPosicion(x + i, y);
@@ -53,10 +53,10 @@ public class Tablero extends Observable {
                 }
             }
             marcarAreaBarco(pBarco, x, y);
+            return true;
         } else {
             return false;
         }
-        return true;
     }
 
     /**
@@ -225,9 +225,9 @@ public class Tablero extends Observable {
 
     private boolean comprobarPorTamaño(Barco pBarco, int x, int y) {
         if (pBarco.getHorientacion() == 'h') {
-            return ((pBarco.getTamaño() - 1) + x) < 9;
+            return ((pBarco.getTamaño() - 1) + x) <= 9;
         } else {
-            return ((pBarco.getTamaño() - 1) + y) < 9;
+            return ((pBarco.getTamaño() - 1) + y) <= 9;
         }
     }
 
@@ -242,12 +242,9 @@ public class Tablero extends Observable {
         boolean entra = true;
         while (index < pBarco.getTamaño() && entra) {
             if (index == 0) {
-                entra = comprobarPrimeraPos(pBarco.getHorientacion(), x, y);
+                entra = comprobarPrimeraPos(pBarco.getHorientacion(), x, y) && comprobarPosEstandar(pBarco.getHorientacion(), x, y);
             } else if (index == pBarco.getTamaño() - 1) {
-                entra = comprobarUltimaPos(pBarco.getHorientacion(), x, y);
-            }
-            if (entra) {
-                entra = comprobarPosEstandar(pBarco.getHorientacion(), x, y);
+                entra = comprobarUltimaPos(pBarco.getHorientacion(), x, y) && comprobarPosEstandar(pBarco.getHorientacion(), x, y);
             }
             index++;
         }
@@ -356,6 +353,28 @@ public class Tablero extends Observable {
                 }
             }
         }
+    }
+
+    public void imprimirTablero() {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero.length; j++) {
+                char icon = ' ';
+                if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'g') {
+                    icon = tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0);
+                } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0) == 'p') {
+                    icon = ' ';
+                } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'r') {
+                    icon = '*';
+                }
+
+                if (j == 0) {
+                    System.out.print("\n" + icon + "\t");
+                } else {
+                    System.out.print(icon + "\t");
+                }
+            }
+        }
+        System.out.println("\n\n\n");
     }
 
     /**
