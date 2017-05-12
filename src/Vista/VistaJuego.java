@@ -6,6 +6,7 @@ package Vista;/*
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -16,8 +17,8 @@ public class VistaJuego extends JFrame {
     private JMenuBar barraJuego;
     private JMenu archivo, infoJuego, partida;
     private JMenuItem salir, reiniciar, cambiarDif, acercaDe, reglasJuego, cargarPartida, guardarPartida;
-    
-    private JPanel tableroJug, tableroIA;
+
+    private VistaTablero tableroJug, tableroIA;
     private JTabbedPane tableroInfo;
 
     private JPanel pnInfoJugador, pnInfoJuego;
@@ -29,10 +30,10 @@ public class VistaJuego extends JFrame {
         this.setLayout(new GridLayout(1, 3));
 
         tableroJug = vistaTablero;
-        tableroIA = new VistaTablero();
+        tableroIA = new VistaTablero(1);
         tableroInfo = new JTabbedPane();
-        pnInfoJugador = (new InfoJugador());
-        pnInfoJuego = (new InfoPartida());
+        pnInfoJugador = new InfoJugador();
+        pnInfoJuego = new InfoPartida();
 
         this.tableroInfo.addTab("Info. juego", this.pnInfoJugador);
         this.tableroInfo.addTab("Info. adic", this.pnInfoJuego);
@@ -63,6 +64,11 @@ public class VistaJuego extends JFrame {
 
         lanzarPopUpInstruccionesJuego();
 
+    }
+
+    public void añadirListenersJuego(ActionListener actionListener) {
+        this.tableroJug.añadirListenerACasilla(actionListener);
+        this.tableroIA.añadirListenerACasilla(actionListener);
     }
 
     public void lanzarPopUpInstruccionesJuego() {

@@ -1,6 +1,5 @@
 package Controlador;
 
-import Modelo.GestorSonido;
 import Modelo.Login;
 import Vista.VistaImagenBienvenida;
 import Vista.VistaLogin;
@@ -13,9 +12,7 @@ public class ControladorBienvenida {
     private VistaImagenBienvenida vBienvenida;
 
     public ControladorBienvenida() {
-        GestorSonido.getMyGestorSonido().lanzarSonido();
         this.vBienvenida = new VistaImagenBienvenida();
-        this.vBienvenida.loadTitleScreen();
         lanzarLogin();
     }
 

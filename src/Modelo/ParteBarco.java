@@ -38,7 +38,9 @@ public class ParteBarco extends ObjTablero {
         this.estado = pEstado;
     }
 
-
+    /**
+     * @return posicion
+     */
     public int[] getPosicion() {
         return posicion;
     }

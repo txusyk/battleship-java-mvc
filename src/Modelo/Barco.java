@@ -15,7 +15,7 @@ public abstract class Barco {
     protected ParteBarco[] partesBarco;
     protected Escudo escudo;
     protected int tamaño;
-    protected char horientacion;
+    private char horientacion;
     private int preciorReparacion;
     private boolean hundido;
     private boolean enTablero;

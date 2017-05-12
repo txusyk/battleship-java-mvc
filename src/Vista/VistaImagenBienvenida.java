@@ -1,8 +1,9 @@
 package Vista;
 
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -36,17 +37,23 @@ public class VistaImagenBienvenida extends JFrame {
         double actTime = System.currentTimeMillis();
         boolean mostrarImagen = true;
 
+        try {
+            URL url = this.getClass().getClassLoader().getResource("mgs.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.setFramePosition(120);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+
         while (mostrarImagen) {
             mostrarImagen = ((System.currentTimeMillis() / 1000) - actTime / 1000) < 5;
         }
+        clip.stop();
         this.dispose();
     }
 
-    public void loadTitleScreen() {
-
-        //contenedorImagen.setVisible(true);
-
-
-    }
 
 }

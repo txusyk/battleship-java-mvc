@@ -29,7 +29,6 @@ public class ControladorInicializacionBarcos {
     }
 
     private class ListenersInicializacionBarcos implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             int x = Integer.parseInt(e.getActionCommand()) / 10;
@@ -41,6 +40,8 @@ public class ControladorInicializacionBarcos {
                     vista.reducirBarco(vista.getBarcoSelec());
                     vista.pintar(b.getTamaño(), vista.getDirSelec(), x, y);
                     if ((vista.getNumBarco("fragata") == 0) && (vista.getNumBarco("destructor") == 0) && (vista.getNumBarco("submarino") == 0) && (vista.getNumBarco("portaaviones") == 0)) {
+                        vista.eliminarListeners(this);
+                        vista.modVisibilidadTableroJug();
                         ListaJugadores.getMyListaJug().setTableroJugador("humano", modelo);
                         vista.lanzarPopUp("Has colocado todos los barcos con exito! Ahora comenzara la partida", " ", JOptionPane.OK_OPTION);
                         vista.dispose();

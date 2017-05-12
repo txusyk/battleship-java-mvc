@@ -12,8 +12,10 @@ public class VistaTablero extends JPanel {
 
     private static final String COLS = "ABCDEFGHIJ";
     private VistaCasilla[][] casillas = new VistaCasilla[10][10];
+    private int jugador;
 
-    public VistaTablero() {
+    public VistaTablero(int jugador) {
+        this.jugador = jugador;
         initializeGui();
     }
 
@@ -28,7 +30,12 @@ public class VistaTablero extends JPanel {
             for (int j = 0; j < casillas[i].length; j++) {
                 VistaCasilla b = new VistaCasilla();
                 b.setMargin(buttonMargin);
-                b.setActionCommand(String.valueOf(j) + "" + String.valueOf(i));
+                if (jugador == 0) {
+                    b.setActionCommand(String.valueOf(j) + "" + String.valueOf(i));
+                } else {
+                    b.setActionCommand("ia." + String.valueOf(j) + "" + String.valueOf(i));
+
+                }
                 // fijamos el tamaño a traves de una imagen transparente
                 ImageIcon icon = new ImageIcon(
                         new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
@@ -61,7 +68,17 @@ public class VistaTablero extends JPanel {
     public void añadirListenerACasilla(ActionListener actionListener) {
         for (VistaCasilla[] lvC : this.casillas) {
             for (VistaCasilla vC : lvC) {
-                vC.addActionListener(actionListener);
+                if (vC.isEnabled()) {
+                    vC.addActionListener(actionListener);
+                }
+            }
+        }
+    }
+
+    public void eliminarListeners(ActionListener aL) {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                vC.removeActionListener(aL);
             }
         }
     }
@@ -80,6 +97,20 @@ public class VistaTablero extends JPanel {
         }
 
     }*/
+
+    public void modificarVisibilidadCasillas() {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                if (vC.getText().equals("b")) {
+                    vC.setEnabled(true);
+                } else {
+                    vC.setEnabled(false);
+                }
+                vC.setText("");
+            }
+        }
+    }
+
     public VistaCasilla[][] getCasillas() {
         return casillas;
     }

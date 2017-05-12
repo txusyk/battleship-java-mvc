@@ -87,11 +87,13 @@ public class VistaInicializacionBarcos extends JFrame {
         selOpcBarco.add(buttonVer);
 
 
-        tableroSeleccion = new VistaTablero();
+        tableroSeleccion = new VistaTablero(0);
         this.getContentPane().add(selOpcBarco);
         this.getContentPane().add(tableroSeleccion);
 
         this.pack();
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(true);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = this.getSize(); //Tamaño del frame actual (ancho x alto)
@@ -103,8 +105,6 @@ public class VistaInicializacionBarcos extends JFrame {
         }
         this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setResizable(true);
         this.setVisible(true);
     }
 
@@ -167,6 +167,9 @@ public class VistaInicializacionBarcos extends JFrame {
         this.tableroSeleccion.añadirListenerACasilla(actionListener);
     }
 
+    public void eliminarListeners(ActionListener aL) {
+        this.tableroSeleccion.eliminarListeners(aL);
+    }
     public void lanzarPopUp(String texto, String nombreVentana, int tipoVentana) {
         JOptionPane.showMessageDialog(this, texto, nombreVentana, tipoVentana);
     }
@@ -175,16 +178,21 @@ public class VistaInicializacionBarcos extends JFrame {
         return tableroSeleccion;
     }
 
+    public void modVisibilidadTableroJug() {
+        this.tableroSeleccion.modificarVisibilidadCasillas();
+    }
+
     public void pintar(int tam, char dir, int x, int y) {
         while (tam != 0) {
+
+            tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
+            tableroSeleccion.getCasillas()[x][y].setEnabled(false);
+            tableroSeleccion.getCasillas()[x][y].setText("b");
+
             if (dir == 'h') {
-                tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
-                tableroSeleccion.getCasillas()[x][y].setEnabled(false);
                 x++;
                 tam--;
             } else {
-                tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
-                tableroSeleccion.getCasillas()[x][y].setEnabled(false);
                 y++;
                 tam--;
             }
