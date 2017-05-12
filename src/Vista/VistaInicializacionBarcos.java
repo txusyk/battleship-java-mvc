@@ -11,7 +11,6 @@ public class VistaInicializacionBarcos extends JFrame {
 
     private JPanel selOpcBarco;
     private VistaTablero tableroSeleccion;
-    // private int numFrag = 4, numDestr = 3, numSub = 2, numPortaav = 1;
     private JRadioButton frag, destr, sub, portaav;
     private ButtonGroup buttonGroupBarcos;
     private JRadioButton buttonVer, buttonHor;
@@ -170,6 +169,10 @@ public class VistaInicializacionBarcos extends JFrame {
 
     public void lanzarPopUp(String texto, String nombreVentana, int tipoVentana) {
         JOptionPane.showMessageDialog(this, texto, nombreVentana, tipoVentana);
+    }
+
+    public VistaTablero getPanelJuego() {
+        return tableroSeleccion;
     }
 
     public void pintar(int tam, char dir, int x, int y) {

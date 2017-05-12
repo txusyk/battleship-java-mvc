@@ -1,5 +1,6 @@
 package Vista;
 
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -11,24 +12,14 @@ public class VistaImagenBienvenida extends JFrame {
 
     private JLabel contenedorImagen;
     private URL urlImagen = this.getClass().getClassLoader().getResource("Title.png");
+    private Clip clip = null;
 
     public VistaImagenBienvenida() {
         contenedorImagen = new JLabel(new ImageIcon(urlImagen));
+        this.add(contenedorImagen);
 
-        this.getContentPane().setLayout(null);
-        this.getContentPane().setBackground(Color.WHITE);
-        this.setPreferredSize(new Dimension(900, 615));
-        this.setMinimumSize(new Dimension(900, 615));
-        this.setResizable(false);
         this.pack();
-    }
-
-    public void loadTitleScreen() {
-        contenedorImagen.setSize(this.getContentPane().getWidth(),
-                this.getContentPane().getHeight());
-        contenedorImagen.setLocation(0, 0);
-        this.getContentPane().add(contenedorImagen);
-        contenedorImagen.setVisible(true);
+        this.setResizable(false);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension thisSize = this.getSize(); //Tamaño del this actual (ancho x alto)
@@ -38,11 +29,9 @@ public class VistaImagenBienvenida extends JFrame {
         if (thisSize.width > screenSize.width) {
             thisSize.width = screenSize.width;
         }
-        this.setLocation((screenSize.width - thisSize.width) / 2, (screenSize.height - thisSize.height) / 2);
+        setLocation((screenSize.width - thisSize.width) / 2, (screenSize.height - thisSize.height) / 2);
 
-        this.setVisible(true);
-        this.getContentPane().revalidate();
-        this.getContentPane().repaint();
+        setVisible(true);
 
         double actTime = System.currentTimeMillis();
         boolean mostrarImagen = true;
@@ -50,9 +39,14 @@ public class VistaImagenBienvenida extends JFrame {
         while (mostrarImagen) {
             mostrarImagen = ((System.currentTimeMillis() / 1000) - actTime / 1000) < 5;
         }
-        this.getContentPane().remove(contenedorImagen);
-        this.getContentPane().revalidate();
-        this.getContentPane().repaint();
+        this.dispose();
+    }
+
+    public void loadTitleScreen() {
+
+        //contenedorImagen.setVisible(true);
+
+
     }
 
 }

@@ -5,6 +5,7 @@ import Modelo.GestorFicheros;
 import Modelo.ListaJugadores;
 import Modelo.Tablero;
 import Vista.VistaInicializacionBarcos;
+import Vista.VistaJuego;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
  */
 public class ControladorInicializacionBarcos {
 
+    VistaJuego v;
     private Tablero modelo;
     private VistaInicializacionBarcos vista;
 
@@ -42,7 +44,7 @@ public class ControladorInicializacionBarcos {
                         ListaJugadores.getMyListaJug().setTableroJugador("humano", modelo);
                         vista.lanzarPopUp("Has colocado todos los barcos con exito! Ahora comenzara la partida", " ", JOptionPane.OK_OPTION);
                         vista.dispose();
-                        //new ControladorBattleship();
+                        new ControladorBattleship(new VistaJuego(vista.getPanelJuego()));
                     }
                 } else {
                     vista.lanzarPopUp("Error al colocar: " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);

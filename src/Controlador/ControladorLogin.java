@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Humano;
-import Modelo.ListaJugadores;
-import Modelo.Login;
-import Modelo.Tablero;
+import Modelo.*;
 import Vista.VistaInicializacionBarcos;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
@@ -22,17 +19,13 @@ public class ControladorLogin {
     private VistaLogin vista;
 
     private String dificultad;
+    private String usuario;
 
     public ControladorLogin(Login lg, VistaLogin vistaLogin) {
         this.modeloLogin = lg;
         this.vista = vistaLogin;
 
         this.vista.añadirListenersLogin(new ListenersLogin());
-    }
-
-    public void lanzarControladorInicializacionBarcos() {
-        ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(vista.getUserText().toString());
-        new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
     }
 
     private class ListenersLogin implements ActionListener {
@@ -60,14 +53,17 @@ public class ControladorLogin {
         }
 
         private void accionLogin() {
-            String user = vista.getUserText().getText();
-            if (modeloLogin.estaUsuario(user)) {
-                char[] pass = vista.getPasswordText().getPassword();
-                if (modeloLogin.comprobarLogin(user, pass)) {
-                    vista.lanzarPopUp("Login succesfull, " + user + "!", "Succes!", JOptionPane.PLAIN_MESSAGE);
-                    lanzarControladorInicializacionBarcos();
+            usuario = vista.getUserText().getText();
+            if (modeloLogin.estaUsuario(usuario)) {
+                if (modeloLogin.comprobarLogin(usuario, vista.getPasswordText().getPassword())) {
+                    GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                    ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
+                    vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
+                    vista.dispose();
+                    new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
                 } else {
                     vista.lanzarPopUp("La contraseña introducida no coincide con la de la base de datos, pruebe de nuevo o cree un nuevo usuario", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
             } else {
                 vista.lanzarPopUp("El usuario no existe en la base de datos, pruebe a registrarse primero", "Usuario no existe", JOptionPane.ERROR_MESSAGE);
@@ -75,12 +71,12 @@ public class ControladorLogin {
         }
 
         private void accionRegistro() {
-            String user = vista.getUserText().getText();
-            if (!modeloLogin.estaUsuario(user)) {
-                char[] pass = vista.getPasswordText().getPassword();
-                modeloLogin.añadirUsuario(user, pass);
-                vista.lanzarPopUp("Login succesfull, " + user + "!", "Succes!", JOptionPane.PLAIN_MESSAGE);
-                lanzarControladorInicializacionBarcos();
+            String usuario = vista.getUserText().getText();
+            if (!modeloLogin.estaUsuario(usuario)) {
+                modeloLogin.añadirUsuario(usuario, vista.getPasswordText().getPassword());
+                GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
+                vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
             } else {
                 vista.lanzarPopUp("El usuario ya existe. Pruebe con otro nombre o si usted es el dueño de ese alias, pruebe a loguearse", "Usuario existente", JOptionPane.ERROR_MESSAGE);
             }

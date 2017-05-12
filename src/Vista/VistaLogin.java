@@ -22,6 +22,7 @@ public class VistaLogin extends JFrame {
 
 
     public VistaLogin() {
+
         popUpCargarPartida = new VistaPopUpCargarPartida();
 
         panel = new JPanel();
@@ -53,6 +54,7 @@ public class VistaLogin extends JFrame {
 
         this.setResizable(false);
         this.setVisible(true);
+
     }
 
     private void placeComponents(JPanel panel) {

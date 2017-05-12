@@ -9,7 +9,7 @@ public class BattleshipMVC {
     }
 
     public static void main(String[] args) {
-        ControladorBienvenida.getMyControladorBienvenida().iniciar();
+        new ControladorBienvenida();
     }
 
 }

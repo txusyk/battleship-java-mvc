@@ -20,6 +20,7 @@ public class IA extends Jugador {
         super();
         this.turno = false;
         inicializarDinero();
+        colocarBarcosIA();
     }
 
     private void inicializarDinero() {
@@ -227,7 +228,7 @@ public class IA extends Jugador {
         this.flota.getBarcoPorPos((int) index[0], index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
     }
 
-    public void colocarBarcosIA() {
+    private void colocarBarcosIA() {
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 colocarBarcoPorTipo("fragata", 4);
