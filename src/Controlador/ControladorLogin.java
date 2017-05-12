@@ -18,9 +18,6 @@ public class ControladorLogin {
     private Login modeloLogin;
     private VistaLogin vista;
 
-    private String dificultad;
-    private String usuario;
-
     public ControladorLogin(Login lg, VistaLogin vistaLogin) {
         this.modeloLogin = lg;
         this.vista = vistaLogin;
@@ -31,8 +28,6 @@ public class ControladorLogin {
     private class ListenersLogin implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            dificultad = vista.getBotonSeleccionado();
-
             if (Objects.equals(e.getActionCommand(), "login")) {
                 accionLogin();
             } else if (Objects.equals(e.getActionCommand(), "registro")) {
@@ -53,7 +48,9 @@ public class ControladorLogin {
         }
 
         private void accionLogin() {
-            usuario = vista.getUserText().getText();
+            String usuario = vista.getUserText().getText();
+            String dificultad = vista.getBotonSeleccionado();
+
             if (modeloLogin.estaUsuario(usuario)) {
                 if (modeloLogin.comprobarLogin(usuario, vista.getPasswordText().getPassword())) {
                     GestorFicheros.getMyGestorFicheros().readXML(dificultad);
@@ -72,11 +69,15 @@ public class ControladorLogin {
 
         private void accionRegistro() {
             String usuario = vista.getUserText().getText();
+            String dificultad = vista.getBotonSeleccionado();
+
             if (!modeloLogin.estaUsuario(usuario)) {
                 modeloLogin.añadirUsuario(usuario, vista.getPasswordText().getPassword());
                 GestorFicheros.getMyGestorFicheros().readXML(dificultad);
                 ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
                 vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
+                vista.dispose();
+                new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
             } else {
                 vista.lanzarPopUp("El usuario ya existe. Pruebe con otro nombre o si usted es el dueño de ese alias, pruebe a loguearse", "Usuario existente", JOptionPane.ERROR_MESSAGE);
             }
