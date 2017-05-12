@@ -63,7 +63,6 @@ public class VistaJuego extends JFrame {
         this.setVisible(true);
 
         lanzarPopUpInstruccionesJuego();
-
     }
 
     public void añadirListenersJuego(ActionListener actionListener) {

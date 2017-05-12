@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 public class VistaTablero extends JPanel {
 
@@ -37,10 +36,14 @@ public class VistaTablero extends JPanel {
 
                 }
                 // fijamos el tamaño a traves de una imagen transparente
-                ImageIcon icon = new ImageIcon(
+                /*ImageIcon icon = new ImageIcon(
                         new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
-                b.setIcon(icon);
-                b.setBackground(Color.BLUE);
+                b.setIcon(icon);*/
+                if (jugador == 0) {
+                    b.setBackground(Color.BLUE);
+                } else {
+                    b.setBackground(Color.DARK_GRAY);
+                }
 
                 casillas[j][i] = b;
             }
