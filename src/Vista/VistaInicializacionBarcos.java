@@ -128,7 +128,6 @@ public class VistaInicializacionBarcos extends JFrame {
         switch (pBarco) {
             case "fragata":
                 this.numFragLabel.setText(Integer.toString(Integer.parseInt(numFragLabel.getText()) - 1));
-                this.buttonGroupBarcos.setSelected(this.destr.getModel(), true);
                 break;
             case "destructor":
                 this.numDestrLabel.setText(Integer.toString(Integer.parseInt(numDestrLabel.getText()) - 1));

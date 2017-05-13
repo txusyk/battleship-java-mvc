@@ -189,7 +189,6 @@ public class IA extends Jugador {
             } else {
                 dispararBomba();
             }
-
         }
     }
 
@@ -231,15 +230,16 @@ public class IA extends Jugador {
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 colocarBarcoPorTipo("fragata", 4);
-            } /*if (i == 1) {
+            }
+            if (i == 1) {
                 colocarBarcoPorTipo("destructor", 3);
-            }*/
+            }
             if (i == 2) {
                 colocarBarcoPorTipo("submarino", 2);
-            }/*
+            }
             if (i == 3) {
                 colocarBarcoPorTipo("portaaviones", 1);
-            }*/
+            }
         }
     }
 

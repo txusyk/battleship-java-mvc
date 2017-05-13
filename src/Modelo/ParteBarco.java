@@ -61,8 +61,7 @@ public class ParteBarco extends ObjTablero {
      * @return true en caso de que la posicion sea la que se recibe
      */
     public boolean comprobarPosicion(int x, int y){
-        System.out.printf(this.x + "?" + x + "  " + this.y + "?" + y);
-        //JOptionPane.showMessageDialog(null,this.x+" ? "+x+","+this.y+" ? "+y);
+        System.out.printf(this.x + "?" + x + "  " + this.y + "?" + y + "\n");
         return this.x == x && this.y == y;
     }
 

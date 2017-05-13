@@ -10,8 +10,6 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import javax.swing.*;
-
 public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
@@ -84,10 +82,8 @@ public abstract class Barco {
     public boolean contiene(int x, int y) {
         boolean enc = false;
         int i = 0;
-        while (i < partesBarco.length && !enc) {
-            if (partesBarco[i] != null) {
+        while (i < tamaño && !enc) {
                 enc = partesBarco[i].comprobarPosicion(x, y);
-            }
             i++;
         }
         return enc;
@@ -185,7 +181,6 @@ public abstract class Barco {
             while (i < partesBarco.length && !enc) {
                 if (partesBarco[i] != null) {
                     if (partesBarco[i].comprobarPosicion(x, y)) {
-                        JOptionPane.showMessageDialog(null, partesBarco.length);
                         enc = true;
                     } else {
                         i++;

@@ -36,12 +36,16 @@ public class Flota {
 
     public Barco getBarcoPorPos(int x, int y) {
         boolean enc = false;
+        String nombreBarco = null;
         Iterator<String> itr = this.getIterator();
         while (itr.hasNext() && !enc) {
-            String nombreBarco = itr.next();
+            nombreBarco = itr.next();
             if (flota.get(nombreBarco).buscarPorPos(x, y) != null) {
-                return flota.get(nombreBarco).buscarPorPos(x, y);
+                enc = true;
             }
+        }
+        if (enc) {
+            return flota.get(nombreBarco).buscarPorPos(x, y);
         }
         return null;
     }
@@ -90,6 +94,9 @@ public class Flota {
                 if (b.contiene(x, y)) {
                     enc = true;
                 }
+            }
+            if (!enc) {
+                b = null;
             }
             return b;
         }

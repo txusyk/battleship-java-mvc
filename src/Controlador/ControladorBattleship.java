@@ -7,7 +7,6 @@ import Modelo.Tablero;
 import Vista.VistaJuego;
 import Vista.VistaTablero;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,7 +39,14 @@ public class ControladorBattleship {
                 ((Arma) ListaJugadores.getMyListaJug().getHumano().getListaArmas().getArma(vista.getBotonArmaSeleccionada())).disparar(x, y);
                 ListaJugadores.getMyListaJug().getIA().getTablero().imprimirTablero();
             } else {
-                JOptionPane.showMessageDialog(null, "no soy ia wey");
+                int x = Integer.parseInt(e.getActionCommand()) / 10;
+                int y = Integer.parseInt(e.getActionCommand()) % 10;
+                if (ListaJugadores.getMyListaJug().getIA().getListaArmas().getArma(vista.getBotonArmaSeleccionada()) == null) {
+                    ListaJugadores.getMyListaJug().getIA().comprarArma(vista.getBotonArmaSeleccionada());
+                    System.out.println("\n\n");
+                }
+                ((Arma) ListaJugadores.getMyListaJug().getIA().getListaArmas().getArma(vista.getBotonArmaSeleccionada())).disparar(x, y);
+                ListaJugadores.getMyListaJug().getHumano().getTablero().imprimirTablero();
             }
         }
     }
