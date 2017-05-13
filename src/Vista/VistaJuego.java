@@ -21,7 +21,8 @@ public class VistaJuego extends JFrame {
     private VistaTablero tableroJug, tableroIA;
     private JTabbedPane tableroInfo;
 
-    private JPanel pnInfoJugador, pnInfoJuego;
+    private InfoJugador pnInfoJugador;
+    private InfoPartida pnInfoJuego;
 
     /**
      * Creates new form VJ
@@ -68,6 +69,10 @@ public class VistaJuego extends JFrame {
     public void añadirListenersJuego(ActionListener actionListener) {
         this.tableroJug.añadirListenerACasilla(actionListener);
         this.tableroIA.añadirListenerACasilla(actionListener);
+    }
+
+    public String getBotonArmaSeleccionada() {
+        return this.pnInfoJugador.getSeleccionArma();
     }
 
     public void lanzarPopUpInstruccionesJuego() {

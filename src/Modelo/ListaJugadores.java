@@ -40,10 +40,9 @@ public class ListaJugadores {
         return this.getHumano().getFlota().inicializarBarco(pTipoBarco);
     }
 
-    public void setTableroJugador(String pJug, Tablero pTablero) {
-        if (pJug.equalsIgnoreCase("humano")) {
+    public void setTableroJugadores(Tablero pTablero) {
             ((Humano) this.getHumano()).setTablero(pTablero);
-        }
+        ((IA) this.getIA()).colocarBarcos();
     }
 
 

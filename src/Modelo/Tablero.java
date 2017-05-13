@@ -43,15 +43,14 @@ public class Tablero extends Observable {
         if (entraBarco(pBarco, x, y) && (x >= 0 && x <= 9) && (y >= 0 && y <= 9)) {
             if (pBarco.getHorientacion() == 'h') {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
-                    pBarco.getParteBarco(i).setPosicion(x + i, y);
                     this.tablero[x + i][y] = pBarco.getParteBarco(i);
                 }
             } else {
                 for (int i = 0; i < pBarco.getTamaño(); i++) {
-                    pBarco.getParteBarco(i).setPosicion(x, y + i);
                     this.tablero[x][y + i] = pBarco.getParteBarco(i);
                 }
             }
+            pBarco.setEnTablero(true);
             marcarAreaBarco(pBarco, x, y);
             return true;
         } else {
@@ -362,7 +361,11 @@ public class Tablero extends Observable {
                 if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'g') {
                     icon = tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0);
                 } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0) == 'p') {
-                    icon = ' ';
+                    if (((ParteBarco) tablero[j][i]).getEstado() instanceof SNormal) {
+                        icon = ' ';
+                    } else {
+                        icon = '?';
+                    }
                 } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'r') {
                     icon = '*';
                 }
@@ -376,6 +379,7 @@ public class Tablero extends Observable {
         }
         System.out.println("\n\n\n");
     }
+
 
     /**
      * @param x

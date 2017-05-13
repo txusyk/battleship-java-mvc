@@ -1,4 +1,4 @@
-import Controlador.ControladorBienvenida;
+import Controlador.ControladorLogin;
 
 /**
  * Created by Josu on 05/05/2017.
@@ -9,7 +9,7 @@ public class BattleshipMVC {
     }
 
     public static void main(String[] args) {
-        new ControladorBienvenida();
+        new ControladorLogin();
     }
 
 }

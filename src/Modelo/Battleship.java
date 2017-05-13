@@ -35,11 +35,12 @@ public class Battleship {
         return dificultad;
     }
 
+    public void setDificultad(String dificultad) {
+        this.dificultad = dificultad;
+    }
 
-
-    public void inicializarJuego(String pNombre) {
-        GestorFicheros.getMyGestorFicheros().readXML(dificultad);
-        Battleship.getMyBattleship().inicializarAlmacen();
+    public void inicializarJuego(Tablero t) {
+        ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
     private void inicializarJugadores(String pNombre) {

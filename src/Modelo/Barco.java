@@ -10,6 +10,8 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import javax.swing.*;
+
 public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
@@ -28,7 +30,6 @@ public abstract class Barco {
         this.escudo = null;
         this.hundido = false;
         this.horientacion = 'h';
-        this.partesBarco = new ParteBarco[this.tamaño];
         this.enTablero = false;
     }
 
@@ -84,7 +85,9 @@ public abstract class Barco {
         boolean enc = false;
         int i = 0;
         while (i < partesBarco.length && !enc) {
-            enc = partesBarco[i].comprobarPosicion(x, y);
+            if (partesBarco[i] != null) {
+                enc = partesBarco[i].comprobarPosicion(x, y);
+            }
             i++;
         }
         return enc;
@@ -92,24 +95,22 @@ public abstract class Barco {
 
 
     /**
-     * @param pivote
+     * @param x
+     * @param y
      * @param direccion
      */
-    public void inicializar(int[] pivote, char direccion) {
+    public void inicializar(int x, int y, char direccion) {
+        this.horientacion = direccion;
+        int i = 0;
         if ('h' == direccion) {
-            int x = pivote[0], i = 0;
-            while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote[0], pivote[1]);
-                x++;
-                pivote[0] = x;
+            while (i < tamaño) {
+                partesBarco[i].setPosicion(x + i, y);
                 i++;
             }
 
         } else {
-            int y = pivote[1], i = 0;
-            while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote[0], pivote[1]);
-                y++;
+            while (i < tamaño) {
+                partesBarco[i].setPosicion(x, y + i);
                 i++;
             }
         }
@@ -147,7 +148,6 @@ public abstract class Barco {
     }
 
     /**
-     * 
      * @param x,y
      */
     public void hundir(int x, int y) {
@@ -155,9 +155,9 @@ public abstract class Barco {
         if (escudo != null) {
             escudo.destruir();
             escudo = null;
-        } else if (!getHundido() && escudo == null && !hundir) {
-            for (int i = 0; i < partesBarco.length; i++) {
-                if (partesBarco[i].comprobarPosicion(x, y)) {
+        } else if (!getHundido() && escudo == null) {
+            for (ParteBarco aPartesBarco : partesBarco) {
+                if (aPartesBarco.comprobarPosicion(x, y)) {
                     hundir = true;
                 }
             }
@@ -165,8 +165,8 @@ public abstract class Barco {
                 for (ParteBarco pb : partesBarco) {
                     pb.setState(new STocado());
                 }
+                hundido = true;
             }
-            hundido = true;
         }
     }
 
@@ -183,8 +183,13 @@ public abstract class Barco {
             boolean enc = false;
             int i = 0;
             while (i < partesBarco.length && !enc) {
-                if (partesBarco[i].comprobarPosicion(x, y)) {
-                    enc = true;
+                if (partesBarco[i] != null) {
+                    if (partesBarco[i].comprobarPosicion(x, y)) {
+                        JOptionPane.showMessageDialog(null, partesBarco.length);
+                        enc = true;
+                    } else {
+                        i++;
+                    }
                 } else {
                     i++;
                 }

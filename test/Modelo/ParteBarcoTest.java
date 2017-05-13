@@ -14,7 +14,7 @@ public class ParteBarcoTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        parteBarco = new ParteBarco(0, 0);
+        parteBarco = new ParteBarco();
     }
 
     @AfterMethod

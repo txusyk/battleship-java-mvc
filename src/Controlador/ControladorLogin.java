@@ -1,7 +1,7 @@
 package Controlador;
 
 import Modelo.*;
-import Vista.VistaInicializacionBarcos;
+import Vista.VistaImagenBienvenida;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
 
@@ -18,9 +18,10 @@ public class ControladorLogin {
     private Login modeloLogin;
     private VistaLogin vista;
 
-    public ControladorLogin(Login lg, VistaLogin vistaLogin) {
-        this.modeloLogin = lg;
-        this.vista = vistaLogin;
+    public ControladorLogin() {
+        new VistaImagenBienvenida();
+        this.modeloLogin = new Login();
+        this.vista = new VistaLogin();
 
         this.vista.añadirListenersLogin(new ListenersLogin());
     }
@@ -54,10 +55,11 @@ public class ControladorLogin {
             if (modeloLogin.estaUsuario(usuario)) {
                 if (modeloLogin.comprobarLogin(usuario, vista.getPasswordText().getPassword())) {
                     GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                    Battleship.getMyBattleship().setDificultad(dificultad);
                     ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
                     vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
                     vista.dispose();
-                    new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
+                    new ControladorInicializacionBarcos();
                 } else {
                     vista.lanzarPopUp("La contraseña introducida no coincide con la de la base de datos, pruebe de nuevo o cree un nuevo usuario", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -74,10 +76,11 @@ public class ControladorLogin {
             if (!modeloLogin.estaUsuario(usuario)) {
                 modeloLogin.añadirUsuario(usuario, vista.getPasswordText().getPassword());
                 GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                Battleship.getMyBattleship().setDificultad(dificultad);
                 ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
                 vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
                 vista.dispose();
-                new ControladorInicializacionBarcos(new Tablero(10, 10), new VistaInicializacionBarcos());
+                new ControladorInicializacionBarcos();
             } else {
                 vista.lanzarPopUp("El usuario ya existe. Pruebe con otro nombre o si usted es el dueño de ese alias, pruebe a loguearse", "Usuario existente", JOptionPane.ERROR_MESSAGE);
             }

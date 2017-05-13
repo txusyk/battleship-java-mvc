@@ -46,15 +46,6 @@ public class Flota {
         return null;
     }
 
-    public Barco getBarcoPorTipo(String pBarco) {
-        Barco b = null;
-        if (this.flota.get(pBarco) != null) {
-            b = this.flota.get(pBarco).getBarco();
-            //this.flota.get(pBarco).desplazar();
-        }
-        return b;
-    }
-
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;
@@ -68,33 +59,8 @@ public class Flota {
             return lb.iterator();
         }
 
-        /*private void desplazar() {
-            int i;
-            Barco aux = lb.get(lb.size() - 1); //guardar el último elemento en una variable
-
-            if (lb.size() == 1) {
-
-            } else if (lb.size() == 2) {
-                lb.set(1, lb.get(0));
-                lb.set(0, aux);
-            } else {
-
-                for (i = lb.size() - 1; i > 0; i--) { //desplazar los elementos
-                    lb.set(i, lb.get(i - 1)); //a cada elemento se le asigna el anterior
-                }
-                lb.set(0, aux); //asignar al primero el último que se guardó al principio
-            }
-        }*/
-
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
-        }
-
-        private Barco getBarco() {
-            if (!lb.isEmpty()) {
-                return lb.get(0);
-            }
-            return null;
         }
 
         public Barco buscarNoInicializado() {

@@ -49,7 +49,7 @@ public class BarcoTest {
         int[] pivote = new int[2];
         pivote[0] = 1;
         pivote[1] = 1;
-        p.inicializar(pivote, 'H');
+        p.inicializar(pivote[0], pivote[1], 'h');
         Assert.assertEquals(p.getHorientacion(), 'h');
     }
 
@@ -57,18 +57,20 @@ public class BarcoTest {
     public void testReparar() throws Exception {
         p.partesBarco[0].setState(new STocado());
         Assert.assertEquals(p.partesBarco[0].getEstado().getClass(), new STocado().getClass());
-        int[] pos = p.partesBarco[0].getPosicion();
-        p.reparar(pos[0], pos[1]);
+        int x = p.partesBarco[0].getX();
+        int y = p.partesBarco[0].getY();
+        p.reparar(x, y);
         Assert.assertEquals(p.partesBarco[0].getEstado().getClass(), new SNormal().getClass());
     }
 
     @Test
     public void testContiene() throws Exception {
-        int[] pos = p.partesBarco[0].getPosicion();
-        Assert.assertTrue(p.contiene(pos[0], pos[1]));
+        int x = p.partesBarco[0].getX();
+        int y = p.partesBarco[0].getY();
+        Assert.assertTrue(p.contiene(x, y));
 
         p.partesBarco[1].setPosicion(3, 3);
-        Assert.assertTrue(p.contiene(pos[0], pos[1]));
+        Assert.assertTrue(p.contiene(x, y));
     }
 
     @Test
@@ -91,7 +93,7 @@ public class BarcoTest {
     @Test
     public void testHundir() throws Exception {
         Flota fl = new Flota();
-        d = fl.getBarcoPorTipo("destructor");
+        d = fl.inicializarBarco("destructor");
         Assert.assertFalse(d.getHundido());
         d.getParteBarco(0).setPosicion(3, 3);
         d.getParteBarco(1).setPosicion(3, 4);
@@ -104,9 +106,9 @@ public class BarcoTest {
     public void testRecibirDaños() throws Exception {
         Flota fl = new Flota();
 
-        f = fl.getBarcoPorTipo("fragata");
-        d = fl.getBarcoPorTipo("destructor");
-        s = fl.getBarcoPorTipo("submarino");
+        f = fl.inicializarBarco("fragata");
+        d = fl.inicializarBarco("destructor");
+        s = fl.inicializarBarco("submarino");
 
         ParteBarco pb1 = f.getParteBarco(0);
 

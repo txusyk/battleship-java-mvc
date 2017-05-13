@@ -98,7 +98,6 @@ public class VistaTablero extends JPanel {
                 }
             }
         }
-
     }*/
 
     public void modificarVisibilidadCasillas() {

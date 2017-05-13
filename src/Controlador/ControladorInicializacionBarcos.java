@@ -20,9 +20,9 @@ public class ControladorInicializacionBarcos {
     private Tablero modelo;
     private VistaInicializacionBarcos vista;
 
-    public ControladorInicializacionBarcos(Tablero modeloTablero, VistaInicializacionBarcos vistaInicializacionBarcos) {
-        this.modelo = modeloTablero;
-        this.vista = vistaInicializacionBarcos;
+    public ControladorInicializacionBarcos() {
+        this.modelo = new Tablero(10, 10);
+        this.vista = new VistaInicializacionBarcos();
 
         GestorFicheros.getMyGestorFicheros().readXML("facil");
         this.vista.añadirListenersInicializacionBarcos(new ListenersInicializacionBarcos());
@@ -34,7 +34,7 @@ public class ControladorInicializacionBarcos {
             int x = Integer.parseInt(e.getActionCommand()) / 10;
             int y = Integer.parseInt(e.getActionCommand()) % 10;
             Barco b = ListaJugadores.getMyListaJug().getBarcoAInicializar(vista.getBarcoSelec());
-            b.setHorientacion(vista.getDirSelec());
+            b.inicializar(x, y, vista.getDirSelec());
             if (vista.getNumBarco(vista.getBarcoSelec()) > 0) {
                 if (modelo.colocarBarco(b, x, y)) {
                     vista.reducirBarco(vista.getBarcoSelec());
@@ -42,10 +42,9 @@ public class ControladorInicializacionBarcos {
                     if ((vista.getNumBarco("fragata") == 0) && (vista.getNumBarco("destructor") == 0) && (vista.getNumBarco("submarino") == 0) && (vista.getNumBarco("portaaviones") == 0)) {
                         vista.eliminarListeners(this);
                         vista.modVisibilidadTableroJug();
-                        ListaJugadores.getMyListaJug().setTableroJugador("humano", modelo);
                         vista.lanzarPopUp("Has colocado todos los barcos con exito! Ahora comenzara la partida", " ", JOptionPane.OK_OPTION);
                         vista.dispose();
-                        new ControladorBattleship(new VistaJuego(vista.getPanelJuego()));
+                        new ControladorBattleship(vista.getPanelJuego(), modelo);
                     }
                 } else {
                     vista.lanzarPopUp("Error al colocar: " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);

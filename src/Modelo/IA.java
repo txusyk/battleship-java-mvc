@@ -20,7 +20,6 @@ public class IA extends Jugador {
         super();
         this.turno = false;
         inicializarDinero();
-        colocarBarcosIA();
     }
 
     private void inicializarDinero() {
@@ -225,22 +224,22 @@ public class IA extends Jugador {
         while (!this.tablero.esBarco(index[0], index[1])) {
             index = generarPosicionAleatoriaTableroHumano();
         }
-        this.flota.getBarcoPorPos((int) index[0], index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
+        this.flota.getBarcoPorPos(index[0], index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
     }
 
-    private void colocarBarcosIA() {
+    public void colocarBarcos() {
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 colocarBarcoPorTipo("fragata", 4);
-            } else if (i == 1) {
+            } /*if (i == 1) {
                 colocarBarcoPorTipo("destructor", 3);
-            }
+            }*/
             if (i == 2) {
                 colocarBarcoPorTipo("submarino", 2);
-            }
+            }/*
             if (i == 3) {
                 colocarBarcoPorTipo("portaaviones", 1);
-            }
+            }*/
         }
     }
 
@@ -248,36 +247,42 @@ public class IA extends Jugador {
         for (int i = 0; i < cant; i++) {
             Barco b = this.flota.inicializarBarco(pTipoBarco);
 
-            Object[] pos = generarPosicionAleatoriaValidaPosBarco();
-            b.setHorientacion((char) pos[2]);
-            while (!this.tablero.colocarBarco(b, (int) pos[0], (int) pos[1])) {
+            int[] pos = generarPosicionAleatoriaValidaPosBarco();
+            char horientacion = generarHorientacionAleatoria();
+
+            b.inicializar(pos[0], pos[1], horientacion);
+            while (!this.tablero.colocarBarco(b, pos[0], pos[1])) {
                 pos = generarPosicionAleatoriaValidaPosBarco();
-                b.setHorientacion((char) pos[2]);
+                b.inicializar(pos[0], pos[1], horientacion);
+
             }
-            b.setEnTablero(true);
         }
     }
 
-    private Object[] generarPosicionAleatoriaValidaPosBarco() {
+    private int[] generarPosicionAleatoriaValidaPosBarco() {
         Random r = new Random();
         int i = r.nextInt(9);
         int j = r.nextInt(9);
-        int direccion = r.nextInt(1);
 
         while (this.tablero.esBarco(i, j)) {
             i = r.nextInt(9);
             j = r.nextInt(9);
         }
-        Object[] arr = new Object[3];
+        int[] arr = new int[2];
         arr[0] = i;
         arr[1] = j;
-        if (direccion == 0) {
-            arr[2] = 'v';
-        } else {
-            arr[2] = 'h';
-        }
 
         return arr;
+    }
+
+    private char generarHorientacionAleatoria() {
+        int direccion = new Random().nextInt(100);
+
+        if (direccion < 50) {
+            return 'v';
+        } else {
+            return 'h';
+        }
     }
 
     private int[] generarPosicionAleatoriaTableroHumano() {

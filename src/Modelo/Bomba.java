@@ -20,10 +20,10 @@ public class Bomba extends Arma {
 
     @Override
     public void disparar(int x, int y) {
-        if (Battleship.getMyBattleship().getJugNoActivo().getTablero().esBarco(x, y)) {
-            Battleship.getMyBattleship().getJugNoActivo().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
+        if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x, y)) {
+            ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
         } else {
-            Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y).setVisible(true);
+            ListaJugadores.getMyListaJug().getIA().getTablero().getPosicion(x, y).setVisible(true);
         }
     }
 

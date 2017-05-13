@@ -16,10 +16,9 @@ public class Destructor extends Barco {
     public Destructor() {
         super();
         this.tamaño = 2;
-        this.partesBarco = new ParteBarco[tamaño];
+        this.partesBarco = new ParteBarco[2];
         for (int i = 0; i < tamaño; i++) {
-            partesBarco[i] = new ParteBarco(0, 0);
-            partesBarco[i].setState(new SNormal());
+            partesBarco[i] = new ParteBarco();
         }
     }
 
