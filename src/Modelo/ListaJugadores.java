@@ -24,22 +24,40 @@ public class ListaJugadores {
         return myListaJug;
     }
 
+    /**
+     * @return jugador humano
+     */
     public Jugador getHumano() {
         return listaJug[0];
     }
 
+    /**
+     *
+     * @return jugador IA
+     */
     public Jugador getIA() {
         return listaJug[1];
     }
 
+    /**
+     *
+     * @return ListaJugadores
+     */
     public Jugador[] getListaJug() {
         return listaJug;
     }
 
+    /**
+     * @param pTipoBarco
+     * @return
+     */
     public Barco getBarcoAInicializar(String pTipoBarco) {
         return this.getHumano().getFlota().inicializarBarco(pTipoBarco);
     }
 
+    /**
+     * @param pTablero
+     */
     public void setTableroJugadores(Tablero pTablero) {
             ((Humano) this.getHumano()).setTablero(pTablero);
         ((IA) this.getIA()).colocarBarcos();

@@ -1,7 +1,6 @@
 package Controlador;
 
 import Modelo.*;
-import Vista.VistaImagenBienvenida;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
 
@@ -19,11 +18,9 @@ public class ControladorLogin {
     private VistaLogin vista;
 
     public ControladorLogin() {
-        new VistaImagenBienvenida();
         this.modeloLogin = new Login();
-        this.vista = new VistaLogin();
-
-        this.vista.añadirListenersLogin(new ListenersLogin());
+        vista = new VistaLogin();
+        vista.añadirListenersLogin(new ListenersLogin());
     }
 
     private class ListenersLogin implements ActionListener {

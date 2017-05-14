@@ -22,10 +22,16 @@ public class Humano extends Jugador {
         this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     }
 
+    /**
+     * @return devuelve el nombre del jugador
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    /**
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -34,6 +40,9 @@ public class Humano extends Jugador {
 
     }
 
+    /**
+     * @param pTablero
+     */
     public void setTablero(Tablero pTablero) {
         this.tablero = pTablero;
         tablero.imprimirTablero();
@@ -41,6 +50,16 @@ public class Humano extends Jugador {
 
     public void colocarBarcos(Tablero pTablero) {
 
+    }
+
+    /**
+     * @param pHerramienta
+     * @return el numero de herramientas de ese tipo
+     */
+    public int getCantidadHerramientasJuego(String pHerramienta) {
+        if (this.lArmas.consultarArma(pHerramienta) != null) {
+            return this.lArmas.getSize(pHerramienta);
+        } else return 0;
     }
 
 }

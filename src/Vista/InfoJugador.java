@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Josu on 16/04/2017.
@@ -125,6 +126,7 @@ public class InfoJugador extends JPanel {
         this.add(rbEscudo);
 
         this.comprarArma = new JButton("Comprar arma");
+        this.comprarArma.setActionCommand("comprar");
         this.add(new JLabel(""));
         this.add(comprarArma);
         this.add(new JLabel(""));
@@ -134,7 +136,30 @@ public class InfoJugador extends JPanel {
         this.rbMisilDirig.setActionCommand("misildirig");
         this.rbRadar.setActionCommand("radar");
         this.rbEscudo.setActionCommand("escudo");
+    }
 
+    public void añadirListenerCompra(ActionListener actionListener) {
+        this.comprarArma.addActionListener(actionListener);
+    }
+
+    public void setCantDinero(int i) {
+        this.cantDinero.setText(Integer.toString(i));
+    }
+
+    public void setCantMisil(int i) {
+        this.cantMisil.setText(Integer.toString(i));
+    }
+
+    public void setCantMisildirig(int i) {
+        this.cantMisildirig.setText(Integer.toString(i));
+    }
+
+    public void setCantEscudo(int i) {
+        this.cantEscudo.setText(Integer.toString(i));
+    }
+
+    public void setCantRadar(int i) {
+        this.cantRadar.setText(Integer.toString(i));
     }
 
     public String getSeleccionArma() {

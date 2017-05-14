@@ -20,7 +20,7 @@ public class Battleship {
     private boolean partidaActiva = false;
 
     private Battleship() {
-
+        partidaActiva = true;
     }
 
     public static Battleship getMyBattleship() {
@@ -66,6 +66,9 @@ public class Battleship {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * @return el jugador no activo (cuyo turno no esta en curso)
+     */
     public Jugador getJugNoActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             return ListaJugadores.getMyListaJug().getListaJug()[1];
@@ -73,6 +76,9 @@ public class Battleship {
         return ListaJugadores.getMyListaJug().getListaJug()[0];
     }
 
+    /**
+     * @return el jugador cuyo turno esta actualmente en juego
+     */
     public Jugador getJugActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             return ListaJugadores.getMyListaJug().getListaJug()[0];
@@ -80,6 +86,9 @@ public class Battleship {
         return ListaJugadores.getMyListaJug().getListaJug()[1];
     }
 
+    /**
+     * cambia al jugador activo a inactivo y viceversa
+     */
     public void cambiarJugActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(false);

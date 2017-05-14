@@ -59,14 +59,23 @@ public class Flota {
             inicializarPorTipo(pTipo);
         }
 
+        /**
+         * @return un iterador de Barco
+         */
         private Iterator<Barco> getIterator() {
             return lb.iterator();
         }
 
+        /**
+         * @param pBarco
+         */
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
+        /**
+         * @return devuelve un barco que no haya sido posicionado previamente
+         */
         public Barco buscarNoInicializado() {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
@@ -101,6 +110,12 @@ public class Flota {
             return b;
         }
 
+        /**
+         * Repara un barco
+         *
+         * @param x
+         * @param y
+         */
         public void reparar(int x, int y) {
             Iterator<String> it = flota.keySet().iterator();
             boolean enc = false;
@@ -116,6 +131,9 @@ public class Flota {
             }
         }
 
+        /**
+         * @return true en caso de que aun queden barcos sin hundir
+         */
         public boolean quedanBarcosSinHundir() {
             boolean flag = false;
             Iterator<Barco> itr = getIterator();

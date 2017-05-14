@@ -44,6 +44,11 @@ public class GestorFicheros {
         return myGestorFicheros;
     }
 
+    /**
+     * Lee el XML que guarda la configuracion del juego
+     *
+     * @param pDif
+     */
     public void readXML(String pDif) {
         try (InputStream resource = GestorFicheros.class.getResourceAsStream("config_IS_battleship.xml")) {
 
@@ -106,6 +111,11 @@ public class GestorFicheros {
         }
     }
 
+    /**
+     *
+     * @param pArma
+     * @return devuelve el precio del arma especificada como parametro, en caso de no existir devolvera -1
+     */
     public int getPrecioArma(String pArma) {
         if (pArma.equalsIgnoreCase("misil")) {
             return this.precioMisiles;
@@ -123,6 +133,11 @@ public class GestorFicheros {
         }
     }
 
+    /**
+     *
+     * @param pArma
+     * @return devuelve la cantidad asociada al parametro que recibe
+     */
     public int getNumeroArmas(String pArma) {
         if (pArma.equalsIgnoreCase("bomba")) {
             return this.numBombas;
@@ -143,6 +158,10 @@ public class GestorFicheros {
         }
     }
 
+    /**
+     * @param pBarco
+     * @return deuvuelve el numero de barcos de cada tipo
+     */
     public int getNumBarco(String pBarco) {
         if (pBarco.equalsIgnoreCase("fragata")) {
             return this.numFrag;
