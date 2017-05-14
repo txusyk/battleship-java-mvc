@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * Created by Josu on 16/04/2017.
@@ -166,24 +167,21 @@ public class InfoJugador extends JPanel {
         return buttonGroup.getSelection().getActionCommand();
     }
 
-    public int getCantArmaSelec() {
-        String s = buttonGroup.getSelection().getActionCommand();
-        if (s == "bomba") {
-            return Integer.parseInt(cantBomba.getText());
-        } else if (s == "misil") {
+    public int getCantArmaSelec(String s) {
+        if (Objects.equals(s, "misil")) {
             return Integer.parseInt(cantMisil.getText());
-        } else if (s == "misildirig") {
+        } else if (Objects.equals(s, "misildirig")) {
             return Integer.parseInt(cantMisildirig.getText());
-        } else if (s == "escudo") {
+        } else if (Objects.equals(s, "escudo")) {
             return Integer.parseInt(cantEscudo.getText());
-        } else if (s == "radar") {
+        } else if (Objects.equals(s, "radar")) {
             return Integer.parseInt(cantRadar.getText());
         }
         return 0;
     }
 
     public void actualizarDinero(int cant) {
-        dinero.setText(Integer.toString(cant));
+        cantDinero.setText(Integer.toString(cant));
     }
 
 }
