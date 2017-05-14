@@ -53,14 +53,14 @@ public class ControladorBattleship {
                         x = Integer.parseInt(e.getActionCommand().split("\\.")[1]) / 10;
                         y = Integer.parseInt(e.getActionCommand().split("\\.")[1]) % 10;
 
-                        if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) == null) {
+                        if (vista.getCantArma() <= 0) {
                             JOptionPane.showMessageDialog(null, "No tienes armas de este tipo, prueba a comprar una primero");
                         } else {
-                            vista.actualizarContadorArmas(vista.getCantArma() - 1, vista.getBotonArmaSeleccionada());
-                            if(vista.getBotonArmaSeleccionada().equalsIgnoreCase("radar")){
-                                    ((Humano) Battleship.getMyBattleship().getJugActivo()).jugarTurno(vista.getBotonArmaSeleccionada(), x, y);
-                                     pintarRadar(x,y);
-                            }else if (!(vista.getBotonArmaSeleccionada().equalsIgnoreCase("misildirig"))) {
+                            if (vista.getBotonArmaSeleccionada().equalsIgnoreCase("radar")) {
+                                ((Humano) Battleship.getMyBattleship().getJugActivo()).jugarTurno(vista.getBotonArmaSeleccionada(), x, y);
+                                pintarRadar(x, y);
+                            } else if (!(vista.getBotonArmaSeleccionada().equalsIgnoreCase("misildirig"))) {
+
                                 if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x, y)) {
                                     Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
                                     vista.pintarPosTocado(x, y);
@@ -70,9 +70,10 @@ public class ControladorBattleship {
                                             vista.pintarPosHundido(b.getParteBarco(i).getX(), b.getParteBarco(i).getY());
                                         }
                                     }
-                                } else {
-                                    vista.pintarPosAgua(x, y);
+                                }else{
+                                    vista.pintarPosAgua(x,y);
                                 }
+
                             } else {
                                 MisilDirig a = (MisilDirig) ListaJugadores.getMyListaJug().getHumano().getListaArmas().consultarArma(vista.getBotonArmaSeleccionada());
                                 Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
@@ -130,6 +131,7 @@ public class ControladorBattleship {
                                     }
                                 }
                             }
+                            vista.actualizarContadorArmas(vista.getCantArma() - 1, vista.getBotonArmaSeleccionada());
                         }
                     } else if (e.getActionCommand().equalsIgnoreCase("comprar")) { //se ha clickado el boton de compra
                         if (!vista.getBotonArmaSeleccionada().equalsIgnoreCase("bomba")) {
@@ -145,7 +147,7 @@ public class ControladorBattleship {
                         x = Integer.parseInt(e.getActionCommand()) / 10;
                         y = Integer.parseInt(e.getActionCommand()) % 10;
 
-                        if (vista.getCantArma() >0) {
+                        if (vista.getCantArma() > 0) {
                             if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) != null) {
                                 if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) instanceof Escudo) {
                                     ((Humano) Battleship.getMyBattleship().getJugActivo()).jugarTurno(vista.getBotonArmaSeleccionada(), x, y);
@@ -157,6 +159,8 @@ public class ControladorBattleship {
                                     vista.actualizarContadorArmas(vistaInfoJugador.getCantArmaSelec() - 1, vista.getBotonArmaSeleccionada());
                                 }
                             }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "No tienes armas de este tipo, prueba a comprar una primero");
                         }
                     }
                 } else {
@@ -171,58 +175,50 @@ public class ControladorBattleship {
             int i = x;
             int j = y;
 
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i,j)){
-                vista.pintarRadar(i,j);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i, j)) {
+                vista.pintarRadar(i, j);
+            } else {
+                vista.pintarPosAgua(i, j);
             }
-            else{
-                vista.pintarPosAgua(i,j);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i - 1, j)) {
+                vista.pintarRadar(i - 1, j);
+            } else {
+                vista.pintarPosAgua(i - 1, j);
             }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i-1,j)){
-                vista.pintarRadar(i-1,j);
-            }else{
-                vista.pintarPosAgua(i-1,j);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i - 1, j - 1)) {
+                vista.pintarRadar(i - 1, j - 1);
+            } else {
+                vista.pintarPosAgua(i - 1, j - 1);
             }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i-1,j-1)){
-                vista.pintarRadar(i-1,j-1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i, j - 1)) {
+                vista.pintarRadar(i, j - 1);
+            } else {
+                vista.pintarPosAgua(i, j - 1);
             }
-            else{
-                vista.pintarPosAgua(i-1,j-1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i + 1, j - 1)) {
+                vista.pintarRadar(i + 1, j - 1);
+            } else {
+                vista.pintarPosAgua(i + 1, j - 1);
             }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i,j-1)){
-                vista.pintarRadar(i,j-1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i + 1, j)) {
+                vista.pintarRadar(i + 1, j);
+            } else {
+                vista.pintarPosAgua(i + 1, j);
             }
-            else{
-                vista.pintarPosAgua(i,j-1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i + 1, j + 1)) {
+                vista.pintarRadar(i + 1, j + 1);
+            } else {
+                vista.pintarPosAgua(i + 1, j + 1);
             }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i+1,j-1)){
-                vista.pintarRadar(i+1,j-1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i, j + 1)) {
+                vista.pintarRadar(i, j + 1);
+            } else {
+                vista.pintarPosAgua(i, j + 1);
             }
-            else{
-                vista.pintarPosAgua(i+1,j-1);
-            }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i+1,j)){
-                vista.pintarRadar(i+1,j);
-            }
-            else{
-                vista.pintarPosAgua(i+1,j);
-            }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i+1,j+1)){
-                vista.pintarRadar(i+1,j+1);
-            }
-            else{
-                vista.pintarPosAgua(i+1,j+1);
-            }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i,j+1)){
-                vista.pintarRadar(i,j+1);
-            }
-            else{
-                vista.pintarPosAgua(i,j+1);
-            }
-            if(ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i-1,j+1)){
-                vista.pintarRadar(i-1,j+1);
-            }
-            else{
-                vista.pintarPosAgua(i-1,j+1);
+            if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(i - 1, j + 1)) {
+                vista.pintarRadar(i - 1, j + 1);
+            } else {
+                vista.pintarPosAgua(i - 1, j + 1);
             }
         }
 
