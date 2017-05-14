@@ -50,6 +50,10 @@ public abstract class Jugador {
         return lArmas;
     }
 
+    public boolean quedanBarcos() {
+        return this.flota.quedanBarcosSinHundir();
+    }
+
     /**
      * @param pCantidad
      * @return boolean

@@ -24,13 +24,13 @@ public class ParteBarcoTest {
 
     @Test
     public void testGetEstado() throws Exception {
-        Assert.assertTrue(parteBarco.getEstado() instanceof SNormal);
+        Assert.assertTrue(parteBarco.informacion());
     }
 
     @Test
     public void testSetState() throws Exception {
         parteBarco.setState(new STocado());
-        Assert.assertTrue(parteBarco.getEstado() instanceof STocado);
+        Assert.assertFalse(parteBarco.informacion());
     }
 
     @Test

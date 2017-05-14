@@ -11,7 +11,7 @@
  */
 package Modelo;
 
-public class ParteBarco extends ObjTablero {
+public class ParteBarco extends ObjTablero implements State {
 
     private State estado;
 
@@ -25,9 +25,9 @@ public class ParteBarco extends ObjTablero {
     /**
      * @return State
      */
-    public State getEstado() {
+    /*public State getEstado() {
         return this.estado;
-    }
+    }*/
 
     /**
      *
@@ -61,8 +61,11 @@ public class ParteBarco extends ObjTablero {
      * @return true en caso de que la posicion sea la que se recibe
      */
     public boolean comprobarPosicion(int x, int y){
-        System.out.printf(this.x + "?" + x + "  " + this.y + "?" + y + "\n");
         return this.x == x && this.y == y;
     }
 
+    @Override
+    public boolean informacion() {
+        return this.estado.informacion();
+    }
 }

@@ -13,4 +13,6 @@ package Modelo;
 
 public interface State {
 
+    boolean informacion();
+
 }

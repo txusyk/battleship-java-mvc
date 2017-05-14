@@ -56,11 +56,11 @@ public class BarcoTest {
     @Test
     public void testReparar() throws Exception {
         p.partesBarco[0].setState(new STocado());
-        Assert.assertEquals(p.partesBarco[0].getEstado().getClass(), new STocado().getClass());
+        Assert.assertFalse(p.partesBarco[0].informacion());
         int x = p.partesBarco[0].getX();
         int y = p.partesBarco[0].getY();
         p.reparar(x, y);
-        Assert.assertEquals(p.partesBarco[0].getEstado().getClass(), new SNormal().getClass());
+        Assert.assertTrue(p.partesBarco[0].informacion());
     }
 
     @Test
@@ -135,7 +135,7 @@ public class BarcoTest {
         pb5.setPosicion(5, 6);
         pb6.setPosicion(5, 7);
         s.recibirDaños(5, 6);
-        Assert.assertTrue(s.getParteBarco(1).getEstado() instanceof STocado);
+        Assert.assertFalse(s.getParteBarco(1).informacion());
     }
 
 }

@@ -38,11 +38,12 @@ public class IA extends Jugador {
     /**
      * Ejecuta todos los pasos relativos al turno de la IA
      */
-    public void jugarTurnoIA() {
+    public void jugarTurno() {
         decidirSiComprarArma();
-        decidirSiRadar();
-        decidirSiEscudo();
+        //decidirSiRadar();
+        //decidirSiEscudo();
         disparar();
+        Battleship.getMyBattleship().cambiarJugActivo();
     }
 
     /**

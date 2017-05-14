@@ -27,16 +27,16 @@ public class ListaJugadores {
     /**
      * @return jugador humano
      */
-    public Jugador getHumano() {
-        return listaJug[0];
+    public Humano getHumano() {
+        return (Humano) listaJug[0];
     }
 
     /**
      *
      * @return jugador IA
      */
-    public Jugador getIA() {
-        return listaJug[1];
+    public IA getIA() {
+        return (IA) listaJug[1];
     }
 
     /**
@@ -59,8 +59,12 @@ public class ListaJugadores {
      * @param pTablero
      */
     public void setTableroJugadores(Tablero pTablero) {
-            ((Humano) this.getHumano()).setTablero(pTablero);
-        ((IA) this.getIA()).colocarBarcos();
+        this.getHumano().setTablero(pTablero);
+        this.getIA().colocarBarcos();
+    }
+
+    public HerramientasJuego consultarArmaHumano(String pArma) {
+        return this.listaJug[0].getListaArmas().consultarArma(pArma);
     }
 
 

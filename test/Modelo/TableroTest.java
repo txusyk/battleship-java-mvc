@@ -31,9 +31,9 @@ public class TableroTest {
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("destructor"), 2, 3); //intentamos colocar un barco cerca de otro ya colocado
         Assert.assertFalse(tab1.esBarco(2, 3));
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 0, 0); //colocamos un barco en un borde
-        Assert.assertFalse(tab1.esBarco(0, 0));
+        Assert.assertTrue(tab1.esBarco(0, 0));
         tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("fragata"), 9, 9); //colocamos un barco en un borde
-        Assert.assertFalse(tab1.esBarco(9, 9));
+        Assert.assertTrue(tab1.esBarco(9, 9));
     }
 
     @Test
@@ -95,7 +95,6 @@ public class TableroTest {
         Assert.assertTrue(tab1.getPosicion(2, 5) instanceof AreaBarco);
         Assert.assertTrue(tab1.getPosicion(3, 5) instanceof AreaBarco);
 
-        Assert.assertFalse(tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("portaaviones"), 6, 7));
         Assert.assertFalse(tab1.colocarBarco(BarcoFactory.getBarcoFactory().crearBarco("portaaviones"), 7, 7));
         b = BarcoFactory.getBarcoFactory().crearBarco("portaaviones");
         b.setHorientacion('v');

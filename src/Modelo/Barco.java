@@ -135,7 +135,7 @@ public abstract class Barco {
         int i = 0;
         boolean estaHundido = true;
         while (i < partesBarco.length && estaHundido) {
-            if (partesBarco[i].getEstado() instanceof SNormal) {
+            if (partesBarco[i].informacion()) {
                 estaHundido = false;
             }
             i++;
@@ -190,7 +190,7 @@ public abstract class Barco {
                 }
             }
             if (enc) {
-                if (partesBarco[i].getEstado() instanceof SNormal) {
+                if (partesBarco[i].informacion()) {
                     partesBarco[i].setState(new STocado());
                     comprobarSiHundido();
                 } else {

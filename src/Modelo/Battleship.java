@@ -43,27 +43,15 @@ public class Battleship {
         ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
-    private void inicializarJugadores(String pNombre) {
-        //ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
+    public void jugar(String pArmaHumano, int x, int y) {
+        if (this.getJugActivo() instanceof Humano) {
+            ((Humano) this.getJugActivo()).jugarTurno(pArmaHumano, x, y);
+            ((IA) this.getJugActivo()).jugarTurno();
+        }
     }
 
-    private void inicializarAlmacen() {
-        Almacen.getMiAlmacen();
-    }
-
-    private void colocarFlotas() {
-        // TODO - implement Battleship.colocarFlotas
-        throw new UnsupportedOperationException();
-    }
-
-    private void inicializarTableros() {
-        // TODO - implement Battleship.inicializarTableros
-        throw new UnsupportedOperationException();
-    }
-
-    private void jugar() {
-        // TODO - implement Battleship.jugar
-        throw new UnsupportedOperationException();
+    public boolean quedanBarcosPartida() {
+        return ListaJugadores.getMyListaJug().getHumano().quedanBarcos() && ListaJugadores.getMyListaJug().getIA().quedanBarcos();
     }
 
     /**
@@ -98,20 +86,10 @@ public class Battleship {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
         }
     }
-/*
+
     public void partidaAcabada(){
-        if(!getJugNoActivo().quedanBarcos()){
+        if (ListaJugadores.getMyListaJug().getHumano().quedanBarcos() || ListaJugadores.getMyListaJug().getIA().quedanBarcos()) {
             partidaActiva = false;
         }
     }
-
-    public void jugarPartida(){
-        partidaActiva = true;
-
-        while(partidaActiva){
-            getJugActivo().jugarTurno();
-        }
-    }
-
-    */
 }
