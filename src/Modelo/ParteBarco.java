@@ -23,13 +23,6 @@ public class ParteBarco extends ObjTablero implements State {
     }
 
     /**
-     * @return State
-     */
-    /*public State getEstado() {
-        return this.estado;
-    }*/
-
-    /**
      *
      * @param pEstado
      */

@@ -34,6 +34,13 @@ public class Tablero extends Observable {
     }
 
     /**
+     * @return el tablero
+     */
+    public ObjTablero[][] getTablero() {
+        return tablero;
+    }
+
+    /**
      * @param pBarco
      * @param x
      * @param y
@@ -354,7 +361,7 @@ public class Tablero extends Observable {
         }
     }
 
-    public void imprimirTablero() {
+   /* public void imprimirTablero() {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 char icon = ' ';
@@ -378,7 +385,7 @@ public class Tablero extends Observable {
             }
         }
         System.out.println("\n\n\n");
-    }
+    }*/
 
 
     /**

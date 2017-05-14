@@ -121,11 +121,8 @@ public abstract class Barco {
     }
 
 
-    /**
-     * @param esc
-     */
-    public void setEscudo(Escudo esc) {
-        this.escudo = esc;
+    public void setEscudo() {
+        this.escudo = (Escudo) Battleship.getMyBattleship().getJugActivo().getListaArmas().getArma("escudo");
     }
 
     /**

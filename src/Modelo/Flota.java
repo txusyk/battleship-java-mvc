@@ -51,13 +51,13 @@ public class Flota {
     }
 
     public boolean quedanBarcosSinHundir() {
-        boolean sinHundir = true;
+        boolean sinHundir = false;
         String nombreBarco;
         Iterator<String> itr = this.getIterator();
-        while (itr.hasNext() && sinHundir) {
+        while (itr.hasNext() && !sinHundir) {
             nombreBarco = itr.next();
-            if (!flota.get(nombreBarco).quedanBarcosSinHundir()) {
-                sinHundir = false;
+            if (flota.get(nombreBarco).quedanBarcosSinHundir()) {
+                sinHundir = true;
             }
         }
         return sinHundir;
@@ -148,13 +148,15 @@ public class Flota {
          * @return true en caso de que aun queden barcos sin hundir
          */
         public boolean quedanBarcosSinHundir() {
-            boolean flag = true;
+            boolean flag = false;
             Iterator<Barco> itr = getIterator();
             Barco b;
 
-            while (flag && itr.hasNext()) {
+            while (!flag && itr.hasNext()) {
                 b = itr.next();
-                flag = b.getHundido();
+                if (!b.getHundido()) {
+                    flag = true;
+                }
             }
 
             return flag;

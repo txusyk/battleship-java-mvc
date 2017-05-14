@@ -3,6 +3,7 @@ package Vista; /**
  */
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -117,4 +118,26 @@ public class VistaTablero extends JPanel {
         return casillas;
     }
 
+    public void pintarPosEscudo(int x, int y) {
+        Border border = new LineBorder(Color.MAGENTA, 3);
+        casillas[x][y].setBorder(border);
+    }
+
+    public void pintarPosTocado(int x, int y) {
+        casillas[x][y].setBackground(Color.RED);
+        casillas[x][y].getModel().setEnabled(false);
+    }
+
+    public void pintarPosHundido(int x, int y) {
+        casillas[x][y].setBackground(Color.BLACK);
+    }
+
+    public void pintarAgua(int x, int y) {
+        casillas[x][y].setBackground(Color.BLUE);
+    }
+
+    public void pintarArea(int x, int y) {
+        casillas[x][y].setBackground(Color.LIGHT_GRAY);
+        casillas[x][y].setEnabled(false);
+    }
 }

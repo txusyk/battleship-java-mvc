@@ -138,4 +138,33 @@ public class VistaJuego extends JFrame {
             pnInfoJugador.setCantRadar(cantidad);
         }
     }
+
+    public int getCantArma(String arma) {
+        return pnInfoJugador.getCantArmaSelec();
+    }
+
+    public void pintarEscudo(int x, int y) {
+        tableroJug.pintarPosEscudo(x, y);
+    }
+
+    public void pintarPosTocado(int x, int y) {
+        tableroIA.pintarPosTocado(x, y);
+    }
+
+    public void pintarPosHundido(int x, int y) {
+        tableroIA.pintarPosHundido(x, y);
+    }
+
+    public void pintarPosAgua(int x, int y) {
+        tableroIA.pintarAgua(x, y);
+    }
+
+    public void actDinero(int cant) {
+        pnInfoJugador.actualizarDinero(cant);
+    }
+
+    public int getPrecioArmaSelec() {
+        return pnInfoJuego.getPrecioArma(getBotonArmaSeleccionada());
+    }
+
 }

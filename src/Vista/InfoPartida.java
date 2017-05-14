@@ -155,4 +155,17 @@ public class InfoPartida extends JPanel {
         this.cantPortaav.setText("1");
 
     }
+
+    public int getPrecioArma(String s) {
+        if (s == "misil") {
+            return Integer.parseInt(precioMisil.getText());
+        } else if (s == "miisldirig") {
+            return Integer.parseInt(precioMisilDirig.getText());
+        } else if (s == "radar") {
+            return Integer.parseInt(precioRadar.getText());
+        } else if (s == "escudo") {
+            return Integer.parseInt(precioEscudo.getText());
+        }
+        return 0;
+    }
 }

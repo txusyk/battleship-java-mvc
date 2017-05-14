@@ -50,8 +50,20 @@ public class Battleship {
         }
     }
 
-    public boolean quedanBarcosPartida() {
-        return ListaJugadores.getMyListaJug().getHumano().quedanBarcos() && ListaJugadores.getMyListaJug().getIA().quedanBarcos();
+    public boolean isPartidaActiva() {
+        return partidaActiva = ListaJugadores.getMyListaJug().getHumano().quedanBarcos() && ListaJugadores.getMyListaJug().getIA().quedanBarcos();
+    }
+
+    public String getGanador() {
+        if (!partidaActiva) {
+            if (ListaJugadores.getMyListaJug().getHumano().quedanBarcos()) {
+                return ListaJugadores.getMyListaJug().getHumano().getNombre();
+            } else {
+                return "IA";
+            }
+        } else {
+            return null;
+        }
     }
 
     /**

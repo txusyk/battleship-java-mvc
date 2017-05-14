@@ -198,4 +198,7 @@ public class VistaInicializacionBarcos extends JFrame {
         }
     }
 
+    public VistaTablero getTableroSeleccion() {
+        return tableroSeleccion;
+    }
 }

@@ -81,7 +81,7 @@ public class InfoJugador extends JPanel {
         this.misil.setHorizontalAlignment(JLabel.CENTER);
         this.misil.setFont(fArmas);
         this.add(misil);
-        this.cantMisil = new JLabel("-");
+        this.cantMisil = new JLabel("0");
         this.cantMisil.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisil.setFont(fArmas);
         this.add(cantMisil);
@@ -93,7 +93,7 @@ public class InfoJugador extends JPanel {
         this.misildirig.setHorizontalAlignment(JLabel.CENTER);
         this.misildirig.setFont(fArmas);
         this.add(misildirig);
-        this.cantMisildirig = new JLabel("-");
+        this.cantMisildirig = new JLabel("0");
         this.cantMisildirig.setHorizontalAlignment(JLabel.CENTER);
         this.cantMisildirig.setFont(fArmas);
         this.add(cantMisildirig);
@@ -105,7 +105,7 @@ public class InfoJugador extends JPanel {
         this.radar.setHorizontalAlignment(JLabel.CENTER);
         this.radar.setFont(fArmas);
         this.add(radar);
-        this.cantRadar = new JLabel("-");
+        this.cantRadar = new JLabel("0");
         this.cantRadar.setHorizontalAlignment(JLabel.CENTER);
         this.cantRadar.setFont(fArmas);
         this.add(cantRadar);
@@ -117,7 +117,7 @@ public class InfoJugador extends JPanel {
         this.escudo.setHorizontalAlignment(JLabel.CENTER);
         this.escudo.setFont(fArmas);
         this.add(escudo);
-        this.cantEscudo = new JLabel("-");
+        this.cantEscudo = new JLabel("0");
         this.cantEscudo.setHorizontalAlignment(JLabel.CENTER);
         this.cantEscudo.setFont(fArmas);
         this.add(cantEscudo);
@@ -166,5 +166,24 @@ public class InfoJugador extends JPanel {
         return buttonGroup.getSelection().getActionCommand();
     }
 
+    public int getCantArmaSelec() {
+        String s = buttonGroup.getSelection().getActionCommand();
+        if (s == "bomba") {
+            return Integer.parseInt(cantBomba.getText());
+        } else if (s == "misil") {
+            return Integer.parseInt(cantMisil.getText());
+        } else if (s == "misildirig") {
+            return Integer.parseInt(cantMisildirig.getText());
+        } else if (s == "escudo") {
+            return Integer.parseInt(cantEscudo.getText());
+        } else if (s == "radar") {
+            return Integer.parseInt(cantRadar.getText());
+        }
+        return 0;
+    }
+
+    public void actualizarDinero(int cant) {
+        dinero.setText(dinero.getText() + cant);
+    }
 
 }

@@ -257,7 +257,7 @@ public class IA extends Jugador {
         while (!this.tablero.esBarco(index[0], index[1])) {
             index = generarPosicionAleatoriaTableroHumano();
         }
-        this.flota.getBarcoPorPos(index[0], index[1]).setEscudo(((Escudo) this.lArmas.getArma("escudo")));
+        this.flota.getBarcoPorPos(index[0], index[1]).setEscudo();
     }
 
     /**

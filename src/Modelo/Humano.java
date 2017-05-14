@@ -41,16 +41,15 @@ public class Humano extends Jugador {
             if (pArma.equalsIgnoreCase("bomba") || pArma.equalsIgnoreCase("misil") || pArma.equalsIgnoreCase("misildirig")) {
                 ((Arma) this.lArmas.getArma(pArma)).disparar(x, y);
                 if (this.tablero.esBarco(x, y)) {
-                    this.dinero += 1000 / ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).getTamaño();
-                    if (ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).getHundido()) {
-                        this.dinero += 500;
-                    }
+                    this.dinero += 500;
                 }
                 Battleship.getMyBattleship().cambiarJugActivo();
             } else if (pArma.equalsIgnoreCase("radar")) {
-                //((Radar)this.lArmas.getArma(pArma)).disparar(x,y);
+                ((Radar) lArmas.getArma(pArma)).accion(x, y);
             } else if (pArma.equalsIgnoreCase("escudo")) {
-                //((Escudo)this.lArmas.getArma(pArma)).disparar(x,y);
+                if (this.tablero.esBarco(x, y)) {
+                    this.flota.getBarcoPorPos(x, y).setEscudo();
+                }
             }
         }
     }
@@ -60,7 +59,6 @@ public class Humano extends Jugador {
      */
     public void setTablero(Tablero pTablero) {
         this.tablero = pTablero;
-        tablero.imprimirTablero();
     }
 
     public HerramientasJuego getArma(String pArma) {

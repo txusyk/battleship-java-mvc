@@ -22,8 +22,8 @@ public class ListaArmas {
 
     public ListaArmas() {
         ls = new HashMap<>();
-        ls.put("bomba", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("bomba")));
-        for (int i = 0; i < GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("bomba"); i++) {
+        ls.put("bomba", new StackArmas(200));
+        for (int i = 0; i < 200; i++) {
             ls.get("bomba").push(ArmaFactory.getArmaFactory().crearArma("bomba"));
         }
         ls.put("misil", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("misil")));

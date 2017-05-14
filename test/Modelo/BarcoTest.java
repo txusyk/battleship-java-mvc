@@ -86,7 +86,7 @@ public class BarcoTest {
 
     @Test
     public void testSetEscudo() throws Exception {
-        p.setEscudo(new Escudo());
+        p.setEscudo();
         Assert.assertNotNull(p.escudo);
     }
 
