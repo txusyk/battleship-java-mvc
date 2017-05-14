@@ -60,7 +60,7 @@ public class MisilDirig extends Arma {
             }
             i = x;
             j = y;
-            while (i <= 10 && j < 10) {
+            while (i < 10 && j < 10) {
                 ((Misil) m).disparar(i, j);
                 i++;
                 j++;

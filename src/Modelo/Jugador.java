@@ -74,6 +74,7 @@ public abstract class Jugador {
         if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
             lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
             decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
+            System.out.println(lArmas.getSize("misildirig"));
             return true;
         }
         return false;
