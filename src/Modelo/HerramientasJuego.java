@@ -27,6 +27,9 @@ public abstract class HerramientasJuego {
         return this.precio;
     }
 
+    /**
+     * @return metodo interno para hacer una gestion mas generica de la herencia
+     */
     protected String getType() {
         String type = String.valueOf(this.getClass());
         String[] arrAux = type.split("\\.");

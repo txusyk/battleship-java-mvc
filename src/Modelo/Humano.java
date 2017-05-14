@@ -22,25 +22,59 @@ public class Humano extends Jugador {
         this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
     }
 
+    /**
+     * @return devuelve el nombre del jugador
+     */
     public String getNombre() {
         return this.nombre;
     }
 
+    /**
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void jugarTurno() {
-
+    public void jugarTurno(String pArma, int x, int y) {
+        if (this.lArmas.consultarArma(pArma) != null) {
+            if (pArma.equalsIgnoreCase("bomba") || pArma.equalsIgnoreCase("misil") || pArma.equalsIgnoreCase("misildirig")) {
+                ((Arma) this.lArmas.getArma(pArma)).disparar(x, y);
+                if (this.tablero.esBarco(x, y)) {
+                    this.dinero += 1000 / ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).getTamaño();
+                    if (ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).getHundido()) {
+                        this.dinero += 500;
+                    }
+                }
+                Battleship.getMyBattleship().cambiarJugActivo();
+            } else if (pArma.equalsIgnoreCase("radar")) {
+                //((Radar)this.lArmas.getArma(pArma)).disparar(x,y);
+            } else if (pArma.equalsIgnoreCase("escudo")) {
+                //((Escudo)this.lArmas.getArma(pArma)).disparar(x,y);
+            }
+        }
     }
 
+    /**
+     * @param pTablero
+     */
     public void setTablero(Tablero pTablero) {
         this.tablero = pTablero;
         tablero.imprimirTablero();
     }
 
-    public void colocarBarcos(Tablero pTablero) {
+    public HerramientasJuego getArma(String pArma) {
+        return this.lArmas.getArma(pArma);
+    }
 
+    /**
+     * @param pHerramienta
+     * @return el numero de herramientas de ese tipo
+     */
+    public int getCantidadHerramientasJuego(String pHerramienta) {
+        if (this.lArmas.consultarArma(pHerramienta) != null) {
+            return this.lArmas.getSize(pHerramienta);
+        } else return 0;
     }
 
 }

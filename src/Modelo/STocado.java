@@ -13,4 +13,8 @@ package Modelo;
 
 public class STocado  implements State{
 
+    @Override
+    public boolean informacion() {
+        return false;
+    }
 }

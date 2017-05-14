@@ -50,13 +50,17 @@ public class Flota {
         return null;
     }
 
-    public boolean quedanBarcos(){
-        boolean barcos = false;
-
-        for(String k : flota.keySet()){
-            barcos = flota.get(k).quedanBarcosSinHundir();
+    public boolean quedanBarcosSinHundir() {
+        boolean sinHundir = true;
+        String nombreBarco;
+        Iterator<String> itr = this.getIterator();
+        while (itr.hasNext() && sinHundir) {
+            nombreBarco = itr.next();
+            if (!flota.get(nombreBarco).quedanBarcosSinHundir()) {
+                sinHundir = false;
+            }
         }
-        return barcos;
+        return sinHundir;
     }
 
     private class ListaBarcos {
@@ -68,14 +72,23 @@ public class Flota {
             inicializarPorTipo(pTipo);
         }
 
+        /**
+         * @return un iterador de Barco
+         */
         private Iterator<Barco> getIterator() {
             return lb.iterator();
         }
 
+        /**
+         * @param pBarco
+         */
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
+        /**
+         * @return devuelve un barco que no haya sido posicionado previamente
+         */
         public Barco buscarNoInicializado() {
             boolean enc = false;
             Iterator<Barco> itr = this.getIterator();
@@ -110,6 +123,12 @@ public class Flota {
             return b;
         }
 
+        /**
+         * Repara un barco
+         *
+         * @param x
+         * @param y
+         */
         public void reparar(int x, int y) {
             Iterator<String> it = flota.keySet().iterator();
             boolean enc = false;
@@ -125,12 +144,15 @@ public class Flota {
             }
         }
 
+        /**
+         * @return true en caso de que aun queden barcos sin hundir
+         */
         public boolean quedanBarcosSinHundir() {
-            boolean flag = false;
+            boolean flag = true;
             Iterator<Barco> itr = getIterator();
             Barco b;
 
-            while (!flag && itr.hasNext()) {
+            while (flag && itr.hasNext()) {
                 b = itr.next();
                 flag = b.getHundido();
             }

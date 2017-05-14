@@ -4,9 +4,7 @@ import Modelo.*;
 import Vista.VistaInicializacionBarcos;
 import Vista.VistaJuego;
 
-import javax.sound.sampled.Port;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -53,157 +51,157 @@ public class ControladorInicializacionBarcos {
                 vista.lanzarPopUp("No te quedan barcos del tipo " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
 
-    private void pintarAreaBarco(Barco pBarco, int x, int y) {
+        private void pintarAreaBarco(Barco pBarco, int x, int y) {
 
-        int i = 0;
-        while (i < pBarco.getTamaño()) {
-            int posX = pBarco.getParteBarco(i).getX();
-            int posY = pBarco.getParteBarco(i).getY();
-            if (pBarco.getHorientacion() == 'v') {
-                if (i == 0 && pBarco.getTamaño() == 1) {
-                    pintarPrimerasPosVert(x, y);
-                    pintarPosEstandarVert(x, y);
-                    pintarUltimasPosVert(x, y);
-                } else if (i == 0 && pBarco.getTamaño() != 1) {
-                    pintarPrimerasPosVert(x, y);
-                    pintarPosEstandarVert(x, y);
-                } else if (i == pBarco.getTamaño() - 1) {
-                    pintarUltimasPosVert(posX, posY);
-                    pintarPosEstandarVert(posX, posY);
+            int i = 0;
+            while (i < pBarco.getTamaño()) {
+                int posX = pBarco.getParteBarco(i).getX();
+                int posY = pBarco.getParteBarco(i).getY();
+                if (pBarco.getHorientacion() == 'v') {
+                    if (i == 0 && pBarco.getTamaño() == 1) {
+                        pintarPrimerasPosVert(x, y);
+                        pintarPosEstandarVert(x, y);
+                        pintarUltimasPosVert(x, y);
+                    } else if (i == 0 && pBarco.getTamaño() != 1) {
+                        pintarPrimerasPosVert(x, y);
+                        pintarPosEstandarVert(x, y);
+                    } else if (i == pBarco.getTamaño() - 1) {
+                        pintarUltimasPosVert(posX, posY);
+                        pintarPosEstandarVert(posX, posY);
+                    } else {
+                        pintarPosEstandarVert(posX, posY);
+                    }
+                    i++;
                 } else {
-                    pintarPosEstandarVert(posX, posY);
+                    if (i == 0 && pBarco.getTamaño() == 1) {
+                        pintarPrimerasPosHor(x, y);
+                        pintarPosEstandarHor(x, y);
+                        pintarUltimasPosHor(x, y);
+                    } else if (i == 0 && pBarco.getTamaño() != 1) {
+                        pintarPrimerasPosHor(x, y);
+                        pintarPosEstandarHor(x, y);
+                    } else if (i == pBarco.getTamaño() - 1) {
+                        pintarUltimasPosHor(posX, posY);
+                        pintarPosEstandarHor(posX, posY);
+                    } else {
+                        pintarPosEstandarHor(posX, posY);
+                    }
+                    i++;
                 }
-                i++;
-            } else {
-                if (i == 0 && pBarco.getTamaño() == 1) {
-                    pintarPrimerasPosHor(x, y);
-                    pintarPosEstandarHor(x, y);
-                    pintarUltimasPosHor(x, y);
-                } else if (i == 0 && pBarco.getTamaño() != 1) {
-                    pintarPrimerasPosHor(x, y);
-                    pintarPosEstandarHor(x, y);
-                } else if (i == pBarco.getTamaño() - 1) {
-                    pintarUltimasPosHor(posX, posY);
-                    pintarPosEstandarHor(posX, posY);
-                } else {
-                    pintarPosEstandarHor(posX, posY);
+            }
+        }
+
+        private void pintarUltimasPosHor(int x, int y) {
+            if (x + 1 < 10 && y - 1 >= 0) {
+                if (modelo.getTablero()[x + 1][y - 1] instanceof AreaBarco) {
+                    vista.getTableroSeleccion().pintarArea(x + 1, y - 1);
                 }
-                i++;
+            }
+            if (x + 1 < 10) {
+                if (modelo.getTablero()[x + 1][y] instanceof AreaBarco) {
+                    vista.getTableroSeleccion().pintarArea(x + 1, y);
+                }
+            }
+            if (x + 1 < 10 && y + 1 < 10) {
+                if (modelo.getTablero()[x + 1][y + 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x + 1, y + 1);
+                }
             }
         }
-    }
 
-    private void pintarUltimasPosHor(int x, int y) {
-        if (x + 1 < 10 && y - 1 >= 0) {
-            if (modelo.getTablero()[x + 1][y - 1] instanceof AreaBarco) {
-                vista.getTableroSeleccion().pintarArea(x + 1, y - 1);
+        private void pintarPosEstandarHor(int x, int y) {
+            if (y - 1 >= 0) {
+                if (modelo.getTablero()[x][y - 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x, y - 1);
+                }
+            }
+            if (y + 1 < 10) {
+
+                if (modelo.getTablero()[x][y + 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x, y + 1);
+                }
             }
         }
-        if (x + 1 < 10) {
-            if (modelo.getTablero()[x + 1][y] instanceof AreaBarco) {
-                vista.getTableroSeleccion().pintarArea(x + 1, y);
+
+        private void pintarPrimerasPosHor(int x, int y) {
+            if (x - 1 >= 0) {
+                if (modelo.getTablero()[x - 1][y] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x - 1, y);
+                }
+            }
+            if (x - 1 >= 0 && y + 1 < 10) {
+
+                if (modelo.getTablero()[x - 1][y + 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x - 1, y + 1);
+                }
+            }
+            if (x - 1 >= 0 && y - 1 >= 0) {
+                if (modelo.getTablero()[x - 1][y - 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x - 1, y - 1);
+                }
             }
         }
-        if (x + 1 < 10 && y + 1 < 10) {
-            if (modelo.getTablero()[x + 1][y + 1] instanceof AreaBarco) {
 
-                vista.getTableroSeleccion().pintarArea(x + 1, y + 1);
+
+        private void pintarPrimerasPosVert(int x, int y) {
+            if (x - 1 >= 0 && y - 1 >= 0) {
+                if (modelo.getTablero()[x - 1][y - 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x - 1, y - 1);
+                }
+            }
+            if (y >= 0) {
+                if (modelo.getTablero()[x][y - 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x, y - 1);
+                }
+            }
+            if (x + 1 < 10 && y >= 0) {
+                if (modelo.getTablero()[x + 1][y - 1] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x + 1, y - 1);
+                }
             }
         }
-    }
 
-    private void pintarPosEstandarHor(int x, int y) {
-        if (y - 1 >= 0) {
-            if (modelo.getTablero()[x][y - 1] instanceof AreaBarco) {
+        private void pintarPosEstandarVert(int x, int y) {
+            if (x - 1 >= 0) {
+                if (modelo.getTablero()[x - 1][y] instanceof AreaBarco) {
 
-                vista.getTableroSeleccion().pintarArea(x, y - 1);
+                    vista.getTableroSeleccion().pintarArea(x - 1, y);
+                }
             }
+            if (x + 1 < 10)
+                if (modelo.getTablero()[x + 1][y] instanceof AreaBarco) {
+
+                    vista.getTableroSeleccion().pintarArea(x + 1, y);
+                }
         }
-        if (y + 1 < 10) {
 
-            if (modelo.getTablero()[x][y + 1] instanceof AreaBarco) {
+        private void pintarUltimasPosVert(int x, int y) {
+            if (x + 1 < 10 && y + 1 < 10) {
+                if (modelo.getTablero()[x + 1][y + 1] instanceof AreaBarco) {
 
-                vista.getTableroSeleccion().pintarArea(x, y + 1);
+                    vista.getTableroSeleccion().pintarArea(x + 1, y + 1);
+                }
             }
-        }
-    }
+            if (y + 1 < 10) {
+                if (modelo.getTablero()[x][y + 1] instanceof AreaBarco) {
 
-    private void pintarPrimerasPosHor(int x, int y) {
-        if (x - 1 >= 0) {
-            if (modelo.getTablero()[x - 1][y] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x - 1, y);
+                    vista.getTableroSeleccion().pintarArea(x, y + 1);
+                }
             }
-        }
-        if (x - 1 >= 0 && y + 1 < 10) {
-
-            if (modelo.getTablero()[x - 1][y + 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x - 1, y + 1);
-            }
-        }
-        if (x - 1 >= 0 && y - 1 >= 0) {
-            if (modelo.getTablero()[x - 1][y - 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x - 1, y - 1);
-            }
-        }
-    }
-
-
-    private void pintarPrimerasPosVert(int x, int y) {
-        if (x - 1 >= 0 && y - 1 >= 0) {
-            if (modelo.getTablero()[x - 1][y - 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x - 1, y - 1);
-            }
-        }
-        if (y >= 0) {
-            if (modelo.getTablero()[x][y - 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x, y - 1);
-            }
-        }
-        if (x + 1 < 10 && y >= 0) {
-            if (modelo.getTablero()[x + 1][y - 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x + 1, y - 1);
-            }
-        }
-    }
-
-    private void pintarPosEstandarVert(int x, int y) {
-        if (x - 1 >= 0) {
-            if (modelo.getTablero()[x - 1][y] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x - 1, y);
-            }
-        }
-        if (x + 1 < 10)
-            if (modelo.getTablero()[x + 1][y] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x + 1, y);
-            }
-    }
-
-    private void pintarUltimasPosVert(int x, int y) {
-        if (x + 1 < 10 && y + 1 < 10) {
-            if (modelo.getTablero()[x + 1][y + 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x + 1, y + 1);
-            }
-        }
-        if (y + 1 < 10) {
-            if (modelo.getTablero()[x][y + 1] instanceof AreaBarco) {
-
-                vista.getTableroSeleccion().pintarArea(x, y + 1);
-            }
-        }
-        if (x - 1 <10 && x-1>0 && y < 10) {
-            if (modelo.getTablero()[x - 1][y + 1] instanceof AreaBarco) {
-                vista.getTableroSeleccion().pintarArea(x - 1, y + 1);
+            if (x - 1 <10 && x-1>0 && y < 10) {
+                if (modelo.getTablero()[x - 1][y + 1] instanceof AreaBarco) {
+                    vista.getTableroSeleccion().pintarArea(x - 1, y + 1);
+                }
             }
         }
     }

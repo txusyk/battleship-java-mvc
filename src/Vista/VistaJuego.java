@@ -1,15 +1,10 @@
-package Vista;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package Vista;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- *
  * @author Josu
  */
 public class VistaJuego extends JFrame {
@@ -27,14 +22,14 @@ public class VistaJuego extends JFrame {
     /**
      * Creates new form VJ
      */
-    public VistaJuego(VistaTablero vistaTablero) {
+    public VistaJuego(VistaTablero vistaTablero, InfoJugador infoJugador, InfoPartida infoPartida) {
         this.setLayout(new GridLayout(1, 3));
 
         tableroJug = vistaTablero;
         tableroIA = new VistaTablero(1);
         tableroInfo = new JTabbedPane();
-        pnInfoJugador = new InfoJugador();
-        pnInfoJuego = new InfoPartida();
+        pnInfoJugador = infoJugador;
+        pnInfoJuego = infoPartida;
 
         this.tableroInfo.addTab("Info. juego", this.pnInfoJugador);
         this.tableroInfo.addTab("Info. adic", this.pnInfoJuego);
@@ -66,23 +61,39 @@ public class VistaJuego extends JFrame {
         lanzarPopUpInstruccionesJuego();
     }
 
+    /**
+     * Añade los listeners al tablero de juego (casillas, propias y enemigas y el boton de compra)
+     *
+     * @param actionListener
+     */
     public void añadirListenersJuego(ActionListener actionListener) {
         this.tableroJug.añadirListenerACasilla(actionListener);
         this.tableroIA.añadirListenerACasilla(actionListener);
-        this.pnInfoJugador.añadirListener(actionListener);
+        this.pnInfoJugador.añadirListenerCompra(actionListener);
     }
 
+    /**
+     *
+     * @return un String que indica que arma esta seleccionada en el JRadioButton
+     */
     public String getBotonArmaSeleccionada() {
         return this.pnInfoJugador.getSeleccionArma();
     }
 
+    /**
+     * Lanza el popUp de la informacion del juego
+     */
     public void lanzarPopUpInstruccionesJuego() {
         JOptionPane.showMessageDialog(null,
                 "Bienvenido al Battleship IS\n. " +
                         "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
-                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella");
+                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click sobre ella" +
+                        "\n\t- Para colocar un escudo, selecciona el escudo en el menu y clicka sobre el barco de tu elección que no haya sido hundido");
     }
 
+    /**
+     * Crea la JMenuBar de la ventana
+     */
     private void crearBarraMenu() {
         barraJuego = new JMenuBar();
 
@@ -110,6 +121,28 @@ public class VistaJuego extends JFrame {
         partida.add(reiniciar);
     }
 
+    /**
+     * Actualiza el label del @arma indicada
+     *
+     * @param arma
+     */
+    public void actualizarContadorArmas(int cantidad, String arma) {
+        if (arma.equalsIgnoreCase("misil")) {
+            pnInfoJugador.setCantMisil(cantidad);
+        } else if (arma.equalsIgnoreCase("misildirig")) {
+            pnInfoJugador.setCantMisildirig(cantidad);
+        } else if (arma.equalsIgnoreCase("escudo")) {
+            pnInfoJugador.setCantEscudo(cantidad);
+
+        } else if (arma.equalsIgnoreCase("misil")) {
+            pnInfoJugador.setCantRadar(cantidad);
+        }
+    }
+
+    public int getCantArma(String arma){
+        return pnInfoJugador.getCantArmaSelec();
+    }
+
     public void pintarEscudo(int x, int y){
         tableroJug.pintarPosEscudo(x,y);
     }
@@ -126,8 +159,12 @@ public class VistaJuego extends JFrame {
         tableroIA.pintarAgua(x, y);
     }
 
-
-    public void pintarDirig(int i, int j) {
-
+    public void actDinero(int cant){
+        pnInfoJugador.actualizarDinero(cant);
     }
+
+    public int getPrecioArmaSelec(){
+        pnInfoJuego.getPrecioArma(getBotonArmaSeleccionada());
+    }
+
 }

@@ -33,10 +33,6 @@ public class Tablero extends Observable {
         }
     }
 
-    public ObjTablero[][] getTablero(){
-        return tablero;
-    }
-
     /**
      * @param pBarco
      * @param x
@@ -365,7 +361,7 @@ public class Tablero extends Observable {
                 if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'g') {
                     icon = tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0);
                 } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0) == 'p') {
-                    if (((ParteBarco) tablero[j][i]).getEstado() instanceof SNormal) {
+                    if (((ParteBarco) tablero[j][i]).informacion()) {
                         icon = ' ';
                     } else {
                         icon = '?';
@@ -403,4 +399,7 @@ public class Tablero extends Observable {
         return this.tablero[x][y];
     }
 
+    public ObjTablero[][] getTablero() {
+        return tablero;
+    }
 }

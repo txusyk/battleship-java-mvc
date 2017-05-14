@@ -10,8 +10,6 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import javax.swing.*;
-
 public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
@@ -47,10 +45,6 @@ public abstract class Barco {
 
     public int getTamaño() {
         return this.tamaño;
-    }
-
-    public ParteBarco[] getPartesBarco(){
-        return this.partesBarco;
     }
 
     public ParteBarco getParteBarco(int i) {
@@ -128,10 +122,10 @@ public abstract class Barco {
 
 
     /**
-     * @param
+     * @param esc
      */
     public void setEscudo() {
-        this.escudo = new Escudo();
+        this.escudo = (Escudo)Battleship.getMyBattleship().getJugActivo().getListaArmas().getArma("escudo");
     }
 
     /**
@@ -141,7 +135,7 @@ public abstract class Barco {
         int i = 0;
         boolean estaHundido = true;
         while (i < partesBarco.length && estaHundido) {
-            if (partesBarco[i].getEstado() instanceof SNormal) {
+            if (partesBarco[i].informacion()) {
                 estaHundido = false;
             }
             i++;
@@ -196,7 +190,7 @@ public abstract class Barco {
                 }
             }
             if (enc) {
-                if (partesBarco[i].getEstado() instanceof SNormal) {
+                if (partesBarco[i].informacion()) {
                     partesBarco[i].setState(new STocado());
                     comprobarSiHundido();
                 } else {
@@ -206,5 +200,9 @@ public abstract class Barco {
                 //gestionar si no existe
             }
         }
+    }
+
+    public ParteBarco[] getPartesBarco() {
+        return partesBarco;
     }
 }

@@ -20,7 +20,7 @@ public class Battleship {
     private boolean partidaActiva = false;
 
     private Battleship() {
-
+        partidaActiva = true;
     }
 
     public static Battleship getMyBattleship() {
@@ -43,29 +43,20 @@ public class Battleship {
         ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
-    private void inicializarJugadores(String pNombre) {
-        //ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
+    public void jugar(String pArmaHumano, int x, int y) {
+        if (this.getJugActivo() instanceof Humano) {
+            ((Humano) this.getJugActivo()).jugarTurno(pArmaHumano, x, y);
+            ((IA) this.getJugActivo()).jugarTurno();
+        }
     }
 
-    private void inicializarAlmacen() {
-        Almacen.getMiAlmacen();
+    public boolean quedanBarcosPartida() {
+        return ListaJugadores.getMyListaJug().getHumano().quedanBarcos() && ListaJugadores.getMyListaJug().getIA().quedanBarcos();
     }
 
-    private void colocarFlotas() {
-        // TODO - implement Battleship.colocarFlotas
-        throw new UnsupportedOperationException();
-    }
-
-    private void inicializarTableros() {
-        // TODO - implement Battleship.inicializarTableros
-        throw new UnsupportedOperationException();
-    }
-
-    private void jugar() {
-        // TODO - implement Battleship.jugar
-        throw new UnsupportedOperationException();
-    }
-
+    /**
+     * @return el jugador no activo (cuyo turno no esta en curso)
+     */
     public Jugador getJugNoActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             return ListaJugadores.getMyListaJug().getListaJug()[1];
@@ -73,6 +64,9 @@ public class Battleship {
         return ListaJugadores.getMyListaJug().getListaJug()[0];
     }
 
+    /**
+     * @return el jugador cuyo turno esta actualmente en juego
+     */
     public Jugador getJugActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             return ListaJugadores.getMyListaJug().getListaJug()[0];
@@ -80,6 +74,9 @@ public class Battleship {
         return ListaJugadores.getMyListaJug().getListaJug()[1];
     }
 
+    /**
+     * cambia al jugador activo a inactivo y viceversa
+     */
     public void cambiarJugActivo() {
         if (ListaJugadores.getMyListaJug().getListaJug()[0].isTurno()) {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(false);
@@ -89,20 +86,10 @@ public class Battleship {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
         }
     }
-/*
+
     public void partidaAcabada(){
-        if(!getJugNoActivo().quedanBarcos()){
+        if (ListaJugadores.getMyListaJug().getHumano().quedanBarcos() || ListaJugadores.getMyListaJug().getIA().quedanBarcos()) {
             partidaActiva = false;
         }
     }
-
-    public void jugarPartida(){
-        partidaActiva = true;
-
-        while(partidaActiva){
-            getJugActivo().jugarTurno();
-        }
-    }
-
-    */
 }

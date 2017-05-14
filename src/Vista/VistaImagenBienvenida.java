@@ -12,10 +12,12 @@ import java.net.URL;
 public class VistaImagenBienvenida extends JFrame {
 
     private JLabel contenedorImagen;
-    private URL urlImagen = this.getClass().getClassLoader().getResource("Title.png");
+    private URL urlImagen;
     private Clip clip = null;
 
     public VistaImagenBienvenida() {
+        urlImagen = this.getClass().getClassLoader().getResource("Title.png");
+
         contenedorImagen = new JLabel(new ImageIcon(urlImagen));
         this.add(contenedorImagen);
 

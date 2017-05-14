@@ -22,6 +22,9 @@ public class IA extends Jugador {
         inicializarDinero();
     }
 
+    /**
+     * Inicializa el dinero inicial del jugador en base a la dificultad del juego
+     */
     private void inicializarDinero() {
         if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
             this.dinero = 15000;
@@ -32,13 +35,20 @@ public class IA extends Jugador {
         }
     }
 
-    public void jugarTurnoIA() {
+    /**
+     * Ejecuta todos los pasos relativos al turno de la IA
+     */
+    public void jugarTurno() {
         decidirSiComprarArma();
-        decidirSiRadar();
-        decidirSiEscudo();
+        //decidirSiRadar();
+        //decidirSiEscudo();
         disparar();
+        Battleship.getMyBattleship().cambiarJugActivo();
     }
 
+    /**
+     * en base a un arbol de decisiones, decide si comprar un arma y de que tipo ha de ser en caso de comprarla (en base a la dif)
+     */
     private void decidirSiComprarArma() {
         Random random = new Random();
         if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
@@ -75,6 +85,9 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * decide si comprar un radar en base a la dificultad establecida del juego
+     */
     private void decidirSiRadar() {
         Random random = new Random();
         if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
@@ -96,6 +109,9 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * decide si comprar un escudo en funcion de la dificultad destablecida
+     */
     private void decidirSiEscudo() {
         Random random = new Random();
         if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
@@ -117,6 +133,9 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * decide el arma que va a utilizar y la dispara
+     */
     private void disparar() {
         Random random = new Random();
         if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
@@ -192,21 +211,33 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * metodo interno para disparar un misil
+     */
     private void dispararMisil() {
         int[] posDisparo = generarPosicionAleatoriaTableroHumano();
-        ((Misil) this.lArmas.getArma("misil")).disparar(posDisparo[0], posDisparo[1]);
+        ((Arma) this.lArmas.getArma("misil")).disparar(posDisparo[0], posDisparo[1]);
     }
 
+    /**
+     * metodo interno para disparar un misilDirig
+     */
     private void dispararMisilDirig() {
         int[] posDisparo = generarPosicionAleatoriaTableroHumano();
-        ((MisilDirig) this.lArmas.getArma("misildirig")).disparar(posDisparo[0], posDisparo[1]);
+        ((Arma) this.lArmas.getArma("misildirig")).disparar(posDisparo[0], posDisparo[1]);
     }
 
+    /**
+     * metodo interno para disparar una bomba
+     */
     private void dispararBomba() {
         int[] posDisparo = generarPosicionAleatoriaTableroHumano();
-        ((Bomba) this.lArmas.getArma("bomba")).disparar(posDisparo[0], posDisparo[1]);
+        ((Arma) this.lArmas.getArma("bomba")).disparar(posDisparo[0], posDisparo[1]);
     }
 
+    /**
+     * metodo interno para comprar y colocar un radar
+     */
     private void comprarYcolocarRadar() {
         Almacen.getMiAlmacen().comprarArma("radar");
         int[] index = generarPosicionAleatoriaTableroHumano();
@@ -217,6 +248,9 @@ public class IA extends Jugador {
         ((Radar) this.lArmas.getArma("radar")).accion(index[0], index[1]);
     }
 
+    /**
+     * metodo interno para comprar y colocar un escudo
+     */
     private void comprarYcolocarEscudo() {
         Almacen.getMiAlmacen().comprarArma("radar");
         int[] index = new int[2];
@@ -226,6 +260,9 @@ public class IA extends Jugador {
         this.flota.getBarcoPorPos(index[0], index[1]).setEscudo();
     }
 
+    /**
+     * metodo para inicializar el tablero de la IA
+     */
     public void colocarBarcos() {
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
@@ -243,6 +280,10 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * @param pTipoBarco
+     * @param cant
+     */
     private void colocarBarcoPorTipo(String pTipoBarco, int cant) {
         for (int i = 0; i < cant; i++) {
             Barco b = this.flota.inicializarBarco(pTipoBarco);
@@ -259,6 +300,11 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * genera una tupla valida de colocacion inicial para un barco
+     *
+     * @return devuelve dicha tupla
+     */
     private int[] generarPosicionAleatoriaValidaPosBarco() {
         Random r = new Random();
         int i = r.nextInt(9);
@@ -275,6 +321,10 @@ public class IA extends Jugador {
         return arr;
     }
 
+    /**
+     * genera un caracter que sera la horientacion del barco (50% prob de ser vertical o horizontal)
+     * @return devuelve dicho caracter
+     */
     private char generarHorientacionAleatoria() {
         int direccion = new Random().nextInt(100);
 
@@ -285,6 +335,10 @@ public class IA extends Jugador {
         }
     }
 
+    /**
+     * generar una posicion valida de disparo para el tablero humano (una que no sea ya visible, y si lo es que no este en estado normal)
+     * @return dicha posicion de disparo
+     */
     private int[] generarPosicionAleatoriaTableroHumano() {
         Random r = new Random();
         int i = r.nextInt(9);

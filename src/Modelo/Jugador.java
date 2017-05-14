@@ -38,12 +38,20 @@ public abstract class Jugador {
         return tablero;
     }
 
+    public int getDinero() {
+        return dinero;
+    }
+
     public Flota getFlota(){
         return flota;
     }
 
     public ListaArmas getListaArmas() {
         return lArmas;
+    }
+
+    public boolean quedanBarcos() {
+        return this.flota.quedanBarcosSinHundir();
     }
 
     /**
@@ -62,11 +70,13 @@ public abstract class Jugador {
      * añade el arma deseada a la lista de armas del jugador
      * @param pArma
      */
-    public void comprarArma(String pArma) {
+    public boolean comprarArma(String pArma) {
         if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
             lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
             decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
+            return true;
         }
+        return false;
     }
 
     /**
