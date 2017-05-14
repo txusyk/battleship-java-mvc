@@ -10,6 +10,8 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import javax.swing.*;
+
 public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
@@ -45,6 +47,10 @@ public abstract class Barco {
 
     public int getTamaño() {
         return this.tamaño;
+    }
+
+    public ParteBarco[] getPartesBarco(){
+        return this.partesBarco;
     }
 
     public ParteBarco getParteBarco(int i) {
@@ -122,10 +128,10 @@ public abstract class Barco {
 
 
     /**
-     * @param esc
+     * @param
      */
-    public void setEscudo(Escudo esc) {
-        this.escudo = esc;
+    public void setEscudo() {
+        this.escudo = new Escudo();
     }
 
     /**

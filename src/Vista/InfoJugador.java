@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Josu on 16/04/2017.
@@ -142,4 +143,8 @@ public class InfoJugador extends JPanel {
     }
 
 
+    public void añadirListener(ActionListener actionListener) {
+        this.comprarArma.setActionCommand("comprar");
+        this.comprarArma.addActionListener(actionListener);
+    }
 }

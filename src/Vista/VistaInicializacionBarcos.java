@@ -108,6 +108,10 @@ public class VistaInicializacionBarcos extends JFrame {
         this.setVisible(true);
     }
 
+    public VistaTablero getTableroSeleccion(){
+        return tableroSeleccion;
+    }
+
 
     public int getNumBarco(String pBarco) {
         switch (pBarco) {
@@ -184,7 +188,7 @@ public class VistaInicializacionBarcos extends JFrame {
     public void pintar(int tam, char dir, int x, int y) {
         while (tam != 0) {
 
-            tableroSeleccion.getCasillas()[x][y].setBackground(Color.GREEN);
+            tableroSeleccion.getCasillas()[x][y].setBackground(Color.white);
             tableroSeleccion.getCasillas()[x][y].setEnabled(false);
             tableroSeleccion.getCasillas()[x][y].setText("b");
 

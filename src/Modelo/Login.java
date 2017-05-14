@@ -37,7 +37,7 @@ public class Login {
     private void cargarUsuariosXML() {
         try (InputStream resource = GestorFicheros.class.getResourceAsStream("usersDB.xml")) {
 
-            File f = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/usersDB.xml");
+            File f = new File("K:/ProjectosJava/battleship-java-mvc/battleship-java-mvc/resources/usersDB.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             listaUsuarios = documentBuilder.parse(f);

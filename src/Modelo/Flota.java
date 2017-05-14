@@ -50,6 +50,15 @@ public class Flota {
         return null;
     }
 
+    public boolean quedanBarcos(){
+        boolean barcos = false;
+
+        for(String k : flota.keySet()){
+            barcos = flota.get(k).quedanBarcosSinHundir();
+        }
+        return barcos;
+    }
+
     private class ListaBarcos {
 
         private ArrayList<Barco> lb;

@@ -33,6 +33,10 @@ public class MisilDirig extends Arma {
         }
     }
 
+    public DireccionesArma getDA(){
+        return da;
+    }
+
     @Override
     public void disparar(int x, int y) {
         if (da.getDireccion().equalsIgnoreCase("noreste-suroeste")) {
@@ -56,7 +60,7 @@ public class MisilDirig extends Arma {
             }
             i = x;
             j = y;
-            while (i <= 10 && j <= 10) {
+            while (i < 10 && j < 10) {
                 ((Misil) m).disparar(i, j);
                 i++;
                 j++;
@@ -69,14 +73,14 @@ public class MisilDirig extends Arma {
         if ((x > 0 && x <= 9) && (y > 0 && y < 9)) {
             int i = x;
             int j = y;
-            while (i >= 10 && j >= 0) {
+            while (i > 10 && j >= 0) {
                 ((Misil) m).disparar(i, j);
                 i++;
                 j--;
             }
             i = x;
             j = y;
-            while (i >= 0 && j <= 10) {
+            while (i >= 0 && j <10) {
                 ((Misil) m).disparar(i, j);
                 i--;
                 j++;
@@ -94,7 +98,7 @@ public class MisilDirig extends Arma {
                 i--;
             }
             i = x;
-            while (i <= 10) {
+            while (i < 10) {
                 ((Misil) m).disparar(i, j);
                 i++;
             }
@@ -104,7 +108,7 @@ public class MisilDirig extends Arma {
                 j--;
             }
             j = y;
-            while (j <= 10) {
+            while (j < 10) {
                 ((Misil) m).disparar(i, j);
                 j++;
             }

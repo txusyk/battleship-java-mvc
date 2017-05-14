@@ -69,6 +69,7 @@ public class VistaJuego extends JFrame {
     public void añadirListenersJuego(ActionListener actionListener) {
         this.tableroJug.añadirListenerACasilla(actionListener);
         this.tableroIA.añadirListenerACasilla(actionListener);
+        this.pnInfoJugador.añadirListener(actionListener);
     }
 
     public String getBotonArmaSeleccionada() {
@@ -107,5 +108,26 @@ public class VistaJuego extends JFrame {
         partida.add(cargarPartida);
         partida.add(guardarPartida);
         partida.add(reiniciar);
+    }
+
+    public void pintarEscudo(int x, int y){
+        tableroJug.pintarPosEscudo(x,y);
+    }
+
+    public void pintarPosTocado(int x, int y){
+        tableroIA.pintarPosTocado(x,y);
+    }
+
+    public void pintarPosHundido(int x, int y){
+        tableroIA.pintarPosHundido(x,y);
+    }
+
+    public void pintarPosAgua(int x, int y){
+        tableroIA.pintarAgua(x, y);
+    }
+
+
+    public void pintarDirig(int i, int j) {
+
     }
 }

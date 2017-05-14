@@ -33,6 +33,10 @@ public class Tablero extends Observable {
         }
     }
 
+    public ObjTablero[][] getTablero(){
+        return tablero;
+    }
+
     /**
      * @param pBarco
      * @param x
