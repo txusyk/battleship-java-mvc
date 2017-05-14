@@ -68,6 +68,7 @@ public class ControladorBattleship {
                         if (!(vista.getBotonArmaSeleccionada().equalsIgnoreCase("misildirig"))) {
                             if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x,y)) {
                                 vista.pintarPosTocado(x, y);
+                                vista.actDinero(500);
                                 if (ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x,y).getHundido()) {
                                     Barco b = ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x,y);
                                     for (ParteBarco pB : b.getPartesBarco()) {
@@ -144,7 +145,7 @@ public class ControladorBattleship {
                         } else {
                             ListaJugadores.getMyListaJug().getHumano().comprarArma(vista.getBotonArmaSeleccionada());
                             vista.actualizarContadorArmas(vista.getCantArma(vista.getBotonArmaSeleccionada())+1, vista.getBotonArmaSeleccionada());
-                            vista.actDinero(-vista.getPrecioArmaSelec());
+                            vista.actDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
                         }
                     }
                 } else { //se ha clickado sobre el tablero de juego
