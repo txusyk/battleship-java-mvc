@@ -26,7 +26,7 @@ public class ControladorBattleship {
             vistaInfoPartida = new InfoPartida();
             vistaInfoJugador = new InfoJugador();
             inicializarEtiquetasVista();
-            vista = new VistaJuego(tableroJug, vistaInfoJugador, vistaInfoPartida);
+            vista = new VistaJuego(vistaInfoJugador, vistaInfoPartida, tableroJug);
             vista.añadirListenersJuego(new ListenerBattleship());
         });
     }
@@ -57,6 +57,7 @@ public class ControladorBattleship {
                             JOptionPane.showMessageDialog(null, "No tienes armas de este tipo, prueba a comprar una primero");
                         } else {
                             Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
+                            vista.actualizarContadorArmas(vista.getCantArma() - 1, vista.getBotonArmaSeleccionada());
                             if (!(vista.getBotonArmaSeleccionada().equalsIgnoreCase("misildirig"))) {
                                 if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x, y)) {
                                     vista.pintarPosTocado(x, y);
@@ -86,7 +87,6 @@ public class ControladorBattleship {
                                         i++;
                                         j++;
                                     }
-                                    // } else if (((MisilDirig) a).getDA().getDireccion().equalsIgnoreCase("noroeste-sudeste")) {
                                 } else if (a.getDA().getDireccion().equalsIgnoreCase("noroeste-sudeste")) {
                                     int i = x;
                                     int j = y;
@@ -133,8 +133,8 @@ public class ControladorBattleship {
                                 JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar este arma");
                             } else {
                                 ListaJugadores.getMyListaJug().getHumano().comprarArma(vista.getBotonArmaSeleccionada());
-                                vista.actualizarContadorArmas(vista.getCantArma(vista.getBotonArmaSeleccionada()) + 1, vista.getBotonArmaSeleccionada());
-                                vista.actDinero(-vista.getPrecioArmaSelec());
+                                vista.actualizarContadorArmas(vista.getCantArma() + 1, vista.getBotonArmaSeleccionada());
+                                vista.actDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
                             }
                         }
                     } else { //se ha clickado sobre el tablero de juego

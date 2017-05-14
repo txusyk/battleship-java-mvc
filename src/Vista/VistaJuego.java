@@ -22,7 +22,7 @@ public class VistaJuego extends JFrame {
     /**
      * Creates new form VJ
      */
-    public VistaJuego(VistaTablero vistaTablero, InfoJugador infoJugador, InfoPartida infoPartida) {
+    public VistaJuego(InfoJugador infoJugador, InfoPartida infoPartida, VistaTablero vistaTablero) {
         this.setLayout(new GridLayout(1, 3));
 
         tableroJug = vistaTablero;
@@ -139,7 +139,7 @@ public class VistaJuego extends JFrame {
         }
     }
 
-    public int getCantArma(String arma) {
+    public int getCantArma() {
         return pnInfoJugador.getCantArmaSelec();
     }
 
@@ -160,11 +160,7 @@ public class VistaJuego extends JFrame {
     }
 
     public void actDinero(int cant) {
-        pnInfoJugador.actualizarDinero(cant);
-    }
-
-    public int getPrecioArmaSelec() {
-        return pnInfoJuego.getPrecioArma(getBotonArmaSeleccionada());
+        this.pnInfoJugador.actualizarDinero(cant);
     }
 
 }
