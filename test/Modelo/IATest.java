@@ -40,47 +40,17 @@ public class IATest {
     }
 
     @Test
-    public void testJugarTurnoIA() throws Exception {
-
-
-    }
-
-    @Test
-    public void testColocarBarcosIA() throws Exception {
-
-    }
-
-
-    @Test
-    public void testIsTurno() throws Exception {
-        Assert.assertEquals(false, h1.isTurno());
-    }
-
-    @Test
-    public void testGetTablero() throws Exception {
-        Assert.assertNotNull(h1.getTablero());
-    }
-
-    @Test
-    public void testGetFlota() throws Exception {
-        Assert.assertNotNull(h1.getFlota());
-    }
-
-    @Test
-    public void testGetListaArmas() throws Exception {
-        Assert.assertNotNull(h1.getListaArmas());
-    }
-
-
-    @Test
     public void testDecrementarDinero() throws Exception {
         Assert.assertTrue(h1.decrementarDinero(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getDineroInicial()));
     }
 
     @Test
     public void testComprarArmas() throws Exception {
-        h1.comprarArma("bomba");
-        Assert.assertEquals(1, h1.getListaArmas().getSize("bomba"));
+        h1.comprarArma("misil");
+        Assert.assertEquals(1, h1.getListaArmas().getSize("misil"));
+
+        h1.comprarArma("misildirig");
+        Assert.assertEquals(1, h1.getListaArmas().getSize("misildirig"));
     }
 
 }

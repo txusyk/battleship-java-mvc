@@ -13,8 +13,8 @@ package Modelo;/*
 public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
-    protected Escudo escudo;
     protected int tamaño;
+    private Escudo escudo;
     private char horientacion;
     private int preciorReparacion;
     private boolean hundido;

@@ -33,6 +33,7 @@ public class Login {
         try {
             String url = System.getProperty("user.home");
             File f = new File(url + "/usersDB.xml");
+
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             listaUsuarios = documentBuilder.parse(f);

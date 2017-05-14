@@ -85,12 +85,6 @@ public class BarcoTest {
     }
 
     @Test
-    public void testSetEscudo() throws Exception {
-        p.setEscudo();
-        Assert.assertNotNull(p.escudo);
-    }
-
-    @Test
     public void testHundir() throws Exception {
         Flota fl = new Flota();
         d = fl.inicializarBarco("destructor");
@@ -125,11 +119,6 @@ public class BarcoTest {
 
         pb2.setPosicion(3, 3);
         pb3.setPosicion(3, 4);
-        d.escudo = new Escudo();
-        Assert.assertNotNull(d.escudo);
-        d.recibirDaños(3, 4);
-        d.recibirDaños(3, 4);
-        Assert.assertNull(d.escudo);
 
         pb4.setPosicion(5, 5);
         pb5.setPosicion(5, 6);

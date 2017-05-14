@@ -39,18 +39,10 @@ public class HumanoTest {
 
     @Test
     public void testGetNombre() throws Exception {
+        h1.setNombre("Josu");
         Assert.assertEquals("Josu", h1.getNombre(), "El nombre debería de ser 'Josu' ");
+        h2.setNombre("David");
         Assert.assertEquals("David", h2.getNombre(), "EL nombre deberia de ser 'David'");
-    }
-
-    @Test
-    public void testJugarTurno() throws Exception {
-
-    }
-
-    @Test
-    public void testColocarBarcos() throws Exception {
-
     }
 
     @Test

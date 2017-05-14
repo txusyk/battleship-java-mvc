@@ -37,7 +37,7 @@ public class AlmacenTest {
 
     @Test
     public void testCantidadRestante() throws Exception {
-        Assert.assertEquals(Almacen.getMiAlmacen().cantidadRestante("bomba"), 99);
+        Assert.assertEquals(Almacen.getMiAlmacen().cantidadRestante("bomba"), 200);
     }
 
 }
