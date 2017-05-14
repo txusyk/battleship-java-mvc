@@ -133,8 +133,9 @@ public class VistaJuego extends JFrame {
             pnInfoJugador.setCantMisildirig(cantidad);
         } else if (arma.equalsIgnoreCase("escudo")) {
             pnInfoJugador.setCantEscudo(cantidad);
-
         } else if (arma.equalsIgnoreCase("misil")) {
+            pnInfoJugador.setCantMisil(cantidad);
+        } else if (arma.equalsIgnoreCase("radar")){
             pnInfoJugador.setCantRadar(cantidad);
         }
     }
@@ -163,4 +164,9 @@ public class VistaJuego extends JFrame {
         this.pnInfoJugador.actualizarDinero(cant);
     }
 
+    public void pintarRadar(int x, int y){
+        if(x>=0 && y<10) {
+            this.tableroIA.getCasillas()[x][y].setBackground(Color.GREEN);
+        }
+    }
 }
