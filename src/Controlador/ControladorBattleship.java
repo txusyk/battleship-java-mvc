@@ -9,7 +9,6 @@ import Vista.VistaTablero;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
 /**
  * Created by Josu on 11/05/2017.
@@ -57,16 +56,10 @@ public class ControladorBattleship {
                         if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) == null) {
                             JOptionPane.showMessageDialog(null, "No tienes armas de este tipo, prueba a comprar una primero");
                         } else {
-                            Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
-                            if (!Objects.equals(vista.getBotonArmaSeleccionada(), "bomba")) {
-                                if (vista.getCantArma(vista.getBotonArmaSeleccionada()) - 1 < 0) {
-                                    vista.actualizarContadorArmas(0, vista.getBotonArmaSeleccionada());
-                                } else {
-                                    vista.actualizarContadorArmas(vista.getCantArma(vista.getBotonArmaSeleccionada()) - 1, vista.getBotonArmaSeleccionada());
-                                }
-                            }
+                            vista.actualizarContadorArmas(vista.getCantArma() - 1, vista.getBotonArmaSeleccionada());
                             if (!(vista.getBotonArmaSeleccionada().equalsIgnoreCase("misildirig"))) {
                                 if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x, y)) {
+                                    Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
                                     vista.pintarPosTocado(x, y);
                                     if (ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).getHundido()) {
                                         Barco b = ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y);
@@ -79,6 +72,7 @@ public class ControladorBattleship {
                                 }
                             } else {
                                 MisilDirig a = (MisilDirig) ListaJugadores.getMyListaJug().getHumano().getListaArmas().consultarArma(vista.getBotonArmaSeleccionada());
+                                Battleship.getMyBattleship().jugar(vista.getBotonArmaSeleccionada(), x, y);
                                 if (a.getDA().getDireccion().equalsIgnoreCase("noreste-suroeste")) {
                                     int i = x;
                                     int j = y;
@@ -139,8 +133,8 @@ public class ControladorBattleship {
                             if (!Battleship.getMyBattleship().getJugActivo().comprarArma(vista.getBotonArmaSeleccionada())) {
                                 JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar este arma");
                             } else {
-                                ListaJugadores.getMyListaJug().getHumano().comprarArma(vista.getBotonArmaSeleccionada());
-                                vista.actualizarContadorArmas(vista.getCantArma(vista.getBotonArmaSeleccionada()) + 1, vista.getBotonArmaSeleccionada());
+                                Battleship.getMyBattleship().getJugActivo().comprarArma(vista.getBotonArmaSeleccionada());
+                                vista.actualizarContadorArmas(vista.getCantArma() + 1, vista.getBotonArmaSeleccionada());
                                 vista.actDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
                             }
                         }
@@ -148,13 +142,16 @@ public class ControladorBattleship {
                         x = Integer.parseInt(e.getActionCommand()) / 10;
                         y = Integer.parseInt(e.getActionCommand()) % 10;
 
-                        if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) != null) {
-                            if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) instanceof Escudo) {
-                                ((Humano) Battleship.getMyBattleship().getJugActivo()).jugarTurno(vista.getBotonArmaSeleccionada(), x, y);
-                                Battleship.getMyBattleship().getJugActivo().getFlota().getBarcoPorPos(x, y).setEscudo();
-                                Barco b = ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorPos(x, y);
-                                for (int i = 0; i < b.getTamaño(); i++) {
-                                    vista.pintarEscudo(b.getParteBarco(i).getX(), b.getParteBarco(i).getY());
+                        if (vista.getCantArma() >0) {
+                            if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) != null) {
+                                if (ListaJugadores.getMyListaJug().consultarArmaHumano(vista.getBotonArmaSeleccionada()) instanceof Escudo) {
+                                    ((Humano) Battleship.getMyBattleship().getJugActivo()).jugarTurno(vista.getBotonArmaSeleccionada(), x, y);
+                                    Battleship.getMyBattleship().getJugActivo().getFlota().getBarcoPorPos(x, y).setEscudo();
+                                    Barco b = ListaJugadores.getMyListaJug().getHumano().getFlota().getBarcoPorPos(x, y);
+                                    for (int i = 0; i < b.getTamaño(); i++) {
+                                        vista.pintarEscudo(b.getParteBarco(i).getX(), b.getParteBarco(i).getY());
+                                    }
+                                    vista.actualizarContadorArmas(vistaInfoJugador.getCantArmaSelec() - 1, vista.getBotonArmaSeleccionada());
                                 }
                             }
                         }
@@ -163,7 +160,7 @@ public class ControladorBattleship {
                     JOptionPane.showMessageDialog(null, "Espera a tu turno!!");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Fin de partida!!" + "Has ganado" + Battleship.getMyBattleship().getGanador() + "!!");
+                JOptionPane.showMessageDialog(null, "Fin de partida!!" + "Has ganado " + Battleship.getMyBattleship().getGanador() + "!!");
             }
         }
 

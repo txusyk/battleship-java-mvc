@@ -139,8 +139,8 @@ public class VistaJuego extends JFrame {
         }
     }
 
-    public int getCantArma(String pArma) {
-        return pnInfoJugador.getCantArmaSelec(pArma);
+    public int getCantArma() {
+        return pnInfoJugador.getCantArmaSelec();
     }
 
     public void pintarEscudo(int x, int y) {
