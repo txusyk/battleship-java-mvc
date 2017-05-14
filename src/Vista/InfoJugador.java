@@ -183,8 +183,8 @@ public class InfoJugador extends JPanel {
         return 0;
     }
 
-    public void actualizarDinero(int cant){
-        dinero.setText(dinero.getText()+cant);
+    public void actualizarDinero(int cant) {
+        cantDinero.setText(String.valueOf(cant));
     }
 
 }

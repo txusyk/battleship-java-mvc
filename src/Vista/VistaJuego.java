@@ -164,7 +164,7 @@ public class VistaJuego extends JFrame {
     }
 
     public int getPrecioArmaSelec(){
-        pnInfoJuego.getPrecioArma(getBotonArmaSeleccionada());
+        return pnInfoJuego.getPrecioArma(getBotonArmaSeleccionada());
     }
 
 }
