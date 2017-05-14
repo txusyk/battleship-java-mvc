@@ -85,10 +85,4 @@ public abstract class Jugador {
         return type;
     }
 
-    public boolean quedanBarcos(){
-        return flota.quedanBarcos();
-    }
-
-    public abstract void jugarTurno();
-
 }

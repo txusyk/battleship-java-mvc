@@ -1,15 +1,14 @@
 package Modelo;
 
-import java.util.Observable;
-
 /**
  * Created by Josu on 14/04/2017.
  */
-public class ObjTablero extends Observable {
+public class ObjTablero {
 
-    protected boolean visible = false;
+    protected boolean visible;
 
     public ObjTablero() {
+        this.visible = false;
     }
 
     public boolean getVisible(){
@@ -18,7 +17,5 @@ public class ObjTablero extends Observable {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
-        setChanged();
-        notifyObservers();
     }
 }

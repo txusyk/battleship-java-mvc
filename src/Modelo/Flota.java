@@ -23,36 +23,31 @@ public class Flota {
         return this.flota.keySet().iterator();
     }
 
-    public boolean quedanBarcos(){
-        boolean barcos = false;
-
-        barcos = flota.get("fragata").quedanBarcos();
-        barcos = flota.get("destructor").quedanBarcos();
-        barcos = flota.get("submarino").quedanBarcos();
-        barcos = flota.get("portaaviones").quedanBarcos();
-
-        return barcos;
-    }
-
-    public Barco getBarcoPorPos(int x, int y) {
-        boolean enc = false;
-        Iterator<String> itr = this.getIterator();
-        while (itr.hasNext() && !enc) {
-            String nombreBarco = itr.next();
-            if (flota.get(nombreBarco).buscarPorPos(x, y) != null) {
-                return flota.get(nombreBarco).buscarPorPos(x, y);
-            }
+    /**
+     * @param pBarco
+     * @return null en caso de que no haya barcos sin inicializar, en caso contrario, el barco en si
+     */
+    public Barco inicializarBarco(String pBarco) {
+        if (this.flota.get(pBarco) != null) {
+            return this.flota.get(pBarco).buscarNoInicializado();
         }
         return null;
     }
 
-    public Barco getBarcoPorTipo(String pBarco) {
-        Barco b = null;
-        if (this.flota.get(pBarco) != null) {
-            b = this.flota.get(pBarco).getBarco();
-            this.flota.get(pBarco).desplazar();
+    public Barco getBarcoPorPos(int x, int y) {
+        boolean enc = false;
+        String nombreBarco = null;
+        Iterator<String> itr = this.getIterator();
+        while (itr.hasNext() && !enc) {
+            nombreBarco = itr.next();
+            if (flota.get(nombreBarco).buscarPorPos(x, y) != null) {
+                enc = true;
+            }
         }
-        return b;
+        if (enc) {
+            return flota.get(nombreBarco).buscarPorPos(x, y);
+        }
+        return null;
     }
 
     private class ListaBarcos {
@@ -68,40 +63,21 @@ public class Flota {
             return lb.iterator();
         }
 
-        private void desplazar(){
-                int i;
-            System.out.println(lb.size());
-                Barco aux = lb.get(lb.size() - 1); //guardar el último elemento en una variable
-
-                if(lb.size() == 1){
-
-                }
-                else if(lb.size() == 2){
-                    lb.set(1, lb.get(0));
-                    lb.set(0, aux);
-                }
-                else {
-
-                    for (i = lb.size() - 1; i > 0; i--) { //desplazar los elementos
-                        lb.set(i, lb.get(i - 1)); //a cada elemento se le asigna el anterior
-                    }
-                    lb.set(0, aux); //asignar al primero el último que se guardó al principio
-                }
-        }
-
         private void añadir(Barco pBarco) {
             lb.add(pBarco);
         }
 
-        private void eliminar(Barco pBarco) {
-            lb.remove(pBarco);
-        }
-
-        private Barco getBarco() {
-            if (!lb.isEmpty()) {
-                return lb.get(0);
+        public Barco buscarNoInicializado() {
+            boolean enc = false;
+            Iterator<Barco> itr = this.getIterator();
+            Barco b = null;
+            while (itr.hasNext() && !enc) {
+                b = itr.next();
+                if (!b.enTablero()) {
+                    enc = true;
+                }
             }
-            return null;
+            return b;
         }
 
         /**
@@ -118,6 +94,9 @@ public class Flota {
                 if (b.contiene(x, y)) {
                     enc = true;
                 }
+            }
+            if (!enc) {
+                b = null;
             }
             return b;
         }
@@ -137,12 +116,12 @@ public class Flota {
             }
         }
 
-        public boolean quedanBarcos(){
+        public boolean quedanBarcosSinHundir() {
             boolean flag = false;
             Iterator<Barco> itr = getIterator();
-            Barco b = null;
+            Barco b;
 
-            while(!flag && itr.hasNext()){
+            while (!flag && itr.hasNext()) {
                 b = itr.next();
                 flag = b.getHundido();
             }
@@ -150,13 +129,12 @@ public class Flota {
             return flag;
         }
 
+
         /**
          * @param pTipo
          */
         private void inicializarPorTipo(String pTipo) {
-            GestorFicheros.getMyGestorFicheros().readXML("facil");
             if (pTipo.equalsIgnoreCase("fragata") || pTipo.equalsIgnoreCase("submarino") || pTipo.equalsIgnoreCase("destructor") || pTipo.equalsIgnoreCase("portaaviones")) {
-                System.out.println("SOY GF-> "+GestorFicheros.getMyGestorFicheros().getNumBarco(pTipo));
                 for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumBarco(pTipo); i++) {
                     añadir(BarcoFactory.getBarcoFactory().crearBarco(pTipo));
                 }

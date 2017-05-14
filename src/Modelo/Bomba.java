@@ -12,31 +12,20 @@ package Modelo;
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-
-public class Bomba extends Arma implements Observable{
+public class Bomba extends Arma {
 
     public Bomba() {
         this.precio = 0;
     }
 
-    public void accion(int x, int y) {
-        if (Battleship.getMyBattleship().getJugNoActivo().getTablero().esBarco(x, y)) {
-            Battleship.getMyBattleship().getJugNoActivo().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
+    @Override
+    public void disparar(int x, int y) {
+        if (ListaJugadores.getMyListaJug().getIA().getTablero().esBarco(x, y)) {
+            ListaJugadores.getMyListaJug().getIA().getFlota().getBarcoPorPos(x, y).recibirDaños(x, y);
         } else {
-            Battleship.getMyBattleship().getJugNoActivo().getTablero().getPosicion(x, y).setVisible(true);
+            ListaJugadores.getMyListaJug().getIA().getTablero().getPosicion(x, y).setVisible(true);
         }
     }
 
 
-    @Override
-    public void addListener(InvalidationListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(InvalidationListener listener) {
-
-    }
 }

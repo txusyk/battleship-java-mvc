@@ -25,7 +25,7 @@ public class Radar extends HerramientasJuego {
      * constructora del radar , lo colocará primeramente de forma aleatoria en el mapa
      */
     public Radar() {
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(this.getType());
         Random randomGenerator = new Random();
         this.x = randomGenerator.nextInt(10);
         this.y = randomGenerator.nextInt(10);

@@ -11,15 +11,14 @@
  */
 package Modelo;
 
-public class ParteBarco extends Barco {
+public class ParteBarco extends ObjTablero {
 
     private State estado;
-    private int[] posicion = new int[2];
+
+    private int x, y;
 
 
-    public ParteBarco(int x, int y) {
-        posicion[0] = x;
-        posicion[1] = y;
+    public ParteBarco() {
         estado = new SNormal();
     }
 
@@ -39,8 +38,12 @@ public class ParteBarco extends Barco {
     }
 
 
-    public int[] getPosicion() {
-        return posicion;
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     /**
@@ -48,10 +51,8 @@ public class ParteBarco extends Barco {
      * @param y
      */
     public void setPosicion(int x, int y) {
-        int[] pos = new int[2];
-        pos[0] = x;
-        pos[1] = y;
-        this.posicion = pos;
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -60,7 +61,8 @@ public class ParteBarco extends Barco {
      * @return true en caso de que la posicion sea la que se recibe
      */
     public boolean comprobarPosicion(int x, int y){
-        return posicion[0]==x&&posicion[1]==y;
+        System.out.printf(this.x + "?" + x + "  " + this.y + "?" + y + "\n");
+        return this.x == x && this.y == y;
     }
 
 }

@@ -11,18 +11,30 @@
  */
 package Modelo;
 
+import java.util.Random;
+
 public class MisilDirig extends Arma {
+
+    DireccionesArma da;
 
     public MisilDirig() {
         super();
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(this.getType());
+
+        Random r = new Random();
+        int i = 1 + r.nextInt(100);
+
+        if (i <= 33) {
+            da = DireccionesArma.NESO;
+        } else if (i > 33 && i <= 66) {
+            da = DireccionesArma.NOSE;
+        } else if (i > 66 && i <= 100) {
+            da = DireccionesArma.BOOM;
+        }
     }
 
     @Override
-    public void accion(int x, int y) {
-        //solicitar direccion de arma
-        DireccionesArma da = DireccionesArma.BOOM;
-
+    public void disparar(int x, int y) {
         if (da.getDireccion().equalsIgnoreCase("noreste-suroeste")) {
             dispararNESO(x, y);
         } else if (da.getDireccion().equalsIgnoreCase("noroeste-sudeste")) {
@@ -38,14 +50,14 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 0 && j >= 0) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i--;
                 j--;
             }
             i = x;
             j = y;
             while (i <= 10 && j <= 10) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i++;
                 j++;
             }
@@ -58,14 +70,14 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 10 && j >= 0) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i++;
                 j--;
             }
             i = x;
             j = y;
             while (i >= 0 && j <= 10) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i--;
                 j++;
             }
@@ -78,22 +90,22 @@ public class MisilDirig extends Arma {
             int i = x;
             int j = y;
             while (i >= 0) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i--;
             }
             i = x;
             while (i <= 10) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 i++;
             }
             i = x;
             while (j >= 0) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 j--;
             }
             j = y;
             while (j <= 10) {
-                ((Misil) m).accion(i, j);
+                ((Misil) m).disparar(i, j);
                 j++;
             }
         }

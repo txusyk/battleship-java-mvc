@@ -35,17 +35,16 @@ public class Battleship {
         return dificultad;
     }
 
+    public void setDificultad(String dificultad) {
+        this.dificultad = dificultad;
+    }
 
-    /**
-     * @param pNombre
-     */
-    public void inicializarJuego(String pNombre) {
-        GestorFicheros.getMyGestorFicheros().readXML(Battleship.getMyBattleship().getDificultad());
-        Battleship.getMyBattleship().inicializarAlmacen();
+    public void inicializarJuego(Tablero t) {
+        ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
     private void inicializarJugadores(String pNombre) {
-        ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
+        //ListaJugadores.getMyListaJug().inicializarJugadores(pNombre);
     }
 
     private void inicializarAlmacen() {
@@ -90,7 +89,7 @@ public class Battleship {
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
         }
     }
-
+/*
     public void partidaAcabada(){
         if(!getJugNoActivo().quedanBarcos()){
             partidaActiva = false;
@@ -104,4 +103,6 @@ public class Battleship {
             getJugActivo().jugarTurno();
         }
     }
+
+    */
 }

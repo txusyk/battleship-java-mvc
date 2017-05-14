@@ -2,27 +2,19 @@ package Vista; /**
  * Created by Josu on 05/04/2017.
  */
 
-import Controlador.ControladorCasilla;
-import Modelo.Battleship;
-import Modelo.ListaJugadores;
-import Modelo.Tablero;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.event.ActionListener;
 
-public class VistaTablero extends JPanel implements Observer {
+public class VistaTablero extends JPanel {
 
     private static final String COLS = "ABCDEFGHIJ";
     private VistaCasilla[][] casillas = new VistaCasilla[10][10];
-    private Tablero tabHum;
-    private ControladorCasilla c;
+    private int jugador;
 
-    public VistaTablero() {
-        c = new ControladorCasilla(ListaJugadores.getMyListaJug().getHumano().getTablero());
+    public VistaTablero(int jugador) {
+        this.jugador = jugador;
         initializeGui();
     }
 
@@ -37,19 +29,25 @@ public class VistaTablero extends JPanel implements Observer {
             for (int j = 0; j < casillas[i].length; j++) {
                 VistaCasilla b = new VistaCasilla();
                 b.setMargin(buttonMargin);
-                b.addActionListener(c); //Añadimos un controladorCasilla como listener a cada casilla del tablero
-                b.setActionCommand(String.valueOf(i) + "" + String.valueOf(j));
+                if (jugador == 0) {
+                    b.setActionCommand(String.valueOf(j) + "" + String.valueOf(i));
+                } else {
+                    b.setActionCommand("ia." + String.valueOf(j) + "" + String.valueOf(i));
+
+                }
                 // fijamos el tamaño a traves de una imagen transparente
-                ImageIcon icon = new ImageIcon(
+                /*ImageIcon icon = new ImageIcon(
                         new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
-                b.setIcon(icon);
-                b.setBackground(Color.BLUE);
+                b.setIcon(icon);*/
+                if (jugador == 0) {
+                    b.setBackground(Color.BLUE);
+                } else {
+                    b.setBackground(Color.DARK_GRAY);
+                }
 
                 casillas[j][i] = b;
             }
         }
-
-        imprimirTablero();
 
         //rellenamos el tablero
         this.add(new JLabel(""));
@@ -59,36 +57,64 @@ public class VistaTablero extends JPanel implements Observer {
         }
         // fill the black non-pawn piece row
         for (int i = 0; i < 10; i++) {
-            for (int jj = 0; jj < 10; jj++) {
-                switch (jj) {
+            for (int j = 0; j < 10; j++) {
+                switch (j) {
                     case 0:
                         this.add(new JLabel("" + (i + 1), SwingConstants.CENTER));
                     default:
-                        this.add(casillas[jj][i]);
+                        this.add(casillas[j][i]);
                 }
             }
         }
     }
 
-    private void imprimirTablero() {
+    public void añadirListenerACasilla(ActionListener actionListener) {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                if (vC.isEnabled()) {
+                    vC.addActionListener(actionListener);
+                }
+            }
+        }
+    }
+
+    public void eliminarListeners(ActionListener aL) {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                vC.removeActionListener(aL);
+            }
+        }
+    }
+
+    /*private void imprimirTablero() {
         for (VistaCasilla[] vC : casillas) {
             for (VistaCasilla b : vC) {
                 int i = Integer.parseInt(b.getActionCommand()) / 10;
-                if (i == 0) {
-                    System.out.print("\n" + b.getActionCommand());
+                int j = Integer.parseInt(b.getActionCommand()) % 10;
+                if (j == 0) {
+                    System.out.print("\n" + j+","+i+"   ");
                 } else {
-                    System.out.print("\t" + b.getActionCommand());
+                    System.out.print(j+","+i+"   ");
                 }
             }
         }
+    }*/
 
+    public void modificarVisibilidadCasillas() {
+        for (VistaCasilla[] lvC : this.casillas) {
+            for (VistaCasilla vC : lvC) {
+                if (vC.getText().equals("b")) {
+                    vC.setEnabled(true);
+                } else {
+                    vC.setEnabled(false);
+                }
+                vC.setText("");
+            }
+        }
     }
+
     public VistaCasilla[][] getCasillas() {
         return casillas;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
 }

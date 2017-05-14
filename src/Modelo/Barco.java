@@ -10,14 +10,15 @@ package Modelo;/*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-public abstract class Barco extends ObjTablero {
+public abstract class Barco {
 
     protected ParteBarco[] partesBarco;
     protected Escudo escudo;
     protected int tamaño;
-    protected char horientacion;
+    private char horientacion;
     private int preciorReparacion;
     private boolean hundido;
+    private boolean enTablero;
 
     /**
      * Constructora
@@ -27,7 +28,15 @@ public abstract class Barco extends ObjTablero {
         this.escudo = null;
         this.hundido = false;
         this.horientacion = 'h';
-        this.partesBarco = new ParteBarco[this.tamaño];
+        this.enTablero = false;
+    }
+
+    public boolean enTablero() {
+        return enTablero;
+    }
+
+    public void setEnTablero(boolean enTablero) {
+        this.enTablero = enTablero;
     }
 
     public boolean getHundido() {
@@ -59,7 +68,6 @@ public abstract class Barco extends ObjTablero {
         int i = 0;
         while (i < partesBarco.length && !tocado) {
             tocado = partesBarco[i].comprobarPosicion(x, y);
-            i++;
         }
         if (tocado) {
             partesBarco[i].setState(new SNormal());
@@ -74,8 +82,8 @@ public abstract class Barco extends ObjTablero {
     public boolean contiene(int x, int y) {
         boolean enc = false;
         int i = 0;
-        while (i < partesBarco.length && !enc) {
-            enc = partesBarco[i].comprobarPosicion(x, y);
+        while (i < tamaño && !enc) {
+                enc = partesBarco[i].comprobarPosicion(x, y);
             i++;
         }
         return enc;
@@ -83,23 +91,22 @@ public abstract class Barco extends ObjTablero {
 
 
     /**
-     * @param pivote
+     * @param x
+     * @param y
      * @param direccion
      */
-    public void inicializar(int[] pivote, char direccion) {
-        if ('H' == direccion) {
-            int x = pivote[0], i = 0;
-            while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(x, pivote[1]);
-                x++;
+    public void inicializar(int x, int y, char direccion) {
+        this.horientacion = direccion;
+        int i = 0;
+        if ('h' == direccion) {
+            while (i < tamaño) {
+                partesBarco[i].setPosicion(x + i, y);
                 i++;
             }
 
         } else {
-            int y = pivote[1], i = 0;
-            while (i < partesBarco.length) {
-                partesBarco[i].setPosicion(pivote[0], pivote[1]);
-                y++;
+            while (i < tamaño) {
+                partesBarco[i].setPosicion(x, y + i);
                 i++;
             }
         }
@@ -113,8 +120,12 @@ public abstract class Barco extends ObjTablero {
         return this.preciorReparacion;
     }
 
-    public void setEscudo(Escudo e) {
-        this.escudo = e;
+
+    /**
+     * @param esc
+     */
+    public void setEscudo(Escudo esc) {
+        this.escudo = esc;
     }
 
     /**
@@ -133,7 +144,6 @@ public abstract class Barco extends ObjTablero {
     }
 
     /**
-     * 
      * @param x,y
      */
     public void hundir(int x, int y) {
@@ -141,9 +151,9 @@ public abstract class Barco extends ObjTablero {
         if (escudo != null) {
             escudo.destruir();
             escudo = null;
-        } else if (!getHundido() && escudo == null && !hundir) {
-            for (int i = 0; i < partesBarco.length; i++) {
-                if (partesBarco[i].contiene(x, y)) {
+        } else if (!getHundido() && escudo == null) {
+            for (ParteBarco aPartesBarco : partesBarco) {
+                if (aPartesBarco.comprobarPosicion(x, y)) {
                     hundir = true;
                 }
             }
@@ -151,8 +161,8 @@ public abstract class Barco extends ObjTablero {
                 for (ParteBarco pb : partesBarco) {
                     pb.setState(new STocado());
                 }
+                hundido = true;
             }
-            hundido = true;
         }
     }
 
@@ -162,15 +172,19 @@ public abstract class Barco extends ObjTablero {
      */
     public void recibirDaños(int x, int y) {
         if (escudo != null) {
-            if (escudo.getImpactosRestantes() <= 0) {
+            if (escudo.recibirImpacto()) {
                 escudo = null;
             }
         } else if (!getHundido() && escudo == null) {
             boolean enc = false;
             int i = 0;
             while (i < partesBarco.length && !enc) {
-                if (partesBarco[i].comprobarPosicion(x, y)) {
-                    enc = true;
+                if (partesBarco[i] != null) {
+                    if (partesBarco[i].comprobarPosicion(x, y)) {
+                        enc = true;
+                    } else {
+                        i++;
+                    }
                 } else {
                     i++;
                 }
@@ -186,9 +200,5 @@ public abstract class Barco extends ObjTablero {
                 //gestionar si no existe
             }
         }
-    }
-
-    public void soutPrimeraPos(){
-        System.out.println(""+partesBarco[0].getPosicion()[0]+""+partesBarco[0].getPosicion()[1]);
     }
 }

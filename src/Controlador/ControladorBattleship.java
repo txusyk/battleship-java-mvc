@@ -1,39 +1,55 @@
 package Controlador;
 
+import Modelo.Arma;
 import Modelo.Battleship;
-import Vista.VistaBattleship;
+import Modelo.ListaJugadores;
+import Modelo.Tablero;
+import Vista.VistaJuego;
+import Vista.VistaTablero;
 
-import javax.naming.ldap.Control;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
- * Created by Josu on 01/05/2017.
+ * Created by Josu on 11/05/2017.
  */
 public class ControladorBattleship {
 
-    private Battleship modelo;
-    private VistaBattleship vista;
-    private ControladorBattleship miControladorBattleship;
+    VistaJuego vista;
 
-    public ControladorBattleship(Battleship bt, VistaBattleship vistaBattleship) {
-        this.modelo = bt;
-        this.vista = vistaBattleship;
+    public ControladorBattleship(VistaTablero tableroJug, Tablero modeloJugador) {
+        Battleship.getMyBattleship().inicializarJuego(modeloJugador);
+        vista = new VistaJuego(tableroJug);
 
-        //inicializarVentanaLogin
-        this.vista.lanzarVistaImagenBienvenida();
-
-
-        //muestra un popUp con la info sobre la colocación de barcos
-        /*this.vista.lanzarPopUp("En esta ventana se muestran el numero de barcos" +
-                "el nombre y direccion de los mismos. Debes de seleccionar una opción en cada uno de los desplegables" +
-                "y debes clickar a continuación en la posicion donde quieres que comience a colocarse el barco. " +
-                "\n\t-Los barcos solo se colocan hacia la derecha cuando se selecciona horizontalmente" +
-                "\n\t-Los barcos solo se colocaran hacia abajo cuando se seleccione verticalmente");*/
-
-        //configura y muestra el frame de inicializacion de barcos, añade los listeners necesarios
-
-
+        vista.añadirListenersJuego(new ListenerBattleship());
     }
 
+    private class ListenerBattleship implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getActionCommand().split("\\.")[0].equalsIgnoreCase("ia")) {
+                int x = Integer.parseInt(e.getActionCommand().split("\\.")[1]) / 10;
+                int y = Integer.parseInt(e.getActionCommand().split("\\.")[1]) % 10;
+
+                if (ListaJugadores.getMyListaJug().getHumano().getListaArmas().getArma(vista.getBotonArmaSeleccionada()) == null) {
+                    ListaJugadores.getMyListaJug().getHumano().comprarArma(vista.getBotonArmaSeleccionada());
+                    System.out.println("\n\n");
+                }
+                ((Arma) ListaJugadores.getMyListaJug().getHumano().getListaArmas().getArma(vista.getBotonArmaSeleccionada())).disparar(x, y);
+                ListaJugadores.getMyListaJug().getIA().getTablero().imprimirTablero();
+            } else {
+                int x = Integer.parseInt(e.getActionCommand()) / 10;
+                int y = Integer.parseInt(e.getActionCommand()) % 10;
+                if (ListaJugadores.getMyListaJug().getIA().getListaArmas().getArma(vista.getBotonArmaSeleccionada()) == null) {
+                    ListaJugadores.getMyListaJug().getIA().comprarArma(vista.getBotonArmaSeleccionada());
+                    System.out.println("\n\n");
+                }
+                ((Arma) ListaJugadores.getMyListaJug().getIA().getListaArmas().getArma(vista.getBotonArmaSeleccionada())).disparar(x, y);
+                ListaJugadores.getMyListaJug().getHumano().getTablero().imprimirTablero();
+            }
+        }
+    }
 
 
 }

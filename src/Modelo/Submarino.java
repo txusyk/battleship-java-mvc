@@ -16,10 +16,9 @@ public class Submarino extends Barco {
     public Submarino() {
         super();
         this.tamaño = 3;
-        this.partesBarco = new ParteBarco[tamaño];
-        for (int i=0;i<this.partesBarco.length;i++){
-            partesBarco[i] = new ParteBarco(0, 0);
-            partesBarco[i].setState(new SNormal());
+        this.partesBarco = new ParteBarco[3];
+        for (int i = 0; i < tamaño; i++) {
+            partesBarco[i] = new ParteBarco();
         }
     }
 

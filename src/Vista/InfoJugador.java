@@ -128,10 +128,18 @@ public class InfoJugador extends JPanel {
         this.add(new JLabel(""));
         this.add(comprarArma);
         this.add(new JLabel(""));
+
+        this.rbBomba.setActionCommand("bomba");
+        this.rbMisil.setActionCommand("misil");
+        this.rbMisilDirig.setActionCommand("misildirig");
+        this.rbRadar.setActionCommand("radar");
+        this.rbEscudo.setActionCommand("escudo");
+
     }
 
-    public String getArmaSelec(){
-        return buttonGroup.getSelection().toString();
+    public String getSeleccionArma() {
+        return buttonGroup.getSelection().getActionCommand();
     }
+
 
 }

@@ -1,53 +1,59 @@
 package Vista;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 
 /**
  * Created by Josu on 23/04/2017.
  */
-public class VistaImagenBienvenida {
+public class VistaImagenBienvenida extends JFrame {
 
-    private JFrame frame;
-    private ImageIcon imagenFondo;
     private JLabel contenedorImagen;
-    private volatile boolean isImagenVisible;
+    private URL urlImagen = this.getClass().getClassLoader().getResource("Title.png");
+    private Clip clip = null;
 
-    public VistaImagenBienvenida(JFrame theWindow) {
-        frame = theWindow;
-        URL url = this.getClass().getClassLoader().getResource("Title.png");
-        imagenFondo = new ImageIcon(url);
-        contenedorImagen = new JLabel(imagenFondo);
-        isImagenVisible = true;
-    }
+    public VistaImagenBienvenida() {
+        contenedorImagen = new JLabel(new ImageIcon(urlImagen));
+        this.add(contenedorImagen);
 
-    public void loadTitleScreen() {
-        contenedorImagen.setSize(frame.getContentPane().getWidth(),
-                frame.getContentPane().getHeight());
-        contenedorImagen.setLocation(0, 0);
-        frame.getContentPane().add(contenedorImagen);
-        contenedorImagen.setVisible(true);
+        this.pack();
+        this.setResizable(false);
 
-        frame.setVisible(true);
-        frame.getContentPane().revalidate();
-        frame.getContentPane().repaint();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension thisSize = this.getSize(); //Tamaño del this actual (ancho x alto)
+        if (thisSize.height > screenSize.height) {
+            thisSize.height = screenSize.height;
+        }
+        if (thisSize.width > screenSize.width) {
+            thisSize.width = screenSize.width;
+        }
+        setLocation((screenSize.width - thisSize.width) / 2, (screenSize.height - thisSize.height) / 2);
+
+        setVisible(true);
 
         double actTime = System.currentTimeMillis();
         boolean mostrarImagen = true;
-        while (mostrarImagen) {
-            mostrarImagen = System.currentTimeMillis() - actTime < 6000;
+
+        try {
+            URL url = this.getClass().getClassLoader().getResource("mgs.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.setFramePosition(120);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
-        frame.getContentPane().remove(contenedorImagen);
-        frame.getContentPane().revalidate();
-        frame.getContentPane().repaint();
-        isImagenVisible = false;
+
+        while (mostrarImagen) {
+            mostrarImagen = ((System.currentTimeMillis() / 1000) - actTime / 1000) < 5;
+        }
+        clip.stop();
+        this.dispose();
     }
 
-    public boolean isImagenFondoVisible() {
-        return isImagenVisible;
-    }
 
-    public boolean isImageVisible() {
-        return isImagenVisible;
-    }
 }

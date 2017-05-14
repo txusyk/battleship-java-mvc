@@ -14,10 +14,12 @@ package Modelo;
 public class Misil extends Arma {
 
     public Misil() {
-        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(getType(this));
+        this.precio = GestorFicheros.getMyGestorFicheros().getPrecioArma(this.getType());
     }
 
-    public void accion(int x, int y) {
+
+    @Override
+    public void disparar(int x, int y) {
         if (Battleship.getMyBattleship().getJugNoActivo().getTablero().esBarco(x, y)) {
             Battleship.getMyBattleship().getJugNoActivo().getFlota().getBarcoPorPos(x, y).hundir(x, y);
         } else {
