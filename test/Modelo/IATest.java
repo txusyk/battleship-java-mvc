@@ -26,7 +26,7 @@ public class IATest {
 
     @BeforeClass
     public void leerXML() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @BeforeMethod
@@ -74,7 +74,7 @@ public class IATest {
 
     @Test
     public void testDecrementarDinero() throws Exception {
-        Assert.assertTrue(h1.decrementarDinero(GestorFicheros.getMyGestorFicheros().getDineroInicial()));
+        Assert.assertTrue(h1.decrementarDinero(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getDineroInicial()));
     }
 
     @Test

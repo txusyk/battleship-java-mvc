@@ -19,7 +19,7 @@ public class Humano extends Jugador {
     public Humano() {
         super();
         this.turno = true;
-        this.dinero = GestorFicheros.getMyGestorFicheros().getDineroInicial();
+        this.dinero = GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getDineroInicial();
     }
 
     /**

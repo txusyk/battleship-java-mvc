@@ -51,9 +51,9 @@ public class ControladorLogin {
 
             if (modeloLogin.estaUsuario(usuario)) {
                 if (modeloLogin.comprobarLogin(usuario, vista.getPasswordText().getPassword())) {
-                    GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                    GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML(dificultad);
                     Battleship.getMyBattleship().setDificultad(dificultad);
-                    ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
+                    ListaJugadores.getMyListaJug().getHumano().setNombre(usuario);
                     vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
                     vista.dispose();
                     new ControladorInicializacionBarcos();
@@ -72,7 +72,7 @@ public class ControladorLogin {
 
             if (!modeloLogin.estaUsuario(usuario)) {
                 modeloLogin.añadirUsuario(usuario, vista.getPasswordText().getPassword());
-                GestorFicheros.getMyGestorFicheros().readXML(dificultad);
+                GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML(dificultad);
                 Battleship.getMyBattleship().setDificultad(dificultad);
                 ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
                 vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);

@@ -13,7 +13,7 @@ public class RadarTest {
 
     @BeforeMethod
     public void init() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         tmp = new Radar();
 
     }

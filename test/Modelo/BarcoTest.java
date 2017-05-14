@@ -17,7 +17,7 @@ public class BarcoTest {
 
     @BeforeClass
     public void readXML() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @BeforeMethod
@@ -81,7 +81,7 @@ public class BarcoTest {
 
     @Test
     public void testGetPrecioReparacion() throws Exception {
-        Assert.assertEquals(p.getPrecioReparacion(), GestorFicheros.getMyGestorFicheros().getPrecioBaseReparacion());
+        Assert.assertEquals(p.getPrecioReparacion(), GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioBaseReparacion());
     }
 
     @Test

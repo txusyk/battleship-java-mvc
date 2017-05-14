@@ -1,7 +1,7 @@
 package Controlador;
 
 import Modelo.Barco;
-import Modelo.GestorFicheros;
+import Modelo.GestorArchivoInicializacion;
 import Modelo.ListaJugadores;
 import Modelo.Tablero;
 import Vista.VistaInicializacionBarcos;
@@ -24,7 +24,7 @@ public class ControladorInicializacionBarcos {
         this.modelo = new Tablero(10, 10);
         this.vista = new VistaInicializacionBarcos();
 
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         this.vista.añadirListenersInicializacionBarcos(new ListenersInicializacionBarcos());
     }
 

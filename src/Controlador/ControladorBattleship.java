@@ -35,10 +35,10 @@ public class ControladorBattleship {
      * Inicializa los paneles de información, en base a la dificultad establecida por el jugador
      */
     private void inicializarEtiquetasVista() {
-        this.vistaInfoPartida.setPrecioMisil(GestorFicheros.getMyGestorFicheros().getPrecioArma("misil"));
-        this.vistaInfoPartida.setPrecioMisilDirig(GestorFicheros.getMyGestorFicheros().getPrecioArma("misildirig"));
-        this.vistaInfoPartida.setPrecioRadar(GestorFicheros.getMyGestorFicheros().getPrecioArma("radar"));
-        this.vistaInfoPartida.setPrecioEscudo(GestorFicheros.getMyGestorFicheros().getPrecioArma("escudo"));
+        this.vistaInfoPartida.setPrecioMisil(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioArma("misil"));
+        this.vistaInfoPartida.setPrecioMisilDirig(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioArma("misildirig"));
+        this.vistaInfoPartida.setPrecioRadar(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioArma("radar"));
+        this.vistaInfoPartida.setPrecioEscudo(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioArma("escudo"));
         this.vistaInfoJugador.setCantDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
         this.vistaInfoPartida.setCantidadInicialBarcos();
     }

@@ -24,6 +24,8 @@ public class VistaImagenBienvenida extends JFrame {
         this.pack();
         this.setResizable(false);
 
+        JOptionPane.showMessageDialog(null, "Para ejecutar el juego es necesario que copies los archivos '.xml' a " + System.getProperty("user.home"));
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension thisSize = this.getSize(); //Tamaño del this actual (ancho x alto)
         if (thisSize.height > screenSize.height) {

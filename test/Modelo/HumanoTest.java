@@ -26,7 +26,7 @@ public class HumanoTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         h1 = new Humano();
         h2 = new Humano();
     }
@@ -76,7 +76,7 @@ public class HumanoTest {
 
     @Test
     public void testDecrementarDinero() throws Exception {
-        Assert.assertTrue(h1.decrementarDinero(GestorFicheros.getMyGestorFicheros().getDineroInicial()));
+        Assert.assertTrue(h1.decrementarDinero(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getDineroInicial()));
     }
 
     @Test

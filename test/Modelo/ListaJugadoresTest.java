@@ -11,7 +11,7 @@ public class ListaJugadoresTest {
 
     @BeforeClass
     public void setUp() throws Exception {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @Test

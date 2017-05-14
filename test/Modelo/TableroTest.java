@@ -15,7 +15,7 @@ public class TableroTest {
     @BeforeMethod
     public void setUp() throws Exception {
         tab1 = new Tablero(10, 10);
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @AfterMethod

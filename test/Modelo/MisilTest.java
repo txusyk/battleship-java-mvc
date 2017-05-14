@@ -12,7 +12,7 @@ public class MisilTest {
 
     @BeforeMethod
     public void Init() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         tmp = new Misil();
     }
 

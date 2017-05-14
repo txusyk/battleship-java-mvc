@@ -20,28 +20,27 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Josu on 21/03/2017.
  */
-public class GestorFicheros {
+public class GestorArchivoInicializacion {
 
-    private static GestorFicheros myGestorFicheros;
+    private static GestorArchivoInicializacion myGestorArchivoInicializacion;
 
     private int numBombas, numMisiles, numMisilesDirig, numRadares, numEscudos;
     private int precioMisiles, precioMisilesDirig, precioRadares, precioEscudos;
     private int precioBaseReparacion, precioBaseImpacto, dineroInicial;
     private int numFrag, numDestr, numSub, numPortaav;
 
-    private GestorFicheros() {
+    private GestorArchivoInicializacion() {
     }
 
-    public static GestorFicheros getMyGestorFicheros() {
-        if (myGestorFicheros == null) {
-            myGestorFicheros = new GestorFicheros();
+    public static GestorArchivoInicializacion getMyGestorArchivoInicializacion() {
+        if (myGestorArchivoInicializacion == null) {
+            myGestorArchivoInicializacion = new GestorArchivoInicializacion();
         }
-        return myGestorFicheros;
+        return myGestorArchivoInicializacion;
     }
 
     /**
@@ -50,9 +49,9 @@ public class GestorFicheros {
      * @param pDif
      */
     public void readXML(String pDif) {
-        try (InputStream resource = GestorFicheros.class.getResourceAsStream("config_IS_battleship.xml")) {
-
-            File fDif = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/config_IS_battleship.xml");
+        try {
+            String url = System.getProperty("user.home");
+            File fDif = new File(url + "/config_IS_battleship.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = documentBuilder.parse(fDif);

@@ -22,14 +22,14 @@ public class ListaArmas {
 
     public ListaArmas() {
         ls = new HashMap<>();
-        ls.put("bomba", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("bomba")));
-        for (int i = 0; i < GestorFicheros.getMyGestorFicheros().getNumeroArmas("bomba"); i++) {
+        ls.put("bomba", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("bomba")));
+        for (int i = 0; i < GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("bomba"); i++) {
             ls.get("bomba").push(ArmaFactory.getArmaFactory().crearArma("bomba"));
         }
-        ls.put("misil", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("misil")));
-        ls.put("misildirig", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("misildirig")));
-        ls.put("radar", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("radar")));
-        ls.put("escudo", new StackArmas(GestorFicheros.getMyGestorFicheros().getNumeroArmas("escudo")));
+        ls.put("misil", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("misil")));
+        ls.put("misildirig", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("misildirig")));
+        ls.put("radar", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("radar")));
+        ls.put("escudo", new StackArmas(GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getNumeroArmas("escudo")));
     }
 
     /**

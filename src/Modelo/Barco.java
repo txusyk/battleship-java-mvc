@@ -24,7 +24,7 @@ public abstract class Barco {
      * Constructora
      */
     public Barco() {
-        this.preciorReparacion = GestorFicheros.getMyGestorFicheros().obtenerPrecioReparacion();
+        this.preciorReparacion = GestorArchivoInicializacion.getMyGestorArchivoInicializacion().obtenerPrecioReparacion();
         this.escudo = null;
         this.hundido = false;
         this.horientacion = 'h';

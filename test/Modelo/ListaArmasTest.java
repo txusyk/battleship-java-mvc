@@ -15,7 +15,7 @@ public class ListaArmasTest {
 
     @BeforeClass
     public void inicializarGestorFicheros() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @BeforeMethod

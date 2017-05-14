@@ -17,7 +17,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Josu on 05/05/2017.
@@ -26,18 +25,14 @@ public class Login {
 
     private Document listaUsuarios;
 
-    private boolean loginSuccessfull = false;
-    private String usuario = "";
-    private char[] password = new char[10];
-
     public Login() {
         cargarUsuariosXML();
     }
 
     private void cargarUsuariosXML() {
-        try (InputStream resource = GestorFicheros.class.getResourceAsStream("usersDB.xml")) {
-
-            File f = new File("/Users/Josu/IdeaProjects/battleship-java-mvc/resources/usersDB.xml");
+        try {
+            String url = System.getProperty("user.home");
+            File f = new File(url + "/usersDB.xml");
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             listaUsuarios = documentBuilder.parse(f);

@@ -11,7 +11,7 @@ public class AlmacenTest {
 
     @BeforeClass
     public void readXML() {
-        GestorFicheros.getMyGestorFicheros().readXML("facil");
+        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
     @Test
