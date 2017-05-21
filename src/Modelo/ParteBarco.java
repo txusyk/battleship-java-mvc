@@ -14,11 +14,10 @@ package Modelo;
 public class ParteBarco extends ObjTablero implements State {
 
     private State estado;
-
-    private int x, y;
-
+    private boolean barcoHundido;
 
     public ParteBarco() {
+        barcoHundido = false;
         estado = new SNormal();
     }
 
@@ -30,13 +29,12 @@ public class ParteBarco extends ObjTablero implements State {
         this.estado = pEstado;
     }
 
-
-    public int getX() {
-        return x;
+    public boolean isBarcoHundido() {
+        return barcoHundido;
     }
 
-    public int getY() {
-        return y;
+    public void setBarcoHundido(boolean barcoHundido) {
+        this.barcoHundido = barcoHundido;
     }
 
     /**

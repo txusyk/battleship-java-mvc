@@ -10,12 +10,13 @@ import java.awt.event.ActionListener;
 /**
  * Created by david on 07/05/2017.
  */
-public class ControladorInicializacionBarcos {
+public class ControladorInicializacionBarcos implements Runnable {
 
     private Tablero modelo;
     private VistaInicializacionBarcos vista;
 
-    public ControladorInicializacionBarcos() {
+    @Override
+    public void run() {
         this.modelo = new Tablero(10, 10);
         this.vista = new VistaInicializacionBarcos();
 

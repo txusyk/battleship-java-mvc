@@ -12,11 +12,10 @@ package Modelo;
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import java.util.Observer;
 
-import java.util.Observable;
 
-
-public class Tablero extends Observable {
+public class Tablero {
 
     private ObjTablero[][] tablero;
 
@@ -28,7 +27,7 @@ public class Tablero extends Observable {
         this.tablero = new ObjTablero[x][y];
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
-                this.tablero[i][j] = new Agua();
+                this.tablero[i][j] = new Agua(i, j);
             }
         }
     }
@@ -92,32 +91,32 @@ public class Tablero extends Observable {
             if (i == x - 1) {
                 if (x - 1 >= 0) {
                     if (!(this.tablero[x - 1][y] instanceof ParteBarco)) {
-                        this.tablero[x - 1][y] = new AreaBarco();
+                        this.tablero[x - 1][y] = new AreaBarco(x - 1, y);
                     }
                     if (y - 1 >= 0) {
                         if (!(this.tablero[x - 1][y - 1] instanceof ParteBarco)) {
-                            this.tablero[x - 1][y - 1] = new AreaBarco();
+                            this.tablero[x - 1][y - 1] = new AreaBarco(x - 1, y - 1);
                         }
                     }
                     if (y + 1 <= 9) {
                         if (!(this.tablero[x - 1][y + 1] instanceof ParteBarco)) {
-                            this.tablero[x - 1][y + 1] = new AreaBarco();
+                            this.tablero[x - 1][y + 1] = new AreaBarco(x - 1, y + 1);
                         }
                     }
                 }
             } else if (i == x + pBarco.getTamaño() - 1) {
                 if (i + 1 <= 9) {
                     if (!(this.tablero[i + 1][y] instanceof ParteBarco)) {
-                        this.tablero[i + 1][y] = new AreaBarco();
+                        this.tablero[i + 1][y] = new AreaBarco(i + 1, y);
                     }
                     if (y - 1 >= 0) {
                         if (!(this.tablero[i + 1][y - 1] instanceof ParteBarco)) {
-                            this.tablero[i + 1][y - 1] = new AreaBarco();
+                            this.tablero[i + 1][y - 1] = new AreaBarco(i + 1, y - 1);
                         }
                     }
                     if (y + 1 <= 9) {
                         if (!(this.tablero[i + 1][y + 1] instanceof ParteBarco)) {
-                            this.tablero[i + 1][y + 1] = new AreaBarco();
+                            this.tablero[i + 1][y + 1] = new AreaBarco(i + 1, y + 1);
                         }
                     }
                 }
@@ -126,13 +125,13 @@ public class Tablero extends Observable {
                 if (y - 1 >= 0) {
 
                     if (!(this.tablero[i][y - 1] instanceof ParteBarco)) {
-                        this.tablero[i][y - 1] = new AreaBarco();
+                        this.tablero[i][y - 1] = new AreaBarco(i, y - 1);
                     }
                 }
                 if (y + 1 <= 9) {
 
                     if (!(this.tablero[i][y + 1] instanceof ParteBarco)) {
-                        this.tablero[i][y + 1] = new AreaBarco();
+                        this.tablero[i][y + 1] = new AreaBarco(i, y + 1);
                     }
                 }
             }
@@ -151,32 +150,32 @@ public class Tablero extends Observable {
             if (i == y - 1) { //posicionCabeza
                 if (y - 1 >= 0) {
                     if (!(this.tablero[x][y - 1] instanceof ParteBarco)) {
-                        this.tablero[x][y - 1] = new AreaBarco();
+                        this.tablero[x][y - 1] = new AreaBarco(x, y - 1);
                     }
                     if (x - 1 >= 0) {
                         if (!(this.tablero[x - 1][y - 1] instanceof ParteBarco)) {
-                            this.tablero[x - 1][y - 1] = new AreaBarco();
+                            this.tablero[x - 1][y - 1] = new AreaBarco(x - 1, y - 1);
                         }
                     }
                     if (x + 1 <= 9) {
                         if (!(this.tablero[x + 1][y - 1] instanceof ParteBarco)) {
-                            this.tablero[x + 1][y - 1] = new AreaBarco();
+                            this.tablero[x + 1][y - 1] = new AreaBarco(x + 1, y - 1);
                         }
                     }
                 }
             } else if (i == y + pBarco.getTamaño() - 1) { //posicionFin
                 if (i + 1 <= 9) {
                     if (!(this.tablero[x][i + 1] instanceof ParteBarco)) {
-                        this.tablero[x][i + 1] = new AreaBarco();
+                        this.tablero[x][i + 1] = new AreaBarco(x, i + 1);
                     }
                     if (x - 1 >= 0) {
                         if (!(this.tablero[x - 1][i + 1] instanceof ParteBarco)) {
-                            this.tablero[x - 1][i + 1] = new AreaBarco();
+                            this.tablero[x - 1][i + 1] = new AreaBarco(x - 1, i + 1);
                         }
                     }
                     if (x + 1 <= 9) {
                         if (!(this.tablero[x + 1][i + 1] instanceof ParteBarco)) {
-                            this.tablero[x + 1][i + 1] = new AreaBarco();
+                            this.tablero[x + 1][i + 1] = new AreaBarco(x + 1, i + 1);
                         }
                     }
                 }
@@ -184,12 +183,12 @@ public class Tablero extends Observable {
             if (i >= 0 && i <= 9) {
                 if (x - 1 >= 0) {
                     if (!(this.tablero[x - 1][i] instanceof ParteBarco)) {
-                        this.tablero[x - 1][i] = new AreaBarco();
+                        this.tablero[x - 1][i] = new AreaBarco(x - 1, i);
                     }
                 }
                 if (x + 1 <= 9) {
                     if (!(this.tablero[x + 1][i] instanceof ParteBarco)) {
-                        this.tablero[x + 1][i] = new AreaBarco();
+                        this.tablero[x + 1][i] = new AreaBarco(x + 1, i);
                     }
                 }
             }
@@ -361,7 +360,7 @@ public class Tablero extends Observable {
         }
     }
 
-   /* public void imprimirTablero() {
+    public void imprimirTablero() {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero.length; j++) {
                 char icon = ' ';
@@ -385,7 +384,7 @@ public class Tablero extends Observable {
             }
         }
         System.out.println("\n\n\n");
-    }*/
+    }
 
 
     /**
@@ -406,4 +405,11 @@ public class Tablero extends Observable {
         return this.tablero[x][y];
     }
 
+    public void añadirObservers(Observer o) {
+        for (ObjTablero[] arrayObj : tablero) {
+            for (ObjTablero objTablero : arrayObj) {
+                objTablero.addObserver(o);
+            }
+        }
+    }
 }

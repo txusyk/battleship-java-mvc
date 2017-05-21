@@ -1,6 +1,9 @@
 package Controlador;
 
-import Modelo.*;
+import Modelo.Battleship;
+import Modelo.GestorArchivoInicializacion;
+import Modelo.ListaJugadores;
+import Modelo.Login;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
 
@@ -12,12 +15,13 @@ import java.util.Objects;
 /**
  * Created by Josu on 05/05/2017.
  */
-public class ControladorLogin {
+public class ControladorLogin implements Runnable {
 
     private Login modeloLogin;
     private VistaLogin vista;
 
-    public ControladorLogin() {
+    @Override
+    public void run() {
         this.modeloLogin = new Login();
         vista = new VistaLogin();
         vista.añadirListenersLogin(new ListenersLogin());
@@ -56,7 +60,7 @@ public class ControladorLogin {
                     ListaJugadores.getMyListaJug().getHumano().setNombre(usuario);
                     vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
                     vista.dispose();
-                    new ControladorInicializacionBarcos();
+                    new ControladorInicializacionBarcos().run();
                 } else {
                     vista.lanzarPopUp("La contraseña introducida no coincide con la de la base de datos, pruebe de nuevo o cree un nuevo usuario", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -74,10 +78,10 @@ public class ControladorLogin {
                 modeloLogin.añadirUsuario(usuario, vista.getPasswordText().getPassword());
                 GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML(dificultad);
                 Battleship.getMyBattleship().setDificultad(dificultad);
-                ((Humano) ListaJugadores.getMyListaJug().getHumano()).setNombre(usuario);
+                ListaJugadores.getMyListaJug().getHumano().setNombre(usuario);
                 vista.lanzarPopUp("Login succesfull, " + usuario + "!", "Success!", JOptionPane.PLAIN_MESSAGE);
                 vista.dispose();
-                new ControladorInicializacionBarcos();
+                new ControladorInicializacionBarcos().run();
             } else {
                 vista.lanzarPopUp("El usuario ya existe. Pruebe con otro nombre o si usted es el dueño de ese alias, pruebe a loguearse", "Usuario existente", JOptionPane.ERROR_MESSAGE);
             }

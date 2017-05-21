@@ -144,20 +144,44 @@ public class VistaJuego extends JFrame {
         return pnInfoJugador.getCantArmaSelec();
     }
 
-    public void pintarEscudo(int x, int y) {
-        tableroJug.pintarPosEscudo(x, y);
+    public void pintarEscudo(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarPosTocado(x, y);
+        } else {
+            tableroIA.pintarPosTocado(x, y);
+        }
     }
 
-    public void pintarPosTocado(int x, int y) {
-        tableroIA.pintarPosTocado(x, y);
+    public void pintarPosTocado(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarPosTocado(x, y);
+        } else {
+            tableroIA.pintarPosTocado(x, y);
+        }
     }
 
-    public void pintarPosHundido(int x, int y) {
-        tableroIA.pintarPosHundido(x, y);
+    public void pintarPosHundido(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarPosHundido(x, y);
+        } else {
+            tableroIA.pintarPosHundido(x, y);
+        }
     }
 
-    public void pintarPosAgua(int x, int y) {
-        tableroIA.pintarAgua(x, y);
+    public void pintarPosAgua(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarAgua(x, y);
+        } else {
+            tableroIA.pintarAgua(x, y);
+        }
+    }
+
+    public void pintarPosNormal(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarPosNormal(x, y);
+        } else {
+            tableroIA.pintarPosNormal(x, y);
+        }
     }
 
     public void actDinero(int cant) {

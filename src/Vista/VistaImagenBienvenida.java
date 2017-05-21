@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * Created by Josu on 23/04/2017.
  */
-public class VistaImagenBienvenida extends JFrame {
+public class VistaImagenBienvenida extends JFrame implements Runnable {
 
     private JLabel contenedorImagen;
     private URL urlImagen;
@@ -36,6 +36,11 @@ public class VistaImagenBienvenida extends JFrame {
         }
         setLocation((screenSize.width - thisSize.width) / 2, (screenSize.height - thisSize.height) / 2);
 
+
+    }
+
+    @Override
+    public void run() {
         setVisible(true);
 
         double actTime = System.currentTimeMillis();
@@ -58,6 +63,4 @@ public class VistaImagenBienvenida extends JFrame {
         clip.stop();
         this.dispose();
     }
-
-
 }

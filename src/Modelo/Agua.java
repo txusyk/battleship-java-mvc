@@ -14,4 +14,8 @@ package Modelo;
 
 public class Agua extends ObjTablero {
 
+    public Agua(int pX, int pY) {
+        this.x = pX;
+        this.y = pY;
+    }
 }

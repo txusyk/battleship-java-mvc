@@ -114,6 +114,7 @@ public class VistaTablero extends JPanel {
         }
     }
 
+
     public VistaCasilla[][] getCasillas() {
         return casillas;
     }
@@ -136,8 +137,15 @@ public class VistaTablero extends JPanel {
         casillas[x][y].setBackground(Color.BLUE);
     }
 
+    public void pintarPosNormal(int x, int y) {
+        casillas[x][y].setBackground(Color.GREEN);
+    }
+
+
     public void pintarArea(int x, int y) {
         casillas[x][y].setBackground(Color.LIGHT_GRAY);
         casillas[x][y].setEnabled(false);
     }
+
+
 }

@@ -8,4 +8,8 @@
         <nombre>pepe</nombre>
         <password>1234</password>
     </usuario>
+    <usuario>
+        <nombre>josu</nombre>
+        <password>1234</password>
+    </usuario>
 </usuarios>

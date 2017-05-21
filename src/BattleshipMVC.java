@@ -13,24 +13,20 @@ public class BattleshipMVC {
     }
 
     public static void main(String[] args) {
-        new VistaImagenBienvenida();
+        new VistaImagenBienvenida().run();
         try {
             SwingUtilities.invokeAndWait(() -> {
                 try {
                     UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedLookAndFeelException e) {
+                    new ControladorLogin().run();
+                } catch (ClassNotFoundException | InstantiationException | UnsupportedLookAndFeelException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-                new ControladorLogin();
+
             });
         } catch (InterruptedException | InvocationTargetException e) {
             e.printStackTrace();
         }
+
     }
 }

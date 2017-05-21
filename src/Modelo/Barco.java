@@ -63,15 +63,17 @@ public abstract class Barco {
      * @param x
      * @param y
      */
-    public void reparar(int x, int y) {
-        boolean tocado = false;
+    public boolean reparar(int x, int y) {
+        boolean parteTocada = false;
         int i = 0;
-        while (i < partesBarco.length && !tocado) {
-            tocado = partesBarco[i].comprobarPosicion(x, y);
+        while (i < partesBarco.length && !parteTocada) {
+            parteTocada = partesBarco[i].comprobarPosicion(x, y);
         }
-        if (tocado) {
+        if (parteTocada && partesBarco[i].informacion() && !hundido) {
             partesBarco[i].setState(new SNormal());
+            return true;
         }
+        return false;
     }
 
     /**
@@ -138,6 +140,11 @@ public abstract class Barco {
             i++;
         }
         hundido = estaHundido;
+        if (hundido) {
+            for (ParteBarco pb : this.partesBarco) {
+                pb.setBarcoHundido(true);
+            }
+        }
     }
 
     /**
@@ -157,6 +164,7 @@ public abstract class Barco {
             if (hundir) {
                 for (ParteBarco pb : partesBarco) {
                     pb.setState(new STocado());
+                    pb.setBarcoHundido(true);
                 }
                 hundido = true;
             }
@@ -189,6 +197,7 @@ public abstract class Barco {
             if (enc) {
                 if (partesBarco[i].informacion()) {
                     partesBarco[i].setState(new STocado());
+                    partesBarco[i].setVisible(true);
                     comprobarSiHundido();
                 } else {
                     //gestionar cuando se intenta disparar a una posicion ya tocada
