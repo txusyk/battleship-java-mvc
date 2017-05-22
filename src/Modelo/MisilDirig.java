@@ -33,10 +33,6 @@ public class MisilDirig extends Arma {
         }
     }
 
-    public DireccionesArma getDA() {
-        return da;
-    }
-
     @Override
     public void disparar(int x, int y) {
         if (da.getDireccion().equalsIgnoreCase("noreste-suroeste")) {

@@ -364,33 +364,6 @@ public class Tablero {
         }
     }
 
-    public void imprimirTablero() {
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero.length; j++) {
-                char icon = ' ';
-                if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'g') {
-                    icon = tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0);
-                } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(0) == 'p') {
-                    if (((ParteBarco) tablero[j][i]).informacion()) {
-                        icon = ' ';
-                    } else {
-                        icon = '?';
-                    }
-                } else if (tablero[j][i].getClass().toString().split("\\.")[1].toLowerCase().charAt(1) == 'r') {
-                    icon = '*';
-                }
-
-                if (j == 0) {
-                    System.out.print("\n" + icon + "\t");
-                } else {
-                    System.out.print(icon + "\t");
-                }
-            }
-        }
-        System.out.println("\n\n\n");
-    }
-
-
     /**
      * @param x
      * @param y

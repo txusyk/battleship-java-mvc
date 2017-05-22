@@ -20,13 +20,6 @@ public class Escudo extends HerramientasJuego {
     }
 
     /**
-     * @return devuelve el numero de impactos restantes del escudo
-     */
-    public int getImpactosRestantes() {
-        return this.impactosRestantes;
-    }
-
-    /**
      * destruye el escudo
      */
     public void destruir() {

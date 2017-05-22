@@ -31,18 +31,32 @@ public class Battleship {
     }
 
 
+    /**
+     * @return dificultad
+     */
     public String getDificultad() {
         return dificultad;
     }
 
+    /**
+     * @param dificultad
+     */
     public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 
+    /**
+     * @param t
+     */
     public void inicializarJuego(Tablero t) {
         ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
+    /**
+     * @param pArma
+     * @param x
+     * @param y
+     */
     public void jugar(String pArma, int x, int y) {
         if (this.getJugActivo() instanceof Humano) {
             if (pArma.equalsIgnoreCase("bomba") || pArma.equalsIgnoreCase("misil") || pArma.equalsIgnoreCase("misildirig")) {
@@ -55,10 +69,18 @@ public class Battleship {
         }
     }
 
+    /**
+     *
+     * @return si la partida esta activa (true)
+     */
     public boolean isPartidaActiva() {
         return partidaActiva = ListaJugadores.getMyListaJug().getHumano().quedanBarcos() && ListaJugadores.getMyListaJug().getIA().quedanBarcos();
     }
 
+    /**
+     *
+     * @return nombre del ganador
+     */
     public String getGanador() {
         if (!partidaActiva) {
             if (ListaJugadores.getMyListaJug().getHumano().quedanBarcos()) {
@@ -101,12 +123,6 @@ public class Battleship {
         } else {
             ListaJugadores.getMyListaJug().getListaJug()[1].setTurno(false);
             ListaJugadores.getMyListaJug().getListaJug()[0].setTurno(true);
-        }
-    }
-
-    public void partidaAcabada(){
-        if (ListaJugadores.getMyListaJug().getHumano().quedanBarcos() || ListaJugadores.getMyListaJug().getIA().quedanBarcos()) {
-            partidaActiva = false;
         }
     }
 }

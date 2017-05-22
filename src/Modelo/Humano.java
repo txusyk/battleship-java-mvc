@@ -60,10 +60,6 @@ public class Humano extends Jugador {
         this.tablero = pTablero;
     }
 
-    public HerramientasJuego getArma(String pArma) {
-        return this.lArmas.getArma(pArma);
-    }
-
     /**
      * @param pHerramienta
      * @return el numero de herramientas de ese tipo

@@ -205,11 +205,7 @@ public abstract class Barco {
                     partesBarco[i].setState(new STocado());
                     partesBarco[i].setVisible(true);
                     comprobarSiHundido();
-                } else {
-                    //gestionar cuando se intenta disparar a una posicion ya tocada
                 }
-            } else {
-                //gestionar si no existe
             }
         }
     }
