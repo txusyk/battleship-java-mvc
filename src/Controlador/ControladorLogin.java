@@ -41,7 +41,7 @@ public class ControladorLogin implements Runnable {
                         "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
                         "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella", "Reglas del juego", JOptionPane.PLAIN_MESSAGE);
             } else if (Objects.equals(e.getActionCommand(), "devs")) {
-                vista.lanzarPopUp("Josu Álvarez, David Max y Edgar Andres han desarrollado esta aplicacion para la asignatura Ingenieria del Software para la EUITI, UPV/EHU", "Info sobre devs", JOptionPane.PLAIN_MESSAGE);
+                vista.lanzarPopUp("Josu Álvarez y David Max han desarrollado esta aplicacion para la asignatura Ingenieria del Software para la EUITI, UPV/EHU", "Info sobre devs", JOptionPane.PLAIN_MESSAGE);
             } else if (Objects.equals(e.getActionCommand(), "infoLogin")) {
                 vista.lanzarPopUp("Este login fue desarrollado con el fin de mantener la seguridad del usuario , y asimismo proveer de un gestor de partidas al juego", "Informacion sobre login/registro", JOptionPane.PLAIN_MESSAGE);
             } else if (Objects.equals(e.getActionCommand(), "cargar")) {

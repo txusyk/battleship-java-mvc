@@ -1,10 +1,7 @@
 package Controlador;
 
 import Modelo.*;
-import Vista.InfoJugador;
-import Vista.InfoPartida;
-import Vista.VistaJuego;
-import Vista.VistaTablero;
+import Vista.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -111,8 +108,21 @@ public class ControladorBattleship implements Observer, Runnable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-
-            if (Battleship.getMyBattleship().isPartidaActiva()) {
+            if (Objects.equals(e.getActionCommand(), "salir")) {
+                vista.salir();
+            } else if (Objects.equals(e.getActionCommand(), "reglas")) {
+                JOptionPane.showMessageDialog(null, "Bienvenido al Battleship IS\n. " +
+                        "\n\t- Para disparar, selecciona un arma y clicka sobre la casilla del tablero rival que tengas como objetivo." +
+                        "\n\t- Para reparar, selecciona una casilla de tu tablero en estado tocado y haz click derecho sobre ella", "Reglas del juego", JOptionPane.PLAIN_MESSAGE);
+            } else if (Objects.equals(e.getActionCommand(), "devs")) {
+                JOptionPane.showMessageDialog(null, "Josu Álvarez y David Max han desarrollado esta aplicacion para la asignatura Ingenieria del Software para la EUITI, UPV/EHU", "Info sobre devs", JOptionPane.PLAIN_MESSAGE);
+            } else if (Objects.equals(e.getActionCommand(), "infoLogin")) {
+                JOptionPane.showMessageDialog(null, "Este login fue desarrollado con el fin de mantener la seguridad del usuario , y asimismo proveer de un gestor de partidas al juego", "Informacion sobre login/registro", JOptionPane.PLAIN_MESSAGE);
+            } else if (Objects.equals(e.getActionCommand(), "cargar")) {
+                new ControladorPopUpCarga(new VistaPopUpCargarPartida());
+            } else if (Objects.equals(e.getActionCommand(), "guardar")) {
+                new ControladorPopUpCarga(new VistaPopUpCargarPartida());
+            } else if (Battleship.getMyBattleship().isPartidaActiva()) {
                 if (Battleship.getMyBattleship().getJugActivo() instanceof Humano) { //solo si el humano es el jugador actual
                     if (Objects.equals(e.getActionCommand(), "comprar")) {
                         if (!vista.getBotonArmaSeleccionada().equalsIgnoreCase("bomba")) {

@@ -12,7 +12,7 @@ public class VistaJuego extends JFrame {
 
     private JMenuBar barraJuego;
     private JMenu archivo, infoJuego, partida;
-    private JMenuItem salir, reiniciar, cambiarDif, acercaDe, reglasJuego, cargarPartida, guardarPartida;
+    private JMenuItem salir, acercaDe, reglasJuego, cargarPartida, guardarPartida;
 
     private VistaTablero tableroJug, tableroIA;
     private JTabbedPane tableroInfo;
@@ -76,6 +76,14 @@ public class VistaJuego extends JFrame {
         this.tableroJug.añadirListenerACasilla(actionListener);
         this.tableroIA.añadirListenerACasilla(actionListener);
         this.pnInfoJugador.añadirListenerCompra(actionListener);
+
+        this.salir.addActionListener(actionListener);
+        this.reglasJuego.addActionListener(actionListener);
+        this.reiniciar.addActionListener(actionListener);
+        this.acercaDe.addActionListener(actionListener);
+        this.cargarPartida.addActionListener(actionListener);
+        this.guardarPartida.addActionListener(actionListener);
+
     }
 
     /**
@@ -108,12 +116,15 @@ public class VistaJuego extends JFrame {
         partida = new JMenu("Partida");
 
         salir = new JMenuItem("Salir");
-        reiniciar = new JMenuItem("Reiniciar");
-        cambiarDif = new JMenuItem("Cambiar dificultad");
+        salir.setActionCommand("salir");
         acercaDe = new JMenuItem("Info. developers");
+        acercaDe.setActionCommand("devs");
         reglasJuego = new JMenuItem("Reglas del juego");
+        reglasJuego.setActionCommand("reglas");
         cargarPartida = new JMenuItem("Cargar partida");
+        cargarPartida.setActionCommand("cargar");
         guardarPartida = new JMenuItem("Guardar partida");
+        guardarPartida.setActionCommand("guardar");
 
         barraJuego.add(archivo);
         barraJuego.add(infoJuego);
@@ -121,7 +132,6 @@ public class VistaJuego extends JFrame {
         archivo.add(salir);
         infoJuego.add(reglasJuego);
         infoJuego.add(acercaDe);
-        partida.add(cambiarDif);
         partida.add(cargarPartida);
         partida.add(guardarPartida);
         partida.add(reiniciar);
@@ -204,5 +214,9 @@ public class VistaJuego extends JFrame {
 
     public void actDinero(int cant) {
         this.pnInfoJugador.actualizarDinero(cant);
+    }
+
+    public void salir() {
+        System.exit(0);
     }
 }
