@@ -71,28 +71,14 @@ public abstract class Jugador {
      * @param pArma
      */
     public boolean comprarArma(String pArma) {
-        if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
-            lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
-            decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
-            return true;
+        if (Almacen.getMiAlmacen().cantidadRestante(pArma) > 0) {
+            if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
+                lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));
+                decrementarDinero(Almacen.getMiAlmacen().getPrecioArma(pArma));
+                return true;
+            }
         }
         return false;
-    }
-
-    /**
-     * @param pBarco
-     */
-    /*protected void repararBarco(Barco pBarco) {
-		if (this.dinero>=flota.obtenerBarco(getType(pBarco)).preciorReparacion) {
-            //flota.repararBarco(pBarco);
-        }
-	}*/
-
-    private String getType(Barco pBarco) {
-        String type = String.valueOf(pBarco.getClass());
-        String[] arrAux = type.split("\\.");
-        type = arrAux[1].toLowerCase();
-        return type;
     }
 
 }

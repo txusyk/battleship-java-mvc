@@ -40,8 +40,6 @@ public class IA extends Jugador {
      */
     public void jugarTurno() {
         decidirSiComprarArma();
-        //decidirSiRadar();
-        //decidirSiEscudo();
         disparar();
         Battleship.getMyBattleship().cambiarJugActivo();
     }
@@ -81,54 +79,6 @@ public class IA extends Jugador {
                         Almacen.getMiAlmacen().comprarArma("misildirig"); //80%
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * decide si comprar un radar en base a la dificultad establecida del juego
-     */
-    private void decidirSiRadar() {
-        Random random = new Random();
-        if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
-            if (this.dinero >= 7500) {
-                if (random.nextInt(100) <= 20) {
-                    comprarYcolocarRadar();
-                }
-            }
-        } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("medio")) {
-            if (this.dinero >= 7500) {
-                if (random.nextInt(100) <= 40) {
-                    comprarYcolocarRadar();
-                }
-            }
-        } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("dificil")) {
-            if (random.nextInt(100) <= 80) {
-                comprarYcolocarRadar();
-            }
-        }
-    }
-
-    /**
-     * decide si comprar un escudo en funcion de la dificultad destablecida
-     */
-    private void decidirSiEscudo() {
-        Random random = new Random();
-        if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("facil")) {
-            if (this.dinero >= 7500) {
-                if (random.nextInt(100) <= 20) {
-                    comprarYcolocarEscudo();
-                }
-            }
-        } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("medio")) {
-            if (this.dinero >= 7500) {
-                if (random.nextInt(100) <= 40) {
-                    comprarYcolocarEscudo();
-                }
-            }
-        } else if (Battleship.getMyBattleship().getDificultad().equalsIgnoreCase("dificil")) {
-            if (random.nextInt(100) <= 80) {
-                comprarYcolocarEscudo();
             }
         }
     }
@@ -235,30 +185,6 @@ public class IA extends Jugador {
         ((Arma) this.lArmas.getArma("bomba")).disparar(posDisparo[0], posDisparo[1]);
     }
 
-    /**
-     * metodo interno para comprar y colocar un radar
-     */
-    private void comprarYcolocarRadar() {
-        Almacen.getMiAlmacen().comprarArma("radar");
-        int[] index = generarPosicionAleatoriaTableroHumano();
-
-        while (ListaJugadores.getMyListaJug().getHumano().tablero.getPosicion(index[0], index[1]).getVisible()) {
-            index = generarPosicionAleatoriaTableroHumano();
-        }
-        ((Radar) this.lArmas.getArma("radar")).accion(index[0], index[1]);
-    }
-
-    /**
-     * metodo interno para comprar y colocar un escudo
-     */
-    private void comprarYcolocarEscudo() {
-        Almacen.getMiAlmacen().comprarArma("radar");
-        int[] index = new int[2];
-        while (!this.tablero.esBarco(index[0], index[1])) {
-            index = generarPosicionAleatoriaTableroHumano();
-        }
-        this.flota.getBarcoPorPos(index[0], index[1]).setEscudo();
-    }
 
     /**
      * metodo para inicializar el tablero de la IA
@@ -341,12 +267,12 @@ public class IA extends Jugador {
      */
     private int[] generarPosicionAleatoriaTableroHumano() {
         Random r = new Random();
-        int i = r.nextInt(9);
-        int j = r.nextInt(9);
+        int i = r.nextInt(10);
+        int j = r.nextInt(10);
 
         while (ListaJugadores.getMyListaJug().getHumano().tablero.getPosicion(i, j).getVisible()) {
-            i = r.nextInt(9);
-            j = r.nextInt(9);
+            i = r.nextInt(10);
+            j = r.nextInt(10);
         }
         int[] arr = new int[2];
         arr[0] = i;

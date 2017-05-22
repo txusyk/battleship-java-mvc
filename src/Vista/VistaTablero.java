@@ -87,20 +87,6 @@ public class VistaTablero extends JPanel {
         }
     }
 
-    /*private void imprimirTablero() {
-        for (VistaCasilla[] vC : casillas) {
-            for (VistaCasilla b : vC) {
-                int i = Integer.parseInt(b.getActionCommand()) / 10;
-                int j = Integer.parseInt(b.getActionCommand()) % 10;
-                if (j == 0) {
-                    System.out.print("\n" + j+","+i+"   ");
-                } else {
-                    System.out.print(j+","+i+"   ");
-                }
-            }
-        }
-    }*/
-
     public void modificarVisibilidadCasillas() {
         for (VistaCasilla[] lvC : this.casillas) {
             for (VistaCasilla vC : lvC) {
@@ -124,13 +110,18 @@ public class VistaTablero extends JPanel {
         casillas[x][y].setBorder(border);
     }
 
+    public void pintarPosSinEscudo(int x, int y) {
+        casillas[x][y].setBorder(null);
+    }
+
     public void pintarPosTocado(int x, int y) {
         casillas[x][y].setBackground(Color.RED);
-        casillas[x][y].getModel().setEnabled(false);
     }
 
     public void pintarPosHundido(int x, int y) {
         casillas[x][y].setBackground(Color.BLACK);
+        casillas[x][y].setBorder(null);
+        casillas[x][y].setEnabled(false);
     }
 
     public void pintarAgua(int x, int y) {
@@ -141,6 +132,9 @@ public class VistaTablero extends JPanel {
         casillas[x][y].setBackground(Color.GREEN);
     }
 
+    public void pintarPosTocadoHumano(int x, int y) {
+        casillas[x][y].setBorder(BorderFactory.createLineBorder(Color.RED, 2, true));
+    }
 
     public void pintarArea(int x, int y) {
         casillas[x][y].setBackground(Color.LIGHT_GRAY);

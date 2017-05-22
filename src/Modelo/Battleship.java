@@ -43,10 +43,15 @@ public class Battleship {
         ListaJugadores.getMyListaJug().setTableroJugadores(t);
     }
 
-    public void jugar(String pArmaHumano, int x, int y) {
+    public void jugar(String pArma, int x, int y) {
         if (this.getJugActivo() instanceof Humano) {
-            ((Humano) this.getJugActivo()).jugarTurno(pArmaHumano, x, y);
-            ((IA) this.getJugActivo()).jugarTurno();
+            if (pArma.equalsIgnoreCase("bomba") || pArma.equalsIgnoreCase("misil") || pArma.equalsIgnoreCase("misildirig")) {
+                ((Humano) this.getJugActivo()).jugarTurno(pArma, x, y);
+                cambiarJugActivo();
+                ((IA) this.getJugActivo()).jugarTurno();
+            } else {
+                ((Humano) this.getJugActivo()).jugarTurno(pArma, x, y);
+            }
         }
     }
 

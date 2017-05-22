@@ -25,6 +25,9 @@ public class StackArmas<T> {
     }
 
     public T peek() {
+        if (top == -1) {
+            return null;
+        }
         return stackArray[top];
     }
 

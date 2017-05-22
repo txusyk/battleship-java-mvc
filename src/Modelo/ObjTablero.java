@@ -21,7 +21,6 @@ public class ObjTablero extends Observable {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
-        System.out.println(this.countObservers());
         setChanged();
         notifyObservers();
     }

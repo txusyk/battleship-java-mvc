@@ -39,11 +39,10 @@ public class Humano extends Jugador {
     public void jugarTurno(String pArma, int x, int y) {
         if (this.lArmas.consultarArma(pArma) != null) {
             if (pArma.equalsIgnoreCase("bomba") || pArma.equalsIgnoreCase("misil") || pArma.equalsIgnoreCase("misildirig")) {
-                ((Arma) this.lArmas.getArma(pArma)).disparar(x, y);
                 if (this.tablero.esBarco(x, y)) {
-                    this.dinero += 500;
+                    this.dinero += 2000;
                 }
-                Battleship.getMyBattleship().cambiarJugActivo();
+                ((Arma) this.lArmas.getArma(pArma)).disparar(x, y);
             } else if (pArma.equalsIgnoreCase("radar")) {
                 ((Radar) lArmas.getArma(pArma)).accion(x, y);
             } else if (pArma.equalsIgnoreCase("escudo")) {

@@ -11,8 +11,6 @@
  */
 package Modelo;
 
-import java.util.Random;
-
 public class Radar extends HerramientasJuego {
 
     /**
@@ -26,9 +24,6 @@ public class Radar extends HerramientasJuego {
      */
     public Radar() {
         this.precio = GestorArchivoInicializacion.getMyGestorArchivoInicializacion().getPrecioArma(this.getType());
-        Random randomGenerator = new Random();
-        this.x = randomGenerator.nextInt(10);
-        this.y = randomGenerator.nextInt(10);
     }
 
     /**

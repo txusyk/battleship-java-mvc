@@ -68,8 +68,11 @@ public abstract class Barco {
         int i = 0;
         while (i < partesBarco.length && !parteTocada) {
             parteTocada = partesBarco[i].comprobarPosicion(x, y);
+            if (!parteTocada) {
+                i++;
+            }
         }
-        if (parteTocada && partesBarco[i].informacion() && !hundido) {
+        if (parteTocada && !partesBarco[i].informacion() && !hundido) {
             partesBarco[i].setState(new SNormal());
             return true;
         }
@@ -125,6 +128,9 @@ public abstract class Barco {
 
     public void setEscudo() {
         this.escudo = (Escudo) Battleship.getMyBattleship().getJugActivo().getListaArmas().getArma("escudo");
+        for (ParteBarco pb : partesBarco) {
+            pb.setEscudo(true);
+        }
     }
 
     /**

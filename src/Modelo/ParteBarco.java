@@ -15,6 +15,7 @@ public class ParteBarco extends ObjTablero implements State {
 
     private State estado;
     private boolean barcoHundido;
+    private boolean escudo;
 
     public ParteBarco() {
         barcoHundido = false;
@@ -27,6 +28,8 @@ public class ParteBarco extends ObjTablero implements State {
      */
     public void setState(State pEstado) {
         this.estado = pEstado;
+        setChanged();
+        notifyObservers();
     }
 
     public boolean isBarcoHundido() {
@@ -35,6 +38,18 @@ public class ParteBarco extends ObjTablero implements State {
 
     public void setBarcoHundido(boolean barcoHundido) {
         this.barcoHundido = barcoHundido;
+        setChanged();
+        notifyObservers();
+    }
+
+    public boolean getEscudo() {
+        return escudo;
+    }
+
+    public void setEscudo(boolean escudo) {
+        this.escudo = escudo;
+        setChanged();
+        notifyObservers();
     }
 
     /**

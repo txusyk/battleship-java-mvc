@@ -41,7 +41,7 @@ public class ControladorInicializacionBarcos implements Runnable {
                         vista.modVisibilidadTableroJug();
                         vista.lanzarPopUp("Has colocado todos los barcos con exito! Ahora comenzara la partida", " ", JOptionPane.OK_OPTION);
                         vista.dispose();
-                        new ControladorBattleship(vista.getPanelJuego(), modelo);
+                        new ControladorBattleship(vista.getPanelJuego(), modelo).run();
                     }
                 } else {
                     vista.lanzarPopUp("Error al colocar: " + vista.getBarcoSelec(), "Error", JOptionPane.ERROR_MESSAGE);

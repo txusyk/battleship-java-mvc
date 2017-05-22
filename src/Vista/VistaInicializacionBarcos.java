@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 /**
  * Created by Josu on 30/04/2017.
@@ -104,6 +105,12 @@ public class VistaInicializacionBarcos extends JFrame {
             frameSize.width = screenSize.width;
         }
         this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+        URL url = this.getClass().getClassLoader().getResource("pirates_ship.png");
+        if (url != null) {
+            ImageIcon img = new ImageIcon(url);
+            this.setIconImage(img.getImage());
+        }
 
         this.setVisible(true);
     }

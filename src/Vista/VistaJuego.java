@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 /**
  * @author Josu
@@ -53,6 +54,11 @@ public class VistaJuego extends JFrame {
         }
         this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
+        URL url = this.getClass().getClassLoader().getResource("pirates_ship.png");
+        if (url != null) {
+            ImageIcon img = new ImageIcon(url);
+            this.setIconImage(img.getImage());
+        }
 
         this.setResizable(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -146,9 +152,17 @@ public class VistaJuego extends JFrame {
 
     public void pintarEscudo(int x, int y, String tab) {
         if (tab.equalsIgnoreCase("h")) {
-            tableroJug.pintarPosTocado(x, y);
+            tableroJug.pintarPosEscudo(x, y);
         } else {
-            tableroIA.pintarPosTocado(x, y);
+            tableroIA.pintarPosEscudo(x, y);
+        }
+    }
+
+    public void pintarSinEscudo(int x, int y, String tab) {
+        if (tab.equalsIgnoreCase("h")) {
+            tableroJug.pintarPosSinEscudo(x, y);
+        } else {
+            tableroIA.pintarPosSinEscudo(x, y);
         }
     }
 
@@ -184,13 +198,11 @@ public class VistaJuego extends JFrame {
         }
     }
 
-    public void actDinero(int cant) {
-        this.pnInfoJugador.actualizarDinero(cant);
+    public void pintarTocadoHumano(int x, int y) {
+        tableroJug.pintarPosTocadoHumano(x, y);
     }
 
-    public void pintarRadar(int x, int y){
-        if(x>=0 && y<10) {
-            this.tableroIA.getCasillas()[x][y].setBackground(Color.GREEN);
-        }
+    public void actDinero(int cant) {
+        this.pnInfoJugador.actualizarDinero(cant);
     }
 }
