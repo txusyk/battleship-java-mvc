@@ -79,7 +79,6 @@ public class VistaJuego extends JFrame {
 
         this.salir.addActionListener(actionListener);
         this.reglasJuego.addActionListener(actionListener);
-        this.reiniciar.addActionListener(actionListener);
         this.acercaDe.addActionListener(actionListener);
         this.cargarPartida.addActionListener(actionListener);
         this.guardarPartida.addActionListener(actionListener);
@@ -134,7 +133,6 @@ public class VistaJuego extends JFrame {
         infoJuego.add(acercaDe);
         partida.add(cargarPartida);
         partida.add(guardarPartida);
-        partida.add(reiniciar);
     }
 
     /**
