@@ -11,7 +11,7 @@ public class MisilDirigTest {
     MisilDirig tmp;
 
     @BeforeMethod
-    public void init() {
+    public void init() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         tmp = new MisilDirig();
 

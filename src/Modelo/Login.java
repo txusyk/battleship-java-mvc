@@ -25,14 +25,17 @@ public class Login {
 
     private Document listaUsuarios;
 
-    public Login() {
+    public Login() throws ExcepcionFicheros {
         cargarUsuariosXML();
     }
 
-    private void cargarUsuariosXML() {
+    private void cargarUsuariosXML() throws ExcepcionFicheros {
         try {
             String url = System.getProperty("user.home");
             File f = new File(url + "/usersDB.xml");
+            if (!f.exists()) {
+                throw new ExcepcionFicheros();
+            }
 
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();

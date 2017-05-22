@@ -19,7 +19,9 @@ public class BattleshipMVC {
                 try {
                     UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                     new ControladorLogin().run();
-                } catch (ClassNotFoundException | InstantiationException | UnsupportedLookAndFeelException | IllegalAccessException e) {
+                } catch (UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {
+
+                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
 

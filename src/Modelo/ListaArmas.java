@@ -63,9 +63,13 @@ public class ListaArmas {
     /**
      * @param pHerramientasJuego
      */
-    public void añadirArma(HerramientasJuego pHerramientasJuego) {
+    public void añadirArma(HerramientasJuego pHerramientasJuego) throws ExcepcionListaArmas {
         if (ls.get(pHerramientasJuego.getType()) != null) {
+            int tamañoAct = ls.get(pHerramientasJuego.getType()).size();
             ls.get(pHerramientasJuego.getType()).push(pHerramientasJuego);
+            if (tamañoAct == ls.get(pHerramientasJuego.getType()).size()) {
+                throw new ExcepcionListaArmas();
+            }
         }
     }
 

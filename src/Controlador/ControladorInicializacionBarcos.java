@@ -20,7 +20,11 @@ public class ControladorInicializacionBarcos implements Runnable {
         this.modelo = new Tablero(10, 10);
         this.vista = new VistaInicializacionBarcos();
 
-        GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
+        try {
+            GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
+        } catch (ExcepcionFicheros excepcionFicheros) {
+            excepcionFicheros.printStackTrace();
+        }
         this.vista.añadirListenersInicializacionBarcos(new ListenersInicializacionBarcos());
     }
 

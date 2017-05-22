@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Battleship;
-import Modelo.GestorArchivoInicializacion;
-import Modelo.ListaJugadores;
-import Modelo.Login;
+import Modelo.*;
 import Vista.VistaLogin;
 import Vista.VistaPopUpCargarPartida;
 
@@ -22,7 +19,11 @@ public class ControladorLogin implements Runnable {
 
     @Override
     public void run() {
-        this.modeloLogin = new Login();
+        try {
+            this.modeloLogin = new Login();
+        } catch (ExcepcionFicheros excepcionFicheros) {
+            excepcionFicheros.printStackTrace();
+        }
         vista = new VistaLogin();
         vista.añadirListenersLogin(new ListenersLogin());
     }
@@ -31,9 +32,17 @@ public class ControladorLogin implements Runnable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Objects.equals(e.getActionCommand(), "login")) {
-                accionLogin();
+                try {
+                    accionLogin();
+                } catch (ExcepcionFicheros excepcionFicheros) {
+                    excepcionFicheros.printStackTrace();
+                }
             } else if (Objects.equals(e.getActionCommand(), "registro")) {
-                accionRegistro();
+                try {
+                    accionRegistro();
+                } catch (ExcepcionFicheros excepcionFicheros) {
+                    excepcionFicheros.printStackTrace();
+                }
             } else if (Objects.equals(e.getActionCommand(), "salir")) {
                 vista.salir();
             } else if (Objects.equals(e.getActionCommand(), "reglas")) {
@@ -49,7 +58,7 @@ public class ControladorLogin implements Runnable {
             }
         }
 
-        private void accionLogin() {
+        private void accionLogin() throws ExcepcionFicheros {
             String usuario = vista.getUserText().getText();
             String dificultad = vista.getBotonSeleccionado();
 
@@ -70,7 +79,7 @@ public class ControladorLogin implements Runnable {
             }
         }
 
-        private void accionRegistro() {
+        private void accionRegistro() throws ExcepcionFicheros {
             String usuario = vista.getUserText().getText();
             String dificultad = vista.getBotonSeleccionado();
 

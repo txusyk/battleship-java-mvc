@@ -12,7 +12,7 @@ public class RadarTest {
     Radar tmp;
 
     @BeforeMethod
-    public void init() {
+    public void init() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
         tmp = new Radar();
 

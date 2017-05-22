@@ -16,7 +16,7 @@ public class BarcoTest {
     private Barco f;
 
     @BeforeClass
-    public void readXML() {
+    public void readXML() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 

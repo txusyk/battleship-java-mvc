@@ -14,7 +14,7 @@ public class ListaArmasTest {
     ListaArmas la;
 
     @BeforeClass
-    public void inicializarGestorFicheros() {
+    public void inicializarGestorFicheros() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 

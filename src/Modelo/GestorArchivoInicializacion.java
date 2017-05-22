@@ -48,10 +48,13 @@ public class GestorArchivoInicializacion {
      *
      * @param pDif
      */
-    public void readXML(String pDif) {
+    public void readXML(String pDif) throws ExcepcionFicheros {
         try {
             String url = System.getProperty("user.home");
-            File fDif = new File(url + "/config_IS_battleship.xml");
+            File fDif = new File(url + "/config_IS_battleship2.xml");
+            if (!fDif.exists()) {
+                throw new ExcepcionFicheros();
+            }
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = documentBuilder.parse(fDif);

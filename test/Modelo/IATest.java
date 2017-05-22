@@ -25,7 +25,7 @@ public class IATest {
     IA h1;
 
     @BeforeClass
-    public void leerXML() {
+    public void leerXML() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 

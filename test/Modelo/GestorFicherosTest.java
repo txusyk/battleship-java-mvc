@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class GestorFicherosTest {
 
     @BeforeClass
-    public void lanzarleerXml() {
+    public void lanzarleerXml() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 

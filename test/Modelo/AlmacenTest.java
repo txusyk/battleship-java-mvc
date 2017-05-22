@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class AlmacenTest {
 
     @BeforeClass
-    public void readXML() {
+    public void readXML() throws ExcepcionFicheros {
         GestorArchivoInicializacion.getMyGestorArchivoInicializacion().readXML("facil");
     }
 
