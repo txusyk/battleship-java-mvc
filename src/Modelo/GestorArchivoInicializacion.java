@@ -51,7 +51,7 @@ public class GestorArchivoInicializacion {
     public void readXML(String pDif) throws ExcepcionFicheros {
         try {
             String url = System.getProperty("user.home");
-            File fDif = new File(url + "/config_IS_battleship2.xml");
+            File fDif = new File(url + "/config_IS_battleship.xml");
             if (!fDif.exists()) {
                 throw new ExcepcionFicheros();
             }
@@ -60,7 +60,6 @@ public class GestorArchivoInicializacion {
             Document doc = documentBuilder.parse(fDif);
 
             doc.getDocumentElement().normalize();
-
 
             Node nNode = doc.getElementsByTagName(pDif).item(0);
 

@@ -70,7 +70,7 @@ public abstract class Jugador {
      * añade el arma deseada a la lista de armas del jugador
      * @param pArma
      */
-    public boolean comprarArma(String pArma) {
+    public boolean comprarArma(String pArma) throws ExcepcionListaArmas {
         if (Almacen.getMiAlmacen().cantidadRestante(pArma) > 0) {
             if (this.dinero >= Almacen.getMiAlmacen().getPrecioArma(pArma)) {
                 lArmas.añadirArma(Almacen.getMiAlmacen().comprarArma(pArma));

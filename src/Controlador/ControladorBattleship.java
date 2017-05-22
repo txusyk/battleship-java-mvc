@@ -126,11 +126,15 @@ public class ControladorBattleship implements Observer, Runnable {
                 if (Battleship.getMyBattleship().getJugActivo() instanceof Humano) { //solo si el humano es el jugador actual
                     if (Objects.equals(e.getActionCommand(), "comprar")) {
                         if (!vista.getBotonArmaSeleccionada().equalsIgnoreCase("bomba")) {
-                            if (Battleship.getMyBattleship().getJugActivo().comprarArma(vista.getBotonArmaSeleccionada())) {
-                                vista.actualizarContadorArmas(vista.getCantArma() + 1, vista.getBotonArmaSeleccionada());
-                                vista.actDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar este arma");
+                            try {
+                                if (Battleship.getMyBattleship().getJugActivo().comprarArma(vista.getBotonArmaSeleccionada())) {
+                                    vista.actualizarContadorArmas(vista.getCantArma() + 1, vista.getBotonArmaSeleccionada());
+                                    vista.actDinero(ListaJugadores.getMyListaJug().getHumano().getDinero());
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar este arma");
+                                }
+                            } catch (ExcepcionListaArmas excepcionListaArmas) {
+                                excepcionListaArmas.printStackTrace();
                             }
                         }
                     } else if (e.getActionCommand().split("\\.")[0].equalsIgnoreCase("ia")) { //se ha clickado el tablero ia
